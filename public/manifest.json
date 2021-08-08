@@ -1,8 +1,8 @@
 {
-  "short_name": "PancakeSwap",
-  "name": "PancakeSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "short_name": "DefiyFarms",
+  "name": "DefiyFarms",
+  "description": "Farm Defiy with Defiy Farms LP Tokens",
+  "homepage_url": "https://defifarms.org",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",

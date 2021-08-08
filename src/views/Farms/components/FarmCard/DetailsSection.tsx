@@ -13,7 +13,7 @@ export interface ExpandableSectionProps {
 }
 
 const Wrapper = styled.div`
-  margin-top: 24px;
+  padding: 0 24px 24px;
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
@@ -40,7 +40,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
       )}
       <StyledLinkExternal href={bscScanAddress}>{t('View Contract')}</StyledLinkExternal>
-      <StyledLinkExternal href={infoAddress}>{t('See Pair Info')}</StyledLinkExternal>
+      {/* <StyledLinkExternal href={infoAddress}>{t('See Pair Info')}</StyledLinkExternal> */}
     </Wrapper>
   )
 }

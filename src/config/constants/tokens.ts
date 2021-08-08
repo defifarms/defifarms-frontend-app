@@ -64,6 +64,15 @@ const tokens = {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
   },
+  defiy: {
+    symbol: 'DEFIY',
+    address: {
+      56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
+      97: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
+    },
+    decimals: 18,
+    projectLink: 'https://defifarms.org',
+  },
   cake: {
     symbol: 'CAKE',
     address: {

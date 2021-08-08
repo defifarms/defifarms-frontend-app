@@ -2590,10 +2590,8 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap/sdk@^2.3.2":
+"@pancakeswap/sdk@file:../sdk":
   version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/sdk/-/sdk-2.3.2.tgz#35c986ac4965dff713bb06d523ffa34312a07228"
-  integrity sha512-ILwO8RsOF9hc/k63WkbUB36uAGPi4QWtPWv/smNAdzIM2F09VdaWL8/NsSdp8bB6cA4ZmqP2DUFsTMvLOodl0A==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"
@@ -2603,10 +2601,8 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@pancakeswap/uikit@^0.43.0":
+"@pancakeswap/uikit@file:../toolkit/packages/pancake-uikit":
   version "0.43.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/uikit/-/uikit-0.43.0.tgz#14cd17579e8b507b94ab5793181efad9389f1bed"
-  integrity sha512-TlYpZikSN0jpfDQw6uloqy14jyG/1hI808/yM5hhxGBK02st+1dkjLNy3NLgdHI+VleAAiAzJ7RQxh9YkGt/VA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

@@ -14,6 +14,10 @@ export interface ExpandableSectionProps {
 }
 
 const Wrapper = styled(Flex)`
+  border-bottom: 1px solid #E7E3EB;
+  padding: 35px;
+  margin-bottom: 24px;
+
   svg {
     margin-right: 4px;
   }
@@ -26,14 +30,14 @@ const MultiplierTag = styled(Tag)`
 const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm, token, quoteToken }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
-      <Flex flexDirection="column" alignItems="flex-end">
-        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
+      <Flex flexDirection="column" alignItems="flex-start">
+        <Heading mb="9px">{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
           {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
           <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
         </Flex>
       </Flex>
+      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
     </Wrapper>
   )
 }

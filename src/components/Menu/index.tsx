@@ -18,7 +18,7 @@ const Menu = (props) => {
     <UikitMenu
       userMenu={<UserMenu />}
       isDark={isDark}
-      toggleTheme={toggleTheme}
+      toggleTheme={null}
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}

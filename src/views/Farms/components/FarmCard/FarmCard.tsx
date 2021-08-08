@@ -53,7 +53,6 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 24px;
   position: relative;
   text-align: center;
 `
@@ -68,6 +67,11 @@ const Divider = styled.div`
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
   overflow: hidden;
+`
+
+const FlexWrapper = styled(Flex)`
+  padding: 0 35px;
+  margin-bottom:8px;
 `
 
 interface FarmCardProps {
@@ -89,7 +93,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       : ''
 
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const earnLabel = farm.dual ? farm.dual.earnLabel : t('CAKE + Fees')
+  const earnLabel = farm.dual ? farm.dual.earnLabel : t('DEFIY')
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
@@ -110,7 +114,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         quoteToken={farm.quoteToken}
       />
       {!removed && (
-        <Flex justifyContent="space-between" alignItems="center">
+        <FlexWrapper justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apr ? (
@@ -128,12 +132,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
               <Skeleton height={24} width={80} />
             )}
           </Text>
-        </Flex>
+        </FlexWrapper>
       )}
-      <Flex justifyContent="space-between">
+      <FlexWrapper justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
-      </Flex>
+      </FlexWrapper>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
       <ExpandableSectionButton
