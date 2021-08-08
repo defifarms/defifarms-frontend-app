@@ -6,6 +6,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { simpleRpcProvider } from 'utils/providers'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
+import tokens from '../config/constants/tokens'
 
 type UseTokenBalanceState = {
   balance: BigNumber
@@ -56,7 +57,7 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getCakeContract()
+      const cakeContract = getBep20Contract(tokens.defiy.address[56])
       const supply = await cakeContract.totalSupply()
       setTotalSupply(new BigNumber(supply.toString()))
     }

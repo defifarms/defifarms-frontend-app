@@ -8,6 +8,10 @@ export const getAddress = (address: Address): string => {
   return address[chainId] ? address[chainId] : address[ChainId.MAINNET]
 }
 
+export const getDefiyAddress = () => {
+  return getAddress(tokens.defiy.address)
+}
+
 export const getCakeAddress = () => {
   return getAddress(tokens.cake.address)
 }

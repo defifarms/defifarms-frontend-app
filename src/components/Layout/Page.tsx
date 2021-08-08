@@ -18,8 +18,8 @@ const StyledPage = styled(Container)`
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 35px;
+    padding-bottom: 35px;
   }
 `
 

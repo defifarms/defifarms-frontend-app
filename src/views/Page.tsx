@@ -14,6 +14,7 @@ const StyledPage = styled.div`
   min-height: calc(100vh - 64px);
   background: ${({ theme }) => theme.colors.background};
 
+
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;
   }
