@@ -24,8 +24,10 @@ const CardImage = styled.img`
 `
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
 `
 
 const Actions = styled.div`
@@ -82,7 +84,7 @@ const FarmedStakingCard = () => {
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
-        <CardImage src="/images/home/banner_farm_staking.png"/>
+        <CardImage src="/images/home/2.png"/>
         <Cards>
           <Block>
             <Label>{t('Defiy to Harvest')}:</Label>
@@ -102,7 +104,7 @@ const FarmedStakingCard = () => {
               width="100%"
             >
               {pendingTx
-                ? t('Collecting CAKE')
+                ? t('Collecting Defiy')
                 : t('Harvest all (%count%)', {
                     count: balancesWithValue.length,
                   })}

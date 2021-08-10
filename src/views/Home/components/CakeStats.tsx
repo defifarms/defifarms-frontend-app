@@ -43,17 +43,37 @@ const CakeStats = () => {
           {t('Defiy Stats')}
         </HeadingCard>
         <Row>
-          <Text fontSize="14px">{t('Total Defiy Supply')}</Text>
+          <Text fontSize="14px">{t('Market Cap')}</Text>
+          Updating
+        </Row>
+        <Row>
+          <Text fontSize="14px">{t('Total Minted')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Total Defiy Burned')}</Text>
+          <Text fontSize="14px">{t('Total Burned')}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
-        {/* <Row> */}
-        {/*  <Text fontSize="14px">{t('New CAKE/block')}</Text> */}
-        {/*  <CardValue fontSize="14px" decimals={0} value={19} /> */}
-        {/* </Row> */}
+        <Row>
+          <Text fontSize="14px">{t('Total Locked Rewards')}</Text>
+          Updating
+        </Row>
+        <Row>
+          <Text fontSize="14px">{t('Circulating Supply')}</Text>
+          Updating
+        </Row>
+        <Row>
+          <Text fontSize="14px">{t('Max Tx Amount')}</Text>
+          Updating
+        </Row>
+        <Row>
+          <Text fontSize="14px">{t('New DEFIY/Block')}</Text>
+          Updating
+        </Row>
+        <Row>
+          <Text fontSize="14px">{t('Transfer Tax')}</Text>
+          8%
+        </Row>
       </CardBody>
     </StyledCakeStats>
   )

@@ -8,6 +8,8 @@ const StyledAnnouncements = styled(Card)`
 
 const TwitterDashboard = styled.div`
   padding-bottom:24px;
+  font-size: 16px;
+  line-height: 24px;
 `
 
 const CardImage = styled.img`
@@ -43,9 +45,10 @@ const Announcements = () => {
           {t('Announcements')}
         </HeadingCard>
         <TwitterDashboard id="twitterDashboard">
+          DeFiFarms Is  The First NFTs Protocol Powerful Automatic Liquidity Acquisition  Yield Farm & AMM Built With ❤️ on Binance Smart Chain.
           <a className="twitter-timeline" data-height="400" data-theme="light" href="https://twitter.com/DeFiFarmsNFTs?ref_src=twsrc%5Etfw">Tweets</a>
         </TwitterDashboard>
-        <CardImage src="/images/home/banner_announcements.png"/>
+        <CardImage src="/images/home/3.png"/>
       </CardBody>
     </StyledAnnouncements>
   )

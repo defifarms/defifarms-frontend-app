@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap/sdk'
@@ -36,6 +37,12 @@ import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
+
+const BgHome = styled.div`
+    background: url(images/home/7.svg) rgb(176 232 251);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+`
 
 export default function AddLiquidity({
   match: {
@@ -303,6 +310,7 @@ export default function AddLiquidity({
   )
 
   return (
+    <BgHome>
     <Page>
       <AppBody>
         <AppHeader
@@ -449,5 +457,6 @@ export default function AddLiquidity({
         <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
       )}
     </Page>
+    </BgHome>
   )
 }

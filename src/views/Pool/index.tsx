@@ -17,6 +17,12 @@ const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.dropdownDeep};
 `
 
+const BgHome = styled.div`
+    background: url(images/home/7.svg) rgb(176 232 251);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+`
+
 export default function Pool() {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
@@ -83,6 +89,7 @@ export default function Pool() {
   }
 
   return (
+    <BgHome>
     <Page>
       <AppBody>
         <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
@@ -106,5 +113,6 @@ export default function Pool() {
         </CardFooter>
       </AppBody>
     </Page>
+    </BgHome>
   )
 }

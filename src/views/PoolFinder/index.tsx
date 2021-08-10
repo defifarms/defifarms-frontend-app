@@ -30,6 +30,11 @@ const StyledButton = styled(Button)`
   box-shadow: none;
   border-radius: 16px;
 `
+const BgHome = styled.div`
+    background: url(images/home/7.svg) rgb(176 232 251);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+`
 
 export default function PoolFinder() {
   const { account } = useActiveWeb3React()
@@ -90,6 +95,7 @@ export default function PoolFinder() {
   )
 
   return (
+    <BgHome>
     <Page>
       <AppBody>
         <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
@@ -198,5 +204,6 @@ export default function PoolFinder() {
         /> */}
       </AppBody>
     </Page>
+    </BgHome>
   )
 }

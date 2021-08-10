@@ -49,6 +49,12 @@ const Label = styled(Text)`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
+const BgHome = styled.div`
+    background: url(images/home/7.svg) rgb(176 232 251);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+`
+
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
 
@@ -303,6 +309,7 @@ export default function Swap({ history }: RouteComponentProps) {
   )
 
   return (
+    <BgHome>
     <Page>
       <AppBody>
         <AppHeader title={t('Exchange')} subtitle={t('Trade tokens in an instant')} />
@@ -498,5 +505,6 @@ export default function Swap({ history }: RouteComponentProps) {
         <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
     </Page>
+    </BgHome>
   )
 }

@@ -62,6 +62,12 @@ const LabelWrapper = styled.div`
   }
 `
 
+const BgHome = styled.div`
+    background: url(images/home/7.svg) rgb(176 232 251);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+`
+
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -379,7 +385,7 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <>
+    <BgHome>
       <PageHeader>
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
@@ -442,7 +448,7 @@ const Farms: React.FC = () => {
         )}
         <div ref={loadMoreRef} />
       </Page>
-    </>
+    </BgHome>
   )
 }
 

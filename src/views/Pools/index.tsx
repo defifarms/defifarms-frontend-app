@@ -73,6 +73,12 @@ const ControlStretch = styled(Flex)`
   }
 `
 
+const BgHome = styled.div`
+    background: url(images/home/7.svg) rgb(176 232 251);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+`
+
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
@@ -233,12 +239,12 @@ const Pools: React.FC = () => {
   const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 
   return (
-    <>
+    <BgHome>
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Defiy Pools')}
+              {t('DefiFarm Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
@@ -311,7 +317,7 @@ const Pools: React.FC = () => {
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
       </Page>
-    </>
+    </BgHome>
   )
 }
 

@@ -5,11 +5,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
-    href: '/',
+    href: 'https://app.defifarms.org/',
   },
   {
     label: t('Trade'),
     icon: 'TradeIcon',
+    initialOpenState: true,
     items: [
       {
         label: t('Exchange'),
@@ -17,7 +18,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Liquidity'),
-        href: '/pool',
+        href: '/liquidity',
       }
     ],
   },
@@ -120,7 +121,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: 'Contact',
-        href: '#',
+        href: '/contact',
       },
       {
         label: 'Github',

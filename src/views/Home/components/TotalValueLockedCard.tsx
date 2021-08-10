@@ -30,7 +30,7 @@ const TotalValueLockedCard = () => {
         <HeadingCard scale="lg" mb="24px">
           {t('Total Value Locked (TVL)')}
         </HeadingCard>
-          Comming Soon
+        Updating
       </CardBody>
     </StyledTotalValueLockedCard>
   )

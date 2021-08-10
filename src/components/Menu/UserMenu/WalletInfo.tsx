@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getCakeAddress, getDefiyAddress } from 'utils/addressHelpers'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 import { getBscScanLink } from 'utils'
@@ -18,7 +18,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { balance } = useGetBnbBalance()
-  const { balance: cakeBalance } = useTokenBalance(getCakeAddress())
+  const { balance: cakeBalance } = useTokenBalance(getDefiyAddress())
   const { logout } = useAuth()
 
   const handleLogout = () => {
@@ -45,7 +45,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
         <Text>{getFullDisplayBalance(balance, 18, 6)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
-        <Text color="textSubtle">{t('CAKE Balance')}</Text>
+        <Text color="textSubtle">{t('Defiy Balance')}</Text>
         <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
