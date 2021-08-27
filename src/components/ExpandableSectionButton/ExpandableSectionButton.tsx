@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   padding: 0 24px 24px;
 
   svg {
-    fill: ${({ theme }) => theme.isDark ? theme.colors.primary : "#FEA23E"};
+    fill: ${({ theme }) => (theme.isDark ? theme.colors.primary : '#FEA23E')};
   }
 `
 

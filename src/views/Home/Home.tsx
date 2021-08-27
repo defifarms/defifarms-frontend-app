@@ -27,7 +27,7 @@ const Hero = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-top: 0;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.xs} {
     padding-top: 0px;
   }
@@ -60,14 +60,12 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-const CardImage = styled.img`
-
-`
+const CardImage = styled.img``
 
 const BgHome = styled.div`
-    background: url(images/home/7.svg) rgb(176 232 251);
-    background-repeat: no-repeat;
-    background-position: bottom center;
+  background: url(images/home/7.svg) rgb(176 232 251);
+  background-repeat: no-repeat;
+  background-position: bottom center;
 `
 
 const HeadingHome = styled(Heading)`
@@ -75,7 +73,7 @@ const HeadingHome = styled(Heading)`
   font-weight: 600;
   font-size: 62px;
   line-height: 94px;
-  background: linear-gradient(180deg, #4663DE 0%, #5D7AFA 100%);
+  background: linear-gradient(180deg, #4663de 0%, #5d7afa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -101,20 +99,22 @@ const Home: React.FC = () => {
             <HeadingHome as="h1" scale="xl" mb="24px">
               {t('DeFiFarms')}
             </HeadingHome>
-            <TextHome mb={18}>{t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}</TextHome>
+            <TextHome mb={18}>
+              {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
+            </TextHome>
             <TextHome mb={2}>Powered by</TextHome>
-            <CardImage src="/images/home/logo-partner-binance-smart-chain.png"/>
+            <CardImage src="/images/home/logo-partner-binance-smart-chain.png" />
           </Hero>
           <div>
             <Cards>
-              <FarmStakingCard/>
-              <Announcements/>
+              <FarmStakingCard />
+              <Announcements />
             </Cards>
             <Cards>
-              <CakeStats/>
+              <CakeStats />
               <div>
-                <EarnAssetCard/>
-                <TotalValueLockedCard/>
+                <EarnAssetCard />
+                <TotalValueLockedCard />
               </div>
             </Cards>
           </div>

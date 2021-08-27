@@ -18,9 +18,9 @@ const Body = styled(CardBody)`
 `
 
 const BgHome = styled.div`
-    background: url(images/home/7.svg) rgb(176 232 251);
-    background-repeat: no-repeat;
-    background-position: bottom center;
+  background: url(images/home/7.svg) rgb(176 232 251);
+  background-repeat: no-repeat;
+  background-position: bottom center;
 `
 
 export default function Pool() {
@@ -90,29 +90,29 @@ export default function Pool() {
 
   return (
     <BgHome>
-    <Page>
-      <AppBody>
-        <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
-        <Body>
-          {renderBody()}
-          {account && !v2IsLoading && (
-            <Flex flexDirection="column" alignItems="center" mt="24px">
-              <Text color="textSubtle" mb="8px">
-                {t("Don't see a pool you joined?")}
-              </Text>
-              <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
-                {t('Find other LP tokens')}
-              </Button>
-            </Flex>
-          )}
-        </Body>
-        <CardFooter style={{ textAlign: 'center' }}>
-          <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
-            {t('Add Liquidity')}
-          </Button>
-        </CardFooter>
-      </AppBody>
-    </Page>
+      <Page>
+        <AppBody>
+          <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
+          <Body>
+            {renderBody()}
+            {account && !v2IsLoading && (
+              <Flex flexDirection="column" alignItems="center" mt="24px">
+                <Text color="textSubtle" mb="8px">
+                  {t("Don't see a pool you joined?")}
+                </Text>
+                <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
+                  {t('Find other LP tokens')}
+                </Button>
+              </Flex>
+            )}
+          </Body>
+          <CardFooter style={{ textAlign: 'center' }}>
+            <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
+              {t('Add Liquidity')}
+            </Button>
+          </CardFooter>
+        </AppBody>
+      </Page>
     </BgHome>
   )
 }

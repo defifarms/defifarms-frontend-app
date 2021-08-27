@@ -71,7 +71,7 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 
 const FlexWrapper = styled(Flex)`
   padding: 0 35px;
-  margin-bottom:8px;
+  margin-bottom: 8px;
 `
 
 interface FarmCardProps {

@@ -16,9 +16,7 @@ const Wrapper = styled.div`
 `
 
 const Footer = () => {
-  return (
-    <Wrapper />
-  )
+  return <Wrapper />
 }
 
 export default Footer

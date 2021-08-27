@@ -74,9 +74,9 @@ const ControlStretch = styled(Flex)`
 `
 
 const BgHome = styled.div`
-    background: url(images/home/7.svg) rgb(176 232 251);
-    background-repeat: no-repeat;
-    background-position: bottom center;
+  background: url(images/home/7.svg) rgb(176 232 251);
+  background-repeat: no-repeat;
+  background-position: bottom center;
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -106,7 +106,7 @@ const Pools: React.FC = () => {
   const pools = useMemo(() => {
     // const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
     // const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    return [ ...poolsWithoutAutoVault]
+    return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
@@ -228,11 +228,9 @@ const Pools: React.FC = () => {
 
   const cardLayout = (
     <CardLayout>
-      {chosenPools.map((pool) =>
-        (
-          <PoolCard key={pool.sousId} pool={pool} account={account} />
-        ),
-      )}
+      {chosenPools.map((pool) => (
+        <PoolCard key={pool.sousId} pool={pool} account={account} />
+      ))}
     </CardLayout>
   )
 

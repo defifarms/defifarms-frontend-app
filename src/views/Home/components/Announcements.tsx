@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
-const StyledAnnouncements = styled(Card)`
-`
+const StyledAnnouncements = styled(Card)``
 
 const TwitterDashboard = styled.div`
-  padding-bottom:24px;
+  padding-bottom: 24px;
   font-size: 16px;
   line-height: 24px;
 `
@@ -30,13 +29,13 @@ const Announcements = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    const scriptTag = document.createElement('script');
+    const scriptTag = document.createElement('script')
 
-    scriptTag.src = "https://platform.twitter.com/widgets.js";
-    scriptTag.async = true;
+    scriptTag.src = 'https://platform.twitter.com/widgets.js'
+    scriptTag.async = true
 
-    document.getElementById('twitterDashboard').appendChild(scriptTag);
-  }, []);
+    document.getElementById('twitterDashboard').appendChild(scriptTag)
+  }, [])
 
   return (
     <StyledAnnouncements>
@@ -45,10 +44,18 @@ const Announcements = () => {
           {t('Announcements')}
         </HeadingCard>
         <TwitterDashboard id="twitterDashboard">
-          DeFiFarms Is  The First NFTs Protocol Powerful Automatic Liquidity Acquisition  Yield Farm & AMM Built With ❤️ on Binance Smart Chain.
-          <a className="twitter-timeline" data-height="400" data-theme="light" href="https://twitter.com/DeFiFarmsNFTs?ref_src=twsrc%5Etfw">Tweets</a>
+          DeFiFarms Is The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM Built With ❤️
+          on Binance Smart Chain.
+          <a
+            className="twitter-timeline"
+            data-height="400"
+            data-theme="light"
+            href="https://twitter.com/DeFiFarmsNFTs?ref_src=twsrc%5Etfw"
+          >
+            Tweets
+          </a>
         </TwitterDashboard>
-        <CardImage src="/images/home/3.png"/>
+        <CardImage src="/images/home/3.png" />
       </CardBody>
     </StyledAnnouncements>
   )

@@ -14,7 +14,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     sortOrder: 999,
     tokenPerBlock: '1',
-  }
+  },
 ]
 
 export default pools

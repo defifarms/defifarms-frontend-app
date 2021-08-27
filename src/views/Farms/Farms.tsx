@@ -63,9 +63,9 @@ const LabelWrapper = styled.div`
 `
 
 const BgHome = styled.div`
-    background: url(images/home/7.svg) rgb(176 232 251);
-    background-repeat: no-repeat;
-    background-position: bottom center;
+  background: url(images/home/7.svg) rgb(176 232 251);
+  background-repeat: no-repeat;
+  background-position: bottom center;
 `
 
 const FilterContainer = styled.div`
@@ -390,10 +390,9 @@ const Farms: React.FC = () => {
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
         </Heading>
-        <Heading scale="lg" color="text" style={{fontWeight: 400}}>
+        <Heading scale="lg" color="text" style={{ fontWeight: 400 }}>
           {t('Stake LP tokens to earn.')}
         </Heading>
-
       </PageHeader>
       <Page>
         <ControlContainer>

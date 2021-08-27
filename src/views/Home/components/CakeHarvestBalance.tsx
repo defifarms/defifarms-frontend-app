@@ -8,8 +8,7 @@ import styled from 'styled-components'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import CardValue from './CardValue'
 
-const Block = styled.div`
-`
+const Block = styled.div``
 
 interface CakeHarvestBalanceProps {
   farmsWithBalance: FarmWithBalance[]
@@ -36,7 +35,7 @@ const CakeHarvestBalance: React.FC<CakeHarvestBalanceProps> = ({ farmsWithBalanc
 
   return (
     <Block>
-      <CardValue value={earningsSum} lineHeight="1.5" color="four"/>
+      <CardValue value={earningsSum} lineHeight="1.5" color="four" />
     </Block>
   )
 }

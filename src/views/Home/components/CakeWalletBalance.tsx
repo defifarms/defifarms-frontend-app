@@ -19,19 +19,14 @@ const CakeWalletBalance = () => {
   const { account } = useWeb3React()
 
   if (!account) {
-    return (
-      <Text color="textDisabled">
-        {t('Locked')}
-      </Text>
-    )
+    return <Text color="textDisabled">{t('Locked')}</Text>
   }
 
-  const Block = styled.div`
-  `
+  const Block = styled.div``
 
   return (
     <Block>
-      <CardValue value={getBalanceNumber(cakeBalance)} decimals={4} lineHeight="1.5" color="four"/>
+      <CardValue value={getBalanceNumber(cakeBalance)} decimals={4} lineHeight="1.5" color="four" />
       {/* {cakePriceBusd.gt(0) ? <CardBusdValue value={busdBalance} /> : <br />} */}
     </Block>
   )

@@ -15,8 +15,7 @@ const StyledFarmStakingCard = styled(Card)`
   min-height: 376px;
 `
 
-const Block = styled.div`
-`
+const Block = styled.div``
 
 const CardImage = styled.img`
   margin-bottom: 25px;
@@ -80,11 +79,11 @@ const FarmedStakingCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <CardBody style={{padding: "24px 32px"}}>
+      <CardBody style={{ padding: '24px 32px' }}>
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
-        <CardImage src="/images/home/2.png"/>
+        <CardImage src="/images/home/2.png" />
         <Cards>
           <Block>
             <Label>{t('Defiy to Harvest')}:</Label>

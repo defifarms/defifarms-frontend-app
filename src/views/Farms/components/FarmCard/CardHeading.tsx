@@ -14,7 +14,7 @@ export interface ExpandableSectionProps {
 }
 
 const Wrapper = styled(Flex)`
-  border-bottom: 1px solid #E7E3EB;
+  border-bottom: 1px solid #e7e3eb;
   padding: 35px;
   margin-bottom: 24px;
 
