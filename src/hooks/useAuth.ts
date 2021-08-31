@@ -13,7 +13,6 @@ import { ConnectorNames, connectorLocalStorageKey } from '@pancakeswap/uikit'
 import { connectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
-import { profileClear } from 'state/profile'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
 
@@ -59,7 +58,12 @@ const useAuth = () => {
   )
 
   const logout = useCallback(() => {
-    dispatch(profileClear())
+    dispatch(() => ({
+      isInitialized: false,
+      hasRegistered: false,
+      data: null,
+      isLoading: false,
+    }))
     deactivate()
     // This localStorage key is set by @web3-react/walletconnect-connector
     if (window.localStorage.getItem('walletconnect')) {
