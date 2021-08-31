@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout, Text, Heading } from '@pancakeswap/uikit'
+import { BaseLayout, Heading, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'

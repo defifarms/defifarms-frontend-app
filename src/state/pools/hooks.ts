@@ -6,14 +6,14 @@ import { useAppDispatch } from 'state'
 import { simpleRpcProvider } from 'utils/providers'
 import useRefresh from 'hooks/useRefresh'
 import {
-  fetchPoolsPublicDataAsync,
-  fetchPoolsUserDataAsync,
+  fetchCakeVaultFees,
   fetchCakeVaultPublicData,
   fetchCakeVaultUserData,
-  fetchCakeVaultFees,
+  fetchPoolsPublicDataAsync,
   fetchPoolsStakingLimitsAsync,
+  fetchPoolsUserDataAsync,
 } from '.'
-import { State, Pool } from '../types'
+import { Pool, State } from '../types'
 import { transformPool } from './helpers'
 
 export const useFetchPublicPoolsData = () => {

@@ -4,17 +4,17 @@ import styled from 'styled-components'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import {
-  Flex,
-  MetamaskIcon,
-  Text,
-  TooltipText,
-  LinkExternal,
-  TimerIcon,
-  Skeleton,
-  useTooltip,
   Button,
-  Link,
+  Flex,
   HelpIcon,
+  Link,
+  LinkExternal,
+  MetamaskIcon,
+  Skeleton,
+  Text,
+  TimerIcon,
+  TooltipText,
+  useTooltip,
 } from '@pancakeswap/uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
 import { useBlock } from 'state/block/hooks'

@@ -8,7 +8,7 @@ import { getBalanceAmount } from 'utils/formatBalance'
 import { farmsConfig } from 'config/constants'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, nonArchivedFarms } from '.'
-import { State, Farm, FarmsState } from '../types'
+import { Farm, FarmsState, State } from '../types'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()

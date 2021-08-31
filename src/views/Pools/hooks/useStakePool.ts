@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
-import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
+import { updateUserBalance, updateUserStakedBalance } from 'state/actions'
 import { stakeFarm } from 'utils/calls'
 import BigNumber from 'bignumber.js'
-import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
 import { useMasterchef, useSousChef } from 'hooks/useContract'
 

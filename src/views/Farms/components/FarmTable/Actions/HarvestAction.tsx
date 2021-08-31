@@ -13,7 +13,7 @@ import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import useHarvestFarm from '../../../hooks/useHarvestFarm'
 
-import { ActionContainer, ActionTitles, ActionContent } from './styles'
+import { ActionContainer, ActionContent, ActionTitles } from './styles'
 
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean

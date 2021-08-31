@@ -2,16 +2,16 @@ import React, { useMemo } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import {
+  Box,
+  Button,
   Card,
   CardBody,
-  Text,
   Flex,
-  HelpIcon,
-  Button,
   Heading,
+  HelpIcon,
   Skeleton,
+  Text,
   useModal,
-  Box,
   useTooltip,
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ethers, Contract } from 'ethers'
+import { Contract, ethers } from 'ethers'
 import { useMasterchef } from 'hooks/useContract'
 
 const useApproveFarm = (lpContract: Contract) => {

@@ -2,9 +2,9 @@ import React from 'react'
 import { Card, CardBody, Heading, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useBurnedBalance, useTotalSupply } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { getCakeAddress, getDefiyAddress } from 'utils/addressHelpers'
+import { getDefiyAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
 const StyledCakeStats = styled(Card)`

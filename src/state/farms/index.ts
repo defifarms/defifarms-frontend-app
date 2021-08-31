@@ -5,12 +5,12 @@ import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import fetchFarms from './fetchFarms'
 import fetchFarmsPrices from './fetchFarmsPrices'
 import {
-  fetchFarmUserEarnings,
   fetchFarmUserAllowances,
-  fetchFarmUserTokenBalances,
+  fetchFarmUserEarnings,
   fetchFarmUserStakedBalances,
+  fetchFarmUserTokenBalances,
 } from './fetchFarmUser'
-import { FarmsState, Farm } from '../types'
+import { Farm, FarmsState } from '../types'
 
 const noAccountFarmConfig = farmsConfig.map((farm) => ({
   ...farm,

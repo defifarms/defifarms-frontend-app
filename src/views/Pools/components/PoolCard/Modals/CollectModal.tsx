@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import {
-  Modal,
-  Text,
-  Button,
-  Heading,
-  Flex,
   AutoRenewIcon,
+  Button,
   ButtonMenu,
   ButtonMenuItem,
+  Flex,
+  Heading,
   HelpIcon,
+  Modal,
+  Text,
   useTooltip,
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'

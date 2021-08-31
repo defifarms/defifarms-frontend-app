@@ -1,9 +1,9 @@
 import React from 'react'
-import { Flex, Text, Button, Heading, useModal, Skeleton } from '@pancakeswap/uikit'
+import { Button, Flex, Heading, Skeleton, Text, useModal } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { getFullDisplayBalance, getBalanceNumber, formatNumber } from 'utils/formatBalance'
+import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import Balance from 'components/Balance'
 import CollectModal from '../Modals/CollectModal'
 
