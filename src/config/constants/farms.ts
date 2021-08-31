@@ -16,13 +16,33 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 1,
-    lpSymbol: 'DEFIY-BNB LP',
+    pid: 251,
+    lpSymbol: 'CAKE-BNB LP',
+    lpAddresses: {
+      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+      56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
+    },
+    token: tokens.cake,
+    quoteToken: tokens.wbnb,
+  },
+  {
+    pid: 252,
+    lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '',
-      56: '0x243b4c2302a7e374589985db8cd908bef35090ee',
+      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
     },
-    token: tokens.defiy,
+    token: tokens.busd,
+    quoteToken: tokens.wbnb,
+  },
+  {
+    pid: 10,
+    lpSymbol: 'BAKE-BNB LP',
+    lpAddresses: {
+      97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
+      56: '0x3Da30727ed0626b78C212e81B37B97A8eF8A25bB',
+    },
+    token: tokens.bake,
     quoteToken: tokens.wbnb,
   },
 ]

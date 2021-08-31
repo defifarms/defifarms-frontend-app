@@ -3,15 +3,11 @@ import { Menu as UikitMenu } from '@pancakeswap/uikit'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useProfile } from 'state/profile/hooks'
 import config from './config'
 import UserMenu from './UserMenu'
 
 const Menu = (props) => {
-  const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
-  const { profile } = useProfile()
+  const { isDark } = useTheme()
   const { currentLanguage, setLanguage, t } = useTranslation()
 
   return (
@@ -22,14 +18,14 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      cakePriceUsd={0}
       links={config(t)}
       profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
+        username: null,
+        image: undefined,
+        profileLink: '',
+        noProfileLink: '',
+        showPip: null,
       }}
       {...props}
     />
