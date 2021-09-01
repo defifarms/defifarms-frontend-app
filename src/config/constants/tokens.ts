@@ -1,19 +1,19 @@
 import { ChainId, Token } from '@pancakeswap/sdk'
 
-export const CAKE: { [chainId: number]: Token } = {
+export const DEFIY: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
     18,
-    'CAKE',
-    'PancakeSwap Token',
+    'DEFIY',
+    'DefiFarms Non-Fungible Yearn',
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
+    '0x2BFCDE20E955C6ec3A05c4c25908F10824732e98',
     18,
-    'CAKE',
-    'PancakeSwap Token',
+    'DEFIY',
+    'DefiFarms Non-Fungible Yearn',
   ),
 }
 export const BUSD: { [chainId: number]: Token } = {
@@ -68,7 +68,7 @@ const tokens = {
     symbol: 'DEFIY',
     address: {
       56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
-      97: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
+      97: '0x2BFCDE20E955C6ec3A05c4c25908F10824732e98',
     },
     decimals: 18,
     projectLink: 'https://defifarms.org',

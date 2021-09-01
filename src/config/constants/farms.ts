@@ -3,46 +3,36 @@ import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
   /**
-   * These 3 farms (PID 0, 251, 252) should always be at the top of the file.
+   * These 3 farms (PID 0, 1, 2) should always be at the top of the file.
    */
   {
     pid: 0,
-    lpSymbol: 'CAKE',
+    lpSymbol: 'DEFI',
     lpAddresses: {
-      97: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
-      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      97: '0x2BFCDE20E955C6ec3A05c4c25908F10824732e98', // DEFI
+      56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
     },
-    token: tokens.syrup,
+    token: tokens.defiy,
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 251,
-    lpSymbol: 'CAKE-BNB LP',
+    pid: 1,
+    lpSymbol: 'DEFI-BNB LP',
     lpAddresses: {
-      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+      97: '',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
     },
-    token: tokens.cake,
+    token: tokens.defiy,
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 252,
+    pid: 2,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '',
       56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
     },
     token: tokens.busd,
-    quoteToken: tokens.wbnb,
-  },
-  {
-    pid: 10,
-    lpSymbol: 'BAKE-BNB LP',
-    lpAddresses: {
-      97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
-      56: '0x3Da30727ed0626b78C212e81B37B97A8eF8A25bB',
-    },
-    token: tokens.bake,
     quoteToken: tokens.wbnb,
   },
 ]

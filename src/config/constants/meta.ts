@@ -14,14 +14,6 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
       return {
         title: `${t('Home')} | ${t('DefiFarms')}`,
       }
-    case '/competition':
-      return {
-        title: `${t('Trading Battle')} | ${t('DefiFarms')}`,
-      }
-    case '/prediction':
-      return {
-        title: `${t('Prediction')} | ${t('DefiFarms')}`,
-      }
     case '/farms':
       return {
         title: `${t('Farms')} | ${t('DefiFarms')}`,
@@ -29,30 +21,6 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
     case '/pools':
       return {
         title: `${t('Pools')} | ${t('DefiFarms')}`,
-      }
-    case '/lottery':
-      return {
-        title: `${t('Lottery')} | ${t('DefiFarms')}`,
-      }
-    case '/collectibles':
-      return {
-        title: `${t('Collectibles')} | ${t('DefiFarms')}`,
-      }
-    case '/ifo':
-      return {
-        title: `${t('Initial Farm Offering')} | ${t('DefiFarms')}`,
-      }
-    case '/teams':
-      return {
-        title: `${t('Leaderboard')} | ${t('DefiFarms')}`,
-      }
-    case '/profile/tasks':
-      return {
-        title: `${t('Task Center')} | ${t('DefiFarms')}`,
-      }
-    case '/profile':
-      return {
-        title: `${t('Your Profile')} | ${t('DefiFarms')}`,
       }
     default:
       return null

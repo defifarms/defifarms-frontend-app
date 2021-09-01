@@ -5,9 +5,11 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import config from './config'
 import UserMenu from './UserMenu'
+import { usePriceCakeBusd } from '../../state/farms/hooks'
 
 const Menu = (props) => {
   const { isDark } = useTheme()
+  const cakePriceUsd = usePriceCakeBusd()
   const { currentLanguage, setLanguage, t } = useTranslation()
 
   return (
@@ -18,7 +20,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={0}
+      cakePriceUsd={cakePriceUsd.toNumber()}
       links={config(t)}
       profile={{
         username: null,
