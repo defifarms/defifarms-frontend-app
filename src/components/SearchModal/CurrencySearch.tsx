@@ -75,11 +75,8 @@ function CurrencySearch({
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
-      if (audioPlay) {
-        swapSound.play()
-      }
     },
-    [audioPlay, onCurrencySelect],
+    [onCurrencySelect],
   )
 
   // manage focus on modal show

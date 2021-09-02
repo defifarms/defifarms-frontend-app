@@ -1,7 +1,9 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 import { BUSD, DAI, USDT, BTCB, DEFIY, WBNB, UST, ETH, USDC } from './tokens'
 
-export const ROUTER_ADDRESS = '0xf92837B9357cdd3AAD0adE2A29eb925256b277F5'
+// export const ROUTER_ADDRESS = '0xf92837B9357cdd3AAD0adE2A29eb925256b277F5' // MainNet
+
+export const ROUTER_ADDRESS = '0x10FfC3F38666267ED7E561C5b7d4541dAa4a1837' // Testnet
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -45,7 +47,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
-    [DEFIY[ChainId.MAINNET], WBNB],
+    [DEFIY[ChainId.MAINNET], WBNB[ChainId.MAINNET]],
     [BUSD[ChainId.MAINNET], USDT],
     [DAI, USDT],
   ],

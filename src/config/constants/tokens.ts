@@ -33,7 +33,23 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
 }
 
-export const WBNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB')
+export const WBNB: { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+    18,
+    'WBNB',
+    'Wrapped BNB',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0xbb5cC00198193E62bB1C02B2bbeA4d542229CD8E',
+    18,
+    'WBNB',
+    'Wrapped BNB',
+  ),
+}
+
 export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
 export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD')
 export const BTCB = new Token(ChainId.MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
@@ -680,7 +696,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      97: '0xbb5cC00198193E62bB1C02B2bbeA4d542229CD8E',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -851,7 +867,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '',
+      97: '0x4BA0641599749927E441F50846e6dF76a1CF1dfc',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
@@ -1490,7 +1506,7 @@ const tokens = {
     symbol: 'QSD',
     address: {
       56: '0x07AaA29E63FFEB2EBf59B33eE61437E1a91A3bb2',
-      97: '',
+      97: '0xb1f9B367F1F2F72B269362841C88ef94BDFf8970',
     },
     decimals: 18,
     projectLink: 'https://chemix.io/home',

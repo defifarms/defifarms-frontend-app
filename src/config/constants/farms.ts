@@ -19,7 +19,7 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'DEFI-BNB LP',
     lpAddresses: {
-      97: '',
+      97: '0x6F8fa7857f93bD5CAB9BfB17E91b64128277FC68',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
     },
     token: tokens.defiy,
@@ -29,7 +29,7 @@ const farms: FarmConfig[] = [
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '',
+      97: '0x4A44f1CAB097B32835422C18134111EEf010EE4b',
       56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
     },
     token: tokens.busd,

@@ -21,9 +21,9 @@ describe('Config farms', () => {
   })
 
   it.each(farmsToTest)('Farm %d has the correct token addresses', async (pid, farm) => {
-    const tokenAddress = farm.token.address[56]
-    const quoteTokenAddress = farm.quoteToken.address[56]
-    const lpContract = getLpContract(farm.lpAddresses[56])
+    const tokenAddress = farm.token.address[97]
+    const quoteTokenAddress = farm.quoteToken.address[97]
+    const lpContract = getLpContract(farm.lpAddresses[97])
 
     const token0Address = (await lpContract.token0()).toLowerCase()
     const token1Address = (await lpContract.token1()).toLowerCase()
@@ -53,7 +53,7 @@ describe('Config farms', () => {
   const newFarmsToTest = farmsToTest.filter((farmSet) => farmSet[0] >= START_PID)
 
   it.each(newFarmsToTest)('farm %d is using correct factory address', async (pid, farm) => {
-    const lpContract = getLpContract(farm.lpAddresses[56])
+    const lpContract = getLpContract(farm.lpAddresses[97])
     const factory = await lpContract.factory()
     expect(factory.toLowerCase()).toEqual(FACTORY_ADDRESS)
   })

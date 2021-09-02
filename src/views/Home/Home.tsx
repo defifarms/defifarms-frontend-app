@@ -5,9 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
-import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 // import EarnAPRCard from 'views/Home/components/EarnAPRCard'
-import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import Announcements from './components/Announcements'
 // import PredictionPromotionCard from 'views/Home/components/PredictionPromotionCard'
 // import LotteryPromotionCard from 'views/Home/components/LotteryPromotionCard'
@@ -103,15 +101,15 @@ const Home: React.FC = () => {
               {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
             </TextHome>
             <TextHome mb={2}>Powered by</TextHome>
-            <CardImage src="/images/home/logo-partner-binance-smart-chain.png" />
+            <CardImage src="/images/home/logo-partner-binance-smart-chain.png"/>
           </Hero>
           <div>
             <Cards>
-              {/* <FarmStakingCard /> */}
-              <Announcements />
+              {/* <FarmStakingCard/> */}
+              <Announcements/>
             </Cards>
             <Cards>
-              <CakeStats />
+              <CakeStats/>
               <div>
                 {/* <EarnAssetCard /> */}
                 {/* <TotalValueLockedCard /> */}
