@@ -86,13 +86,11 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   return undefined
 }
 
-
 // MainNet
 // const BAD_RECIPIENT_ADDRESSES: string[] = [
 //   '0x44344D30e8aC7d8fc47f70b76F8c806237A952E0', // v2 factory
 //   '0xf92837B9357cdd3AAD0adE2A29eb925256b277F5', // v2 router 02
 // ]
-
 
 // Testnet
 const BAD_RECIPIENT_ADDRESSES: string[] = [

@@ -101,15 +101,15 @@ const Home: React.FC = () => {
               {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
             </TextHome>
             <TextHome mb={2}>Powered by</TextHome>
-            <CardImage src="/images/home/logo-partner-binance-smart-chain.png"/>
+            <CardImage src="/images/home/logo-partner-binance-smart-chain.png" />
           </Hero>
           <div>
             <Cards>
               {/* <FarmStakingCard/> */}
-              <Announcements/>
+              <Announcements />
             </Cards>
             <Cards>
-              <CakeStats/>
+              <CakeStats />
               <div>
                 {/* <EarnAssetCard /> */}
                 {/* <TotalValueLockedCard /> */}
