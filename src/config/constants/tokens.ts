@@ -43,7 +43,7 @@ export const WBNB: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xbb5cC00198193E62bB1C02B2bbeA4d542229CD8E',
+    '0xbb5cc00198193e62bb1c02b2bbea4d542229cd8e',
     18,
     'WBNB',
     'Wrapped BNB',

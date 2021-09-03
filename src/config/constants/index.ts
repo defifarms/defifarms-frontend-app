@@ -3,7 +3,7 @@ import { BUSD, DAI, USDT, BTCB, DEFIY, WBNB, UST, ETH, USDC } from './tokens'
 
 // export const ROUTER_ADDRESS = '0xf92837B9357cdd3AAD0adE2A29eb925256b277F5' // MainNet
 
-export const ROUTER_ADDRESS = '0x10FfC3F38666267ED7E561C5b7d4541dAa4a1837' // Testnet
+export const ROUTER_ADDRESS = '0x543753Fa2FD5EC3321a527fE19Db2a49C0cDD4B3' // Testnet
 
 // a list of tokens by chain
 type ChainTokenList = {
