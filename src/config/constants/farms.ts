@@ -7,7 +7,7 @@ const farms: FarmConfig[] = [
    */
   {
     pid: 0,
-    lpSymbol: 'DEFI',
+    lpSymbol: 'DEFIY',
     lpAddresses: {
       97: '0xE06936caf98F557Aa4C8b4DcbDc4138d8a5d491C', // DEFI
       56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
@@ -17,7 +17,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'DEFI-BNB LP',
+    lpSymbol: 'DEFIY-BNB LP',
     lpAddresses: {
       97: '0x88105619d40a07010703d68edf555113b133ef41',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
