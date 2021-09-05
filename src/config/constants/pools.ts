@@ -15,7 +15,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '10',
     sortOrder: 1,
     isFinished: false,
-  }
+  },
 ]
 
 export default pools

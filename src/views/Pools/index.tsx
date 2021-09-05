@@ -187,12 +187,12 @@ const Pools: React.FC = () => {
             }
             return pool.isAutoVault
               ? getCakeVaultEarnings(
-                account,
-                cakeAtLastUserAction,
-                userShares,
-                pricePerFullShare,
-                pool.earningTokenPrice,
-              ).autoUsdToDisplay
+                  account,
+                  cakeAtLastUserAction,
+                  userShares,
+                  pricePerFullShare,
+                  pool.earningTokenPrice,
+                ).autoUsdToDisplay
               : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
           },
           'desc',
@@ -228,12 +228,12 @@ const Pools: React.FC = () => {
   const cardLayout = (
     <CardLayout>
       {chosenPools.map((pool) => (
-        <PoolCard key={pool.sousId} pool={pool} account={account}/>
+        <PoolCard key={pool.sousId} pool={pool} account={account} />
       ))}
     </CardLayout>
   )
 
-  const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded}/>
+  const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 
   return (
     <BgHome>
@@ -297,7 +297,7 @@ const Pools: React.FC = () => {
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
-              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools"/>
+              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
             </LabelWrapper>
           </FilterContainer>
         </PoolControls>
@@ -308,11 +308,11 @@ const Pools: React.FC = () => {
         )}
         {account && !userDataLoaded && stakedOnly && (
           <Flex justifyContent="center" mb="4px">
-            <Loading/>
+            <Loading />
           </Flex>
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        <div ref={loadMoreRef}/>
+        <div ref={loadMoreRef} />
       </Page>
     </BgHome>
   )

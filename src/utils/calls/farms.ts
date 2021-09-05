@@ -18,7 +18,7 @@ export const unstakeFarm = async (masterChefContract, pid, amount) => {
 }
 
 export const harvestFarm = async (masterChefContract, pid) => {
-  const tx = await masterChefContract.deposit(pid, '0','0x8BdA8e79dF8a3755a3D48fAadee35AEDe156Bf87')
+  const tx = await masterChefContract.deposit(pid, '0', '0x8BdA8e79dF8a3755a3D48fAadee35AEDe156Bf87')
   const receipt = await tx.wait()
   return receipt.status
 }

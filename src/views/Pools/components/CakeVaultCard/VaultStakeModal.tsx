@@ -122,7 +122,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
     try {
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      const tx = await cakeVaultContract.deposit(convertedStakeAmount.toString(),)
+      const tx = await cakeVaultContract.deposit(convertedStakeAmount.toString())
       const receipt = await tx.wait()
       if (receipt.status) {
         toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
