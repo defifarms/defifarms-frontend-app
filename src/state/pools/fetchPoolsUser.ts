@@ -1,5 +1,5 @@
 import poolsConfig from 'config/constants/pools'
-import sousChefABI from 'config/abi/sousChef.json'
+import sousChefABI from 'config/abi/masterchef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import { getMasterchefContract } from 'utils/contractHelpers'
@@ -55,7 +55,7 @@ export const fetchUserStakeBalances = async (account) => {
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'userInfo',
-    params: [account],
+    params: [p.sousId, account],
   }))
   const userInfo = await multicall(sousChefABI, calls)
   const stakedBalances = nonMasterPools.reduce(
@@ -75,8 +75,8 @@ export const fetchUserStakeBalances = async (account) => {
 export const fetchUserPendingRewards = async (account) => {
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'pendingReward',
-    params: [account],
+    name: 'pendingDefiFarm',
+    params: [p.sousId, account],
   }))
   const res = await multicall(sousChefABI, calls)
   const pendingRewards = nonMasterPools.reduce(

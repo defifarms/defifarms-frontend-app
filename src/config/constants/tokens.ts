@@ -10,7 +10,7 @@ export const DEFIY: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0x2BFCDE20E955C6ec3A05c4c25908F10824732e98',
+    '0xE06936caf98F557Aa4C8b4DcbDc4138d8a5d491C',
     18,
     'DEFIY',
     'DefiFarms Non-Fungible Yearn',
@@ -84,7 +84,7 @@ const tokens = {
     symbol: 'DEFIY',
     address: {
       56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
-      97: '0x2BFCDE20E955C6ec3A05c4c25908F10824732e98',
+      97: '0xE06936caf98F557Aa4C8b4DcbDc4138d8a5d491C',
     },
     decimals: 18,
     projectLink: 'https://defifarms.org',

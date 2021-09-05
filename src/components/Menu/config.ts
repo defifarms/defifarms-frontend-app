@@ -5,7 +5,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
-    href: 'https://app.defifarms.org/',
+    href: '/',
   },
   {
     label: t('Trade'),

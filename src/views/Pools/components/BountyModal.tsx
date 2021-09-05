@@ -61,7 +61,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       const tx = await cakeVaultContract.harvest({ gasLimit: 300000 })
       const receipt = await tx.wait()
       if (receipt.status) {
-        toastSuccess(t('Bounty collected!'), t('CAKE bounty has been sent to your wallet.'))
+        toastSuccess(t('Bounty collected!'), t('DEFIY bounty has been sent to your wallet.'))
         setPendingTx(false)
         onDismiss()
       }
@@ -77,7 +77,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       <Flex alignItems="flex-start" justifyContent="space-between">
         <Text>{t('You’ll claim')}</Text>
         <Flex flexDirection="column">
-          <Balance bold value={cakeBountyToDisplay} decimals={7} unit=" CAKE" />
+          <Balance bold value={cakeBountyToDisplay} decimals={7} unit=" DEFIY" />
           <Text fontSize="12px" color="textSubtle">
             <Balance
               fontSize="12px"
@@ -95,7 +95,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         <Text fontSize="14px" color="textSubtle">
           {t('Pool total pending yield')}
         </Text>
-        <Balance color="textSubtle" value={totalYieldToDisplay} unit=" CAKE" />
+        <Balance color="textSubtle" value={totalYieldToDisplay} unit=" DEFIY" />
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
         <Text fontSize="14px" color="textSubtle">

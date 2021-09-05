@@ -9,17 +9,17 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'DEFI',
     lpAddresses: {
-      97: '0x2BFCDE20E955C6ec3A05c4c25908F10824732e98', // DEFI
+      97: '0xE06936caf98F557Aa4C8b4DcbDc4138d8a5d491C', // DEFI
       56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
     },
     token: tokens.defiy,
-    quoteToken: tokens.wbnb,
+    quoteToken: tokens.busd,
   },
   {
     pid: 1,
     lpSymbol: 'DEFI-BNB LP',
     lpAddresses: {
-      97: '0x6F8fa7857f93bD5CAB9BfB17E91b64128277FC68',
+      97: '0x88105619d40a07010703d68edf555113b133ef41',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
     },
     token: tokens.defiy,
@@ -29,7 +29,7 @@ const farms: FarmConfig[] = [
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '0x4A44f1CAB097B32835422C18134111EEf010EE4b',
+      97: '0x03C7E93E1E4Fa7E4cBbF3C616B53E3519AFC282a',
       56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
     },
     token: tokens.busd,

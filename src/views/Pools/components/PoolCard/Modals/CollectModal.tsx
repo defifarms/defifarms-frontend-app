@@ -36,21 +36,20 @@ const CollectModal: React.FC<CollectModalProps> = ({
   earningToken,
   earningsDollarValue,
   sousId,
-  isBnbPool,
   isCompoundPool = false,
   onDismiss,
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
-  const { onReward } = useHarvestPool(sousId, isBnbPool)
-  const { onStake } = useStakePool(sousId, isBnbPool)
+  const { onReward } = useHarvestPool(sousId)
+  const { onStake } = useStakePool(sousId)
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
-      <Text mb="12px">{t('Compound: collect and restake CAKE into pool.')}</Text>
-      <Text>{t('Harvest: collect CAKE and send to wallet')}</Text>
+      <Text mb="12px">{t('Compound: collect and restake DEFIY into pool.')}</Text>
+      <Text>{t('Harvest: collect DEFIY and send to wallet')}</Text>
     </>,
     { placement: 'bottom-end', tooltipOffset: [20, 10] },
   )
@@ -60,7 +59,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
     // compounding
     if (shouldCompound) {
       try {
-        await onStake(fullBalance, earningToken.decimals)
+        await onStake(fullBalance)
         toastSuccess(
           `${t('Compounded')}!`,
           t('Your %symbol% earnings have been re-invested into the pool!', { symbol: earningToken.symbol }),
