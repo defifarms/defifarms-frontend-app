@@ -34,8 +34,8 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
-    "@pancakeswap/sdk": "file:../sdk",
-    "@pancakeswap/uikit": "file:../toolkit/packages/pancake-uikit/",
+    "@pancakeswap/sdk": "git+ssh://git@63.142.252.248:7999/tdv/ui---sdk.git",
+    "@pancakeswap/uikit": "git+ssh://git@63.142.252.248:7999/tdv/ui---toolkit.git",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",
