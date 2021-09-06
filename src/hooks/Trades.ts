@@ -7,10 +7,10 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 import { useUserSingleHopOnly } from 'state/user/hooks'
 import {
-  BASES_TO_CHECK_TRADES_AGAINST,
-  CUSTOM_BASES,
-  BETTER_TRADE_LESS_HOPS_THRESHOLD,
   ADDITIONAL_BASES,
+  BASES_TO_CHECK_TRADES_AGAINST,
+  BETTER_TRADE_LESS_HOPS_THRESHOLD,
+  CUSTOM_BASES,
 } from '../config/constants'
 import { PairState, usePairs } from './usePairs'
 import { wrappedCurrency } from '../utils/wrappedCurrency'

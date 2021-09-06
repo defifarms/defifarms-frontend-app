@@ -1,9 +1,9 @@
 import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from '@pancakeswap/sdk'
 import {
-  BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,
   ALLOWED_PRICE_IMPACT_LOW,
   ALLOWED_PRICE_IMPACT_MEDIUM,
+  BLOCKED_PRICE_IMPACT_NON_EXPERT,
 } from '../config/constants'
 
 import { Field } from '../state/swap/actions'

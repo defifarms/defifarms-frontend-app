@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from 'react'
 import { Currency, Token } from '@pancakeswap/sdk'
 import {
+  Button,
+  Heading,
+  InjectedModalProps,
+  ModalBackButton,
+  ModalBody,
+  ModalCloseButton,
   ModalContainer,
   ModalHeader,
   ModalTitle,
-  ModalBackButton,
-  ModalCloseButton,
-  ModalBody,
-  InjectedModalProps,
-  Heading,
-  Button,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'

@@ -1,5 +1,5 @@
 import tokens from './tokens'
-import { PoolConfig, PoolCategory } from './types'
+import { PoolCategory, PoolConfig } from './types'
 
 const pools: PoolConfig[] = [
   {

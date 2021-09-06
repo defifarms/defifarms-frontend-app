@@ -1,4 +1,4 @@
-import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
+import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 
 it.each([
   [{ numberOfDays: 1, farmApr: 365, tokenPrice: 1, performanceFee: 20 }, 8],

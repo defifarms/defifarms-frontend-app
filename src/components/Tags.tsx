@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Tag,
-  VerifiedIcon,
+  AutoRenewIcon,
+  BlockIcon,
   CommunityIcon,
   RefreshIcon,
-  AutoRenewIcon,
+  Tag,
   TagProps,
   TimerIcon,
-  BlockIcon,
+  VerifiedIcon,
   VoteIcon,
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'

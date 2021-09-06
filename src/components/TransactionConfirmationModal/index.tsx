@@ -2,17 +2,17 @@ import React, { useCallback } from 'react'
 import { ChainId, Currency, Token } from '@pancakeswap/sdk'
 import styled from 'styled-components'
 import {
-  Button,
-  Text,
-  ErrorIcon,
   ArrowUpIcon,
-  MetamaskIcon,
-  Flex,
   Box,
-  Link,
-  Spinner,
-  Modal,
+  Button,
+  ErrorIcon,
+  Flex,
   InjectedModalProps,
+  Link,
+  MetamaskIcon,
+  Modal,
+  Spinner,
+  Text,
 } from '@pancakeswap/uikit'
 import { registerToken } from 'utils/wallet'
 import { useTranslation } from 'contexts/Localization'

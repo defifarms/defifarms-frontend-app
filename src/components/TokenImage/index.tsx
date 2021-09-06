@@ -1,9 +1,9 @@
 import React from 'react'
 import {
+  ImageProps,
+  TokenImage as UIKitTokenImage,
   TokenPairImage as UIKitTokenPairImage,
   TokenPairImageProps as UIKitTokenPairImageProps,
-  TokenImage as UIKitTokenImage,
-  ImageProps,
 } from '@pancakeswap/uikit'
 import tokens from 'config/constants/tokens'
 import { Token } from 'config/constants/types'

@@ -1,4 +1,4 @@
-import React, { useMemo, ReactNode } from 'react'
+import React, { ReactNode, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 import useActiveWeb3React from './hooks/useActiveWeb3React'
 import { BLOCKED_ADDRESSES } from './config/constants'

@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
-import { BUSD, DAI, USDT, BTCB, DEFIY, WBNB, UST, ETH, USDC } from './tokens'
+import { BTCB, BUSD, DAI, DEFIY, ETH, USDC, USDT, UST, WBNB } from './tokens'
 
 // export const ROUTER_ADDRESS = '0xf92837B9357cdd3AAD0adE2A29eb925256b277F5' // MainNet
 

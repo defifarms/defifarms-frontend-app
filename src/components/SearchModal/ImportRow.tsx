@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import { Token } from '@pancakeswap/sdk'
-import { Button, Text, CheckmarkCircleIcon } from '@pancakeswap/uikit'
+import { Button, CheckmarkCircleIcon, Text } from '@pancakeswap/uikit'
 import { AutoRow, RowFixed } from 'components/Layout/Row'
 import { AutoColumn } from 'components/Layout/Column'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
@@ -8,7 +8,7 @@ import { ListLogo } from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import styled from 'styled-components'
-import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
+import { useIsTokenActive, useIsUserAddedToken } from 'hooks/Tokens'
 import { useTranslation } from 'contexts/Localization'
 
 const TokenSection = styled.div<{ dim?: boolean }>`

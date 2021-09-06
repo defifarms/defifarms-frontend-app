@@ -3,7 +3,7 @@ import { Language } from '@pancakeswap/uikit'
 import { EN, languages } from 'config/localization/languages'
 import translations from 'config/localization/translations.json'
 import { ContextApi, ContextData, ProviderState } from './types'
-import { LS_KEY, fetchLocale, getLanguageCodeFromLS } from './helpers'
+import { fetchLocale, getLanguageCodeFromLS, LS_KEY } from './helpers'
 
 const initialState: ProviderState = {
   isFetching: true,

@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { getPoolApr, getFarmApr } from 'utils/apr'
+import { getFarmApr, getPoolApr } from 'utils/apr'
 import { BIG_TEN, BIG_ZERO } from 'utils/bigNumber'
 
 jest.mock('../../config/constants/lpAprs.json', () => ({

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Button, Text, PancakeToggle, Flex, Message, Modal, ModalBody, InjectedModalProps } from '@pancakeswap/uikit'
+import { Button, Flex, InjectedModalProps, Message, Modal, ModalBody, PancakeToggle, Text } from '@pancakeswap/uikit'
 import {
   useAudioModeManager,
   useExpertModeManager,
-  useUserTransactionTTL,
-  useUserSlippageTolerance,
   useUserSingleHopOnly,
+  useUserSlippageTolerance,
+  useUserTransactionTTL,
 } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 

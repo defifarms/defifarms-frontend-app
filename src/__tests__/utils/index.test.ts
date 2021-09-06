@@ -1,14 +1,14 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
-import { TokenAmount, Token, ChainId, Percent, JSBI } from '@pancakeswap/sdk'
+import { ChainId, JSBI, Percent, Token, TokenAmount } from '@pancakeswap/sdk'
 
 import {
-  getBscScanLink,
+  basisPointsToPercent,
+  calculateGasMargin,
   calculateSlippageAmount,
+  getBscScanLink,
   isAddress,
   shortenAddress,
-  calculateGasMargin,
-  basisPointsToPercent,
 } from 'utils'
 
 describe('utils', () => {

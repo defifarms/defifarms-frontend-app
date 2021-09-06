@@ -2,16 +2,14 @@ import { ethers } from 'ethers'
 import { simpleRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
-
 // Addresses
 import {
   getAddress,
   getCakeAddress,
-  getMasterChefAddress,
   getCakeVaultAddress,
+  getMasterChefAddress,
   getMulticallAddress,
 } from 'utils/addressHelpers'
-
 // ABI
 import bep20Abi from 'config/abi/erc20.json'
 import lpTokenAbi from 'config/abi/lpToken.json'

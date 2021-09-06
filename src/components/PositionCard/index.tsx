@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { JSBI, Pair, Percent } from '@pancakeswap/sdk'
 import {
+  AddIcon,
   Button,
-  Text,
-  ChevronUpIcon,
-  ChevronDownIcon,
   Card,
   CardBody,
-  Flex,
   CardProps,
-  AddIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  Flex,
+  Text,
 } from '@pancakeswap/uikit'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'

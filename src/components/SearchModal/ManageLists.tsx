@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useMemo, useState, useEffect } from 'react'
-import { Button, Text, CheckmarkIcon, CogIcon, Input, Toggle, LinkExternal, useTooltip } from '@pancakeswap/uikit'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { Button, CheckmarkIcon, CogIcon, Input, LinkExternal, Text, Toggle, useTooltip } from '@pancakeswap/uikit'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { TokenList, Version } from '@uniswap/token-lists'
@@ -10,13 +10,13 @@ import { useTranslation } from 'contexts/Localization'
 import useFetchListCallback from '../../hooks/useFetchListCallback'
 
 import { AppDispatch, AppState } from '../../state'
-import { acceptListUpdate, removeList, disableList, enableList } from '../../state/lists/actions'
-import { useIsListActive, useAllLists, useActiveListUrls } from '../../state/lists/hooks'
+import { acceptListUpdate, disableList, enableList, removeList } from '../../state/lists/actions'
+import { useActiveListUrls, useAllLists, useIsListActive } from '../../state/lists/hooks'
 import uriToHttp from '../../utils/uriToHttp'
 
 import Column, { AutoColumn } from '../Layout/Column'
 import { ListLogo } from '../Logo'
-import Row, { RowFixed, RowBetween } from '../Layout/Row'
+import Row, { RowBetween, RowFixed } from '../Layout/Row'
 import { CurrencyModalView } from './types'
 
 function listVersionLabel(version: Version): string {

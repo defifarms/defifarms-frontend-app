@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ConcaveTop, ConcaveBottom, ConvexTop, ConvexBottom } from './svg/CurvedSvg'
-import { DividerFill, ClipFill } from './types'
+import { ConcaveBottom, ConcaveTop, ConvexBottom, ConvexTop } from './svg/CurvedSvg'
+import { ClipFill, DividerFill } from './types'
 
 interface CurvedDividerProps extends WrapperProps {
   svgFill?: string
