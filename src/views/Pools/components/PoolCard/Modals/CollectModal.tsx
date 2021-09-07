@@ -36,6 +36,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
   earningToken,
   earningsDollarValue,
   sousId,
+  isBnbPool,
   isCompoundPool = false,
   onDismiss,
 }) => {
