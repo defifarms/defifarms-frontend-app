@@ -9,13 +9,14 @@ import {
   TimerIcon,
   VerifiedIcon,
   VoteIcon,
+  CheckmarkCircleIcon,
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <Tag variant="secondary" startIcon={<CheckmarkCircleIcon width="20px" color="#4663DE" mr="6px" />} {...props}>
       {t('Core')}
     </Tag>
   )

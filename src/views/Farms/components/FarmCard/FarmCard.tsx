@@ -60,7 +60,7 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
   height: 1px;
-  margin: 28px auto;
+  margin: 24px auto;
   width: 100%;
 `
 
@@ -136,7 +136,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       )}
       <FlexWrapper justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
-        <Text bold>{earnLabel}</Text>
+        <Text>{earnLabel}</Text>
       </FlexWrapper>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
