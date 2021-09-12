@@ -121,7 +121,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: 'Contact',
-        href: 'https://docs.defifarms.org/',
+        href: 'https://docs.defifarms.org/contact-us',
       },
       {
         label: t('Docs'),
