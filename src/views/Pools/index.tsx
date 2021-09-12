@@ -25,6 +25,8 @@ import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
+import BountyCard from './components/BountyCard'
+import HelpButton from './components/HelpButton'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -39,12 +41,15 @@ const PoolControls = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px 0;
-    margin-bottom: 0;
+    padding: 16px 16px;
+    margin-bottom: 18px;
   }
 `
 
@@ -250,9 +255,10 @@ const Pools: React.FC = () => {
               {t('High APR, low risk.')}
             </Heading>
           </Flex>
-          {/* <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}> */}
-          {/*  <HelpButton /> */}
-          {/* </Flex> */}
+          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+            <HelpButton />
+            <BountyCard />
+          </Flex>
         </Flex>
       </PageHeader>
       <Page>
