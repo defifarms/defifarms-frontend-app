@@ -20,6 +20,11 @@
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true
   },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "exclude": ["node_modules", "cypress"],
   "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }
