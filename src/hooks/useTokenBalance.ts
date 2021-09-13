@@ -57,7 +57,7 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getBep20Contract(tokens.defiy.address[56])
+      const cakeContract = getBep20Contract(tokens.defiy.address[97])
       const supply = await cakeContract.totalSupply()
       setTotalSupply(new BigNumber(supply.toString()))
     }

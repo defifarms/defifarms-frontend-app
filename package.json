@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "react-scripts start",
+    "start": "yarn run copyfolder && yarn run react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "updateLPsAPR": "ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/updateLPsAPR.ts"
+    "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts",
+    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit"
   },
   "husky": {
     "hooks": {
@@ -35,7 +36,7 @@
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
     "@pancakeswap/sdk": "git+ssh://git@63.142.252.248:7999/tdv/ui---sdk.git#master",
-    "@pancakeswap/uikit": "git+ssh://git@63.142.252.248:7999/tdv/ui---uikit.git#master",
+    "@pancakeswap/uikit": "file:C:/Workspace/DefiV3/ui/toolkit---ui/",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",
@@ -94,6 +95,7 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-transition-group": "^4.4.1",
     "@types/simplemde": "^1.11.7",
+    "cpx": "^1.5.0",
     "eslint": "^7.26.0",
     "husky": "4.3.5",
     "prettier": "^2.3.0",

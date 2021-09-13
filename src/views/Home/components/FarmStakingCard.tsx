@@ -104,7 +104,7 @@ const FarmedStakingCard = () => {
             >
               {pendingTx
                 ? t('Collecting Defiy')
-                : t('Harvest all (%count%)', {
+                : t('Harvest all', {
                     count: balancesWithValue.length,
                   })}
             </Button>

@@ -6,7 +6,6 @@ import { useTranslation } from 'contexts/Localization'
 const StyledAnnouncements = styled(Card)``
 
 const TwitterDashboard = styled.div`
-  padding-bottom: 24px;
   font-size: 16px;
   line-height: 24px;
 `
@@ -40,7 +39,7 @@ const Announcements = () => {
   return (
     <StyledAnnouncements>
       <CardBody>
-        <HeadingCard scale="lg" mb="24px">
+        <HeadingCard scale="lg">
           {t('Announcements')}
         </HeadingCard>
         <TwitterDashboard id="twitterDashboard">

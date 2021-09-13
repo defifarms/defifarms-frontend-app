@@ -25,7 +25,7 @@ const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
 const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
 const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
 // Always include CAKE
-const assets = ['DEFIY', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
+const assets = [...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
 
 const EarnAssetCard = () => {
   const { t } = useTranslation()
@@ -34,7 +34,7 @@ const EarnAssetCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <NavLink exact activeClassName="active" to="/syrup" id="pool-cta">
+      <NavLink exact activeClassName="active" to="/pools" id="pool-cta">
         <CardBody>
           <Heading color="contrast" scale="lg">
             {earn}
