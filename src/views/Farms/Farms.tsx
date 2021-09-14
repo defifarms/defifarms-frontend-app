@@ -37,12 +37,15 @@ const ControlContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px 0;
-    margin-bottom: 0;
+    padding: 16px 16px;
+    margin-bottom: 18px;
   }
 `
 
