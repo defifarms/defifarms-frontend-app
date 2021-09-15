@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "yarn run copyfolder && yarn run react-scripts start",
+    "start": "yarn run prestart && yarn run react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -12,7 +12,8 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts",
-    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit"
+    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit",
+    "prestart": "rm -rf node_modules/@pancakeswap/uikit/dist && cp -R ../toolkit---ui/dist node_modules/@pancakeswap/uikit"
   },
   "husky": {
     "hooks": {
@@ -36,7 +37,7 @@
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
     "@pancakeswap/sdk": "git+ssh://git@51.79.243.48:7999/def/sdk.git#master",
-    "@pancakeswap/uikit": "git+ssh://git@51.79.243.48:7999/def/toolkit---ui.git#master",
+    "@pancakeswap/uikit": "git+ssh://git@51.79.243.48:7999/def/toolkit---ui.git#develop",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",
