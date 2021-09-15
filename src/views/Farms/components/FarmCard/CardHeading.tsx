@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Flex, Heading, Tag } from '@pancakeswap/uikit'
 import { CommunityTag, CoreTag } from 'components/Tags'
 import { Token } from 'config/constants/types'
-import { FarmImage } from 'components/FarmImage'
+import { TokenPairImage } from 'components/TokenImage'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -15,7 +15,7 @@ export interface ExpandableSectionProps {
 
 const Wrapper = styled(Flex)`
   border-bottom: 1px solid #e7e3eb;
-  padding: 45px 32px 35px;
+  padding: 35px;
   margin-bottom: 24px;
 
   svg {
@@ -27,7 +27,7 @@ const MultiplierTag = styled(Tag)`
   margin-left: 4px;
 `
 
-const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm }) => {
+const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm, token, quoteToken }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
       <Flex flexDirection="column" alignItems="flex-start">
@@ -37,7 +37,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, is
           <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
         </Flex>
       </Flex>
-      <FarmImage src="/images/farm.png" />
+      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
     </Wrapper>
   )
 }

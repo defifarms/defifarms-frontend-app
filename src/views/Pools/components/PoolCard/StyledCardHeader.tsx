@@ -7,9 +7,9 @@ import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
-  background: ${({ isFinished, background, theme }) =>
-    isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
+  background: ${({ isFinished, background, theme }) =>  theme.colors.backgroundAlt};
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
+  border-bottom: ${({ theme }) => ` 1px solid ${theme.colors.cardBorder}`};
 `
 
 const StyledCardHeader: React.FC<{
@@ -21,7 +21,6 @@ const StyledCardHeader: React.FC<{
 }> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
   const { t } = useTranslation()
   const isCakePool = earningToken.symbol === 'DEFIY' && stakingToken.symbol === 'DEFIY'
-  const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
@@ -47,7 +46,7 @@ const StyledCardHeader: React.FC<{
   }
 
   return (
-    <Wrapper isFinished={isFinished} background={background}>
+    <Wrapper isFinished={isFinished}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">

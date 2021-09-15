@@ -40,6 +40,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 300px;
 
   a {
     padding-left: 12px;
@@ -59,7 +60,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
 
   const liveOrFinishedSwitch = (
     <Wrapper>
-      <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="primary">
+      <ButtonMenu fullWidth activeIndex={isExact ? 0 : 1} scale="md" variant="primary">
         <ButtonMenuItem as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
