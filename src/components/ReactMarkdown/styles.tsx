@@ -45,7 +45,7 @@ const markdownComponents: Partial<NormalComponents & SpecialComponents> = {
   h5: Title,
   h6: Title,
   p: (props) => {
-    return <Text as="p" my="16px"/>
+    return <Text as="p" my="16px" />
     // return <Text as="p" my="16px" {...props} /> // TODO: add {...props}
   },
   table: Table,
