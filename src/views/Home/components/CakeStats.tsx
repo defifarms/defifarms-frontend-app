@@ -77,7 +77,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('New DEFIY/Block')}</Text>
-          Updating
+          0.01
         </Row>
         <Row>
           <Text fontSize="14px">{t('Transfer Tax')}</Text>

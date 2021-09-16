@@ -115,13 +115,17 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //   ],
   // },
   {
-    label: 'More',
+    label: t('More'),
     icon: 'MoreIcon',
     initialOpenState: true,
     items: [
       {
-        label: 'Contact',
+        label: t('Contact'),
         href: 'https://docs.defifarms.org/contact-us',
+      },
+      {
+        label: t('Docs'),
+        href: 'https://docs.defifarms.org/',
       },
       // {
       //   label: t('Docs'),
