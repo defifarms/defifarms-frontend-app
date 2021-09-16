@@ -230,7 +230,6 @@ const Farms: React.FC = () => {
     if (isArchived) {
       chosenFarms = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
     }
-
     return sortFarms(chosenFarms).slice(0, numberOfFarmsVisible)
   }, [
     sortOption,
