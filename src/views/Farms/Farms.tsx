@@ -37,12 +37,15 @@ const ControlContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px 0;
-    margin-bottom: 0;
+    padding: 16px 16px;
+    margin-bottom: 18px;
   }
 `
 
@@ -125,7 +128,7 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
@@ -227,7 +230,6 @@ const Farms: React.FC = () => {
     if (isArchived) {
       chosenFarms = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
     }
-
     return sortFarms(chosenFarms).slice(0, numberOfFarmsVisible)
   }, [
     sortOption,

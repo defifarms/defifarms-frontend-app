@@ -1,11 +1,12 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@pancakeswap/uikit'
+import { Card, CardBody, Heading, Skeleton, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
 import { useBurnedBalance, useTotalSupply } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { getDefiyAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
+import { usePriceCakeBusd } from '../../../state/farms/hooks'
 
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
@@ -35,6 +36,10 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getDefiyAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const totalMinted = totalSupply ? getBalanceNumber(totalSupply) : 0
+  const cakePriceBusd = usePriceCakeBusd()
+  const mcap = cakePriceBusd.times(cakeSupply)
+  const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
 
   return (
     <StyledCakeStats>
@@ -44,15 +49,19 @@ const CakeStats = () => {
         </HeadingCard>
         <Row>
           <Text fontSize="14px">{t('Market Cap')}</Text>
-          Updating
+          {mcap?.gt(0) && mcapString ? (
+            <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
+          ) : (
+            <Skeleton height={24} width={126} my="4px"/>
+          )}
         </Row>
         <Row>
           <Text fontSize="14px">{t('Total Minted')}</Text>
-          {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
+          <CardValue fontSize="14px" decimals={0} value={totalMinted}/>
         </Row>
         <Row>
           <Text fontSize="14px">{t('Total Burned')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
+          <CardValue fontSize="14px" decimals={0} value={burnedBalance}/>
         </Row>
         <Row>
           <Text fontSize="14px">{t('Total Locked Rewards')}</Text>
@@ -60,7 +69,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('Circulating Supply')}</Text>
-          Updating
+          <CardValue fontSize="14px" decimals={0} value={cakeSupply}/>
         </Row>
         <Row>
           <Text fontSize="14px">{t('Max Tx Amount')}</Text>

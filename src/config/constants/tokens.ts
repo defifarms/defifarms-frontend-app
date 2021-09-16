@@ -699,7 +699,7 @@ const tokens = {
       97: '0xbb5cC00198193E62bB1C02B2bbeA4d542229CD8E',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: '',
   },
   blink: {
     symbol: 'BLINK',

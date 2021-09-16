@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
+import QuestionHelper from 'components/QuestionHelper'
 import { Flex, Skeleton, Text } from '@pancakeswap/uikit'
 import { Farm } from 'state/types'
 import { getBscScanLink } from 'utils'
@@ -13,6 +14,7 @@ import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
+
 
 export interface FarmWithStakedValue extends Farm {
   apr?: number
@@ -60,7 +62,7 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
   height: 1px;
-  margin: 28px auto;
+  margin: 24px auto;
   width: 100%;
 `
 
@@ -136,7 +138,24 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       )}
       <FlexWrapper justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
-        <Text bold>{earnLabel}</Text>
+        <Text>{earnLabel}</Text>
+      </FlexWrapper>
+      <FlexWrapper justifyContent="space-between">
+        <Text>{t('Deposit Fee')}:</Text>
+        <Text>{farm.depositFeeBP}%</Text>
+      </FlexWrapper>
+      <FlexWrapper justifyContent="space-between">
+        <Text>{t('Harvest Lockup')}:           
+        <QuestionHelper
+            text={t('How soon can you havest or compound again.')}
+            ml="4px"
+          />
+          </Text>
+        <Text>{farm.harvestInterval} Hour(s)</Text>
+      </FlexWrapper>
+      <FlexWrapper justifyContent="space-between">
+        <Text>{t('LP Type')}:</Text>
+        <Text>{farm.lpSymbol}</Text>
       </FlexWrapper>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />

@@ -4,12 +4,11 @@ import { BaseLayout, Heading, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import CakeStats from 'views/Home/components/CakeStats'
-// import EarnAPRCard from 'views/Home/components/EarnAPRCard'
+import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import Announcements from './components/Announcements'
-// import PredictionPromotionCard from 'views/Home/components/PredictionPromotionCard'
-// import LotteryPromotionCard from 'views/Home/components/LotteryPromotionCard'
-// import LotteryBanner from 'views/Home/components/LotteryBanner'
-// import useFetchLotteryForPromos from 'views/Home/hooks/useFetchLotteryForPromos'
+import FarmedStakingCard from './components/FarmStakingCard'
+// import TotalValueLockedCard from './components/TotalValueLockedCard'
+
 
 const Hero = styled.div`
   align-items: center;
@@ -100,17 +99,17 @@ const Home: React.FC = () => {
               {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
             </TextHome>
             <TextHome mb={2}>Powered by</TextHome>
-            <CardImage src="/images/home/logo-partner-binance-smart-chain.png" />
+            <CardImage src="/images/home/logo-partner-binance-smart-chain.png"/>
           </Hero>
           <div>
             <Cards>
-              {/* <FarmStakingCard/> */}
-              <Announcements />
+              <FarmedStakingCard/>
+              <Announcements/>
             </Cards>
             <Cards>
-              <CakeStats />
+              <CakeStats/>
               <div>
-                {/* <EarnAssetCard /> */}
+                <EarnAssetCard/>
                 {/* <TotalValueLockedCard /> */}
               </div>
             </Cards>
