@@ -17,7 +17,7 @@ type PublicFarmData = {
   poolWeight: SerializedBigNumber
   multiplier: string,
   harvestInterval: SerializedBigNumber,
-  depositFeeBP: number
+  depositFeeBP: string
 }
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
@@ -95,9 +95,8 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
   const harvestInterval = info ? new BigNumber(info.harvestInterval?._hex) : BIG_ZERO
-  const depositFeeBP = info ? info.depositFeeBP : 0
 
-  return {
+  const willReturn = {
     tokenAmountMc: tokenAmountMc.toJSON(),
     quoteTokenAmountMc: quoteTokenAmountMc.toJSON(),
     tokenAmountTotal: tokenAmountTotal.toJSON(),
@@ -108,8 +107,9 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     poolWeight: poolWeight.toJSON(),
     multiplier: `${allocPoint.div(100).toString()}X`,
     harvestInterval: `${harvestInterval.toJSON()}`,
-    depositFeeBP: depositFeeBP.div(100)
+    depositFeeBP: info?.depositFeeBP?.toString()
   }
+  return willReturn
 }
 
 export default fetchFarm
