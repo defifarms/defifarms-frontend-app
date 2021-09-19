@@ -9,6 +9,7 @@ import {
   getCakeVaultAddress,
   getMasterChefAddress,
   getMulticallAddress,
+  getDefiyAddress,
 } from 'utils/addressHelpers'
 // ABI
 import bep20Abi from 'config/abi/erc20.json'
@@ -57,4 +58,8 @@ export const getCakeVaultContract = (signer?: ethers.Signer | ethers.providers.P
 
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(MultiCallAbi, getMulticallAddress(), signer)
+}
+
+export const getDefiyContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(cakeAbi, getDefiyAddress(), signer)
 }

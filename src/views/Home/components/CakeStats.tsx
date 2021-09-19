@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading, Skeleton, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
-import { useBurnedBalance, useTotalSupply } from 'hooks/useTokenBalance'
+import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { getDefiyAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
@@ -40,12 +40,14 @@ const CakeStats = () => {
   const cakePriceBusd = usePriceCakeBusd()
   const mcap = cakePriceBusd.times(cakeSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
+  const maxTransferAmount = useMaxTransferAmount()
+  const maxTransfer = getBalanceNumber(maxTransferAmount)
 
   return (
     <StyledCakeStats>
       <CardBody>
         <HeadingCard scale="xl" mb="24px">
-          {t('Defiy Stats')}
+          {t('DEFIY Stats')}
         </HeadingCard>
         <Row>
           <Text fontSize="14px">{t('Market Cap')}</Text>
@@ -73,7 +75,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('Max Tx Amount')}</Text>
-          Updating
+          <CardValue fontSize="14px" decimals={0} value={maxTransfer}/>
         </Row>
         <Row>
           <Text fontSize="14px">{t('New DEFIY/Block')}</Text>

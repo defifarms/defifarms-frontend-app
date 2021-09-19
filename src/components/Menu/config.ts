@@ -139,6 +139,10 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         label: 'Blog',
         href: 'https://medium.com/@DefiFarmsNFTs',
       },
+      {
+        label: 'Audited by',
+        href: 'https://callisto.network/defifarms-protocol-security-audit/',
+      },
     ],
   },
 ]
