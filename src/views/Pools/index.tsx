@@ -78,6 +78,7 @@ const ControlStretch = styled(Flex)`
 `
 
 const BgHome = styled.div`
+  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
   background: url(images/home/7.svg) rgb(176 232 251);
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -248,10 +249,10 @@ const Pools: React.FC = () => {
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
               {t('DefiFarm Pools')}
             </Heading>
-            <Heading scale="md" color="text">
+            <Heading scale="lg" color="text">
               {t('Just stake some tokens to earn.')}
             </Heading>
-            <Heading scale="md" color="text">
+            <Heading scale="lg" color="text">
               {t('High APR, low risk.')}
             </Heading>
           </Flex>
