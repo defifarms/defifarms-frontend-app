@@ -36,9 +36,9 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
           {t('Live')}
         </ButtonMenuItem>
         {/* <NotificationDot show={hasStakeInFinishedFarms}> */}
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
-            {t('Finished')}
-          </ButtonMenuItem>
+        <ButtonMenuItem as={Link} to={`${url}/history`}>
+          {t('Finished')}
+        </ButtonMenuItem>
         {/* </NotificationDot> */}
       </ButtonMenu>
     </Wrapper>

@@ -39,9 +39,7 @@ const Announcements = () => {
   return (
     <StyledAnnouncements>
       <CardBody>
-        <HeadingCard scale="lg">
-          {t('Announcements')}
-        </HeadingCard>
+        <HeadingCard scale="lg">{t('Announcements')}</HeadingCard>
         <TwitterDashboard id="twitterDashboard">
           <a
             className="twitter-timeline"

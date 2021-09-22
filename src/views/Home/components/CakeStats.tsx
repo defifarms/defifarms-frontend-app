@@ -54,16 +54,16 @@ const CakeStats = () => {
           {mcap?.gt(0) && mcapString ? (
             <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
           ) : (
-            <Skeleton height={24} width={126} my="4px"/>
+            <Skeleton height={24} width={126} my="4px" />
           )}
         </Row>
         <Row>
           <Text fontSize="14px">{t('Total Minted')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={totalMinted}/>
+          <CardValue fontSize="14px" decimals={0} value={totalMinted} />
         </Row>
         <Row>
           <Text fontSize="14px">{t('Total Burned')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={burnedBalance}/>
+          <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
           <Text fontSize="14px">{t('Total Locked Rewards')}</Text>
@@ -71,11 +71,11 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('Circulating Supply')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={cakeSupply}/>
+          <CardValue fontSize="14px" decimals={0} value={cakeSupply} />
         </Row>
         <Row>
           <Text fontSize="14px">{t('Max Tx Amount')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={maxTransfer}/>
+          <CardValue fontSize="14px" decimals={0} value={maxTransfer} />
         </Row>
         <Row>
           <Text fontSize="14px">{t('New DEFIY/Block')}</Text>

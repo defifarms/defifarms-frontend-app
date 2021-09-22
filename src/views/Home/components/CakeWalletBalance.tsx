@@ -27,7 +27,7 @@ const CakeWalletBalance = () => {
   return (
     <Block>
       <CardValue value={getBalanceNumber(cakeBalance)} decimals={4} lineHeight="1.5" color="four" />
-       {cakePriceBusd.gt(0) ? <CardBusdValue value={busdBalance} /> : <br />}
+      {cakePriceBusd.gt(0) ? <CardBusdValue value={busdBalance} /> : <br />}
     </Block>
   )
 }

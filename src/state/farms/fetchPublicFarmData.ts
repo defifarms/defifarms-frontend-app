@@ -15,8 +15,8 @@ type PublicFarmData = {
   lpTotalSupply: SerializedBigNumber
   tokenPriceVsQuote: SerializedBigNumber
   poolWeight: SerializedBigNumber
-  multiplier: string,
-  harvestInterval: SerializedBigNumber,
+  multiplier: string
+  harvestInterval: SerializedBigNumber
   depositFeeBP: string
 }
 
@@ -91,7 +91,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
           },
         ])
       : [null, null]
-  
+
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
   const harvestInterval = info ? new BigNumber(info.harvestInterval?._hex) : BIG_ZERO
@@ -107,7 +107,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     poolWeight: poolWeight.toJSON(),
     multiplier: `${allocPoint.div(100).toString()}X`,
     harvestInterval: `${harvestInterval.toJSON()}`,
-    depositFeeBP: info?.depositFeeBP?.toString()
+    depositFeeBP: info?.depositFeeBP?.toString(),
   }
   return willReturn
 }

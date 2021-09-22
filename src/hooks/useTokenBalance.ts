@@ -70,17 +70,17 @@ export const useTotalSupply = () => {
 
 export const useMaxTransferAmount = () => {
   const { slowRefresh } = useRefresh()
-    const [maxTransferAmount, setMaxTransferAmount] = useState<BigNumber>()
-    
-    useEffect(() => {
-      async function fetchTotalSupply() {
-        const cakeContract = getDefiyContract()
-        const supply = await cakeContract.maxTransferAmount()
-        setMaxTransferAmount(new BigNumber(supply.toString()))
-      }
-      fetchTotalSupply()
-    }, [slowRefresh])
-    return maxTransferAmount
+  const [maxTransferAmount, setMaxTransferAmount] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const cakeContract = getDefiyContract()
+      const supply = await cakeContract.maxTransferAmount()
+      setMaxTransferAmount(new BigNumber(supply.toString()))
+    }
+    fetchTotalSupply()
+  }, [slowRefresh])
+  return maxTransferAmount
 }
 
 export const useBurnedBalance = (tokenAddress: string) => {

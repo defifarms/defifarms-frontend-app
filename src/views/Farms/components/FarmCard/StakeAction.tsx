@@ -77,7 +77,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     return stakedBalance.eq(0) ? (
       <Button
         onClick={onPresentDeposit}
-        variant='four'
+        variant="four"
         disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
       >
         {t('Stake LP')}

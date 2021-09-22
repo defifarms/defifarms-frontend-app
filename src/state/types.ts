@@ -31,8 +31,8 @@ export interface Farm extends FarmConfig {
   lpTotalSupply?: SerializedBigNumber
   tokenPriceVsQuote?: SerializedBigNumber
   poolWeight?: SerializedBigNumber
-  harvestInterval?: SerializedBigNumber,
-  depositFeeBP?: string,
+  harvestInterval?: SerializedBigNumber
+  depositFeeBP?: string
   userData?: {
     allowance: string
     tokenBalance: string
@@ -50,8 +50,8 @@ export interface Pool extends PoolConfig {
   stakingTokenPrice?: number
   earningTokenPrice?: number
   isAutoVault?: boolean
-  harvestInterval?: SerializedBigNumber,
-  depositFeeBP?: string,
+  harvestInterval?: SerializedBigNumber
+  depositFeeBP?: string
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber

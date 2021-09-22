@@ -75,7 +75,11 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
       <FlexWrapper justifyContent="space-between">
         <Text>
           {t('Harvest Lockup')}:
-          <QuestionHelper text={t('How soon can you havest or compound again.')} ml="4px" style={{ display: 'inline'}} />
+          <QuestionHelper
+            text={t('How soon can you havest or compound again.')}
+            ml="4px"
+            style={{ display: 'inline' }}
+          />
         </Text>
         <Text>{pool.harvestInterval} Hour(s)</Text>
       </FlexWrapper>

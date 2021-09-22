@@ -39,7 +39,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
       </Flex>
       <Button
         width="165px"
-        variant='four'
+        variant="four"
         disabled={rawEarningsBalance.eq(0) || pendingTx}
         onClick={async () => {
           setPendingTx(true)

@@ -44,7 +44,6 @@ const PoolControls = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
 
-
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
