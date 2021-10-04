@@ -7,7 +7,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.busd,
     earningToken: tokens.defiy,
     contractAddress: {
-      97: '0x08f4b98C1B7c10a199969EA07BEc6D49642c8571',
+      97: '0xc7437617f89A23FA7eACB90f6b3D663055B5d467',
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,

@@ -21,7 +21,6 @@ const FlexWrapper = styled(Flex)`
 const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   const { t } = useTranslation()
   const { stakingToken, earningToken, isFinished, apr, earningTokenPrice, isAutoVault } = pool
-
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s DEFIY is compounded automatically, so we show APY.')
     : t('This pool’s rewards aren’t compounded automatically, so we show APR')
@@ -31,6 +30,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
 
   const apyModalLink = stakingToken.address ? `/swap?outputCurrency=${getAddress(stakingToken.address)}` : '/swap'
+  const harvestLock = 14400 / 3600;
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
@@ -81,7 +81,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
             style={{ display: 'inline' }}
           />
         </Text>
-        <Text>{pool.harvestInterval} Hour(s)</Text>
+        <Text>{harvestLock} Hour(s)</Text>
       </FlexWrapper>
     </>
   )

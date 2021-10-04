@@ -2047,6 +2047,9 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@pancakeswap-libs/pancake-swap-core@../../contract/factory":
+  version "1.0.0"
+
 "@pancakeswap/eslint-config-pancake@^1.1.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@pancakeswap/eslint-config-pancake/-/eslint-config-pancake-1.2.0.tgz#ecb8327d4269899a927064f6a7e6169b09cd6f12"
@@ -2061,10 +2064,11 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap/sdk@git+ssh://git@63.142.252.248:7999/tdv/ui---sdk.git#master":
-  version "2.4.0"
-  resolved "git+ssh://git@63.142.252.248:7999/tdv/ui---sdk.git#b35fe703add9a3b217679e4b83f1d0252a8ed4e5"
+"@pancakeswap/sdk@git+ssh://git@51.79.243.48:7999/def/sdk.git#develop":
+  version "2.3.2"
+  resolved "git+ssh://git@51.79.243.48:7999/def/sdk.git#3ce4ac9e638584e037c1acb7aa5b6ef5e82b93b4"
   dependencies:
+    "@pancakeswap-libs/pancake-swap-core" "../../contract/factory"
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
     jsbi "^3.1.1"
@@ -2072,9 +2076,9 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@pancakeswap/uikit@git+ssh://git@51.79.243.48:7999/def/toolkit---ui.git#master":
+"@pancakeswap/uikit@git+ssh://git@51.79.243.48:7999/def/toolkit---ui.git#develop":
   version "0.43.0"
-  resolved "git+ssh://git@51.79.243.48:7999/def/toolkit---ui.git#9e197b47bef83a68a270e64d3a8a107aafa96169"
+  resolved "git+ssh://git@51.79.243.48:7999/def/toolkit---ui.git#b0361c1f0e1aecd0f1fd9f4219edb03ff1f96319"
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"

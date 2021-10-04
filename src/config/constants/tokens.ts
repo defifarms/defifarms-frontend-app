@@ -10,7 +10,7 @@ export const DEFIY: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xE06936caf98F557Aa4C8b4DcbDc4138d8a5d491C',
+    '0x5017AE3D04e29B67b33CF96a86980717A773a783',
     18,
     'DEFIY',
     'DefiFarms Non-Fungible Yearn',
@@ -84,7 +84,7 @@ const tokens = {
     symbol: 'DEFIY',
     address: {
       56: '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
-      97: '0xE06936caf98F557Aa4C8b4DcbDc4138d8a5d491C',
+      97: '0x5017AE3D04e29B67b33CF96a86980717A773a783',
     },
     decimals: 18,
     projectLink: 'https://defifarms.org',
@@ -93,7 +93,7 @@ const tokens = {
     symbol: 'CAKE',
     address: {
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
+      97: '0x01BB38d9F8d2d83564bab7BD756EB801651E539F',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -696,7 +696,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-      97: '0xbb5cC00198193E62bB1C02B2bbeA4d542229CD8E',
+      97: '0xbb5cc00198193e62bb1c02b2bbea4d542229cd8e',
     },
     decimals: 18,
     projectLink: '',
@@ -867,7 +867,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '0x4BA0641599749927E441F50846e6dF76a1CF1dfc',
+      97: '0x99976b5D5fd5D83aA6089598deC7fd5336CC310f',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
@@ -876,7 +876,7 @@ const tokens = {
     symbol: 'ETH',
     address: {
       56: '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
-      97: '',
+      97: '0x0f51c1691F5dBa6BBF95d9dEdA9Fd0f2AB26015D',
     },
     decimals: 18,
     projectLink: 'https://ethereum.org/en/',
@@ -939,7 +939,7 @@ const tokens = {
     symbol: 'USDC',
     address: {
       56: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
-      97: '',
+      97: '0x03d4194Dad50Ebd74c347BF83fc09530C1093111',
     },
     decimals: 18,
     projectLink: 'https://www.centre.io/usdc',
@@ -975,7 +975,7 @@ const tokens = {
     symbol: 'DOT',
     address: {
       56: '0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402',
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
+      97: '0x98e294cFA91ae097EE228f7f3EaCFFA4Aa955FEb',
     },
     decimals: 18,
     projectLink: 'https://polkadot.network/',
@@ -1002,7 +1002,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '0x55d398326f99059fF775485246999027B3197955',
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
+      97: '0xA6362A6C4498c7E435a5C4Dd79ee42e62837fACA',
     },
     decimals: 18,
     projectLink: 'https://tether.to/',

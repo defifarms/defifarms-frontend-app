@@ -1,9 +1,9 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 import { BTCB, BUSD, DAI, DEFIY, ETH, USDC, USDT, UST, WBNB } from './tokens'
 
-// export const ROUTER_ADDRESS = '0xf92837B9357cdd3AAD0adE2A29eb925256b277F5' // MainNet
+// export const ROUTER_ADDRESS = '0x64D2D8720F5986fE1cc7A474aa38176A85314D0C' // MainNet
 
-export const ROUTER_ADDRESS = '0x82B2f34755690E47CEA211e24790a06e0c839de2' // Testnet
+export const ROUTER_ADDRESS = '0x2b9F516318a115209304e5AEe6d6fDA1A95a16b6' // Testnet
 
 // a list of tokens by chain
 type ChainTokenList = {
