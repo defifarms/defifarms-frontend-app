@@ -1011,7 +1011,7 @@ const tokens = {
     symbol: 'BTCB',
     address: {
       56: '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c',
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
+      97: '0x5f319004A2378a0ed9b398e102BDda9186AA4242',
     },
     decimals: 18,
     projectLink: 'https://bitcoin.org/',
