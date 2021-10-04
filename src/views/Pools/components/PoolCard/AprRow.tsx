@@ -30,7 +30,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
 
   const apyModalLink = stakingToken.address ? `/swap?outputCurrency=${getAddress(stakingToken.address)}` : '/swap'
-  const harvestLock = 14400 / 3600;
+  const harvestLock = 14400 / 3600
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal

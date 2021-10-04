@@ -103,7 +103,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const lpAddress = getAddress(farm.lpAddresses)
   const isPromotedFarm = farm.token.symbol === 'DEFIY'
-  const harvestLock = parseInt(farm.harvestInterval) / 3600;
+  const harvestLock = parseInt(farm.harvestInterval) / 3600
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
       {isPromotedFarm && <StyledCardAccent />}
