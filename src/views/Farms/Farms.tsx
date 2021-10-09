@@ -69,6 +69,8 @@ const BgHome = styled.div`
   background: url(images/home/7.svg) rgb(176 232 251);
   background-repeat: no-repeat;
   background-position: bottom center;
+  height: 100vh;
+  overflow: scroll;
 `
 
 const FilterContainer = styled.div`
@@ -390,10 +392,10 @@ const Farms: React.FC = () => {
     <BgHome>
       <PageHeader>
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
+          {t('DeFiFarms Protocol')}
         </Heading>
         <Heading scale="lg" color="text" style={{ fontWeight: 400 }}>
-          {t('Stake LP tokens to earn.')}
+          {t('Provide Liquidity, Earn DeFIY')}
         </Heading>
       </PageHeader>
       <Page>

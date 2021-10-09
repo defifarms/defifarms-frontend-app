@@ -54,6 +54,8 @@ const BgHome = styled.div`
   background: url(images/home/7.svg) rgb(176 232 251);
   background-repeat: no-repeat;
   background-position: bottom center;
+  height: 100vh;
+  overflow: scroll;
 `
 
 export default function Swap({ history }: RouteComponentProps) {
