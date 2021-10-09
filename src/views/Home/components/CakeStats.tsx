@@ -5,7 +5,7 @@ import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBala
 import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { getDefiyAddress } from 'utils/addressHelpers'
-import QuestionHelper from 'components/QuestionHelper'
+import { formatEther } from 'ethers/lib/utils'
 import CardValue from './CardValue'
 import { usePriceCakeBusd } from '../../../state/farms/hooks'
 
@@ -42,7 +42,12 @@ const CakeStats = () => {
   const mcap = cakePriceBusd.times(cakeSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
   const maxTransferAmount = useMaxTransferAmount()
-  const maxTransfer = getBalanceNumber(maxTransferAmount)
+  // const totalLockedRewards = 0
+  let maxTransfer = 0
+
+  if (maxTransferAmount) {
+    maxTransfer = parseInt(formatEther(maxTransferAmount.toString()))
+  }
 
   return (
     <StyledCakeStats>
@@ -66,10 +71,10 @@ const CakeStats = () => {
           <Text fontSize="14px">{t('Total Burned')}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
-        <Row>
-          <Text fontSize="14px">{t('Total Locked Rewards')}</Text>
-          Updating
-        </Row>
+        {/* <Row> */}
+        {/*  <Text fontSize="14px">{t('Total Locked Rewards')}</Text> */}
+        {/*  <CardValue fontSize="14px" decimals={0} value={totalLockedRewards} /> */}
+        {/* </Row> */}
         <Row>
           <Text fontSize="14px">{t('Circulating Supply')}</Text>
           <CardValue fontSize="14px" decimals={0} value={cakeSupply} />

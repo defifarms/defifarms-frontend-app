@@ -68,6 +68,10 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number) => async (dispat
         )
       : 0
 
+    // const apr = !isPoolFinished
+    // ? pool.apr
+    // : 0
+
     return {
       ...blockLimit,
       ...totalStaking,
