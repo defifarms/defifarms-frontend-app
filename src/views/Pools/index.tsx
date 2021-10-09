@@ -78,7 +78,9 @@ const ControlStretch = styled(Flex)`
 
 const BgHome = styled.div`
   border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background: url(images/home/7.svg) rgb(176 232 251);
+  background-image: url(images/home/7.svg);
+  background-color: rgba(0, 0, 0, 0.45);
+  background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-position: bottom center;
   height: 100vh;
@@ -247,7 +249,7 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+            <Heading as="h1" scale="xxl" color="contrast">
               {t('DeFiFarm Pools')}
             </Heading>
             <Heading scale="lg" color="text">

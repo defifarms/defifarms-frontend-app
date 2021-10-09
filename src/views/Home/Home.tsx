@@ -55,23 +55,34 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-const CardImage = styled.img``
+const CardImage = styled.div`
+  background-image: url(/images/home/logo-partner-binance-smart-chain.png);
+  height: 50px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+`
 
 const BgHome = styled.div`
   border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background: url(images/home/7.svg) rgb(176 232 251);
+  background-image: url(images/home/7.svg);
+  background-color: rgba(0, 0, 0, 0.45);
+  background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-position: bottom center;
   height: 100vh;
   overflow: scroll;
+  padding-bottom: 3rem;
 `
 
 const HeadingHome = styled(Heading)`
   font-style: normal;
   font-weight: 600;
   font-size: 62px;
-  line-height: 94px;
-  background: linear-gradient(180deg, #4663de 0%, #5d7afa 100%);
+  line-height: 62px;
+  background: ${({ theme }) => theme.colors.contrast};
+  color: ${({ theme }) => theme.colors.contrast};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -97,11 +108,11 @@ const Home: React.FC = () => {
             <HeadingHome as="h1" scale="xl" mb="24px">
               {t('DeFiFarms')}
             </HeadingHome>
-            <TextHome mb={18}>
+            <TextHome>
               {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
             </TextHome>
-            <TextHome mb={2}>Powered by</TextHome>
-            <CardImage src="/images/home/logo-partner-binance-smart-chain.png" />
+            <TextHome mb={2}>{t('Powered by')}</TextHome>
+            <CardImage />
           </Hero>
           <div>
             <Cards>

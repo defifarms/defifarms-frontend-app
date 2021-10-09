@@ -66,7 +66,9 @@ const LabelWrapper = styled.div`
 
 const BgHome = styled.div`
   border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background: url(images/home/7.svg) rgb(176 232 251);
+  background-image: url(images/home/7.svg);
+  background-color: rgba(0, 0, 0, 0.45);
+  background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-position: bottom center;
   height: 100vh;
@@ -391,7 +393,7 @@ const Farms: React.FC = () => {
   return (
     <BgHome>
       <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+        <Heading as="h1" scale="xxl" color="contrast">
           {t('DeFiFarms Protocol')}
         </Heading>
         <Heading scale="lg" color="text" style={{ fontWeight: 400 }}>
