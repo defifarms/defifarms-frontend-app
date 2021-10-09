@@ -5,6 +5,7 @@ import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBala
 import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { getDefiyAddress } from 'utils/addressHelpers'
+import QuestionHelper from 'components/QuestionHelper'
 import CardValue from './CardValue'
 import { usePriceCakeBusd } from '../../../state/farms/hooks'
 
@@ -83,6 +84,12 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('Transfer Tax')}</Text>
+          <QuestionHelper
+            text={t('Tax 8%, 6% go to LP, 2% instantly burn')}
+            style={{ display: 'inline' }}
+            ml="4px"
+          />
+          
           8%
         </Row>
       </CardBody>
