@@ -7,7 +7,7 @@ import CakeStats from 'views/Home/components/CakeStats'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import Announcements from './components/Announcements'
 import FarmedStakingCard from './components/FarmStakingCard'
-// import TotalValueLockedCard from './components/TotalValueLockedCard'
+import TotalValueLockedCard from './components/TotalValueLockedCard'
 
 const Hero = styled.div`
   align-items: center;

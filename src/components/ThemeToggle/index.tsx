@@ -1,39 +1,43 @@
 import React from 'react'
 import Switch from 'react-switch'
-import { Text, DarkIcon, LightIcon } from '@pancakeswap/uikit'
+import { Text, DarkIcon, LightIcon, useMatchBreakpoints } from '@pancakeswap/uikit'
 
 interface ThemeToggleType {
   handleChange?: () => void
   checked?: boolean
 }
+
 const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
+  const { isXl } = useMatchBreakpoints()
+  const isMobile = !isXl
+  
   return (
     <Switch
       checked={checked}
       onChange={handleChange}
-      handleDiameter={31}
+      // handleDiameter={30} 
       offColor="#707685"
       onColor="#181f2d"
       offHandleColor="#657EEC"
       onHandleColor="#FFB230"
-      height={32}
-      width={122}
+      height={30}
+      width={isMobile ? 60 : 122}
       borderRadius={32}
       activeBoxShadow="0px 0px 1px 2px #fffc35"
       uncheckedIcon={
-        <div
+        <span
           style={{
             display: 'flex',
             alignItems: 'center',
             height: '100%',
-            justifyContent: 'end',
             paddingRight: 9,
+            justifyContent: 'flex-end'
           }}
         >
-          <Text fontSize="14px" color="#fff">
+          {!isMobile && <Text fontSize="14px" color="#fff">
             Darkmode
-          </Text>
-        </div>
+          </Text>}
+        </span>
       }
       checkedIcon={
         <div
@@ -46,9 +50,9 @@ const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
             paddingLeft: 9,
           }}
         >
-          <Text fontSize="14px" color="#fff">
+          {!isMobile && <Text fontSize="14px" color="#fff">
             Lightmode
-          </Text>
+          </Text>}
         </div>
       }
       uncheckedHandleIcon={<LightIcon />}

@@ -3,10 +3,12 @@ import { useWeb3React } from '@web3-react/core'
 import {
   Flex,
   LogoutIcon,
+  useMatchBreakpoints,
   useModal,
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
+  ThemeSwitcher,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
@@ -33,10 +35,13 @@ const UserMenu = () => {
   const [onPresentTransactionModal] = useModal(<WalletModal initialView={WalletView.TRANSACTIONS} />)
   const avatarSrc = undefined
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
-
+  const { isXl } = useMatchBreakpoints()
+  const isMobile = !isXl
   return (
     <Wrapper>
       <ThemeToggle handleChange={toggleTheme} checked={isDark} />
+      {/* <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} /> */}
+      
       {account ? (
         <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
           <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
@@ -52,7 +57,7 @@ const UserMenu = () => {
           </UserMenuItem>
         </UIKitUserMenu>
       ) : (
-        <ConnectWalletButton scale="sm" ml="24px" />
+        <ConnectWalletButton scale={isMobile ? 'xs' : 'sm' } ml="24px" />
       )}
     </Wrapper>
   )

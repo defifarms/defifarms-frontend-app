@@ -21,7 +21,17 @@ const StyledFarmStakingCard = styled(Card)`
 const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
   line-height: 44px;
 `
+const StyleCircleButton = styled.div`
+    width: 44px;
+    height: 44px;
+    background-color: ${({theme}) => theme.colors.primary};
+    border-radius: 100px;
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
+`
 const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
 const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
 // Always include CAKE
@@ -44,7 +54,9 @@ const EarnAssetCard = () => {
             <Heading color="contrast" scale="lg">
               {InPools}
             </Heading>
-            <ArrowForwardIcon mt={30} color="primary" />
+            <StyleCircleButton>
+              <ArrowForwardIcon color="white" />
+            </StyleCircleButton>
           </Flex>
         </CardBody>
       </NavLink>

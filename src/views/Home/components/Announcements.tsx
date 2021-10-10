@@ -15,7 +15,7 @@ const CardImage = styled.img`
 `
 
 const HeadingCard = styled(Heading)`
-  font-size: 36px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 600;
   line-height: 54px;
@@ -39,7 +39,7 @@ const Announcements = () => {
   return (
     <StyledAnnouncements>
       <CardBody>
-        <HeadingCard scale="lg">{t('Announcements')}</HeadingCard>
+        <HeadingCard scale="xl">{t('Announcements')}</HeadingCard>
         <TwitterDashboard id="twitterDashboard">
           <a
             className="twitter-timeline"

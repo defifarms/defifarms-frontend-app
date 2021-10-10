@@ -23,7 +23,6 @@ const Row = styled.div`
 `
 
 const HeadingCard = styled(Heading)`
-  font-size: 36px;
   font-style: normal;
   font-weight: 600;
   line-height: 54px;
