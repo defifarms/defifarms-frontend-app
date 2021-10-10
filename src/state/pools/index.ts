@@ -8,6 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
 import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
 import {
+  fetchCanHarvest,
   fetchPoolsAllowance,
   fetchUserBalances,
   fetchUserPendingRewards,
@@ -68,6 +69,10 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number) => async (dispat
         )
       : 0
 
+    // const apr = !isPoolFinished
+    // ? pool.apr
+    // : 0
+
     return {
       ...blockLimit,
       ...totalStaking,
@@ -109,13 +114,14 @@ export const fetchPoolsUserDataAsync =
     const stakingTokenBalances = await fetchUserBalances(account)
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
-
+    const harvest = await fetchCanHarvest(account)
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,
       allowance: allowances[pool.sousId],
       stakingTokenBalance: stakingTokenBalances[pool.sousId],
       stakedBalance: stakedBalances[pool.sousId],
       pendingReward: pendingRewards[pool.sousId],
+      harvest: harvest[pool.sousId][0],
     }))
 
     dispatch(setPoolsUserData(userData))

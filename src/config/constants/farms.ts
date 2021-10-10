@@ -1,7 +1,7 @@
 import tokens from './tokens'
-import { FarmConfig } from './types'
+import { Farm } from '../../state/types'
 
-const farms: FarmConfig[] = [
+const farms: Farm[] = [
   /**
    * These 3 farms (PID 0, 1, 2) should always be at the top of the file.
    */
@@ -14,6 +14,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.busd,
+    apr: 100,
   },
   {
     pid: 1,
@@ -24,6 +25,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.wbnb,
+    apr: 100,
   },
   {
     pid: 2,
@@ -34,6 +36,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.busd,
     quoteToken: tokens.wbnb,
+    apr: 100,
   },
   {
     pid: 9,
@@ -44,6 +47,73 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.busd,
+    apr: 100,
+  },
+  {
+    pid: 10,
+    lpSymbol: 'BTCB-BNB LP',
+    lpAddresses: {
+      97: '0x64582A23B9578b44D3F0b79774310118BF5fF697',
+      56: '',
+    },
+    token: tokens.btcb,
+    quoteToken: tokens.wbnb,
+    apr: 100,
+  },
+  {
+    pid: 11,
+    lpSymbol: 'ETH-BNB LP',
+    lpAddresses: {
+      97: '0xc1ebdfe8799ffd3b738ea2604e5454b7b842ade6',
+      56: '',
+    },
+    token: tokens.eth,
+    quoteToken: tokens.wbnb,
+    apr: 100,
+  },
+  {
+    pid: 12,
+    lpSymbol: 'DOT-BNB LP',
+    lpAddresses: {
+      97: '0x5f18cd1ca1404b2423f9d47421edde7cd7ed46e9',
+      56: '',
+    },
+    token: tokens.dot,
+    quoteToken: tokens.wbnb,
+    apr: 100,
+  },
+  {
+    pid: 13,
+    lpSymbol: 'USDT-BNB LP',
+    lpAddresses: {
+      97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
+      56: '',
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.wbnb,
+    apr: 100,
+  },
+  {
+    pid: 14,
+    lpSymbol: 'CAKE-BNB LP',
+    lpAddresses: {
+      97: '0x0d6a868760f45c44ce72b47030bdb9bf37409f50',
+      56: '',
+    },
+    token: tokens.cake,
+    quoteToken: tokens.wbnb,
+    apr: 100,
+  },
+  {
+    pid: 15,
+    lpSymbol: 'USDC-BUSD LP',
+    lpAddresses: {
+      97: '0x33ea4caf264e12ed2bc92119c6cd111ed3727894',
+      56: '',
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.busd,
+    apr: 100,
   },
 ]
 

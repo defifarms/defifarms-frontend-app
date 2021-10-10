@@ -72,3 +72,21 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmC
   })
   return parsedEarnings
 }
+
+export const fetchCanHarvest = async (account: string, farmsToFetch: FarmConfig[]) => {
+  const masterChefAddress = getMasterChefAddress()
+
+  const calls = farmsToFetch.map((farm) => {
+    return {
+      address: masterChefAddress,
+      name: 'canHarvest',
+      params: [farm.pid, account],
+    }
+  })
+
+  const rawEarnings = await multicall(masterchefABI, calls)
+  const isHavest = rawEarnings.map((canHavest) => {
+    return canHavest
+  })
+  return isHavest
+}

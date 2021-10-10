@@ -17,7 +17,6 @@ import Liquidity, { LiquidityProps } from '../Liquidity'
 export interface ActionPanelProps {
   apr: AprProps
   multiplier: MultiplierProps
-  liquidity: LiquidityProps
   details: FarmWithStakedValue
   userDataReady: boolean
   expanded: boolean
@@ -134,7 +133,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apr,
   multiplier,
-  liquidity,
   userDataReady,
   expanded,
 }) => {
@@ -178,10 +176,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <Text>{t('Multiplier')}</Text>
           <Multiplier {...multiplier} />
         </ValueWrapper>
-        <ValueWrapper>
-          <Text>{t('Liquidity')}</Text>
-          <Liquidity {...liquidity} />
-        </ValueWrapper>
+        {/* <ValueWrapper> */}
+        {/*  <Text>{t('Liquidity')}</Text> */}
+        {/*  <Liquidity {...liquidity} /> */}
+        {/* </ValueWrapper> */}
       </ValueContainer>
       <ActionContainer>
         <HarvestAction {...farm} userDataReady={userDataReady} />

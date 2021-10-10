@@ -33,11 +33,13 @@ export interface Farm extends FarmConfig {
   poolWeight?: SerializedBigNumber
   harvestInterval?: SerializedBigNumber
   depositFeeBP?: string
+  apr?: number
   userData?: {
     allowance: string
     tokenBalance: string
     stakedBalance: string
     earnings: string
+    harvest?: boolean
   }
 }
 
@@ -57,6 +59,7 @@ export interface Pool extends PoolConfig {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    harvest?: boolean
   }
 }
 

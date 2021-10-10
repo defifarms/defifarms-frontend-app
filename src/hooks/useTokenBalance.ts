@@ -76,7 +76,7 @@ export const useMaxTransferAmount = () => {
     async function fetchTotalSupply() {
       const cakeContract = getDefiyContract()
       const supply = await cakeContract.maxTransferAmount()
-      setMaxTransferAmount(new BigNumber(supply.toString()))
+      setMaxTransferAmount(supply)
     }
     fetchTotalSupply()
   }, [slowRefresh])

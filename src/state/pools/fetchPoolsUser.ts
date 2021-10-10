@@ -3,7 +3,7 @@ import sousChefABI from 'config/abi/masterchef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import { getMasterchefContract } from 'utils/contractHelpers'
-import { getAddress } from 'utils/addressHelpers'
+import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
 import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 
@@ -91,4 +91,21 @@ export const fetchUserPendingRewards = async (account) => {
   const pendingReward = await masterChefContract.pendingDefiFarm('0', account)
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
+}
+
+export const fetchCanHarvest = async (account) => {
+  const calls = nonMasterPools.map((p) => ({
+    address: getMasterChefAddress(),
+    name: 'canHarvest',
+    params: [p.sousId, account],
+  }))
+  const res = await multicall(sousChefABI, calls)
+  const harvest = nonMasterPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: res[index],
+    }),
+    {},
+  )
+  return harvest
 }

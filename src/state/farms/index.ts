@@ -5,6 +5,7 @@ import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import fetchFarms from './fetchFarms'
 import fetchFarmsPrices from './fetchFarmsPrices'
 import {
+  fetchCanHarvest,
   fetchFarmUserAllowances,
   fetchFarmUserEarnings,
   fetchFarmUserStakedBalances,
@@ -19,6 +20,7 @@ const noAccountFarmConfig = farmsConfig.map((farm) => ({
     tokenBalance: '0',
     stakedBalance: '0',
     earnings: '0',
+    harvest: false,
   },
 }))
 
@@ -53,6 +55,7 @@ interface FarmUserDataResponse {
   tokenBalance: string
   stakedBalance: string
   earnings: string
+  harvest: boolean
 }
 
 export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], { account: string; pids: number[] }>(
@@ -63,7 +66,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
-
+    const canHarvest = await fetchCanHarvest(account, farmsToFetch)
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
         pid: farmsToFetch[index].pid,
@@ -71,6 +74,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
         tokenBalance: userFarmTokenBalances[index],
         stakedBalance: userStakedBalances[index],
         earnings: userFarmEarnings[index],
+        harvest: canHarvest[index][0],
       }
     })
   },

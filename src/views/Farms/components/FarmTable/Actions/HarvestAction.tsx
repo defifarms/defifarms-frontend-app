@@ -40,6 +40,12 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
 
+  const isHarvest = userData?.harvest
+  let isDisable = false
+  if (isHarvest) {
+    isDisable = true
+  }
+
   return (
     <ActionContainer>
       <ActionTitles>
@@ -58,7 +64,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           )}
         </div>
         <Button
-          disabled={earnings.eq(0) || pendingTx || !userDataReady}
+          disabled={earnings.eq(0) || pendingTx || !userDataReady || !isDisable}
           onClick={async () => {
             setPendingTx(true)
             try {

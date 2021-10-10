@@ -79,7 +79,7 @@ const ControlStretch = styled(Flex)`
 const BgHome = styled.div`
   border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
   background-image: url(images/home/7.svg);
-  background-color: rgba(0, 0, 0, ${({ theme }) => theme.isDark ? '0.45' : '0.1'});
+  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -116,6 +116,8 @@ const Pools: React.FC = () => {
     // const cakeAutoVault = { ...cakePool, isAutoVault: true }
     return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
+
+  console.log(pools)
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
   const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
@@ -293,10 +295,6 @@ const Pools: React.FC = () => {
                     {
                       label: t('Earned'),
                       value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
                     },
                   ]}
                   onChange={handleSortOptionChange}

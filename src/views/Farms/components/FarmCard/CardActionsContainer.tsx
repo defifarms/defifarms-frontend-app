@@ -68,6 +68,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         tokenName={farm.lpSymbol}
         pid={pid}
         addLiquidityUrl={addLiquidityUrl}
+        userData={farm.userData}
       />
     ) : (
       <Button variant="four" mt="16px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
@@ -86,7 +87,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           {t('Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} />
+      <HarvestAction earnings={earnings} pid={pid} userData={farm.userData} />
       <Flex mt="34px">
         <Text textTransform="uppercase" color="text" pr="4px">
           {farm.lpSymbol}

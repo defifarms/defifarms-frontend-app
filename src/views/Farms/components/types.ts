@@ -74,12 +74,6 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     label: 'APR',
   },
   {
-    id: 4,
-    name: 'liquidity',
-    sortable: true,
-    label: 'Liquidity',
-  },
-  {
     id: 5,
     name: 'multiplier',
     sortable: true,

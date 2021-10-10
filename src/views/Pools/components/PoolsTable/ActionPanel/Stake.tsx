@@ -131,6 +131,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
 
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
+  const isHarvest = userData?.harvest
+  let isDisable = false
+  if (isHarvest) {
+    isDisable = true
+  }
+
   if (!account) {
     return (
       <ActionContainer>
@@ -209,26 +215,30 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
               prefix="~"
             />
           </Flex>
-          <IconButtonWrapper>
-            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
-              <MinusIcon color="primary" width="14px" />
-            </IconButton>
-            {reachStakingLimit ? (
-              <span ref={targetRef}>
-                <IconButton variant="secondary" disabled>
-                  <AddIcon color="textDisabled" width="24px" height="24px" />
-                </IconButton>
-              </span>
-            ) : (
-              <IconButton
-                variant="secondary"
-                onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-                disabled={isFinished}
-              >
-                <AddIcon color="primary" width="14px" />
+          {isDisable ? (
+            <IconButtonWrapper>
+              <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+                <MinusIcon color="primary" width="14px" />
               </IconButton>
-            )}
-          </IconButtonWrapper>
+              {reachStakingLimit ? (
+                <span ref={targetRef}>
+                  <IconButton variant="secondary" disabled>
+                    <AddIcon color="textDisabled" width="24px" height="24px" />
+                  </IconButton>
+                </span>
+              ) : (
+                <IconButton
+                  variant="secondary"
+                  onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
+                  disabled={isFinished}
+                >
+                  <AddIcon color="primary" width="14px" />
+                </IconButton>
+              )}
+            </IconButtonWrapper>
+          ) : (
+            ''
+          )}
           {tooltipVisible && tooltip}
         </ActionContent>
       </ActionContainer>

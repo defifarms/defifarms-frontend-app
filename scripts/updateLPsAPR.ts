@@ -35,7 +35,7 @@ const getWeekAgoTimestamp = () => {
   return getUnixTime(weekAgo)
 }
 
-const LP_HOLDERS_FEE = 0.0017
+const LP_HOLDERS_FEE = 0
 const WEEKS_IN_A_YEAR = 52.1429
 
 const getBlockAtTimestamp = async (timestamp: number) => {

@@ -20,7 +20,7 @@ const FlexWrapper = styled(Flex)`
 
 const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, isFinished, apr, earningTokenPrice, isAutoVault } = pool
+  const { stakingToken, earningToken, isFinished, apr, earningTokenPrice, isAutoVault, harvestInterval } = pool
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s DEFIY is compounded automatically, so we show APY.')
     : t('This pool’s rewards aren’t compounded automatically, so we show APR')
@@ -30,7 +30,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
 
   const apyModalLink = stakingToken.address ? `/swap?outputCurrency=${getAddress(stakingToken.address)}` : '/swap'
-  const harvestLock = 14400 / 3600
+  const harvestLock = parseInt(harvestInterval) / 3600
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
@@ -47,7 +47,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
 
   return (
     <>
-      <Flex alignItems="center" justifyContent="space-between">
+      <Flex alignItems="center" justifyContent="space-between" style={{ marginBottom: 10 }}>
         {tooltipVisible && tooltip}
         <TooltipText ref={targetRef}>{isAutoVault ? `${t('APY')}:` : `${t('APR')}:`}</TooltipText>
         {isFinished || !apr ? (

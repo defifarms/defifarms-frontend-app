@@ -7,7 +7,7 @@ import CakeStats from 'views/Home/components/CakeStats'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import Announcements from './components/Announcements'
 import FarmedStakingCard from './components/FarmStakingCard'
-import TotalValueLockedCard from './components/TotalValueLockedCard'
+// import TotalValueLockedCard from './components/TotalValueLockedCard'
 
 const Hero = styled.div`
   align-items: center;
@@ -67,7 +67,7 @@ const CardImage = styled.div`
 const BgHome = styled.div`
   border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
   background-image: url(images/home/7.svg);
-  background-color: rgba(0, 0, 0, ${({ theme }) => theme.isDark ? '0.45' : '0.1'});
+  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-position: bottom center;

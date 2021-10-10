@@ -21,7 +21,6 @@ export interface RowProps {
   farm: FarmProps
   earned: EarnedProps
   multiplier: MultiplierProps
-  liquidity: LiquidityProps
   details: FarmWithStakedValue
 }
 
@@ -35,7 +34,6 @@ const cells = {
   earned: Earned,
   details: Details,
   multiplier: Multiplier,
-  liquidity: Liquidity,
 }
 
 const CellInner = styled.div`
