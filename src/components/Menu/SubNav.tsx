@@ -27,7 +27,14 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <ButtonMenu bgColor={lightColors.subNav} fullWidth borderRadius="20px" activeIndex={getActiveIndex(location.pathname)} scale="md" variant="primary">
+      <ButtonMenu
+        bgColor={lightColors.subNav}
+        fullWidth
+        borderRadius="20px"
+        activeIndex={getActiveIndex(location.pathname)}
+        scale="md"
+        variant="primary"
+      >
         <ButtonMenuItem width="160px" height="72px" borderRadius="20px" id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
         </ButtonMenuItem>

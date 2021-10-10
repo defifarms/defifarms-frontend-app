@@ -67,7 +67,7 @@ const LabelWrapper = styled.div`
 const BgHome = styled.div`
   border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
   background-image: url(images/home/7.svg);
-  background-color: rgba(0, 0, 0, ${({ theme }) => theme.isDark ? '0.45' : '0.1'});
+  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -176,7 +176,7 @@ const Farms: React.FC = () => {
           ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
-        return { ...farm, apr: farm.apr, lpRewardsApr, liquidity: totalLiquidity }
+        return { ...farm, apr: farm.apr, lpRewardsApr }
       })
 
       if (query) {
@@ -218,8 +218,8 @@ const Farms: React.FC = () => {
             (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
             'desc',
           )
-        case 'liquidity':
-          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+        // case 'liquidity':
+        //   return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
         default:
           return farms
       }
@@ -302,9 +302,7 @@ const Farms: React.FC = () => {
         earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
         pid: farm.pid,
       },
-      liquidity: {
-        liquidity: farm.liquidity,
-      },
+      // liquidity: null,
       multiplier: {
         multiplier: farm.multiplier,
       },
@@ -431,10 +429,10 @@ const Farms: React.FC = () => {
                     label: t('Earned'),
                     value: 'earned',
                   },
-                  {
-                    label: t('Liquidity'),
-                    value: 'liquidity',
-                  },
+                  // {
+                  //   label: t('Liquidity'),
+                  //   value: 'liquidity',
+                  // },
                 ]}
                 onChange={handleSortOptionChange}
               />

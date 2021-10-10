@@ -8,6 +8,7 @@ import { getDefiyAddress } from 'utils/addressHelpers'
 import { formatEther } from 'ethers/lib/utils'
 import CardValue from './CardValue'
 import { usePriceCakeBusd } from '../../../state/farms/hooks'
+import QuestionHelper from '../../../components/QuestionHelper'
 
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
@@ -89,12 +90,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('Transfer Tax')}</Text>
-          <QuestionHelper
-            text={t('Tax 8%, 6% go to LP, 2% instantly burn')}
-            style={{ display: 'inline' }}
-            ml="4px"
-          />
-          
+          <QuestionHelper text={t('Tax 8%, 6% go to LP, 2% instantly burn')} style={{ display: 'inline' }} ml="4px" />
           8%
         </Row>
       </CardBody>
