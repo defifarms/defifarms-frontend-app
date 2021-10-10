@@ -33,6 +33,7 @@ interface StackedActionProps extends FarmWithStakedValue {
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({
   pid,
+  userData,
   lpSymbol,
   lpAddresses,
   quoteToken,
@@ -100,6 +101,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
   }, [onApprove, dispatch, account, pid])
 
+  const isHarvest = userData?.harvest
+  let isDisable = false
+  if (isHarvest) {
+    isDisable = true
+  }
+
   if (!account) {
     return (
       <ActionContainer>
@@ -141,18 +148,22 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
                 />
               )}
             </div>
-            <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="primary" width="14px" />
-              </IconButton>
-              <IconButton
-                variant="secondary"
-                onClick={onPresentDeposit}
-                disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
-              >
-                <AddIcon color="primary" width="14px" />
-              </IconButton>
-            </IconButtonWrapper>
+            {isDisable ? (
+              <IconButtonWrapper>
+                <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
+                  <MinusIcon color="primary" width="14px" />
+                </IconButton>
+                <IconButton
+                  variant="secondary"
+                  onClick={onPresentDeposit}
+                  disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+                >
+                  <AddIcon color="primary" width="14px" />
+                </IconButton>
+              </IconButtonWrapper>
+            ) : (
+              ''
+            )}
           </ActionContent>
         </ActionContainer>
       )

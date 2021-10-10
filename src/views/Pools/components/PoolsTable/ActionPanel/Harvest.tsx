@@ -14,6 +14,7 @@ import { Pool } from 'state/types'
 import { ActionContainer, ActionContent, ActionTitles } from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
 import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
+import { fetchCanHarvest } from '../../../../../state/pools/fetchPoolsUser'
 
 interface HarvestActionProps extends Pool {
   userDataLoaded: boolean
@@ -40,6 +41,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const isCompoundPool = sousId === 0
   const isBnbPool = poolCategory === PoolCategory.BINANCE
+  const isHarvest = userData?.harvest
 
   // Auto DEFIY vault calculations
   const {
@@ -58,6 +60,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   earningTokenBalance = isAutoVault ? autoCakeToDisplay : earningTokenBalance
   hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
   earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
+
+  let isDisable = false
+  if (hasEarnings && isHarvest) {
+    isDisable = true
+  }
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -161,7 +168,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          <Button disabled={!isDisable} onClick={onPresentCollect}>
             {isCompoundPool ? t('Collect') : t('Harvest')}
           </Button>
         )}

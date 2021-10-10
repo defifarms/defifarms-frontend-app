@@ -15,6 +15,7 @@ interface StakeActionsProps {
   isBnbPool: boolean
   isStaked: ConstrainBoolean
   isLoading?: boolean
+  userData: any
 }
 
 const StakeAction: React.FC<StakeActionsProps> = ({
@@ -61,6 +62,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
+  const isHarvest = userData?.harvest
+  let isDisable = false
+  if (isHarvest) {
+    isDisable = true
+  }
+
   const renderStakeAction = () => {
     return isStaked ? (
       <Flex justifyContent="space-between" alignItems="center">
@@ -81,26 +88,30 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             )}
           </>
         </Flex>
-        <Flex>
-          <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
-            <MinusIcon color="primary" width="24px" />
-          </IconButton>
-          {reachStakingLimit ? (
-            <span ref={targetRef}>
-              <IconButton variant="secondary" disabled>
-                <AddIcon color="textDisabled" width="24px" height="24px" />
-              </IconButton>
-            </span>
-          ) : (
-            <IconButton
-              variant="secondary"
-              onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
-              disabled={isFinished}
-            >
-              <AddIcon color="primary" width="24px" height="24px" />
+        {isDisable ? (
+          <Flex>
+            <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
+              <MinusIcon color="primary" width="24px" />
             </IconButton>
-          )}
-        </Flex>
+            {reachStakingLimit ? (
+              <span ref={targetRef}>
+                <IconButton variant="secondary" disabled>
+                  <AddIcon color="textDisabled" width="24px" height="24px" />
+                </IconButton>
+              </span>
+            ) : (
+              <IconButton
+                variant="secondary"
+                onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
+                disabled={isFinished}
+              >
+                <AddIcon color="primary" width="24px" height="24px" />
+              </IconButton>
+            )}
+          </Flex>
+        ) : (
+          ''
+        )}
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
