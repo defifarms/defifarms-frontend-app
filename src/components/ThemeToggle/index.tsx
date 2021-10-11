@@ -32,6 +32,7 @@ const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
             height: '100%',
             paddingRight: 9,
             justifyContent: 'flex-end',
+            right: 0,
           }}
         >
           {!isMobile && (
@@ -50,6 +51,7 @@ const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
             fontSize: 14,
             color: 'orange',
             paddingLeft: 9,
+            left: 0,
           }}
         >
           {!isMobile && (
