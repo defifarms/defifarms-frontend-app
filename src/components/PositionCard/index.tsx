@@ -32,6 +32,10 @@ import Dots from '../Loader/Dots'
 const FixedHeightRow = styled(RowBetween)`
   height: 24px;
 `
+const CardStyled = styled(Card)`
+  border-radius: 12px;
+  background-color: ${({theme}) => theme.colors.input}
+`
 
 interface PositionCardProps extends CardProps {
   pair: Pair
@@ -172,7 +176,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
       : [undefined, undefined]
 
   return (
-    <Card style={{ borderRadius: '12px' }} {...props}>
+    <CardStyled {...props}>
       <Flex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">
@@ -255,6 +259,6 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           )}
         </AutoColumn>
       )}
-    </Card>
+    </CardStyled>
   )
 }
