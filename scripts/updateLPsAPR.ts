@@ -35,7 +35,7 @@ const getWeekAgoTimestamp = () => {
   return getUnixTime(weekAgo)
 }
 
-const LP_HOLDERS_FEE = 0
+const LP_HOLDERS_FEE = 0.0017
 const WEEKS_IN_A_YEAR = 52.1429
 
 const getBlockAtTimestamp = async (timestamp: number) => {
@@ -103,7 +103,8 @@ const getAprsForFarmGroup = async (addresses: string[], blockWeekAgo: number): P
 const fetchAndUpdateLPsAPR = async () => {
   // pids before 250 are inactive farms from v1 and failed v2 migration
   const lowerCaseAddresses = farmsConfig
-    .map((farm) => farm.lpAddresses[ChainId.MAINNET].toLowerCase())
+    .filter((farm) => farm.pid > 1)
+    .map((farm) => farm.lpAddresses[ChainId.TESTNET].toLowerCase())
   console.info(`Fetching farm data for ${lowerCaseAddresses.length} addresses`)
   // Split it into chunks of 30 addresses to avoid gateway timeout
   const addressesInGroups = chunk(lowerCaseAddresses, 30)

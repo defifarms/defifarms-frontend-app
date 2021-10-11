@@ -10,12 +10,12 @@ interface ThemeToggleType {
 const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
   const { isXl } = useMatchBreakpoints()
   const isMobile = !isXl
-  
+
   return (
     <Switch
       checked={checked}
       onChange={handleChange}
-      // handleDiameter={30} 
+      // handleDiameter={30}
       offColor="#707685"
       onColor="#181f2d"
       offHandleColor="#657EEC"
@@ -31,12 +31,14 @@ const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
             alignItems: 'center',
             height: '100%',
             paddingRight: 9,
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
           }}
         >
-          {!isMobile && <Text fontSize="14px" color="#fff">
-            Darkmode
-          </Text>}
+          {!isMobile && (
+            <Text fontSize="14px" color="#fff">
+              Darkmode
+            </Text>
+          )}
         </span>
       }
       checkedIcon={
@@ -50,9 +52,11 @@ const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
             paddingLeft: 9,
           }}
         >
-          {!isMobile && <Text fontSize="14px" color="#fff">
-            Lightmode
-          </Text>}
+          {!isMobile && (
+            <Text fontSize="14px" color="#fff">
+              Lightmode
+            </Text>
+          )}
         </div>
       }
       uncheckedHandleIcon={<LightIcon />}

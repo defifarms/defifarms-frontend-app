@@ -41,7 +41,7 @@ const UserMenu = () => {
     <Wrapper>
       <ThemeToggle handleChange={toggleTheme} checked={isDark} />
       {/* <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} /> */}
-      
+
       {account ? (
         <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
           <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
@@ -57,7 +57,7 @@ const UserMenu = () => {
           </UserMenuItem>
         </UIKitUserMenu>
       ) : (
-        <ConnectWalletButton scale={isMobile ? 'xs' : 'sm' } ml="24px" />
+        <ConnectWalletButton scale={isMobile ? 'xs' : 'sm'} ml="24px" />
       )}
     </Wrapper>
   )

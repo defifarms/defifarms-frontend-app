@@ -4,7 +4,7 @@ import { BaseLayout, Button, Card, CardBody, Heading } from '@pancakeswap/uikit'
 import { harvestFarm } from 'utils/calls'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import useFarmsWithBalance from 'views/Home/hooks/useFarmsWithBalance'
+import usefarmsPoolWithBalance from 'views/Home/hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import CakeHarvestBalance from './CakeHarvestBalance'
@@ -58,14 +58,15 @@ const FarmedStakingCard = () => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { toastError } = useToast()
-  const farmsWithBalance = useFarmsWithBalance()
+  const farmsPoolWithBalance = usefarmsPoolWithBalance()
   const masterChefContract = useMasterchef()
-  const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.gt(0))
+  const balancesWithValueFarms = farmsPoolWithBalance.farm.filter((balanceType) => balanceType.balance.gt(0))
+  const balancesWithValuePools = farmsPoolWithBalance.pool.filter((balanceType) => balanceType.balance.gt(0))
 
-  const harvestAllFarms = useCallback(async () => {
+  const harvestAll = useCallback(async () => {
     setPendingTx(true)
     // eslint-disable-next-line no-restricted-syntax
-    for (const farmWithBalance of balancesWithValue) {
+    for (const farmWithBalance of balancesWithValueFarms) {
       try {
         // eslint-disable-next-line no-await-in-loop
         await harvestFarm(masterChefContract, farmWithBalance.pid)
@@ -73,8 +74,19 @@ const FarmedStakingCard = () => {
         toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       }
     }
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const poolWithBalance of balancesWithValuePools) {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        await harvestFarm(masterChefContract, poolWithBalance.sousId)
+      } catch (error) {
+        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      }
+    }
+
     setPendingTx(false)
-  }, [balancesWithValue, masterChefContract, toastError, t])
+  }, [balancesWithValuePools, balancesWithValueFarms, masterChefContract, toastError, t])
 
   return (
     <StyledFarmStakingCard>
@@ -86,7 +98,7 @@ const FarmedStakingCard = () => {
         <Cards>
           <Block>
             <Label>{t('Defiy to Harvest')}:</Label>
-            <CakeHarvestBalance farmsWithBalance={balancesWithValue} />
+            <CakeHarvestBalance farmsWithBalance={balancesWithValueFarms} poolsWithBalance={balancesWithValuePools} />
           </Block>
           <Block>
             <Label>{t('Defiy in Wallet')}:</Label>
@@ -95,16 +107,11 @@ const FarmedStakingCard = () => {
         </Cards>
         <Actions>
           {account ? (
-            <Button
-              id="harvest-all"
-              disabled={balancesWithValue.length <= 0 || pendingTx}
-              onClick={harvestAllFarms}
-              width="100%"
-            >
+            <Button id="harvest-all" disabled={pendingTx} onClick={harvestAll} width="100%">
               {pendingTx
                 ? t('Collecting Defiy')
                 : t('Harvest all', {
-                    count: balancesWithValue.length,
+                    count: balancesWithValueFarms.length + balancesWithValuePools.length,
                   })}
             </Button>
           ) : (

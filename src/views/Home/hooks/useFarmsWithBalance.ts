@@ -4,21 +4,27 @@ import { useWeb3React } from '@web3-react/core'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig } from 'config/constants'
-import { FarmConfig } from 'config/constants/types'
+import { farmsConfig, poolsConfig } from 'config/constants'
+import { FarmConfig, PoolConfig } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 
 export interface FarmWithBalance extends FarmConfig {
   balance: BigNumber
 }
 
-const useFarmsWithBalance = () => {
+export interface PoolWithBalance extends PoolConfig {
+  balance: BigNumber
+}
+
+const usefarmsPoolWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
+  const [poolsWithBalances, setPoolsWithBalances] = useState<PoolWithBalance[]>([])
+
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    const fetchBalances = async () => {
+    const fetchBalancesFarms = async () => {
       const calls = farmsConfig.map((farm) => ({
         address: getMasterChefAddress(),
         name: 'pendingDefiFarm',
@@ -26,17 +32,31 @@ const useFarmsWithBalance = () => {
       }))
 
       const rawResults = await multicall(masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const resultsFarm = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
 
-      setFarmsWithBalances(results)
+      setFarmsWithBalances(resultsFarm)
+    }
+
+    const fetchBalancesPools = async () => {
+      const calls = poolsConfig.map((pool) => ({
+        address: getMasterChefAddress(),
+        name: 'pendingDefiFarm',
+        params: [pool.sousId, account],
+      }))
+
+      const rawResults = await multicall(masterChefABI, calls)
+      const resultsPool = poolsConfig.map((pool, index) => ({ ...pool, balance: new BigNumber(rawResults[index]) }))
+
+      setPoolsWithBalances(resultsPool)
     }
 
     if (account) {
-      fetchBalances()
+      fetchBalancesFarms()
+      fetchBalancesPools()
     }
   }, [account, fastRefresh])
 
-  return farmsWithBalances
+  return { farm: farmsWithBalances, pool: poolsWithBalances }
 }
 
-export default useFarmsWithBalance
+export default usefarmsPoolWithBalance

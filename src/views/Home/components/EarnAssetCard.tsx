@@ -22,14 +22,14 @@ const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
   line-height: 44px;
 `
 const StyleCircleButton = styled.div`
-    width: 44px;
-    height: 44px;
-    background-color: ${({theme}) => theme.colors.primary};
-    border-radius: 100px;
-    margin-top: 1rem;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  width: 44px;
+  height: 44px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 100px;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 `
 
 const activeNonCakePools = pools.filter((pool) => pool.earningToken.symbol !== 'DEFIY')
