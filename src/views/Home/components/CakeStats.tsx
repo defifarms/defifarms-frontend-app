@@ -28,7 +28,7 @@ const HeadingCard = styled(Heading)`
   font-weight: 600;
   line-height: 54px;
   letter-spacing: 0em;
-  padding-bottom: 12px;
+  padding-bottom: 4px;
   border-bottom: 1px solid rgba(26, 36, 59, 0.17);
 `
 
@@ -52,7 +52,7 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBody>
-        <HeadingCard scale="xl" mb="24px">
+        <HeadingCard scale="xl" mb="8px">
           {t('DEFIY Stats')}
         </HeadingCard>
         <Row>
@@ -88,9 +88,10 @@ const CakeStats = () => {
           0.01
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Transfer Tax')}</Text>
-          <QuestionHelper text={t('Tax 8%, 6% go to LP, 2% instantly burn')} style={{ display: 'inline' }} ml="4px" />
-          8%
+          <div style={{ }}>
+            <Text fontSize="14px">{t('Transfer Tax')} <QuestionHelper text={t('Tax 8%, 6% go to LP, 2% instantly burn')} style={{ display: 'inline' }} ml="4px" /></Text>
+          </div>
+          <div>8%</div>
         </Row>
       </CardBody>
     </StyledCakeStats>

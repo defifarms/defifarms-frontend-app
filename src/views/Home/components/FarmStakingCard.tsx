@@ -97,11 +97,11 @@ const FarmedStakingCard = () => {
         <CardImage src="/images/home/2.png"/>
         <Cards>
           <Block>
-            <Label>{t('Defiy to Harvest')}:</Label>
+            <Label>{t('DEFIY to Harvest')}:</Label>
             <CakeHarvestBalance farmsWithBalance={balancesWithValueFarms} poolsWithBalance={balancesWithValuePools}/>
           </Block>
           <Block>
-            <Label>{t('Defiy in Wallet')}:</Label>
+            <Label>{t('DEFIY in Wallet')}:</Label>
             <CakeWalletBalance/>
           </Block>
         </Cards>
@@ -109,7 +109,7 @@ const FarmedStakingCard = () => {
           {account ? (
             <Button id="harvest-all" disabled={pendingTx} onClick={harvestAll} width="100%">
               {pendingTx
-                ? t('Collecting Defiy')
+                ? t('Collecting DEFIY')
                 : t('Harvest all', {
                   count: balancesWithValueFarms.length + balancesWithValuePools.length,
                 })}
