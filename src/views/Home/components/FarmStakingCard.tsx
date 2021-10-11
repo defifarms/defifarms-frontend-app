@@ -4,7 +4,7 @@ import { BaseLayout, Button, Card, CardBody, Heading } from '@pancakeswap/uikit'
 import { harvestFarm } from 'utils/calls'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import usefarmsPoolWithBalance from 'views/Home/hooks/useFarmsWithBalance'
+import useFarmsPoolWithBalance from 'views/Home/hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import CakeHarvestBalance from './CakeHarvestBalance'
@@ -58,7 +58,7 @@ const FarmedStakingCard = () => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { toastError } = useToast()
-  const farmsPoolWithBalance = usefarmsPoolWithBalance()
+  const farmsPoolWithBalance = useFarmsPoolWithBalance()
   const masterChefContract = useMasterchef()
   const balancesWithValueFarms = farmsPoolWithBalance.farm.filter((balanceType) => balanceType.balance.gt(0))
   const balancesWithValuePools = farmsPoolWithBalance.pool.filter((balanceType) => balanceType.balance.gt(0))
@@ -94,15 +94,15 @@ const FarmedStakingCard = () => {
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
-        <CardImage src="/images/home/2.png" />
+        <CardImage src="/images/home/2.png"/>
         <Cards>
           <Block>
             <Label>{t('Defiy to Harvest')}:</Label>
-            <CakeHarvestBalance farmsWithBalance={balancesWithValueFarms} poolsWithBalance={balancesWithValuePools} />
+            <CakeHarvestBalance farmsWithBalance={balancesWithValueFarms} poolsWithBalance={balancesWithValuePools}/>
           </Block>
           <Block>
             <Label>{t('Defiy in Wallet')}:</Label>
-            <CakeWalletBalance />
+            <CakeWalletBalance/>
           </Block>
         </Cards>
         <Actions>
@@ -111,11 +111,11 @@ const FarmedStakingCard = () => {
               {pendingTx
                 ? t('Collecting Defiy')
                 : t('Harvest all', {
-                    count: balancesWithValueFarms.length + balancesWithValuePools.length,
-                  })}
+                  count: balancesWithValueFarms.length + balancesWithValuePools.length,
+                })}
             </Button>
           ) : (
-            <UnlockButton width="100%" />
+            <UnlockButton width="100%"/>
           )}
         </Actions>
       </CardBody>

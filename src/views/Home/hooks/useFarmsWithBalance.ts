@@ -16,7 +16,7 @@ export interface PoolWithBalance extends PoolConfig {
   balance: BigNumber
 }
 
-const usefarmsPoolWithBalance = () => {
+const useFarmsPoolWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
   const [poolsWithBalances, setPoolsWithBalances] = useState<PoolWithBalance[]>([])
 
@@ -59,4 +59,4 @@ const usefarmsPoolWithBalance = () => {
   return { farm: farmsWithBalances, pool: poolsWithBalances }
 }
 
-export default usefarmsPoolWithBalance
+export default useFarmsPoolWithBalance
