@@ -344,7 +344,7 @@ const Farms: React.FC = () => {
     }
 
     return (
-      <FlexLayout>
+      <FlexLayout style={{ margin: '0px -16px' }}>
         <Route exact path={`${path}`}>
           {chosenFarmsMemoized.map((farm) => (
             <FarmCard

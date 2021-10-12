@@ -18,7 +18,7 @@ interface PromotedStyleCardProps {
 }
 
 export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; isFinished?: boolean }>`
-  max-width: 352px;
+  max-width: 30.5%;
   margin: 0 8px 24px;
   display: flex;
   flex-direction: column;

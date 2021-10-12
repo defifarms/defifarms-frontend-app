@@ -236,7 +236,7 @@ const Pools: React.FC = () => {
   chosenPoolsLength.current = chosenPools.length
 
   const cardLayout = (
-    <CardLayout>
+    <CardLayout style={{ margin: '0px -26px' }}>
       {chosenPools.map((pool) => (
         <PoolCard key={pool.sousId} pool={pool} account={account} />
       ))}
