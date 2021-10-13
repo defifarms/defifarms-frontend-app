@@ -8,9 +8,9 @@ const AdvancedDetailsFooter = styled.div<{ show: boolean }>`
   padding-top: 16px;
   padding-bottom: 16px;
   width: 100%;
-  max-width: 400px;
+  max-width: 436px;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.invertedContrast};
+  background-color: ${({ theme }) => theme.colors.backgroundCard};
 
   transform: ${({ show }) => (show ? 'translateY(0%)' : 'translateY(-100%)')};
   transition: transform 300ms ease-in-out;

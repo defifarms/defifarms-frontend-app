@@ -1,29 +1,30 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Route, useLocation, useRouteMatch } from 'react-router-dom'
-import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
-import { Flex, Heading, Image, RowType, Text, Toggle } from '@pancakeswap/uikit'
 import { ChainId } from '@pancakeswap/sdk'
-import styled from 'styled-components'
+import { Flex, Heading, Image, RowType, Text, Toggle } from '@pancakeswap/uikit'
+import { useWeb3React } from '@web3-react/core'
+import BigNumber from 'bignumber.js'
 import FlexLayout from 'components/Layout/Flex'
+import { MainBackground } from 'components/Layout/MainBackground'
 import Page from 'components/Layout/Page'
-import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/farms/hooks'
-import usePersistState from 'hooks/usePersistState'
-import { Farm } from 'state/types'
-import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { getFarmApr } from 'utils/apr'
-import { orderBy } from 'lodash'
-import isArchivedPid from 'utils/farmHelpers'
-import { latinise } from 'utils/latinise'
-import { useUserFarmStakedOnly } from 'state/user/hooks'
+import Loading from 'components/Loading'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
-import Loading from 'components/Loading'
+import { useTranslation } from 'contexts/Localization'
+import usePersistState from 'hooks/usePersistState'
+import { orderBy } from 'lodash'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Route, useLocation, useRouteMatch } from 'react-router-dom'
+import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/farms/hooks'
+import { Farm } from 'state/types'
+import { useUserFarmStakedOnly } from 'state/user/hooks'
+import styled from 'styled-components'
+import { getFarmApr } from 'utils/apr'
+import isArchivedPid from 'utils/farmHelpers'
+import { getBalanceNumber } from 'utils/formatBalance'
+import { latinise } from 'utils/latinise'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
-import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
+import Table from './components/FarmTable/FarmTable'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
@@ -62,18 +63,6 @@ const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
   }
-`
-
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
 `
 
 const FilterContainer = styled.div`
@@ -390,7 +379,7 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <BgHome>
+    <MainBackground>
       <PageHeader>
         <Heading as="h1" scale="xxl" color="contrast">
           {t('DeFiFarms Protocol')}
@@ -452,7 +441,7 @@ const Farms: React.FC = () => {
         )}
         <div ref={loadMoreRef} />
       </Page>
-    </BgHome>
+    </MainBackground>
   )
 }
 

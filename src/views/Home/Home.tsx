@@ -1,13 +1,14 @@
+import { BaseLayout, Heading, Text } from '@pancakeswap/uikit'
+// import TotalValueLockedCard from './components/TotalValueLockedCard'
+import { MainBackground } from 'components/Layout/MainBackground'
+import Page from 'components/Layout/Page'
+import { useTranslation } from 'contexts/Localization'
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout, Heading, Text } from '@pancakeswap/uikit'
-import { useTranslation } from 'contexts/Localization'
-import Page from 'components/Layout/Page'
 import CakeStats from 'views/Home/components/CakeStats'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import Announcements from './components/Announcements'
 import FarmedStakingCard from './components/FarmStakingCard'
-// import TotalValueLockedCard from './components/TotalValueLockedCard'
 
 const Hero = styled.div`
   align-items: center;
@@ -64,19 +65,6 @@ const CardImage = styled.div`
   background-size: contain;
 `
 
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
-  padding-bottom: 3rem;
-`
-
 const HeadingHome = styled(Heading)`
   font-style: normal;
   font-weight: 600;
@@ -103,7 +91,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <BgHome>
+      <MainBackground>
         <Page>
           <Hero>
             <HeadingHome as="h1" scale="xl" mb="24px">
@@ -129,7 +117,7 @@ const Home: React.FC = () => {
             </Cards>
           </div>
         </Page>
-      </BgHome>
+      </MainBackground>
     </>
   )
 }

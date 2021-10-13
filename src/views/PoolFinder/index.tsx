@@ -1,22 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap/sdk'
 import { AddIcon, Button, ChevronDownIcon, Text, useModal } from '@pancakeswap/uikit'
-import styled from 'styled-components'
+import { MainBackground } from 'components/Layout/MainBackground'
 import { useTranslation } from 'contexts/Localization'
+import React, { useCallback, useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { AppBody, AppHeader } from '../../components/App'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
+import Row from '../../components/Layout/Row'
+import StyledInternalLink from '../../components/Links'
+import Dots from '../../components/Loader/Dots'
 import { CurrencyLogo } from '../../components/Logo'
 import { MinimalPositionCard } from '../../components/PositionCard'
-import Row from '../../components/Layout/Row'
 import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal'
-import { PairState, usePair } from '../../hooks/usePairs'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
+import { PairState, usePair } from '../../hooks/usePairs'
 import { usePairAdder } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import StyledInternalLink from '../../components/Links'
 import { currencyId } from '../../utils/currencyId'
-import Dots from '../../components/Loader/Dots'
-import { AppBody, AppHeader } from '../../components/App'
 import Page from '../Page'
 
 enum Fields {
@@ -29,17 +30,6 @@ const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
   box-shadow: none;
   border-radius: 16px;
-`
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
 `
 
 export default function PoolFinder() {
@@ -101,7 +91,7 @@ export default function PoolFinder() {
   )
 
   return (
-    <BgHome>
+    <MainBackground>
       <Page>
         <AppBody>
           <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
@@ -210,6 +200,6 @@ export default function PoolFinder() {
         /> */}
         </AppBody>
       </Page>
-    </BgHome>
+    </MainBackground>
   )
 }

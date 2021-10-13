@@ -1,32 +1,32 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
-import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
 import { Flex, Heading, Text } from '@pancakeswap/uikit'
-import orderBy from 'lodash/orderBy'
-import partition from 'lodash/partition'
-import { useTranslation } from 'contexts/Localization'
-import usePersistState from 'hooks/usePersistState'
-import { useCakeVault, useFetchCakeVault, useFetchPublicPoolsData, usePools } from 'state/pools/hooks'
-import { usePollFarmsData } from 'state/farms/hooks'
-import { latinise } from 'utils/latinise'
+import { useWeb3React } from '@web3-react/core'
+import BigNumber from 'bignumber.js'
 import FlexLayout from 'components/Layout/Flex'
+import { MainBackground } from 'components/Layout/MainBackground'
 import Page from 'components/Layout/Page'
+import Loading from 'components/Loading'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
+import { useTranslation } from 'contexts/Localization'
+import usePersistState from 'hooks/usePersistState'
+import orderBy from 'lodash/orderBy'
+import partition from 'lodash/partition'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { usePollFarmsData } from 'state/farms/hooks'
+import { useCakeVault, useFetchCakeVault, useFetchPublicPoolsData, usePools } from 'state/pools/hooks'
 import { Pool } from 'state/types'
-import Loading from 'components/Loading'
+import styled from 'styled-components'
+import { latinise } from 'utils/latinise'
+import HelpButton from './components/HelpButton'
 import PoolCard from './components/PoolCard'
-// import CakeVaultCard from './components/CakeVaultCard'
-import PoolTabButtons from './components/PoolTabButtons'
 // import BountyCard from './components/BountyCard'
 import PoolsTable from './components/PoolsTable/PoolsTable'
+// import CakeVaultCard from './components/CakeVaultCard'
+import PoolTabButtons from './components/PoolTabButtons'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
-import BountyCard from './components/BountyCard'
-import HelpButton from './components/HelpButton'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -74,18 +74,6 @@ const ControlStretch = styled(Flex)`
   > div {
     flex: 1;
   }
-`
-
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -246,7 +234,7 @@ const Pools: React.FC = () => {
   const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 
   return (
-    <BgHome>
+    <MainBackground>
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
@@ -321,7 +309,7 @@ const Pools: React.FC = () => {
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
       </Page>
-    </BgHome>
+    </MainBackground>
   )
 }
 

@@ -1,56 +1,42 @@
-import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap/sdk'
 import { AddIcon, Button, CardBody, Flex, Message, Text, useModal } from '@pancakeswap/uikit'
-import { RouteComponentProps } from 'react-router-dom'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
-import { useTranslation } from 'contexts/Localization'
+import { MainBackground } from 'components/Layout/MainBackground'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
+import { useTranslation } from 'contexts/Localization'
+import { useIsTransactionUnsupported } from 'hooks/Trades'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { LightCard } from '../../components/Card'
-import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
-import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import { DoubleCurrencyLogo } from '../../components/Logo'
+import React, { useCallback, useState } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { AppBody, AppHeader } from '../../components/App'
-import { MinimalPositionCard } from '../../components/PositionCard'
-import Row, { RowBetween } from '../../components/Layout/Row'
+import { LightCard } from '../../components/Card'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
-
+import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
+import Row, { RowBetween } from '../../components/Layout/Row'
+import Dots from '../../components/Loader/Dots'
+import { DoubleCurrencyLogo } from '../../components/Logo'
+import { MinimalPositionCard } from '../../components/PositionCard'
+import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import { ROUTER_ADDRESS } from '../../config/constants'
-import { PairState } from '../../hooks/usePairs'
 import { useCurrency } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
+import { PairState } from '../../hooks/usePairs'
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import { Field } from '../../state/mint/actions'
 import { useDerivedMintInfo, useMintActionHandlers, useMintState } from '../../state/mint/hooks'
-
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useIsExpertMode, useUserSlippageTolerance } from '../../state/user/hooks'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
+import { currencyId } from '../../utils/currencyId'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
-import Dots from '../../components/Loader/Dots'
-import ConfirmAddModalBottom from './ConfirmAddModalBottom'
-import { currencyId } from '../../utils/currencyId'
-import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
+import ConfirmAddModalBottom from './ConfirmAddModalBottom'
+import PoolPriceBar from './PoolPriceBar'
 
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-size: cover;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
-`
+
 
 export default function AddLiquidity({
   match: {
@@ -318,7 +304,7 @@ export default function AddLiquidity({
   )
 
   return (
-    <BgHome>
+    <MainBackground>
       <Page>
         <AppBody>
           <AppHeader
@@ -465,6 +451,6 @@ export default function AddLiquidity({
           <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
         )}
       </Page>
-    </BgHome>
+    </MainBackground>
   )
 }

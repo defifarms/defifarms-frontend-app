@@ -1,32 +1,22 @@
-import React, { useMemo } from 'react'
-import styled from 'styled-components'
 import { Pair } from '@pancakeswap/sdk'
 import { AddIcon, Button, CardBody, CardFooter, Flex, Text } from '@pancakeswap/uikit'
-import { Link } from 'react-router-dom'
+import { MainBackground } from 'components/Layout/MainBackground'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import React, { useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { AppBody, AppHeader } from '../../components/App'
+import Dots from '../../components/Loader/Dots'
 import FullPositionCard from '../../components/PositionCard'
-import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { usePairs } from '../../hooks/usePairs'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
-import Dots from '../../components/Loader/Dots'
-import { AppBody, AppHeader } from '../../components/App'
+import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import Page from '../Page'
+
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.dropdownDeep};
-`
-
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
 `
 
 export default function Pool() {
@@ -95,7 +85,7 @@ export default function Pool() {
   }
 
   return (
-    <BgHome>
+    <MainBackground>
       <Page>
         <AppBody>
           <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
@@ -119,6 +109,6 @@ export default function Pool() {
           </CardFooter>
         </AppBody>
       </Page>
-    </BgHome>
+    </MainBackground>
   )
 }

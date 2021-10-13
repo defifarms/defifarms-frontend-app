@@ -1,31 +1,24 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
 import { ArrowDownIcon, Box, Button, Text, useModal } from '@pancakeswap/uikit'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
+import { MainBackground } from 'components/Layout/MainBackground'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
-import { RouteComponentProps } from 'react-router-dom'
-import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
+import { useTranslation } from 'contexts/Localization'
+import { useIsTransactionUnsupported } from 'hooks/Trades'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import styled from 'styled-components'
 import { getAddress } from 'utils/addressHelpers'
-import AddressInputPanel from './components/AddressInputPanel'
-import { GreyCard } from '../../components/Card'
-import Column, { AutoColumn } from '../../components/Layout/Column'
-import ConfirmSwapModal from './components/ConfirmSwapModal'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import { AutoRow, RowBetween } from '../../components/Layout/Row'
-import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
-import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
-import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
-import TradePrice from './components/TradePrice'
-import ImportTokenWarningModal from './components/ImportTokenWarningModal'
-import ProgressSteps from './components/ProgressSteps'
 import { AppBody, AppHeader } from '../../components/App'
+import { GreyCard } from '../../components/Card'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
-
+import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+import Column, { AutoColumn } from '../../components/Layout/Column'
+import { AutoRow, RowBetween } from '../../components/Layout/Row'
+import CircleLoader from '../../components/Loader/CircleLoader'
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
-import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useAllTokens, useCurrency } from '../../hooks/Tokens'
+import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
@@ -34,31 +27,27 @@ import {
   useDefaultsFromURLSearch,
   useDerivedSwapInfo,
   useSwapActionHandlers,
-  useSwapState,
+  useSwapState
 } from '../../state/swap/hooks'
 import { useExpertModeManager, useUserSingleHopOnly, useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import CircleLoader from '../../components/Loader/CircleLoader'
 import Page from '../Page'
+import AddressInputPanel from './components/AddressInputPanel'
+import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
+import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
+import ConfirmSwapModal from './components/ConfirmSwapModal'
+import ImportTokenWarningModal from './components/ImportTokenWarningModal'
+import ProgressSteps from './components/ProgressSteps'
+import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import SwapWarningModal from './components/SwapWarningModal'
+import TradePrice from './components/TradePrice'
+
 
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
-`
-
-const BgHome = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
-  background-size: cover;
-  background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 100vh;
-  overflow: scroll;
 `
 
 export default function Swap({ history }: RouteComponentProps) {
@@ -315,7 +304,7 @@ export default function Swap({ history }: RouteComponentProps) {
   )
 
   return (
-    <BgHome>
+    <MainBackground>
       <Page>
         <AppBody>
           <AppHeader title={t('Exchange')} subtitle={t('Trade tokens in an instant')} />
@@ -511,6 +500,6 @@ export default function Swap({ history }: RouteComponentProps) {
           <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
         )}
       </Page>
-    </BgHome>
+    </MainBackground>
   )
 }
