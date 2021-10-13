@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   padding: 0 24px 24px;
 
   svg {
-    fill: ${({ theme }) => (theme.isDark ? theme.colors.primary : '#FEA23E')};
+    fill: ${({ theme }) => '#FFB230'};
   }
 `
 
@@ -26,7 +26,7 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
   return (
     <Wrapper aria-label={t('Hide or show expandable content')} role="button" onClick={() => onClick()}>
       <Text color="four">{expanded ? t('Hide') : t('Details')}</Text>
-      {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+      {expanded ? <ChevronUpIcon color='four'/> : <ChevronDownIcon color='four'/>}
     </Wrapper>
   )
 }

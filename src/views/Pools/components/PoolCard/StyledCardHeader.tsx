@@ -7,7 +7,7 @@ import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
-  background: ${({ isFinished, background, theme }) => theme.colors.backgroundAlt};
+  background: ${({ isFinished, background, theme }) => theme.colors.backgroundCard};
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
   border-bottom: ${({ theme }) => ` 1px solid ${theme.colors.cardBorder}`};
 `

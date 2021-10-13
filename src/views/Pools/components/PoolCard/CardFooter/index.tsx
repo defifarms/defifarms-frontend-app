@@ -20,6 +20,15 @@ const ExpandableButtonWrapper = styled(Flex)`
     padding: 0;
   }
 `
+const TextWrap = styled.span`
+  color: #FFB230;
+  font-weight: 400;
+  font-size: 18px;
+`
+const WrapButton = styled.span`
+  border: 1px solid #4663DE;
+  border-radius: 32px
+`
 
 const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   const { isAutoVault } = pool
@@ -39,14 +48,16 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
     <CardFooter>
       <ExpandableButtonWrapper>
         <Flex alignItems="center">
-          {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+          <WrapButton>
+            {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+          </WrapButton>
           {tooltipVisible && tooltip}
           <Flex ref={targetRef}>
             <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
           </Flex>
         </Flex>
-        <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? t('Hide') : t('Details')}
+        <ExpandableLabel color='four' expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+          <TextWrap>{isExpanded ? t('Hide') : t('Details')}</TextWrap>
         </ExpandableLabel>
       </ExpandableButtonWrapper>
       {isExpanded && <ExpandedFooter pool={pool} account={account} />}
