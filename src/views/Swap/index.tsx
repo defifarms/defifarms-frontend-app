@@ -325,12 +325,12 @@ export default function Swap({ history }: RouteComponentProps) {
                 <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                   <ArrowWrapper clickable>
                     <ArrowDownIcon
-                      width="16px"
+                      width="27px"
                       onClick={() => {
                         setApprovalSubmitted(false) // reset 2 step UI for approvals
                         onSwitchTokens()
                       }}
-                      color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
+                      color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'four' : 'primary'}
                     />
                   </ArrowWrapper>
                   {recipient === null && !showWrap && isExpertMode ? (

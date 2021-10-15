@@ -9,5 +9,5 @@ export const MainBackground = styled.div`
   background-repeat: no-repeat;
   background-position: bottom center;
   height: calc(100vh - 88px); // Subtract header height
-  overflow: scroll;
+  overflow-y: scroll;
 `

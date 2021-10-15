@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { escapeRegExp } from '../../utils'
 
-const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
+const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string, fontWeight?: number }>`
   color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
   width: 0;
   position: relative;
-  font-weight: 500;
+  font-weight: ${({ fontWeight }) => fontWeight};
   outline: none;
   border: none;
   flex: 1 1 auto;
@@ -44,12 +44,14 @@ export const Input = React.memo(function InnerInput({
   value,
   onUserInput,
   placeholder,
+  fontWeight,
   ...rest
 }: {
   value: string | number
   onUserInput: (input: string) => void
   error?: boolean
   fontSize?: string
+  fontWeight?: number
   align?: 'right' | 'left'
 } & Omit<React.HTMLProps<HTMLInputElement>, 'ref' | 'onChange' | 'as'>) {
   const enforcer = (nextUserInput: string) => {
@@ -64,6 +66,7 @@ export const Input = React.memo(function InnerInput({
     <StyledInput
       {...rest}
       value={value}
+      fontWeight={fontWeight}
       onChange={(event) => {
         // replace commas with periods, because we exclusively uses period as the decimal separator
         enforcer(event.target.value.replace(/,/g, '.'))
