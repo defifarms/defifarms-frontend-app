@@ -35,6 +35,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, userData
   if (isHarvest) {
     isDisable = true
   }
+  // console.log('isHarvest', userData, isDisable)
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">

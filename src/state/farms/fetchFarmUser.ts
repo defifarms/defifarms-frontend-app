@@ -39,7 +39,7 @@ export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: 
 
 export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch: FarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
-
+  
   const calls = farmsToFetch.map((farm) => {
     return {
       address: masterChefAddress,
@@ -89,4 +89,23 @@ export const fetchCanHarvest = async (account: string, farmsToFetch: FarmConfig[
     return canHavest
   })
   return isHavest
+}
+
+export const fetchNextHarvest = async (account: string, farmsToFetch: FarmConfig[]) => {
+  const masterChefAddress = getMasterChefAddress()
+
+  const calls = farmsToFetch.map((farm) => {
+    return {
+      address: masterChefAddress,
+      name: 'nextHarvest',
+      params: [farm.pid, account],
+    }
+  })
+
+  const rawNextHarvest = await multicall(masterchefABI, calls)
+  const nextHarvest = rawNextHarvest.map((countDown) => {
+    return new BigNumber(countDown).toJSON()
+  })
+  
+  return nextHarvest
 }
