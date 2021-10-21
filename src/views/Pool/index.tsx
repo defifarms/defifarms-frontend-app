@@ -14,7 +14,6 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import Page from '../Page'
 
-
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.dropdownDeep};
 `

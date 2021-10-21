@@ -101,11 +101,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
   }, [onApprove, dispatch, account, pid])
 
-  const isHarvest = userData?.harvest
-  let isDisable = false
-  if (isHarvest) {
-    isDisable = true
-  }
+  // const isHarvest = userData?.harvest
+  const isDisable = true
+  // if (isHarvest) {
+  //   isDisable = false
+  // }
 
   if (!account) {
     return (

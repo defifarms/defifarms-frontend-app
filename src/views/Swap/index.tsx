@@ -27,7 +27,7 @@ import {
   useDefaultsFromURLSearch,
   useDerivedSwapInfo,
   useSwapActionHandlers,
-  useSwapState
+  useSwapState,
 } from '../../state/swap/hooks'
 import { useExpertModeManager, useUserSingleHopOnly, useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
@@ -42,7 +42,6 @@ import ProgressSteps from './components/ProgressSteps'
 import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import SwapWarningModal from './components/SwapWarningModal'
 import TradePrice from './components/TradePrice'
-
 
 const Label = styled(Text)`
   font-size: 12px;

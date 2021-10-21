@@ -37,9 +37,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
        {totalValueFormatted ? <Text>{totalValueFormatted}</Text> : <Skeleton width={75} height={25} />}
       </Flex>
       {!removed && (
-        <StyledLinkExternal color='four' href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
+        <StyledLinkExternal color="four" href={addLiquidityUrl}>
+          {t('Get %symbol%', { symbol: lpLabel })}
+        </StyledLinkExternal>
       )}
-      <StyledLinkExternal color='four' href={bscScanAddress}>{t('View Contract')}</StyledLinkExternal>
+      <StyledLinkExternal color="four" href={bscScanAddress}>
+        {t('View Contract')}
+      </StyledLinkExternal>
       {/* <StyledLinkExternal href={infoAddress}>{t('See Pair Info')}</StyledLinkExternal> */}
     </Wrapper>
   )

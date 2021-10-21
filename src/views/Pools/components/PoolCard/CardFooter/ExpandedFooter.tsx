@@ -152,7 +152,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
         {/* </LinkExternal> */}
       </Flex>
       <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={earningToken.projectLink} bold={false} fontSize="18px" color='text'>
+        <LinkExternal href={earningToken.projectLink} bold={false} fontSize="18px" color="text">
           {t('View Project Site')}
         </LinkExternal>
       </Flex>
@@ -161,7 +161,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           <LinkExternal
             href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
             bold={false}
-            color='text'
+            color="text"
             small
             fontSize="18px"
           >

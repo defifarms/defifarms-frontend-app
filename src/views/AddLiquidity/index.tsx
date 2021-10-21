@@ -36,8 +36,6 @@ import Page from '../Page'
 import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import PoolPriceBar from './PoolPriceBar'
 
-
-
 export default function AddLiquidity({
   match: {
     params: { currencyIdA, currencyIdB },

@@ -57,7 +57,10 @@ const Cards = styled(BaseLayout)`
 `
 
 const CardImage = styled.div`
-  background-image: ${({ theme }) => theme.isDark ? 'url(/images/home/logo-partner-binance-smart-chain.png)' : 'url(/images/home/logo-partner-binance-smart-chain-light.png)'};
+  background-image: ${({ theme }) =>
+    theme.isDark
+      ? 'url(/images/home/logo-partner-binance-smart-chain.png)'
+      : 'url(/images/home/logo-partner-binance-smart-chain-light.png)'};
   height: 50px;
   width: 100%;
   background-repeat: no-repeat;
@@ -97,10 +100,12 @@ const Home: React.FC = () => {
             <HeadingHome as="h1" scale="xl" mb="24px">
               {t('DeFiFarms')}
             </HeadingHome>
-            <TextHome fontSize='20px' mb={18}>
+            <TextHome fontSize="20px" mb={18}>
               {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
             </TextHome>
-            <TextHome fontSize='18px' mb={2}>{t('Powered by')}</TextHome>
+            <TextHome fontSize="18px" mb={2}>
+              {t('Powered by')}
+            </TextHome>
             <CardImage />
           </Hero>
           <div>

@@ -63,7 +63,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
   const isHarvest = userData?.harvest
-  let isDisable = false
+  let isDisable = true
   if (isHarvest) {
     isDisable = true
   }

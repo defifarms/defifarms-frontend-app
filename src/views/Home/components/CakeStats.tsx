@@ -88,8 +88,15 @@ const CakeStats = () => {
           0.01
         </Row>
         <Row>
-          <div style={{ }}>
-            <Text fontSize="14px">{t('Transfer Tax')} <QuestionHelper text={t('Tax 8%, 6% go to LP, 2% instantly burn')} style={{ display: 'inline' }} ml="4px" /></Text>
+          <div style={{}}>
+            <Text fontSize="14px">
+              {t('Transfer Tax')}{' '}
+              <QuestionHelper
+                text={t('Tax 8%, 6% go to LP, 2% instantly burn')}
+                style={{ display: 'inline' }}
+                ml="4px"
+              />
+            </Text>
           </div>
           <div>8%</div>
         </Row>

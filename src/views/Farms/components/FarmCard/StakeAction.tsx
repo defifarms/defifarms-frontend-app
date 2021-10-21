@@ -75,11 +75,11 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} />,
   )
 
-  const isHarvest = userData?.harvest
-  let isDisable = false
-  if (isHarvest) {
-    isDisable = true
-  }
+  // const isHarvest = userData?.harvest
+  const isDisable = true
+  // if (isHarvest) {
+  //   isDisable = true
+  // }
 
   const renderStakingButtons = () => {
     return stakedBalance.eq(0) ? (
