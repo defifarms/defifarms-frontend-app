@@ -7,6 +7,7 @@ import masterChefABI from 'config/abi/masterchef.json'
 import { farmsConfig, poolsConfig } from 'config/constants'
 import { FarmConfig, PoolConfig } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
+import { fetchNextHarvest, fetchNextHarvestPools } from 'state/farms/fetchFarmUser'
 
 export interface FarmWithBalance extends FarmConfig {
   balance: BigNumber
@@ -19,6 +20,7 @@ export interface PoolWithBalance extends PoolConfig {
 const useFarmsPoolWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
   const [poolsWithBalances, setPoolsWithBalances] = useState<PoolWithBalance[]>([])
+  const [nextTimeHarvest, setNextTimeHarvest] = useState(0)
 
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
@@ -49,14 +51,20 @@ const useFarmsPoolWithBalance = () => {
 
       setPoolsWithBalances(resultsPool)
     }
+    const getTimeNextHavest = async () => {
+      const nextHarvestFarms = await fetchNextHarvest(account, farmsConfig)
+      const nextHarvestPools = await fetchNextHarvestPools(account, poolsConfig)
+      setNextTimeHarvest(Math.max(...nextHarvestFarms, ...nextHarvestPools))
+    }
 
     if (account) {
       fetchBalancesFarms()
       fetchBalancesPools()
+      getTimeNextHavest()
     }
   }, [account, fastRefresh])
 
-  return { farm: farmsWithBalances, pool: poolsWithBalances }
+  return { farm: farmsWithBalances, pool: poolsWithBalances, nextHarvestTime: nextTimeHarvest }
 }
 
 export default useFarmsPoolWithBalance

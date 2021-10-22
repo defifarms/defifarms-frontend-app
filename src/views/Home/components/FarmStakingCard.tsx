@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { BaseLayout, Button, Card, CardBody, Heading } from '@pancakeswap/uikit'
 import { harvestFarm } from 'utils/calls'
@@ -7,6 +7,9 @@ import { useTranslation } from 'contexts/Localization'
 import useFarmsPoolWithBalance from 'views/Home/hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
+import useCountDownTimer from 'hooks/useCountDownTimer'
+import WithdrawalFeeTimer from 'views/Pools/components/CakeVaultCard/WithdrawalFeeTimer'
+import getTimePeriods from 'utils/getTimePeriods'
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
 import UnlockButton from '../../../components/UnlockButton'
@@ -62,6 +65,11 @@ const FarmedStakingCard = () => {
   const masterChefContract = useMasterchef()
   const balancesWithValueFarms = farmsPoolWithBalance.farm.filter((balanceType) => balanceType.balance.gt(0))
   const balancesWithValuePools = farmsPoolWithBalance.pool.filter((balanceType) => balanceType.balance.gt(0))
+  const [timeHarvestRemaining, setTimeHarvestRemaining, isFinish] = useCountDownTimer()
+
+  useEffect(() => {
+    setTimeHarvestRemaining(farmsPoolWithBalance.nextHarvestTime)
+  }, [farmsPoolWithBalance.nextHarvestTime, setTimeHarvestRemaining])
 
   const harvestAll = useCallback(async () => {
     setPendingTx(true)
@@ -88,6 +96,21 @@ const FarmedStakingCard = () => {
     setPendingTx(false)
   }, [balancesWithValuePools, balancesWithValueFarms, masterChefContract, toastError, t])
 
+  
+  const getTimeRemainingText = (time) => {
+    const { days, hours, minutes, seconds } = getTimePeriods(time/1000)
+    if (time <= 0) {
+      return ''
+    }
+    return t(' %hour%h : %minute%m : %second%s', {
+      hour: hours,
+      minute: minutes,
+      second: seconds,
+    })
+  }
+
+  // const isDisableHarvest = !pendingTx && !isFinish
+
   return (
     <StyledFarmStakingCard>
       <CardBody style={{ padding: '24px 32px' }}>
@@ -107,12 +130,13 @@ const FarmedStakingCard = () => {
         </Cards>
         <Actions>
           {account ? (
-            <Button id="harvest-all" disabled={pendingTx} onClick={harvestAll} width="100%">
+            <Button id="harvest-all" disabled={!pendingTx && !isFinish} onClick={harvestAll} width="100%">
               {pendingTx
                 ? t('Collecting DEFIY')
                 : t('Harvest all', {
                     count: balancesWithValueFarms.length + balancesWithValuePools.length,
                   })}
+              {getTimeRemainingText(timeHarvestRemaining)}
             </Button>
           ) : (
             <UnlockButton width="100%" />
