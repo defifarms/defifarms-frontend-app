@@ -3,7 +3,7 @@ import erc20ABI from 'config/abi/erc20.json'
 import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
-import { FarmConfig, PoolConfig } from 'config/constants/types'
+import { FarmConfig } from 'config/constants/types'
 
 export const fetchFarmUserAllowances = async (account: string, farmsToFetch: FarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
@@ -91,7 +91,7 @@ export const fetchCanHarvest = async (account: string, farmsToFetch: FarmConfig[
   return isHavest
 }
 
-export const fetchNextHarvest = async (account: string, farmsToFetch: FarmConfig[]) => {
+export const fetchNextHarvestFarms = async (account: string, farmsToFetch: FarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
 
   const calls = farmsToFetch.map((farm) => {
@@ -99,24 +99,6 @@ export const fetchNextHarvest = async (account: string, farmsToFetch: FarmConfig
       address: masterChefAddress,
       name: 'nextHarvest',
       params: [farm.pid, account],
-    }
-  })
-
-  const rawNextHarvest = await multicall(masterchefABI, calls)
-  const nextHarvest = rawNextHarvest.map((countDown) => {
-    return new BigNumber(countDown).toNumber()
-  })
-  
-  return nextHarvest
-}
-export const fetchNextHarvestPools = async (account: string, poolTofetch: PoolConfig[]) => {
-  const masterChefAddress = getMasterChefAddress()
-
-  const calls = poolTofetch.map((pool) => {
-    return {
-      address: masterChefAddress,
-      name: 'nextHarvest',
-      params: [pool.sousId, account],
     }
   })
 

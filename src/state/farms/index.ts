@@ -6,7 +6,7 @@ import fetchFarms from './fetchFarms'
 import fetchFarmsPrices from './fetchFarmsPrices'
 import {
   fetchCanHarvest,
-  fetchNextHarvest,
+  fetchNextHarvestFarms,
   fetchFarmUserAllowances,
   fetchFarmUserEarnings,
   fetchFarmUserStakedBalances,
@@ -68,7 +68,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
     const canHarvest = await fetchCanHarvest(account, farmsToFetch)
-    const nextHarvest = await fetchNextHarvest(account, farmsToFetch)
+    const nextHarvest = await fetchNextHarvestFarms(account, farmsToFetch)
     
     return userFarmAllowances.map((farmAllowance, index) => {
       return {

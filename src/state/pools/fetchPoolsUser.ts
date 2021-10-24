@@ -6,6 +6,8 @@ import { getMasterchefContract } from 'utils/contractHelpers'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
 import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
+import { PoolConfig } from 'config/constants/types'
+
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
@@ -108,4 +110,23 @@ export const fetchCanHarvest = async (account) => {
     {},
   )
   return harvest
+}
+
+export const fetchNextHarvestPools = async (account: string, poolTofetch: PoolConfig[]) => {
+  const masterChefAddress = getMasterChefAddress()
+
+  const calls = poolTofetch.map((pool) => {
+    return {
+      address: masterChefAddress,
+      name: 'nextHarvest',
+      params: [pool.sousId, account],
+    }
+  })
+
+  const rawNextHarvest = await multicall(sousChefABI, calls)
+  const nextHarvest = rawNextHarvest.map((countDown) => {
+    return new BigNumber(countDown).toNumber()
+  })
+
+  return nextHarvest
 }
