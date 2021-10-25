@@ -167,7 +167,7 @@ const Farms: React.FC = () => {
           ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.TESTNET])
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
-        // TODO: Edit Viet - MainNet
+        // TODO: Viet : Edit MainNet
         // const { cakeRewardsApr, lpRewardsApr } = isActive
         //   ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
         //   : { cakeRewardsApr: 0, lpRewardsApr: 0 }
