@@ -7,7 +7,11 @@ const WithdrawalFeeTimer: React.FC<{ secondsRemaining: number }> = ({ secondsRem
   const { t } = useTranslation()
   const { days, hours, minutes, seconds } = getTimePeriods(secondsRemaining)
 
-  return <Text fontSize="14px">{t('%day%d : %hour%h : %minute%m : %second%s', { day: days, hour: hours, minute: minutes, second: seconds })}</Text>
+  return (
+    <Text fontSize="14px">
+      {t('%day%d : %hour%h : %minute%m : %second%s', { day: days, hour: hours, minute: minutes, second: seconds })}
+    </Text>
+  )
 }
 
 export default WithdrawalFeeTimer

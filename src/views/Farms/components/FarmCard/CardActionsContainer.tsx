@@ -38,7 +38,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     earnings: earningsAsString = 0,
   } = farm.userData || {}
   // console.log('farm', farm)
-  
+
   const allowance = new BigNumber(allowanceAsString)
   const tokenBalance = new BigNumber(tokenBalanceAsString)
   const stakedBalance = new BigNumber(stakedBalanceAsString)

@@ -8,7 +8,6 @@ import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 import { PoolConfig } from 'config/constants/types'
 
-
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')

@@ -69,7 +69,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
     const canHarvest = await fetchCanHarvest(account, farmsToFetch)
     const nextHarvest = await fetchNextHarvestFarms(account, farmsToFetch)
-    
+
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
         pid: farmsToFetch[index].pid,
@@ -78,7 +78,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
         stakedBalance: userStakedBalances[index],
         earnings: userFarmEarnings[index],
         harvest: canHarvest[index][0],
-        nextHarvest: nextHarvest[index]
+        nextHarvest: nextHarvest[index],
       }
     })
   },

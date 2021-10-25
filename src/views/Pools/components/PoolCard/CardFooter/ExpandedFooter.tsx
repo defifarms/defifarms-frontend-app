@@ -94,20 +94,20 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
-       <Text small>{t('Total staked')}:</Text>
-       <Flex alignItems="flex-start">
-         {totalStaked && totalStaked.gte(0) ? (
-           <>
-             <Balance small value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
-             <span ref={totalStakedTargetRef}>
-               <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
-             </span>
-           </>
-         ) : (
-           <Skeleton width="90px" height="21px" />
-         )}
-         {totalStakedTooltipVisible && totalStakedTooltip}
-       </Flex>
+        <Text small>{t('Total staked')}:</Text>
+        <Flex alignItems="flex-start">
+          {totalStaked && totalStaked.gte(0) ? (
+            <>
+              <Balance small value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
+              <span ref={totalStakedTargetRef}>
+                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+              </span>
+            </>
+          ) : (
+            <Skeleton width="90px" height="21px" />
+          )}
+          {totalStakedTooltipVisible && totalStakedTooltip}
+        </Flex>
       </Flex>
       {stakingLimit && stakingLimit.gt(0) && (
         <Flex mb="2px" justifyContent="space-between">

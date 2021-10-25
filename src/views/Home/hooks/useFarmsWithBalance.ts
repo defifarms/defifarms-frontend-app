@@ -10,7 +10,6 @@ import useRefresh from 'hooks/useRefresh'
 import { fetchNextHarvestFarms } from 'state/farms/fetchFarmUser'
 import { fetchNextHarvestPools } from 'state/pools/fetchPoolsUser'
 
-
 export interface FarmWithBalance extends FarmConfig {
   balance: BigNumber
 }
@@ -57,7 +56,7 @@ const useFarmsPoolWithBalance = () => {
       const nextHarvestFarms = await fetchNextHarvestFarms(account, farmsConfig)
       const nextHarvestPools = await fetchNextHarvestPools(account, poolsConfig)
       // console.log('getTimeNextHavest', nextHarvestFarms, nextHarvestPools, Math.max(...nextHarvestFarms, ...nextHarvestPools));
-      
+
       setNextTimeHarvest(Math.max(...nextHarvestFarms, ...nextHarvestPools))
     }
 
@@ -68,7 +67,7 @@ const useFarmsPoolWithBalance = () => {
     }
   }, [account, fastRefresh])
 
-  return { farm: farmsWithBalances, pool: poolsWithBalances, nextHarvestTime: nextTimeHarvest*1000 }
+  return { farm: farmsWithBalances, pool: poolsWithBalances, nextHarvestTime: nextTimeHarvest * 1000 }
 }
 
 export default useFarmsPoolWithBalance

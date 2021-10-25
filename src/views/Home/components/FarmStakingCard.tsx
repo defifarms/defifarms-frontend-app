@@ -74,7 +74,7 @@ const FarmedStakingCard = () => {
     //   new Date().getTime(),
     //   farmsPoolWithBalance.nextHarvestTime - (new Date().getTime()),
     // )
-    setTimeHarvestRemaining(Math.max(farmsPoolWithBalance.nextHarvestTime - (new Date().getTime()), 0))
+    setTimeHarvestRemaining(Math.max(farmsPoolWithBalance.nextHarvestTime - new Date().getTime(), 0))
   }, [farmsPoolWithBalance.nextHarvestTime, setTimeHarvestRemaining])
 
   const harvestAll = useCallback(async () => {
@@ -102,9 +102,8 @@ const FarmedStakingCard = () => {
     setPendingTx(false)
   }, [balancesWithValuePools, balancesWithValueFarms, masterChefContract, toastError, t])
 
-  
   const getTimeRemainingText = (time) => {
-    const { days, hours, minutes, seconds } = getTimePeriods(time/1000)
+    const { days, hours, minutes, seconds } = getTimePeriods(time / 1000)
     if (time <= 0) {
       return ''
     }
