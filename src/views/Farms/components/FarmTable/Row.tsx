@@ -5,6 +5,7 @@ import { useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/farms/hooks'
+import BigNumber from 'bignumber.js'
 
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
@@ -22,6 +23,7 @@ export interface RowProps {
   earned: EarnedProps
   multiplier: MultiplierProps
   details: FarmWithStakedValue
+  liquidity: BigNumber
 }
 
 interface RowPropsWithLoading extends RowProps {

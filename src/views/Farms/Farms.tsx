@@ -172,7 +172,7 @@ const Farms: React.FC = () => {
         //   ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
         //   : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr }
+        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
 
       if (query) {
@@ -214,8 +214,8 @@ const Farms: React.FC = () => {
             (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
             'desc',
           )
-        // case 'liquidity':
-        //   return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+        case 'liquidity':
+          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
         default:
           return farms
       }
@@ -298,7 +298,7 @@ const Farms: React.FC = () => {
         earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
         pid: farm.pid,
       },
-      // liquidity: null,
+      liquidity: null,
       multiplier: {
         multiplier: farm.multiplier,
       },
@@ -425,10 +425,10 @@ const Farms: React.FC = () => {
                     label: t('Earned'),
                     value: 'earned',
                   },
-                  // {
-                  //   label: t('Liquidity'),
-                  //   value: 'liquidity',
-                  // },
+                  {
+                    label: t('Liquidity'),
+                    value: 'liquidity',
+                  },
                 ]}
                 onChange={handleSortOptionChange}
               />
