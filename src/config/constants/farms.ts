@@ -1,7 +1,7 @@
 import tokens from './tokens'
-import { Farm } from '../../state/types'
+import { FarmConfig } from './types'
 
-const farms: Farm[] = [
+const farms: FarmConfig[] = [
   /**
    * These 3 farms (PID 0, 1, 2) should always be at the top of the file.
    */
@@ -10,7 +10,7 @@ const farms: Farm[] = [
     lpSymbol: 'DEFIY',
     lpAddresses: {
       97: '0x5017AE3D04e29B67b33CF96a86980717A773a783', // DEFI
-      56: '',
+      56: '0x5017AE3D04e29B67b33CF96a86980717A773a783',
     },
     token: tokens.defiy,
     quoteToken: tokens.busd,
@@ -21,7 +21,7 @@ const farms: Farm[] = [
     lpSymbol: 'DEFIY-BNB LP',
     lpAddresses: {
       97: '0xf5cae1131ff6004f4091543b08e6264c73b703df',
-      56: '',
+      56: '0xf5cae1131ff6004f4091543b08e6264c73b703df',
     },
     token: tokens.defiy,
     quoteToken: tokens.wbnb,
@@ -32,7 +32,7 @@ const farms: Farm[] = [
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
-      56: '',
+      56: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
     },
     token: tokens.busd,
     quoteToken: tokens.wbnb,
@@ -82,17 +82,17 @@ const farms: Farm[] = [
   //   quoteToken: tokens.wbnb,
   //   apr: 100,
   // },
-  // {
-  //   pid: 13,
-  //   lpSymbol: 'USDT-BNB LP',
-  //   lpAddresses: {
-  //     97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
-  //     56: '',
-  //   },
-  //   token: tokens.usdt,
-  //   quoteToken: tokens.wbnb,
-  //   apr: 100,
-  // },
+  {
+    pid: 13,
+    lpSymbol: 'USDT-BNB LP',
+    lpAddresses: {
+      97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
+      56: '',
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.wbnb,
+    apr: 100,
+  },
   // {
   //   pid: 14,
   //   lpSymbol: 'CAKE-BNB LP',

@@ -29,6 +29,7 @@ export interface FarmConfig {
   quoteToken: Token
   multiplier?: string
   isCommunity?: boolean
+  apr?: number
   dual?: {
     rewardPerBlock: number
     earnLabel: string

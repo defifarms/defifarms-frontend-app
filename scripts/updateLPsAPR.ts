@@ -5,9 +5,11 @@ import { ChainId } from '@pancakeswap/sdk'
 import chunk from 'lodash/chunk'
 import { sub, getUnixTime } from 'date-fns'
 import farmsConfig from '../src/config/constants/farms'
+import fetch from "node-fetch";
 
 const BLOCK_SUBGRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 const STREAMING_FAST_ENDPOINT = 'https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2'
+const BITQUERY_ENDPOINT = 'https://graphql.bitquery.io'
 
 interface BlockResponse {
   blocks: {
@@ -125,4 +127,45 @@ const fetchAndUpdateLPsAPR = async () => {
   })
 }
 
-fetchAndUpdateLPsAPR()
+// fetchAndUpdateLPsAPR()
+
+const query = `
+  query{
+  ethereum(network: bsc_testnet) {
+    transfers(currency: 
+      {is: "0xf5cae1131ff6004f4091543b08e6264c73b703df"}, 
+      date: {since: "2021-10-26", till: "2021-10-27"}) {
+      currency {
+        symbol
+        address
+      }
+      date: date {
+        date(format: "%y-%m-%d")
+      }
+      average: amount(calculate: average)
+      amount
+      count
+      days: count(uniq: dates)
+      sender_count: count(uniq: senders)
+      receiver_count: count(uniq: receivers)
+      min_date: minimum(of: date)
+      max_date: maximum(of: date)
+    }
+  }
+}
+`;
+
+const opts = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "X-API-KEY": "BQY35BfWzfTgsARQ4ePqdhjCtaW0PXhZ"
+  },
+  body: JSON.stringify({
+    query
+  })
+};
+fetch(BITQUERY_ENDPOINT, opts)
+  .then(res => res.json())
+  .then(res => console.log(JSON.stringify(res)))
+  .catch(console.error);
