@@ -39,9 +39,7 @@ const UserMenu = () => {
   const isMobile = !isXl
   return (
     <Wrapper>
-      <ThemeToggle handleChange={toggleTheme} checked={isDark} />
-      {/* <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} /> */}
-
+      {/* <ThemeToggle handleChange={toggleTheme} checked={isDark} /> */}
       {account ? (
         <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
           <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />

@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const MainBackground = styled.div`
-  border-top-left-radius: ${({ theme }) => theme.radii.homeCorner};
-  background-image: url(images/home/7.svg);
+  background-image: url(images/bgLight.png);
   background-size: cover;
   background-color: rgba(0, 0, 0, ${({ theme }) => (theme.isDark ? '0.45' : '0.1')});
   background-blend-mode: multiply;

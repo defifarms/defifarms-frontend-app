@@ -12,7 +12,8 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts",
-    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit"
+    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit",
+    "prestart": "rm -rf node_modules/@pancakeswap/uikit/dist && cp -R ../toolkit---ui/dist node_modules/@pancakeswap/uikit"
   },
   "husky": {
     "hooks": {
@@ -77,6 +78,7 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "react-slick": "^0.28.1",
     "react-switch": "^6.0.0",
     "react-transition-group": "^4.4.1",
     "react-window": "^1.8.6",

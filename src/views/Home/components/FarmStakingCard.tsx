@@ -8,7 +8,6 @@ import useFarmsPoolWithBalance from 'views/Home/hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import useCountDownTimer from 'hooks/useCountDownTimer'
-import WithdrawalFeeTimer from 'views/Pools/components/CakeVaultCard/WithdrawalFeeTimer'
 import getTimePeriods from 'utils/getTimePeriods'
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
@@ -16,6 +15,16 @@ import UnlockButton from '../../../components/UnlockButton'
 
 const StyledFarmStakingCard = styled(Card)`
   min-height: 376px;
+  grid-column: span 6;
+  width: 100%;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    grid-column: span 8;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    grid-column: span 8;
+  }
 `
 
 const Block = styled.div``
@@ -26,10 +35,12 @@ const CardImage = styled.img`
 `
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.colors.text};
+  font-family: HK Grotesk;
+  font-style: normal;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 27.8455px;
+  line-height: 32px;
+  color: #0f0b5f;
 `
 
 const Actions = styled.div`
@@ -37,12 +48,13 @@ const Actions = styled.div`
 `
 
 const HeadingStakingCard = styled(Heading)`
+  font-family: HK Grotesk;
   font-style: normal;
-  font-weight: 600;
-  line-height: 54px;
-  letter-spacing: 0em;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(26, 36, 59, 0.17);
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 55px;
+  color: #0f0b5f;
+  margin-bottom: 13px;
 `
 
 const Cards = styled(BaseLayout)`
@@ -103,7 +115,7 @@ const FarmedStakingCard = () => {
   }, [balancesWithValuePools, balancesWithValueFarms, masterChefContract, toastError, t])
 
   const getTimeRemainingText = (time) => {
-    const { days, hours, minutes, seconds } = getTimePeriods(time / 1000)
+    const { hours, minutes, seconds } = getTimePeriods(time / 1000)
     if (time <= 0) {
       return ''
     }
@@ -118,11 +130,11 @@ const FarmedStakingCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <CardBody style={{ padding: '24px 32px' }}>
+      <CardBody style={{ padding: '28px 38px 42px' }}>
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
-        <CardImage src="/images/home/2.png" />
+        <CardImage src="/images/home/farm-staking.png" />
         <Cards>
           <Block>
             <Label>{t('DEFIY to Harvest')}:</Label>
@@ -135,7 +147,13 @@ const FarmedStakingCard = () => {
         </Cards>
         <Actions>
           {account ? (
-            <Button id="harvest-all" disabled={!pendingTx && !isFinish} onClick={harvestAll} width="100%">
+            <Button
+              id="harvest-all"
+              disabled={!pendingTx && !isFinish}
+              onClick={harvestAll}
+              width="100%"
+              borderRadius="98px"
+            >
               {pendingTx
                 ? t('Collecting DEFIY')
                 : t('Harvest all', {
@@ -144,7 +162,7 @@ const FarmedStakingCard = () => {
               {getTimeRemainingText(timeHarvestRemaining)}
             </Button>
           ) : (
-            <UnlockButton width="100%" />
+            <UnlockButton width="100%" borderRadius="98px" />
           )}
         </Actions>
       </CardBody>
