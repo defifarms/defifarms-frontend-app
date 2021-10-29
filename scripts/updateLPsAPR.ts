@@ -3,7 +3,7 @@ import { request, gql } from 'graphql-request'
 import BigNumber from 'bignumber.js'
 import { ChainId } from '@pancakeswap/sdk'
 import chunk from 'lodash/chunk'
-import { sub, getUnixTime } from 'date-fns'
+import { sub, getUnixTime, format } from 'date-fns'
 import farmsConfig from '../src/config/constants/farms'
 import fetch from "node-fetch";
 
@@ -129,12 +129,19 @@ const fetchAndUpdateLPsAPR = async () => {
 
 // fetchAndUpdateLPsAPR()
 
-const query = `
+
+const getQuery = async (addresses: string) => {
+  const weekAgoTimestamp = getWeekAgoTimestamp()
+  const weekAgoTime = format(new Date(weekAgoTimestamp*1000), 'yyyy-MM-dd')
+  const currentTime = format(getUnixTime(new Date())*1000, 'yyyy-MM-dd')
+  console.log('blockWeekAgo', weekAgoTimestamp, weekAgoTime, currentTime);
+  
+  const query = `
   query{
   ethereum(network: bsc_testnet) {
     transfers(currency: 
-      {is: "0xf5cae1131ff6004f4091543b08e6264c73b703df"}, 
-      date: {since: "2021-10-26", till: "2021-10-27"}) {
+      {is: "${addresses}"}, 
+      date: {since: "${weekAgoTime}", till: "${currentTime}"}) {
       currency {
         symbol
         address
@@ -155,17 +162,25 @@ const query = `
 }
 `;
 
-const opts = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "X-API-KEY": "BQY35BfWzfTgsARQ4ePqdhjCtaW0PXhZ"
-  },
-  body: JSON.stringify({
-    query
-  })
-};
-fetch(BITQUERY_ENDPOINT, opts)
-  .then(res => res.json())
-  .then(res => console.log(JSON.stringify(res)))
-  .catch(console.error);
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-KEY": "BQY35BfWzfTgsARQ4ePqdhjCtaW0PXhZ"
+    },
+    body: JSON.stringify({
+      query
+    })
+  };
+  return opts
+}
+
+const fetchData = async () => {
+  const jsonQuery = await getQuery('0xf5cae1131ff6004f4091543b08e6264c73b703df')
+  
+  fetch(BITQUERY_ENDPOINT, jsonQuery)
+    .then(res => res.json())
+    .then(res => console.log(JSON.stringify(res)))
+    .catch(console.error);
+}
+fetchData()
