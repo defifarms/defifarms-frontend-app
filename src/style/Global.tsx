@@ -19,6 +19,18 @@ const GlobalStyle = createGlobalStyle`
       max-width: 100%;
     }
   }
+
+  .slick-dots li.slick-active button:before {
+    color: #F9FAFD !important;
+  }
+  .slick-dots li button:before {
+      font-size: 11px;
+      opacity: 0.4;
+      color: #F9FAFD;
+  }
+  .slick-dots li {
+    margin: 0;
+  }
 `
 
 export default GlobalStyle

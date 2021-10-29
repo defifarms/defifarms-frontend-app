@@ -23,7 +23,7 @@ const StyledFarmStakingCard = styled(Card)`
   background-size: contain;
   width: 100%;
   height: 209px;
-  background: linear-gradient(245.92deg, #fe616d 11.13%, #ff4e5c 95.14%);
+  background: radial-gradient(99.83% 99.83% at 42.32% 47.12%, #ffffff 11.98%, #d4d8f3 97.92%);
   border-radius: 13px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -44,7 +44,7 @@ const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
 const StyleCircleButton = styled.div`
   width: 44px;
   height: 44px;
-  background-color: rgba(245, 246, 252, 0.5);
+  background-color: rgba(207, 211, 245, 0.8);
   border-radius: 100px;
   margin-top: 1rem;
   justify-content: center;
@@ -54,6 +54,8 @@ const StyleCircleButton = styled.div`
 
 const CardImage = styled.img`
   width: 100%;
+  position: absolute;
+  bottom: 0;
 `
 
 const activeNonCakePools = pools.filter((pool) => pool.earningToken.symbol !== 'DEFIY')
@@ -61,29 +63,37 @@ const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['
 // Always include CAKE
 const assets = ['DEFIY', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
 
-const EarnAssetCard = () => {
+export interface FarmAssetCardProps {
+  title: string
+  value: string
+  navLink?: string
+}
+
+const FarmAssetCard = ({ title, value, navLink }: FarmAssetCardProps) => {
   const { t } = useTranslation()
   const assetText = t('Earn %assets% in Pools', { assets })
   const [earn, InPools] = assetText.split(assets)
 
   return (
     <StyledFarmStakingCard>
-      <CardImage src="/images/home/pool.png" />
+      <CardImage src="/images/home/farm.png" />
       <StyledCardBody>
         <NavLink exact activeClassName="active" to="/pools" id="pool-cta">
           <CardBody>
-            <Heading scale="lg" color="#fff">
-              {earn}
+            <Heading scale="lg" color="#0F0B5F">
+              {t(title)}
             </Heading>
-            <CardMidContent color="#fff">{assets}</CardMidContent>
-            <Flex justifyContent="space-between" alignItems="baseline">
-              <Heading color="#fff" scale="lg">
-                {InPools}
-              </Heading>
-              <StyleCircleButton>
-                <ArrowForwardIcon color="white" fill="#fff" />
-              </StyleCircleButton>
-            </Flex>
+            <CardMidContent color="#0F0B5F">{t(value)}</CardMidContent>
+            {navLink && (
+              <Flex justifyContent="space-between" alignItems="baseline">
+                <Heading color="#0F0B5F" scale="lg">
+                  in farms
+                </Heading>
+                <StyleCircleButton>
+                  <ArrowForwardIcon color="#0F0B5F" fill="#0F0B5F" />
+                </StyleCircleButton>
+              </Flex>
+            )}
           </CardBody>
         </NavLink>
       </StyledCardBody>
@@ -91,4 +101,4 @@ const EarnAssetCard = () => {
   )
 }
 
-export default EarnAssetCard
+export default FarmAssetCard
