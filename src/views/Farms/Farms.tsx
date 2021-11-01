@@ -38,9 +38,8 @@ const ControlContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
-  background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
-  padding: 16px 16px;
+  padding: 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -386,12 +385,12 @@ const Farms: React.FC = () => {
 
   return (
     <MainBackground>
-      <PageHeader>
+      <PageHeader background="linear-gradient(269.58deg, #ffa318 25.78%, #ff9900 88.47%)" pageName="farms">
         <Heading as="h1" scale="xxl" color="contrast">
-          {t('DeFiFarms Protocol')}
+          {t('Farms')}
         </Heading>
         <Heading scale="lg" color="text" style={{ fontWeight: 400 }}>
-          {t('Provide Liquidity, Earn DeFIY')}
+          {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
       </PageHeader>
       <Page>
