@@ -386,10 +386,10 @@ const Farms: React.FC = () => {
   return (
     <MainBackground>
       <PageHeader background="linear-gradient(269.58deg, #ffa318 25.78%, #ff9900 88.47%)" pageName="farms">
-        <Heading as="h1" scale="xxl" color="contrast">
+        <Heading as="h1" scale="xxl" color="white">
           {t('Farms')}
         </Heading>
-        <Heading scale="lg" color="text" style={{ fontWeight: 400 }}>
+        <Heading scale="lg" color="white" style={{ fontWeight: 400 }}>
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
       </PageHeader>

@@ -41,7 +41,6 @@ const PoolControls = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
-  background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   padding: 16px 16px;
 
@@ -238,10 +237,10 @@ const Pools: React.FC = () => {
       <PageHeader background="linear-gradient(269.58deg, #18ACFF 25.78%, #00A3FF 88.47%)" pageName="pools">
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="contrast">
+            <Heading as="h1" scale="xxl" color="white">
               {t('DeFiFarm Pools')}
             </Heading>
-            <Heading scale="lg" color="text">
+            <Heading scale="lg" color="white">
               {t('Just stake some tokens to earn. High APR, low risk.')}
             </Heading>
           </Flex>
