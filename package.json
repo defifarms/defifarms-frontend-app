@@ -12,7 +12,8 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts",
-    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit"
+    "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@pancakeswap/uikit",
+    "prestart": "rm -rf node_modules/@pancakeswap/uikit/dist && cp -R ../toolkit---ui/dist node_modules/@pancakeswap/uikit"
   },
   "husky": {
     "hooks": {

@@ -46,7 +46,7 @@ import TradePrice from './components/TradePrice'
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 export default function Swap({ history }: RouteComponentProps) {

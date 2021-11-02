@@ -10,7 +10,7 @@ const DropDownHeader = styled.div`
   justify-content: space-between;
   padding: 0px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.cyan};
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.input};
   transition: border-radius 0.15s;
@@ -39,7 +39,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   width: ${({ width }) => width}px;
   position: relative;
   background: ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
+  border-radius: ${({ theme }) => theme.radii.default};
   height: 40px;
   min-width: 136px;
   user-select: none;
@@ -52,18 +52,18 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
     props.isOpen &&
     css`
       ${DropDownHeader} {
-        border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+        border-bottom: 1px solid ${({ theme }) => theme.colors.cyan};
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
-        border-radius: 16px 16px 0 0;
+        border-radius: ${({ theme }) => `${theme.radii.default} ${theme.radii.default} 0 0`};
       }
 
       ${DropDownListContainer} {
         height: auto;
         transform: scaleY(1);
         opacity: 1;
-        border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+        border: 1px solid ${({ theme }) => theme.colors.cyan};
         border-top-width: 0;
-        border-radius: 0 0 16px 16px;
+        border-radius: ${({ theme }) => `0 0 ${theme.radii.default} ${theme.radii.default}`};
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
       }
     `}
