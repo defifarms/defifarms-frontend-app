@@ -3,25 +3,40 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
-const StyledAnnouncements = styled(Card)``
+const StyledAnnouncements = styled(Card)`
+  grid-column: span 6;
+  width: 100%;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    grid-column: span 8;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    grid-column: span 4;
+  }
+`
 
 const TwitterDashboard = styled.div`
   font-size: 16px;
   line-height: 24px;
 `
 
-const CardImage = styled.img`
-  width: 100%;
+const HeadingCard = styled(Heading)`
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30.3722px;
+  line-height: 35px;
+  color: #0f0b5f;
 `
 
-const HeadingCard = styled(Heading)`
-  font-size: 32px;
+const Link = styled.a`
+  font-family: HK Grotesk;
   font-style: normal;
   font-weight: 600;
-  line-height: 54px;
-  letter-spacing: 0em;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(26, 36, 59, 0.17);
+  font-size: 19.4763px;
+  line-height: 23px;
+  color: #0f0b5f;
 `
 
 const Announcements = () => {
@@ -41,16 +56,15 @@ const Announcements = () => {
       <CardBody>
         <HeadingCard scale="xl">{t('Announcements')}</HeadingCard>
         <TwitterDashboard id="twitterDashboard">
-          <a
+          <Link
             className="twitter-timeline"
             data-height="400"
             data-theme="light"
             href="https://twitter.com/DeFiFarmsNFTs?ref_src=twsrc%5Etfw"
           >
             Tweets
-          </a>
+          </Link>
         </TwitterDashboard>
-        {/* <CardImage src="/images/home/3.png" /> */}
       </CardBody>
     </StyledAnnouncements>
   )

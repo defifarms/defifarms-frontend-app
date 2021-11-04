@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Skeleton, Text } from '@pancakeswap/uikit'
+import { Card, CardBody, Heading, Skeleton, Text, ArrowRightIcon, Flex } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
 import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'
@@ -8,11 +8,17 @@ import { getDefiyAddress } from 'utils/addressHelpers'
 import { formatEther } from 'ethers/lib/utils'
 import CardValue from './CardValue'
 import { usePriceCakeBusd } from '../../../state/farms/hooks'
-import QuestionHelper from '../../../components/QuestionHelper'
 
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
+  background: #722dee;
+  opacity: 0.9;
+  backdrop-filter: blur(200px);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  height: 384px;
 `
 
 const Row = styled.div`
@@ -20,7 +26,7 @@ const Row = styled.div`
   display: flex;
   font-size: 14px;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 `
 
 const HeadingCard = styled(Heading)`
@@ -29,7 +35,38 @@ const HeadingCard = styled(Heading)`
   line-height: 54px;
   letter-spacing: 0em;
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(26, 36, 59, 0.17);
+`
+
+const StyleCircle = styled.div`
+  width: 468px;
+  height: 468px;
+  border-radius: 50%;
+  background: rgba(150, 91, 255, 0.5);
+  opacity: 0.9;
+  backdrop-filter: blur(100px);
+  position: absolute;
+  right: -38px;
+  top: 45px;
+}
+`
+
+const IconWrapper = styled.div`
+  width: 438px;
+`
+
+const CardImage = styled.img`
+  position: absolute;
+  bottom: 0;
+`
+
+const StyleText = styled(Text)`
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: ${({ bold }) => (bold ? 600 : 500)};
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+  padding-left: 23px;
 `
 
 const CakeStats = () => {
@@ -51,56 +88,74 @@ const CakeStats = () => {
 
   return (
     <StyledCakeStats>
-      <CardBody>
-        <HeadingCard scale="xl" mb="8px">
+      <CardBody style={{ width: '50%' }}>
+        <HeadingCard color="#fff" scale="xl" mb="8px">
           {t('DEFIY Stats')}
         </HeadingCard>
         <Row>
-          <Text fontSize="14px">{t('Market Cap')}</Text>
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <StyleText>{t('Market Cap')}</StyleText>
+          </Flex>
           {mcap?.gt(0) && mcapString ? (
-            <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
+            <StyleText bold>{t('$%marketCap%', { marketCap: mcapString })}</StyleText>
           ) : (
             <Skeleton height={24} width={126} my="4px" />
           )}
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Total Minted')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={totalMinted} />
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <StyleText>{t('Total Minted')}</StyleText>
+          </Flex>
+          <CardValue decimals={0} value={totalMinted} />
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Total Burned')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <StyleText>{t('Total Burned')}</StyleText>
+          </Flex>
+          <CardValue decimals={0} value={burnedBalance} />
         </Row>
         {/* <Row> */}
         {/*  <Text fontSize="14px">{t('Total Locked Rewards')}</Text> */}
         {/*  <CardValue fontSize="14px" decimals={0} value={totalLockedRewards} /> */}
         {/* </Row> */}
         <Row>
-          <Text fontSize="14px">{t('Circulating Supply')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={cakeSupply} />
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <StyleText>{t('Circulating Supply')}</StyleText>
+          </Flex>
+          <CardValue decimals={0} value={cakeSupply} />
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Max Tx Amount')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={maxTransfer} />
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <StyleText>{t('Max Tx Amount')}</StyleText>
+          </Flex>
+          <CardValue decimals={0} value={maxTransfer} />
         </Row>
         <Row>
-          <Text fontSize="14px">{t('New DEFIY/Block')}</Text>
-          0.01
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <StyleText>{t('New DEFIY/Block')}</StyleText>
+          </Flex>
+          <StyleText bold>0.01</StyleText>
         </Row>
         <Row>
-          <div style={{}}>
-            <Text fontSize="14px">
-              {t('Transfer Tax')}{' '}
-              <QuestionHelper
-                text={t('Tax 8%, 6% go to LP, 2% instantly burn')}
-                style={{ display: 'inline' }}
-                ml="4px"
-              />
-            </Text>
-          </div>
-          <div>8%</div>
+          <Flex>
+            <ArrowRightIcon color="none" />
+            <div style={{}}>
+              <StyleText>{t('Transfer Tax')} </StyleText>
+            </div>
+          </Flex>
+          <StyleText bold>8%</StyleText>
         </Row>
       </CardBody>
+      <IconWrapper>
+        <StyleCircle />
+        <CardImage src="/images/home/4.png" />
+      </IconWrapper>
     </StyledCakeStats>
   )
 }
