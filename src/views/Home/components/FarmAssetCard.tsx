@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
 import { ArrowForwardIcon, Card, CardBody, Flex, Heading } from '@pancakeswap/uikit'

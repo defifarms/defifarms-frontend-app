@@ -104,7 +104,7 @@ const FlexBox = styled.div`
 const Partners = styled.img<{ margin?: string }>`
   width: 270px;
   height: 116px;
-  margin: ${({ margin }) => (margin || '0 15px')};
+  margin: ${({ margin }) => margin || '0 15px'};
 `
 
 const teams = [
@@ -224,14 +224,14 @@ const CakeStats = () => {
       <HeadingCard color="#fff" scale="xl" mb="8px">
         {t('Partners & Investors')}
       </HeadingCard>
-      <Flex justifyContent="center" pb="24px" flexWrap="wrap" >
+      <Flex justifyContent="center" pb="24px" flexWrap="wrap">
         <Partners src="/images/home/teams/basics.png" margin="11px 11px" />
         <Partners src="/images/home/teams/nodle.png" margin="11px 11px" />
       </Flex>
       <Flex justifyContent="center" flexWrap="wrap">
-        <Partners src="/images/home/teams/ngc.png" margin="0 11px 24px"/>
-        <Partners src="/images/home/teams/orient.png" margin="0 11px 24px"/>
-        <Partners src="/images/home/teams/kai.png" margin="0 11px 24px"/>
+        <Partners src="/images/home/teams/ngc.png" margin="0 11px 24px" />
+        <Partners src="/images/home/teams/orient.png" margin="0 11px 24px" />
+        <Partners src="/images/home/teams/kai.png" margin="0 11px 24px" />
         <Partners src="/images/home/teams/mint.png" margin="0 11px 24px" />
         <Partners src="/images/home/teams/ichi.png" margin="0 11px 24px" />
         <Partners src="/images/home/teams/seoul.png" margin="0 11px 24px" />

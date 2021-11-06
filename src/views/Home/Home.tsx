@@ -22,7 +22,7 @@ const Hero = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   ${({ theme }) => theme.mediaQueries.lg} {
-     padding-top: 0;
+    padding-top: 0;
   }
 
   ${({ theme }) => theme.mediaQueries.xs} {

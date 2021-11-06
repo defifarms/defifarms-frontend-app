@@ -17,7 +17,7 @@ const StyledFarmStakingCard = styled(Card)`
   min-height: 376px;
   grid-column: span 6;
   width: 100%;
-  background: radial-gradient(99.83% 99.83% at 42.32% 47.12%, #FFFFFF 11.98%, #D4D8F3 97.92%);
+  background: radial-gradient(99.83% 99.83% at 42.32% 47.12%, #ffffff 11.98%, #d4d8f3 97.92%);
   ${({ theme }) => theme.mediaQueries.sm} {
     grid-column: span 8;
   }
