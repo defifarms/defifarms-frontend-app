@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
 import { ArrowForwardIcon, Card, CardBody, Flex, Heading } from '@pancakeswap/uikit'
@@ -25,7 +25,7 @@ const StyledFarmStakingCard = styled(Card)`
   height: 209px;
   background: radial-gradient(99.83% 99.83% at 42.32% 47.12%, #ffffff 11.98%, #d4d8f3 97.92%);
   border-radius: 13px;
-
+  grid-column: span 12;
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
     max-width: none;
@@ -34,7 +34,7 @@ const StyledFarmStakingCard = styled(Card)`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    grid-column: span 4;
+    grid-column: span 12;
   }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
@@ -73,12 +73,13 @@ const FarmAssetCard = ({ title, value, navLink }: FarmAssetCardProps) => {
   const { t } = useTranslation()
   const assetText = t('Earn %assets% in Pools', { assets })
   const [earn, InPools] = assetText.split(assets)
+  const Link = navLink ? NavLink : Fragment
 
   return (
     <StyledFarmStakingCard>
       <CardImage src="/images/home/farm.png" />
       <StyledCardBody>
-        <NavLink exact activeClassName="active" to="/pools" id="pool-cta">
+        <Link exact activeClassName="active" to="/farms" id="pool-cta">
           <CardBody>
             <Heading scale="lg" color="#0F0B5F">
               {t(title)}
@@ -95,7 +96,7 @@ const FarmAssetCard = ({ title, value, navLink }: FarmAssetCardProps) => {
               </Flex>
             )}
           </CardBody>
-        </NavLink>
+        </Link>
       </StyledCardBody>
     </StyledFarmStakingCard>
   )

@@ -17,7 +17,7 @@ const StyledFarmStakingCard = styled(Card)`
   min-height: 376px;
   grid-column: span 6;
   width: 100%;
-
+  background: radial-gradient(99.83% 99.83% at 42.32% 47.12%, #FFFFFF 11.98%, #D4D8F3 97.92%);
   ${({ theme }) => theme.mediaQueries.sm} {
     grid-column: span 8;
   }
@@ -27,6 +27,12 @@ const StyledFarmStakingCard = styled(Card)`
   }
 `
 
+const CardBodyStyle = styled(CardBody)`
+  padding: 23px 18px 30px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 28px 38px 42px;
+  }
+`
 const Block = styled.div``
 
 const CardImage = styled.img`
@@ -51,10 +57,13 @@ const HeadingStakingCard = styled(Heading)`
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
-  font-size: 48px;
+  font-size: 36px;
   line-height: 55px;
   color: #0f0b5f;
   margin-bottom: 13px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 48px;
+  }
 `
 
 const Cards = styled(BaseLayout)`
@@ -130,7 +139,7 @@ const FarmedStakingCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <CardBody style={{ padding: '28px 38px 42px' }}>
+      <CardBodyStyle>
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
@@ -165,7 +174,7 @@ const FarmedStakingCard = () => {
             <UnlockButton width="100%" borderRadius="98px" />
           )}
         </Actions>
-      </CardBody>
+      </CardBodyStyle>
     </StyledFarmStakingCard>
   )
 }

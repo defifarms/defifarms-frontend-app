@@ -24,19 +24,27 @@ const HeadingCard = styled(Heading)`
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 28px;
   line-height: 42px;
   color: #ffffff;
   padding: 0 0 42px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 36px;
+  }
 `
 
 const CardWrapper = styled.div`
-  width: 270px !important;
+  width: 100% !important;
   height: 379px;
   background: #f9fafd;
   border-radius: 10px;
   overflow: hidden;
   padding: 18px;
+  margin-bottom: 25px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 270px !important;
+    margin-bottom: 0;
+  }
 `
 
 const CardImage = styled.img`
@@ -81,18 +89,22 @@ const CardButton = styled.a`
 `
 
 const SliderWrapper = styled.div`
-  padding: 0 35px 50px;
+  padding: 0;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 0 35px 50px;
+  }
 `
 
 const FlexBox = styled.div`
   display: flex !important;
   justify-content: space-around;
+  flex-wrap: wrap;
 `
 
-const Partners = styled.img`
+const Partners = styled.img<{ margin?: string }>`
   width: 270px;
   height: 116px;
-  margin: 0 15px;
+  margin: ${({ margin }) => (margin || '0 15px')};
 `
 
 const teams = [
@@ -212,9 +224,17 @@ const CakeStats = () => {
       <HeadingCard color="#fff" scale="xl" mb="8px">
         {t('Partners & Investors')}
       </HeadingCard>
-      <Flex justifyContent="center">
-        <Partners src="/images/home/teams/basics.png" />
-        <Partners src="/images/home/teams/basics.png" />
+      <Flex justifyContent="center" pb="24px" flexWrap="wrap" >
+        <Partners src="/images/home/teams/basics.png" margin="11px 11px" />
+        <Partners src="/images/home/teams/nodle.png" margin="11px 11px" />
+      </Flex>
+      <Flex justifyContent="center" flexWrap="wrap">
+        <Partners src="/images/home/teams/ngc.png" margin="0 11px 24px"/>
+        <Partners src="/images/home/teams/orient.png" margin="0 11px 24px"/>
+        <Partners src="/images/home/teams/kai.png" margin="0 11px 24px"/>
+        <Partners src="/images/home/teams/mint.png" margin="0 11px 24px" />
+        <Partners src="/images/home/teams/ichi.png" margin="0 11px 24px" />
+        <Partners src="/images/home/teams/seoul.png" margin="0 11px 24px" />
       </Flex>
     </StyledContainer>
   )

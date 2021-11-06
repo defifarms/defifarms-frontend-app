@@ -18,7 +18,10 @@ const StyledCakeStats = styled(Card)`
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  height: 384px;
+  flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 384px;
+  }
 `
 
 const Row = styled.div`
@@ -46,7 +49,11 @@ const StyleCircle = styled.div`
   backdrop-filter: blur(100px);
   position: absolute;
   right: -38px;
-  top: 45px;
+  top: unset;
+  z-index: -1;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 45px;
+  }
 }
 `
 
@@ -55,8 +62,10 @@ const IconWrapper = styled.div`
 `
 
 const CardImage = styled.img`
-  position: absolute;
   bottom: 0;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    position: absolute;
+  }
 `
 
 const StyleText = styled(Text)`
@@ -69,6 +78,11 @@ const StyleText = styled(Text)`
   padding-left: 23px;
 `
 
+const StyleCardBody = styled(CardBody)`
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 50%;
+  }
+`
 const CakeStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
@@ -88,7 +102,7 @@ const CakeStats = () => {
 
   return (
     <StyledCakeStats>
-      <CardBody style={{ width: '50%' }}>
+      <StyleCardBody>
         <HeadingCard color="#fff" scale="xl" mb="8px">
           {t('DEFIY Stats')}
         </HeadingCard>
@@ -151,7 +165,7 @@ const CakeStats = () => {
           </Flex>
           <StyleText bold>8%</StyleText>
         </Row>
-      </CardBody>
+      </StyleCardBody>
       <IconWrapper>
         <StyleCircle />
         <CardImage src="/images/home/4.png" />

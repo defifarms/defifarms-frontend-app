@@ -25,7 +25,7 @@ const StyledFarmStakingCard = styled(Card)`
   height: 209px;
   background: linear-gradient(245.92deg, #fe616d 11.13%, #ff4e5c 95.14%);
   border-radius: 13px;
-
+  grid-column: span 12;
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
     max-width: none;
@@ -34,7 +34,7 @@ const StyledFarmStakingCard = styled(Card)`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    grid-column: span 4;
+    grid-column: span 12;
   }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
