@@ -111,7 +111,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                   mt="4px"
                   bold={!isXs && !isSm}
                   fontSize={isXs || isSm ? '14px' : '16px'}
-                  color={hasEarnings ? 'primary' : 'textDisabled'}
+                  color={hasEarnings ? 'four' : 'four'}
                   decimals={hasEarnings ? 5 : 1}
                   value={hasEarnings ? earningTokenBalance : 0}
                 />

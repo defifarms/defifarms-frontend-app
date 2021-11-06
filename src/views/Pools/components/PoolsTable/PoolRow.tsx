@@ -19,7 +19,7 @@ interface PoolRowProps {
 }
 
 const StyledRow = styled.div`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.card.background};
   display: flex;
   cursor: pointer;
 `

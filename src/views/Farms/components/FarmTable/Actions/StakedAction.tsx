@@ -127,7 +127,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       return (
         <ActionContainer>
           <ActionTitles>
-            <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+            <Text bold textTransform="uppercase" color="white" fontSize="12px" pr="4px">
               {lpSymbol}
             </Text>
             <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
@@ -175,7 +175,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px" pr="4px">
             {t('Stake').toUpperCase()}
           </Text>
-          <Text bold textTransform="uppercase" color="secondary" fontSize="12px">
+          <Text bold textTransform="uppercase" color="white" fontSize="12px">
             {lpSymbol}
           </Text>
         </ActionTitles>

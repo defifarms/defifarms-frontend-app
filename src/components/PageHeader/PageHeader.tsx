@@ -5,22 +5,36 @@ import Container from '../Layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
   background: unset;
+  display: flex;
+  justify-content: center;
 `
 
 const Inner = styled(Container)`
-  padding-top: 16px;
   margin-top: 32px;
-  padding-bottom: 24px;
   margin-bottom: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 24px;
   border-radius: ${({ theme }) => theme.radii.default};
   background: ${({ background }) => background || 'linear-gradient(269.58deg, #ffa318 25.78%, #ff9900 88.47%)'};
   position: relative;
   overflow: hidden;
+  width: 100%;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
 `
 const HeaderDecorateWrap = styled.div`
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    right: 0;
+    left: unset;
+  }
 `
 
 const PageHeader: React.FC<{ background?: string; pageName: string }> = ({
