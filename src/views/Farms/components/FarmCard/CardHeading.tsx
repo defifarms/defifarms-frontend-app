@@ -17,6 +17,7 @@ const Wrapper = styled(Flex)`
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   padding: 35px;
   margin-bottom: 24px;
+  background: ${(props) => props.theme.card.background};
 
   svg {
     margin-right: 4px;

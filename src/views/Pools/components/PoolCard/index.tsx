@@ -1,15 +1,22 @@
-import BigNumber from 'bignumber.js'
-import React from 'react'
 import { CardBody, CardRibbon, Flex, Text } from '@pancakeswap/uikit'
+import BigNumber from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'
-import { BIG_ZERO } from 'utils/bigNumber'
+import React from 'react'
 import { Pool } from 'state/types'
+import styled from 'styled-components'
+import { BIG_ZERO } from 'utils/bigNumber'
 import AprRow from './AprRow'
-import { StyledCard, StyledCardInner } from './StyledCard'
-import CardFooter from './CardFooter'
-import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
+import CardFooter from './CardFooter'
+import { StyledCard, StyledCardInner } from './StyledCard'
+import StyledCardHeader from './StyledCardHeader'
+
+
+
+const CardBodyStyled = styled(CardBody)`
+
+`
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
   const { sousId, stakingToken, earningToken, isFinished, userData } = pool
@@ -29,7 +36,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
           stakingToken={stakingToken}
           isFinished={isFinished && sousId !== 0}
         />
-        <CardBody>
+        <CardBodyStyled>
           <AprRow pool={pool} />
           <Flex mt="24px" flexDirection="column">
             {account ? (
@@ -43,7 +50,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
               </>
             )}
           </Flex>
-        </CardBody>
+        </CardBodyStyled>
         <CardFooter pool={pool} account={account} />
       </StyledCardInner>
     </StyledCard>

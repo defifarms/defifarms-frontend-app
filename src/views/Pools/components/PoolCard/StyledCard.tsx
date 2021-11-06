@@ -18,23 +18,14 @@ interface PromotedStyleCardProps {
 }
 
 export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; isFinished?: boolean }>`
-  max-width: 30.5%;
-  margin: 0 8px 24px;
+  margin: 0 16px 24px;
   display: flex;
   flex-direction: column;
   align-self: baseline;
   position: relative;
   color: ${({ isFinished, theme }) => theme.colors[isFinished ? 'textDisabled' : 'secondary']};
   box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
-
-  ${({ isPromoted, theme }) =>
-    isPromoted
-      ? css`
-          background: linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary});
-          padding: 1px 1px 3px 1px;
-          background-size: 400% 400%;
-        `
-      : `background: ${(props) => props.theme.card.background};`}
+  background: ${(props) => props.theme.card.backgroundCardTransparent};
 
   ${({ isPromoted }) =>
     isPromoted &&
@@ -45,12 +36,13 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin: 0 12px 46px;
+    max-width: 30.5%;
   }
 `
 
 export const StyledCardInner = styled(Box)`
-  background: ${({ theme }) => theme.card.background};
   border-radius: ${({ theme }) => theme.radii.card};
+  backdrop-filter: blur(5px);
 `
 
 export default StyledCard

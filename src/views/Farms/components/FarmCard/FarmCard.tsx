@@ -34,21 +34,12 @@ const AccentGradient = keyframes`
 `
 
 const StyledCardAccent = styled.div`
-  background: ${({ theme }) => `linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary})`};
-  background-size: 400% 400%;
-  animation: ${AccentGradient} 2s linear infinite;
-  border-radius: 32px;
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  bottom: -3px;
-  left: -1px;
-  z-index: -1;
+
 `
 
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
-  background: ${(props) => props.theme.card.background};
+  background: ${(props) => props.theme.card.backgroundCardTransparent};
   border-radius: ${({ theme, isPromotedFarm }) => (isPromotedFarm ? theme.radii.default : theme.radii.card)};
   box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
   display: flex;
@@ -56,6 +47,8 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
   justify-content: space-around;
   position: relative;
   text-align: center;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
 `
 
 const Divider = styled.div`
@@ -117,7 +110,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       {!removed && (
         <FlexWrapper justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
-          <Text bold style={{ display: 'flex', alignItems: 'center' }}>
+          <Text bold color='four' style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apr ? (
               <>
                 <ApyButton
