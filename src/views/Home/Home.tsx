@@ -19,12 +19,16 @@ const Hero = styled.div`
   padding-top: 116px;
   background-color: #c4f4ff;
   border-radius: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-top: 0;
   }
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    padding-top: 0px;
+    padding: 0px;
+    // text-align: center;
+    // flex-wrap: wrap;
   }
 `
 
@@ -55,25 +59,43 @@ const Wrapper = styled.div`
   border-radius: 10px;
 `
 const MetaWrapper = styled.div`
-  height: 573px;
-  width: 573px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   background-color: #fff;
   border-radius: 50%;
-  margin-top: -150px;
-  padding-top: 150px;
+  height: 450px;
+  width: 450px;
+  margin-top: 0;
+  margin-left: -50px;
+  padding-top: 22px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top: -150px;
+    padding-top: 150px;
+    height: 573px;
+    width: 573px;
+    margin-left: 0;
+  }
 `
 const HeadingWrapper = styled.div`
   width: 515px;
-  margin-left: 70px;
+  margin-left: 0;
+  padding: 30px;
+  text-align: center;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 70px;
+    padding: 0;
+    text-align: unset;
+  }
 `
 
 const Image = styled.img`
   width: 306px;
   height: 306px;
-  margin-left: 95px;
+  margin-left: 0px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 95px;
+  }
 `
 const CardImage = styled.div`
   background-image: ${({ theme }) =>
@@ -85,9 +107,13 @@ const CardImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 155px;
+  }
 `
 
 const HeadingHome = styled(Heading)`
+  font-family: HK Grotesk;
   font-style: normal;
   font-weight: 700;
   font-size: 49px;

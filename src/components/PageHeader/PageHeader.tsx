@@ -39,7 +39,6 @@ const PageHeader: React.FC<{ background?: string; pageName: string }> = ({
 
 export default PageHeader
 
-
 function HeaderDecorateFarm(props) {
   return (
     <svg width={600} height={152} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -535,5 +534,3 @@ function HeaderDecoratePool(props) {
     </svg>
   )
 }
-
-

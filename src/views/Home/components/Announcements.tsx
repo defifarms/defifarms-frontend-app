@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 const StyledAnnouncements = styled(Card)`
   grid-column: span 6;
   width: 100%;
+  background: radial-gradient(102.57% 100.59% at 52.92% 46.36%, #ffffff 15.39%, #d4d8f3 97.92%);
 
   ${({ theme }) => theme.mediaQueries.sm} {
     grid-column: span 8;
