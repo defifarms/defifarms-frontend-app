@@ -8,7 +8,7 @@ import {
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
-  ThemeSwitcher,
+  // ThemeSwitcher,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'

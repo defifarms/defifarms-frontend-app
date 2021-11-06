@@ -7,7 +7,6 @@ import {
   Tag,
   TagProps,
   TimerIcon,
-  VerifiedIcon,
   VoteIcon,
   CheckmarkCircleIcon,
 } from '@pancakeswap/uikit'

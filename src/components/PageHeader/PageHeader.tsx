@@ -13,7 +13,7 @@ const Inner = styled(Container)`
   padding-bottom: 24px;
   margin-bottom: 16px;
   border-radius: ${({ theme }) => theme.radii.default};
-  background: ${({ theme, background }) => background || 'linear-gradient(269.58deg, #ffa318 25.78%, #ff9900 88.47%)'};
+  background: ${({ background }) => background || 'linear-gradient(269.58deg, #ffa318 25.78%, #ff9900 88.47%)'};
   position: relative;
   overflow: hidden;
 `
