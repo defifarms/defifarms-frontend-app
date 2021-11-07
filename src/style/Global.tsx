@@ -55,8 +55,11 @@ const GlobalStyle = createGlobalStyle`
     width: 31px;
     height: 31px;
     ::before {
-    content: '';
-  }
+      content: '';
+    }
+    :hover {
+      background: url(/images/home/arrow.png);
+    }
   }
   .slick-next {
     transform: rotate(180deg);
