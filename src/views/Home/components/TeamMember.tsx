@@ -21,9 +21,8 @@ const StyledContainer = styled.div`
 `
 
 const HeadingCard = styled(Heading)`
-  font-family: HK Grotesk;
+  font-family: HK Grotesk Bold;
   font-style: normal;
-  font-weight: bold;
   font-size: 28px;
   line-height: 42px;
   color: #ffffff;
@@ -89,7 +88,7 @@ const CardButton = styled.a`
 `
 
 const SliderWrapper = styled.div`
-  padding: 0;
+  padding: 0 0 50px;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0 35px 50px;
   }

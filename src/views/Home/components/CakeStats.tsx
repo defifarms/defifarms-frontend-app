@@ -34,10 +34,10 @@ const Row = styled.div`
 
 const HeadingCard = styled(Heading)`
   font-style: normal;
-  font-weight: 600;
   line-height: 54px;
   letter-spacing: 0em;
   padding-bottom: 4px;
+  font-family: HK Grotesk Bold;
 `
 
 const StyleCircle = styled.div`

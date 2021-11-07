@@ -51,12 +51,12 @@ const Label = styled.div`
 
 const Actions = styled.div`
   margin-top: 24px;
+  font-family: HK Grotesk;
 `
 
 const HeadingStakingCard = styled(Heading)`
-  font-family: HK Grotesk;
+  font-family: HK Grotesk Bold;
   font-style: normal;
-  font-weight: bold;
   font-size: 36px;
   line-height: 55px;
   color: #0f0b5f;

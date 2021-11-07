@@ -113,13 +113,12 @@ const CardImage = styled.div`
 `
 
 const HeadingHome = styled(Heading)`
-  font-family: HK Grotesk;
+  font-family: HK Grotesk Bold;
   font-style: normal;
-  font-weight: 700;
   font-size: 49px;
   line-height: 57px;
-  background: ${({ theme }) => theme.colors.contrast};
-  color: ${({ theme }) => theme.colors.contrast};
+  background: #0F0B5F;
+  color: #0F0B5F;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 8px;
@@ -127,7 +126,7 @@ const HeadingHome = styled(Heading)`
 `
 
 const TextHome = styled(Text)`
-  font-family: Poppins;
+  font-family: HK Grotesk Light;
   font-style: normal;
   font-weight: normal;
   line-height: 27px;
@@ -150,7 +149,7 @@ const Home: React.FC = () => {
               <HeadingHome as="h1" scale="xl" mb="24px">
                 {t('DeFiFarms')}
               </HeadingHome>
-              <TextHome fontSize="18px" mb={18}>
+              <TextHome fontSize="18px" mb={18} color="#0F0B5F">
                 {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
               </TextHome>
 
