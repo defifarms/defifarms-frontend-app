@@ -34,7 +34,7 @@ const StyledFarmStakingCard = styled(Card)`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    grid-column: span 12;
+    grid-column: span 4;
   }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`

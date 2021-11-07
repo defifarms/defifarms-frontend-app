@@ -1,5 +1,6 @@
 /// <reference types="react-scripts" />
 
+declare module "*.otf"
 interface Window {
   ethereum?: {
     isMetaMask?: true
