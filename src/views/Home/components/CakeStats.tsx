@@ -69,9 +69,8 @@ const CardImage = styled.img`
 `
 
 const StyleText = styled(Text)`
-  font-family: HK Grotesk;
   font-style: normal;
-  font-weight: ${({ bold }) => (bold ? 600 : 500)};
+  font-family: ${({ bold }) => (bold ? 'HK Grotesk Bold' : 'HK Grotesk')};
   font-size: 18px;
   line-height: 21px;
   color: #ffffff;

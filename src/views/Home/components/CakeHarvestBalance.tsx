@@ -46,7 +46,7 @@ const CakeHarvestBalance: React.FC<CakeHarvestBalanceProps> = ({ farmsWithBalanc
 
   return (
     <Block>
-      <CardValue value={earningsSum} lineHeight="1.5" color="four" />
+      <CardValue color="textDisabled" value={earningsSum} lineHeight="1.5" />
     </Block>
   )
 }
