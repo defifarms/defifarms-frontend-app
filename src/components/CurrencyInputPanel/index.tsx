@@ -41,7 +41,7 @@ const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
   background-color: ${({ theme }) => '#43109E'};
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 0.887863px solid #ac8aea;
+  border: 0.887863px solid #ac8aea80;
 `
 interface CurrencyInputPanelProps {
   value: string

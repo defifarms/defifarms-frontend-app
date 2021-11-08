@@ -36,7 +36,7 @@ const CardStyled = styled(Card)`
   border-radius: 12px;
   background: #43109e;
 
-  border: 0.887863px solid #ac8aea;
+  border: 0.887863px solid #ac8aea80;
 `
 const CardInnerStyled = styled(Card)`
   border: 0.887863px solid #ac8aea70;
