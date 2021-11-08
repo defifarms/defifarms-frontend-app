@@ -19,6 +19,8 @@ const AppHeaderContainer = styled(Flex)`
   justify-content: space-between;
   padding: 24px;
   width: 100%;
+  background-color: #3f09a280;
+  backdrop-filter: blur(177.573px);
 `
 
 const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {

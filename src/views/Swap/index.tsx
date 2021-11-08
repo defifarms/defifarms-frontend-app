@@ -45,8 +45,8 @@ import TradePrice from './components/TradePrice'
 
 const Label = styled(Text)`
   font-size: 12px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 12px 0;
 `
 
 export default function Swap({ history }: RouteComponentProps) {
@@ -329,7 +329,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         setApprovalSubmitted(false) // reset 2 step UI for approvals
                         onSwitchTokens()
                       }}
-                      color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'four' : 'primary'}
+                      color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'four' : 'four'}
                     />
                   </ArrowWrapper>
                   {recipient === null && !showWrap && isExpertMode ? (
@@ -379,7 +379,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                     <RowBetween align="center">
                       <Label>{t('Slippage Tolerance')}</Label>
-                      <Text bold color="primary">
+                      <Text color="white" fontSize='16px'>
                         {allowedSlippage / 100}%
                       </Text>
                     </RowBetween>

@@ -34,8 +34,15 @@ const FixedHeightRow = styled(RowBetween)`
 `
 const CardStyled = styled(Card)`
   border-radius: 12px;
-  background-color: ${({ theme }) => theme.colors.input};
+  background: #43109e;
+
+  border: 0.887863px solid #ac8aea80;
 `
+const CardInnerStyled = styled(Card)`
+  border: 0.887863px solid #ac8aea70;
+`
+
+
 
 interface PositionCardProps extends CardProps {
   pair: Pair
@@ -75,12 +82,12 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   return (
     <>
       {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
-        <Card>
+        <CardInnerStyled>
           <CardBody>
             <AutoColumn gap="16px">
               <FixedHeightRow>
                 <RowFixed>
-                  <Text color="secondary" bold>
+                  <Text color="white" bold>
                     {t('LP tokens in your wallet')}
                   </Text>
                 </RowFixed>
@@ -130,7 +137,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               </AutoColumn>
             </AutoColumn>
           </CardBody>
-        </Card>
+        </CardInnerStyled>
       ) : (
         <LightCard>
           <Text fontSize="14px" style={{ textAlign: 'center' }}>

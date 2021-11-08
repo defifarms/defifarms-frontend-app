@@ -26,10 +26,11 @@ enum Fields {
 }
 
 const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.input};
+  background-color: '#43109E';
   color: ${({ theme }) => theme.colors.text};
   box-shadow: none;
-  border-radius: 16px;
+  border-radius: 8px;
+  border: 0.887863px solid #ac8aea80;
 `
 
 export default function PoolFinder() {
