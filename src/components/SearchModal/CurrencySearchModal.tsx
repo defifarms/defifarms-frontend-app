@@ -23,13 +23,17 @@ import { CurrencyModalView } from './types'
 
 const Footer = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
   text-align: center;
 `
 
 const StyledModalContainer = styled(ModalContainer)`
   max-width: 420px;
   width: 100%;
+  background: #2c007c90;
+
+  border: 0.887863px solid #ac8aea80;
+  box-sizing: border-box;
+  backdrop-filter: blur(177.573px);
 `
 
 const StyledModalBody = styled(ModalBody)`
@@ -85,7 +89,7 @@ export default function CurrencySearchModal({
 
   return (
     <StyledModalContainer minWidth="320px">
-      <ModalHeader>
+      <ModalHeader background="#3F09A2">
         <ModalTitle>
           {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
           <Heading>{config[modalView].title}</Heading>
