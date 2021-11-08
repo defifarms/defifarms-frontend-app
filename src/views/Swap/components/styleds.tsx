@@ -6,6 +6,7 @@ import { AutoColumn } from 'components/Layout/Column'
 export const Wrapper = styled.div`
   position: relative;
   padding: 1rem;
+  background: ${({ theme }) => theme.colors.backgroundAlt};
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

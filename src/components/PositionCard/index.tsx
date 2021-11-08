@@ -34,7 +34,9 @@ const FixedHeightRow = styled(RowBetween)`
 `
 const CardStyled = styled(Card)`
   border-radius: 12px;
-  background-color: ${({ theme }) => theme.colors.input};
+  background: #43109e;
+
+  border: 0.887863px solid #ac8aea;
 `
 
 interface PositionCardProps extends CardProps {

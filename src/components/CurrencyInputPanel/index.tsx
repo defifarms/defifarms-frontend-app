@@ -39,8 +39,9 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 `
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
+  background-color: ${({ theme }) => '#43109E'};
   box-shadow: ${({ theme }) => theme.shadows.inset};
+  border: 0.887863px solid #ac8aea;
 `
 interface CurrencyInputPanelProps {
   value: string
@@ -98,8 +99,8 @@ export default function CurrencyInputPanel({
                 <Text
                   onClick={onMax}
                   fontSize="14px"
-                  color="four"
-                  fontWeight={600}
+                  color="cyan"
+                  fontWeight={400}
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
