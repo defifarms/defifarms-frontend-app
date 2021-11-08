@@ -93,7 +93,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
                 setSlippageInput('')
                 setRawSlippage(10)
               }}
-              variant={rawSlippage === 10 ? 'primary' : 'tertiary'}
+              variant={rawSlippage === 10 ? 'four' : 'tertiary'}
             >
               0.1%
             </Button>
@@ -102,7 +102,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
                 setSlippageInput('')
                 setRawSlippage(50)
               }}
-              variant={rawSlippage === 50 ? 'primary' : 'tertiary'}
+              variant={rawSlippage === 50 ? 'four' : 'tertiary'}
             >
               0.5%
             </Button>
@@ -111,7 +111,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
                 setSlippageInput('')
                 setRawSlippage(100)
               }}
-              variant={rawSlippage === 100 ? 'primary' : 'tertiary'}
+              variant={rawSlippage === 100 ? 'four' : 'tertiary'}
             >
               1%
             </Button>
