@@ -70,11 +70,20 @@ const Cards = styled(BaseLayout)`
   align-items: stretch;
   justify-content: stretch;
   grid-gap: 0;
-
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  flex-wrap: wrap;
   & > div {
     grid-column: span 6;
-    width: 100%;
   }
+`
+
+const StyledButtonMenu = styled(Button)`
+  font-weight: 600;
+  font-size: 32.9627px;
+  line-height: 45px;
+  height: 80px;
 `
 
 const FarmedStakingCard = () => {
@@ -156,7 +165,7 @@ const FarmedStakingCard = () => {
         </Cards>
         <Actions>
           {account ? (
-            <Button
+            <StyledButtonMenu
               id="harvest-all"
               disabled={!pendingTx && !isFinish}
               onClick={harvestAll}
@@ -169,9 +178,9 @@ const FarmedStakingCard = () => {
                     count: balancesWithValueFarms.length + balancesWithValuePools.length,
                   })}
               {getTimeRemainingText(timeHarvestRemaining)}
-            </Button>
+            </StyledButtonMenu>
           ) : (
-            <UnlockButton width="100%" borderRadius="98px" />
+            <UnlockButton fontSize="24" width="100%" borderRadius="98px" />
           )}
         </Actions>
       </CardBodyStyle>

@@ -52,9 +52,8 @@ const CardImage = styled.img`
 `
 
 const CardName = styled(Text)`
-  font-family: HK Grotesk;
+  font-family: HK Grotesk Bold;
   font-style: normal;
-  font-weight: bold;
   font-size: 24px;
   line-height: 28px;
   color: #0f0b5f;
@@ -206,7 +205,7 @@ const CakeStats = () => {
               </CardWrapper>
             </div>
           </FlexBox>
-          <div>
+          <FlexBox>
             <div style={{ padding: '0 10px' }}>
               <CardWrapper>
                 <CardImage src={teams[3].image} />
@@ -217,7 +216,7 @@ const CakeStats = () => {
                 </CardButton>
               </CardWrapper>
             </div>
-          </div>
+          </FlexBox>
         </Slider>
       </SliderWrapper>
       <HeadingCard color="#fff" scale="xl" mb="8px">

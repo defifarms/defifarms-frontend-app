@@ -14,13 +14,11 @@ export interface CardValueProps {
 }
 
 const StyleText = styled(Text)`
-  font-family: HK Grotesk;
+  font-family: HK Grotesk Bold;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  color: #ffffff;
-  font-weight: bold;
 `
 
 const CardValue: React.FC<CardValueProps> = ({
@@ -48,7 +46,7 @@ const CardValue: React.FC<CardValueProps> = ({
   }, [value, updateValue])
 
   return (
-    <StyleText style={{ lineHeight }}>
+    <StyleText style={{ lineHeight }} color={color}>
       {prefix}
       {countUp}
     </StyleText>

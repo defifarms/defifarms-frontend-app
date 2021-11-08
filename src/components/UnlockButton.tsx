@@ -1,7 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Button, useWalletModal } from '@pancakeswap/uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
+
+const StyledButtonMenu = styled(Button)`
+  font-weight: 600;
+  font-size: 32.9627px;
+  line-height: 45px;
+  height: 80px;
+`
 
 const UnlockButton = (props) => {
   const { t } = useTranslation()
@@ -9,9 +17,9 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
+    <StyledButtonMenu onClick={onPresentConnectModal} {...props}>
       {t('Unlock Wallet')}
-    </Button>
+    </StyledButtonMenu>
   )
 }
 

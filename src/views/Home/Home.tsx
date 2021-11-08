@@ -21,6 +21,9 @@ const Hero = styled.div`
   border-radius: 10px;
   justify-content: space-between;
   flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-wrap: nowrap;
+  }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-top: 0;
   }
@@ -122,7 +125,10 @@ const HeadingHome = styled(Heading)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 8px;
-  margin-top: 47px;
+  margin-top: 9px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top: 47px;
+  }
 `
 
 const TextHome = styled(Text)`
