@@ -120,8 +120,8 @@ const HeadingHome = styled(Heading)`
   font-style: normal;
   font-size: 49px;
   line-height: 57px;
-  background: #0F0B5F;
-  color: #0F0B5F;
+  background: #0f0b5f;
+  color: #0f0b5f;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 8px;

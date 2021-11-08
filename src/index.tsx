@@ -9,7 +9,7 @@ import TransactionUpdater from './state/transactions/updater'
 import App from './App'
 import Providers from './Providers'
 
-const audio = new Audio("music.webm")
+const audio = new Audio('music.webm')
 
 function Updaters() {
   return (
@@ -22,10 +22,10 @@ function Updaters() {
   )
 }
 
-const  Blocklist = ({ children }: { children: ReactNode }) => {
-  useEffect(() => {
-    audio.play()
-  }, [])
+const Blocklist = ({ children }: { children: ReactNode }) => {
+  // useEffect(() => {
+  //   audio.play()
+  // }, [])
   const { account } = useActiveWeb3React()
   const blocked: boolean = useMemo(() => Boolean(account && BLOCKED_ADDRESSES.indexOf(account) !== -1), [account])
   if (blocked) {

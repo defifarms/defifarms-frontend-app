@@ -12,11 +12,7 @@ import CardFooter from './CardFooter'
 import { StyledCard, StyledCardInner } from './StyledCard'
 import StyledCardHeader from './StyledCardHeader'
 
-
-
-const CardBodyStyled = styled(CardBody)`
-
-`
+const CardBodyStyled = styled(CardBody)``
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
   const { sousId, stakingToken, earningToken, isFinished, userData } = pool

@@ -33,9 +33,7 @@ const AccentGradient = keyframes`
   }
 `
 
-const StyledCardAccent = styled.div`
-
-`
+const StyledCardAccent = styled.div``
 
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
@@ -110,7 +108,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       {!removed && (
         <FlexWrapper justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
-          <Text bold color='four' style={{ display: 'flex', alignItems: 'center' }}>
+          <Text bold color="four" style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apr ? (
               <>
                 <ApyButton

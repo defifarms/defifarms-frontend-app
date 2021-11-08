@@ -61,7 +61,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
               decimals={2}
               unit="%"
               bold
-              color='four'
+              color="four"
             />
             <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
               <CalculateIcon color="four" width="18px" />
