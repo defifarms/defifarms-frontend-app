@@ -58,6 +58,9 @@ const ScrollButtonContainer = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
 `
+const ButtonStyled = styled(Button)`
+  color: ${({ theme }) => theme.colors.four};
+`
 
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -85,10 +88,10 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           </StyledTable>
         </TableWrapper>
         <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
+          <ButtonStyled variant="text" onClick={scrollToTop}>
             {t('To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
+            <ChevronUpIcon color="four" />
+          </ButtonStyled>
         </ScrollButtonContainer>
       </TableContainer>
     </Container>

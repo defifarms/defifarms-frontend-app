@@ -36,7 +36,7 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin: 0 12px 46px;
-    max-width: 30.5%;
+    max-width: 35.5%;
   }
 `
 

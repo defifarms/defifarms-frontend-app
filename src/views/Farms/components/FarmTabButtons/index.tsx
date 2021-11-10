@@ -8,6 +8,10 @@ interface FarmTabButtonsProps {
   hasStakeInFinishedFarms: boolean
 }
 
+const ButtonMenuStyled = styled(ButtonMenu)`
+  background-color: #631AD1;
+`
+
 const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {
   const { url } = useRouteMatch()
   const location = useLocation()
@@ -31,7 +35,7 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
 
   return (
     <Wrapper>
-      <ButtonMenu fullWidth activeIndex={activeIndex} scale="md" variant="primary">
+      <ButtonMenuStyled fullWidth activeIndex={activeIndex} scale="md" variant="primary">
         <ButtonMenuItem as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
@@ -40,7 +44,7 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
           {t('Finished')}
         </ButtonMenuItem>
         {/* </NotificationDot> */}
-      </ButtonMenu>
+      </ButtonMenuStyled>
     </Wrapper>
   )
 }

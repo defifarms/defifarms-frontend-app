@@ -129,6 +129,10 @@ const ValueWrapper = styled.div`
   margin: 4px 0px;
 `
 
+const ContainerStyled = styled(Container)`
+  background-color: #370493;
+`
+
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apr,
@@ -152,7 +156,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = `https://pancakeswap.info/pool/${lpAddress}`
 
   return (
-    <Container expanded={expanded}>
+    <ContainerStyled expanded={expanded}>
       <InfoContainer>
         {isActive && (
           <StakeContainer>
@@ -188,7 +192,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <HarvestAction {...farm} userDataReady={userDataReady} />
         <StakedAction {...farm} userDataReady={userDataReady} />
       </ActionContainer>
-    </Container>
+    </ContainerStyled>
   )
 }
 

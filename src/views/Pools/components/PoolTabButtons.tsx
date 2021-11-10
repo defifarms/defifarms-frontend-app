@@ -51,6 +51,9 @@ const Wrapper = styled.div`
     margin-left: 16px;
   }
 `
+const ButtonMenuStyled = styled(ButtonMenu)`
+  background-color: #631ad1;
+`
 
 const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode }) => {
   const { url, isExact } = useRouteMatch()
@@ -60,7 +63,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
 
   const liveOrFinishedSwitch = (
     <Wrapper>
-      <ButtonMenu fullWidth activeIndex={isExact ? 0 : 1} scale="md" variant="primary">
+      <ButtonMenuStyled fullWidth activeIndex={isExact ? 0 : 1} scale="md" variant="primary">
         <ButtonMenuItem as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
@@ -69,7 +72,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
           {t('Finished')}
         </ButtonMenuItem>
         {/* </NotificationDot> */}
-      </ButtonMenu>
+      </ButtonMenuStyled>
     </Wrapper>
   )
 

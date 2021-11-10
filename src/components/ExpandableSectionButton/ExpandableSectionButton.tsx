@@ -13,7 +13,8 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0 24px 24px;
+  padding: 24px 24px 24px;
+  background-color: ${({ theme }) => theme.colors.backgroundCardTransparent};
 
   svg {
     fill: ${({ theme }) => theme.colors.four};

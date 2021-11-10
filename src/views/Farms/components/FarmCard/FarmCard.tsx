@@ -52,13 +52,14 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
   height: 1px;
-  margin: 24px auto;
+  margin: 24px auto 0 auto;
   width: 100%;
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
   overflow: hidden;
+  background-color: ${({ theme }) => theme.colors.backgroundCardTransparent};
 `
 
 const FlexWrapper = styled(Flex)`
