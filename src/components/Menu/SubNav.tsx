@@ -7,6 +7,13 @@ import { useTranslation } from 'contexts/Localization'
 const StyledNav = styled.nav`
   margin-bottom: 40px;
 `
+const ButtonMenuStyled = styled(ButtonMenu)`
+  background-color: #41128f;
+  border-radius: 16px;
+`
+const ButtonMenuItemStyled = styled(ButtonMenuItem)`
+
+`
 
 const getActiveIndex = (pathname: string): number => {
   if (
@@ -27,21 +34,50 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <ButtonMenu
+      <ButtonMenuStyled
         bgColor={lightColors.subNav}
         fullWidth
-        borderRadius="20px"
         activeIndex={getActiveIndex(location.pathname)}
         scale="md"
         variant="primary"
       >
-        <ButtonMenuItem width="160px" height="72px" borderRadius="20px" id="swap-nav-link" to="/swap" as={Link}>
+        <ButtonMenuItem
+          color="white"
+          width="160px"
+          height="72px"
+          borderRadius="16px"
+          style={{
+            fontFamily: 'HK Grotesk',
+            fontSize: 24,
+            fontWeight: 600,
+            fontStyle: 'normal',
+            color: '#fff',
+          }}
+          id="swap-nav-link"
+          to="/swap"
+          as={Link}
+        >
           {t('Swap')}
         </ButtonMenuItem>
-        <ButtonMenuItem width="160px" height="72px" borderRadius="20px" id="pool-nav-link" to="/pool" as={Link}>
+        <ButtonMenuItem
+          color="white"
+          width="160px"
+          height="72px"
+          borderRadius="16px"
+          style={{
+            fontFamily: 'HK Grotesk',
+            fontSize: 24,
+            fontWeight: 600,
+            fontStyle: 'normal',
+            color: '#fff',
+          }}
+          id="pool-nav-link"
+          to="/pool"
+          as={Link}
+        >
           {t('Liquidity')}
         </ButtonMenuItem>
-      </ButtonMenu>
+      </ButtonMenuStyled>
     </StyledNav>
   )
 }
