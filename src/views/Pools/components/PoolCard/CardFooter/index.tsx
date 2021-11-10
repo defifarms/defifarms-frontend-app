@@ -29,6 +29,9 @@ const WrapButton = styled.span`
   border: 1px solid #4663de;
   border-radius: 32px;
 `
+const CardFooterStyled = styled(CardFooter)`
+  background-color: ${({ theme }) => theme.card.backgroundCardTransparent};
+`
 
 const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   const { isAutoVault } = pool
@@ -45,7 +48,7 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   })
 
   return (
-    <CardFooter>
+    <CardFooterStyled>
       <ExpandableButtonWrapper>
         <Flex alignItems="center">
           <WrapButton>{isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}</WrapButton>
@@ -55,11 +58,11 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
           </Flex>
         </Flex>
         <ExpandableLabel color="four" expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-          <TextWrap>{isExpanded ? t('Hide') : t('Details')}</TextWrap>
+          <TextWrap color="four">{isExpanded ? t('Hide') : t('Details')}</TextWrap>
         </ExpandableLabel>
       </ExpandableButtonWrapper>
       {isExpanded && <ExpandedFooter pool={pool} account={account} />}
-    </CardFooter>
+    </CardFooterStyled>
   )
 }
 

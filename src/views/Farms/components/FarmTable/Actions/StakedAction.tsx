@@ -183,7 +183,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <Button
             width="100%"
             onClick={onPresentDeposit}
-            variant="secondary"
+            variant="four"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
           >
             {t('Stake LP')}

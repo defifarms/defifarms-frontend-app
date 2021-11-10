@@ -62,8 +62,9 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   flex-direction: column-reverse;
   justify-content: center;
   padding: 12px;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
+  background-color: #37049380;
+  
+   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
     padding: 16px 32px;
   }
@@ -237,7 +238,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {/*  </LinkExternal> */}
         {/* </Flex> */}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={earningToken.projectLink} bold={false}>
+          <LinkExternal color="four" href={earningToken.projectLink} bold={false}>
             {t('View Project Site')}
           </LinkExternal>
         </Flex>
@@ -246,6 +247,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             <LinkExternal
               href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
               bold={false}
+              color="four"
             >
               {t('View Contract')}
             </LinkExternal>
@@ -259,7 +261,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
               height="auto"
               onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals)}
             >
-              <Text color="primary">{t('Add to Metamask')}</Text>
+              <Text color="four">{t('Add to Metamask')}</Text>
               <MetamaskIcon ml="4px" />
             </Button>
           </Flex>

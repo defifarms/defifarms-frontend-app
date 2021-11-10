@@ -38,6 +38,8 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   min-width: 60px;
   text-align: left;
+  font-size: 20px;
+  font-weight: 500;
 `
 
 const Apr: React.FC<AprProps> = ({

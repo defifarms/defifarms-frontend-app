@@ -42,7 +42,7 @@ const PoolControls = styled.div`
   flex-direction: column;
   margin-bottom: 32px;
   border-radius: 16px;
-  padding: 16px 16px;
+  padding: 0 0 16px 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;

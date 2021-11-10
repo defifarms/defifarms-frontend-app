@@ -39,7 +39,7 @@ const ControlContainer = styled.div`
   flex-direction: column;
   margin-bottom: 32px;
   border-radius: 16px;
-  padding: 0;
+  padding: 0 0 16px 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -97,11 +97,6 @@ const ViewControls = styled.div`
   }
 `
 
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {

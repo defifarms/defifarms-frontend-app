@@ -14,7 +14,7 @@ const FlexLayout = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     & > * {
       min-width: 370px;
-      max-width: 31.5%;
+      max-width: 35.5%;
     }
   }
 `
