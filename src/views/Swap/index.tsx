@@ -378,8 +378,10 @@ export default function Swap({ history }: RouteComponentProps) {
                   )}
                   {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                     <RowBetween align="center">
-                      <Label>{t('Slippage Tolerance')}</Label>
-                      <Text color="white" fontSize='16px'>
+                      <Label fontWeight={600} fontSize="16px">
+                        {t('Slippage Tolerance')}
+                      </Label>
+                      <Text color="white" fontSize="16px" fontWeight={600}>
                         {allowedSlippage / 100}%
                       </Text>
                     </RowBetween>

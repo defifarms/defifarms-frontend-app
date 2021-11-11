@@ -32,7 +32,7 @@ interface ExpandedFooterProps {
 }
 
 const ExpandedWrapper = styled(Flex)`
-  background-color: #37049380;
+  // background-color: #37049380;
   svg {
     height: 14px;
     width: 14px;
@@ -95,13 +95,21 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
-        <Text small>{t('Total staked')}:</Text>
+        <Text small fontSize="18px">
+          {t('Total staked')}:
+        </Text>
         <Flex alignItems="flex-start">
           {totalStaked && totalStaked.gte(0) ? (
             <>
-              <Balance small value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
+              <Balance
+                fontSize="18px"
+                small
+                value={getTotalStakedBalance()}
+                decimals={0}
+                unit={` ${stakingToken.symbol}`}
+              />
               <span ref={totalStakedTargetRef}>
-                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+                <HelpIcon color="textSubtle" width="24px" ml="6px" mt="4px" />
               </span>
             </>
           ) : (

@@ -21,19 +21,6 @@ export interface FarmWithStakedValue extends Farm {
   liquidity?: BigNumber
 }
 
-const AccentGradient = keyframes`  
-  0% {
-    background-position: 50% 0%;
-  }
-  50% {
-    background-position: 50% 100%;
-  }
-  100% {
-    background-position: 50% 0%;
-  }
-`
-
-const StyledCardAccent = styled.div``
 
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
@@ -98,7 +85,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const harvestLock = parseInt(farm.harvestInterval) / 3600
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
-      {isPromotedFarm && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
@@ -108,8 +94,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       />
       {!removed && (
         <FlexWrapper justifyContent="space-between" alignItems="center">
-          <Text>{t('APR')}:</Text>
-          <Text bold color="four" style={{ display: 'flex', alignItems: 'center' }}>
+          <Text fontSize="16px">{t('APR')}:</Text>
+          <Text bold color="four" fontSize="16px" style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apr ? (
               <>
                 <ApyButton
@@ -128,15 +114,15 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         </FlexWrapper>
       )}
       <FlexWrapper justifyContent="space-between">
-        <Text>{t('Earn')}:</Text>
-        <Text>{earnLabel}</Text>
+        <Text fontSize="16px">{t('Earn')}:</Text>
+        <Text fontSize="16px">{earnLabel}</Text>
       </FlexWrapper>
       <FlexWrapper justifyContent="space-between">
-        <Text>{t('Deposit Fee')}:</Text>
-        <Text>{farm.depositFeeBP}%</Text>
+        <Text fontSize="16px">{t('Deposit Fee')}:</Text>
+        <Text fontSize="16px">{farm.depositFeeBP}%</Text>
       </FlexWrapper>
       <FlexWrapper justifyContent="space-between">
-        <Text>
+        <Text fontSize="16px">
           {t('Harvest Lockup')}:
           <QuestionHelper
             text={t('How soon can you havest or compound again.')}
@@ -144,7 +130,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
             style={{ display: 'inline' }}
           />
         </Text>
-        <Text>{harvestLock} Hour(s)</Text>
+        <Text fontSize="16px">{harvestLock} Hour(s)</Text>
       </FlexWrapper>
       <FlexWrapper justifyContent="space-between">
         <Text>{t('LP Type')}:</Text>

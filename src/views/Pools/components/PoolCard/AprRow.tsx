@@ -49,7 +49,9 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
     <>
       <Flex alignItems="center" justifyContent="space-between" style={{ marginBottom: 10 }}>
         {tooltipVisible && tooltip}
-        <TooltipText ref={targetRef}>{isAutoVault ? `${t('APY')}:` : `${t('APR')}:`}</TooltipText>
+        <TooltipText fontSize="16px" ref={targetRef}>
+          {isAutoVault ? `${t('APY')}:` : `${t('APR')}:`}
+        </TooltipText>
         {isFinished || !apr ? (
           <Skeleton width="82px" height="32px" />
         ) : (
@@ -70,11 +72,11 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
         )}
       </Flex>
       <FlexWrapper justifyContent="space-between">
-        <Text>{t('Deposit Fee')}:</Text>
-        <Text>{pool.depositFeeBP}%</Text>
+        <Text fontSize="16px">{t('Deposit Fee')}:</Text>
+        <Text fontSize="16px">{pool.depositFeeBP}%</Text>
       </FlexWrapper>
       <FlexWrapper justifyContent="space-between">
-        <Text>
+        <Text fontSize="16px">
           {t('Harvest Lockup')}:
           <QuestionHelper
             text={t('How soon can you havest or compound again.')}
@@ -82,7 +84,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
             style={{ display: 'inline' }}
           />
         </Text>
-        <Text>{harvestLock} Hour(s)</Text>
+        <Text fontSize="16px">{harvestLock} Hour(s)</Text>
       </FlexWrapper>
     </>
   )

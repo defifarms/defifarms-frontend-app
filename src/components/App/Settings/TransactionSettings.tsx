@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
 import { Button, Flex, Grid, Input, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import QuestionHelper from '../../QuestionHelper'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { AutoColumn } from '../../Layout/Column'
 import { RowBetween, RowFixed } from '../../Layout/Row'
+import QuestionHelper from '../../QuestionHelper'
 
 enum SlippageError {
   InvalidInput = 'InvalidInput',
@@ -14,6 +15,26 @@ enum SlippageError {
 enum DeadlineError {
   InvalidInput = 'InvalidInput',
 }
+
+const ButtonStyled = styled(Button)`
+  border: 0.887863px solid #ac8aea;
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 14.2058px;
+`
+const InputStyled = styled(Input)`
+  border: 0.887863px solid #ac8aea;
+  border-radius: 14.2058px;
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+`
 
 export interface SlippageTabsProps {
   rawSlippage: number
@@ -88,7 +109,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
         </RowFixed>
         <Flex flexWrap={['wrap', 'wrap', 'nowrap']}>
           <Grid gridTemplateColumns="1fr 1fr 1fr" gridGap="8px" mb={['8px', '8px', 0]} mr={[0, 0, '8px']}>
-            <Button
+            <ButtonStyled
               onClick={() => {
                 setSlippageInput('')
                 setRawSlippage(10)
@@ -96,8 +117,8 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
               variant={rawSlippage === 10 ? 'four' : 'tertiary'}
             >
               0.1%
-            </Button>
-            <Button
+            </ButtonStyled>
+            <ButtonStyled
               onClick={() => {
                 setSlippageInput('')
                 setRawSlippage(50)
@@ -105,8 +126,8 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
               variant={rawSlippage === 50 ? 'four' : 'tertiary'}
             >
               0.5%
-            </Button>
-            <Button
+            </ButtonStyled>
+            <ButtonStyled
               onClick={() => {
                 setSlippageInput('')
                 setRawSlippage(100)
@@ -114,10 +135,10 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
               variant={rawSlippage === 100 ? 'four' : 'tertiary'}
             >
               1%
-            </Button>
+            </ButtonStyled>
           </Grid>
           <RowBetween>
-            <Input
+            <InputStyled
               scale="lg"
               placeholder={(rawSlippage / 100).toFixed(2)}
               value={slippageInput}
@@ -128,7 +149,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
               isWarning={!slippageInputIsValid}
               isSuccess={![10, 50, 100].includes(rawSlippage)}
             />
-            <Text color="primary" bold ml="8px">
+            <Text color="white" bold ml="8px">
               %
             </Text>
           </RowBetween>
@@ -138,7 +159,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
             style={{
               fontSize: '14px',
               paddingTop: '7px',
-              color: slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E',
+              color: slippageError === SlippageError.InvalidInput ? 'red' : '#00FFFF',
             }}
           >
             {slippageError === SlippageError.InvalidInput
@@ -156,7 +177,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
           <QuestionHelper text={t('Your transaction will revert if it is pending for more than this long.')} ml="4px" />
         </RowFixed>
         <RowFixed>
-          <Input
+          <InputStyled
             color={deadlineError ? 'red' : undefined}
             onBlur={() => {
               parseCustomDeadline((deadline / 60).toString())
@@ -164,6 +185,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
             placeholder={(deadline / 60).toString()}
             value={deadlineInput}
             onChange={(e) => parseCustomDeadline(e.target.value)}
+            style={{ height: 56 }}
           />
           <Text pl="8px" fontSize="14px">
             {t('minutes')}

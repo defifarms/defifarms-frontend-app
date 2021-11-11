@@ -384,7 +384,7 @@ const Farms: React.FC = () => {
         <Heading as="h1" scale="xxl" color="white">
           {t('Farms')}
         </Heading>
-        <Heading scale="lg" color="white" style={{ fontWeight: 400 }}>
+        <Heading color="white" style={{ fontWeight: 400 }}>
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
       </PageHeader>

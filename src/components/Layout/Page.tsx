@@ -11,19 +11,16 @@ const StyledPage = styled(Container)`
   min-height: calc(100vh - 64px);
   padding-top: 16px;
   padding-bottom: 16px;
-  
-  pading ${({ theme }) => theme.mediaQueries.sm} {
+  margin-left: 32px;
+  margin-right: 32px;
+  padding-left: 0;
+  padding-right: 0;
+
+  @media screen and (min-width: 1400px) {
     padding-top: 24px;
     padding-bottom: 24px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 35px;
-    padding-bottom: 35px;
-    padding-left: 0;
-    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 `
 

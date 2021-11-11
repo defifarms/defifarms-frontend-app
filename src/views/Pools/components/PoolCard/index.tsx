@@ -13,7 +13,7 @@ import { StyledCard, StyledCardInner } from './StyledCard'
 import StyledCardHeader from './StyledCardHeader'
 
 const CardBodyStyled = styled(CardBody)`
-  background-color: #2c007c60;
+  // background-color: #2c007c60;
 `
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
