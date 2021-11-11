@@ -43,11 +43,17 @@ const PoolControls = styled.div`
   margin-bottom: 32px;
   border-radius: 16px;
   padding: 0 0 16px 0;
+  margin-left: 32px;
+  margin-right: 32px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: 18px;
+  }
+  @media screen and (min-width: 1400px) {
+    margin-left: auto;
+    margin-right: auto;
   }
 `
 
@@ -240,7 +246,7 @@ const Pools: React.FC = () => {
             <Heading as="h1" scale="xxl" color="white">
               {t('Pools')}
             </Heading>
-            <Heading scale="lg" color="white">
+            <Heading scale="md" color="white">
               {t('Just stake some tokens to earn. High APR, low risk.')}
             </Heading>
           </Flex>
