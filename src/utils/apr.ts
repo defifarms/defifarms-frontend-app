@@ -41,7 +41,7 @@ export const getFarmApr = (
   if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
   }
-  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
+  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 8.89 // TODO: change 8.89 to 0 if subgraph ready
   return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
 }
 
