@@ -24,6 +24,10 @@ interface StakeModalProps {
 const StyledLink = styled(Link)`
   width: 100%;
 `
+const BalanceInputStyled = styled(BalanceInput)`
+  border-radius: 10px;
+  border: 0.887863px solid #ba93ff;
+`
 
 const StakeModal: React.FC<StakeModalProps> = ({
   isBnbPool,
@@ -134,7 +138,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
         </Text>
       )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
+        <Text mb="8px" bold>
+          {isRemovingStake ? t('Unstake') : t('Stake')}:
+        </Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
             src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
@@ -147,7 +153,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           </Text>
         </Flex>
       </Flex>
-      <BalanceInput
+      <BalanceInputStyled
         value={stakeAmount}
         onUserInput={handleStakeInputChange}
         currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
@@ -155,14 +161,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
         decimals={stakingToken.decimals}
       />
       {hasReachedStakeLimit && (
-        <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="4px">
+        <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="8px">
           {t('Maximum total stake: %amount% %token%', {
             amount: getFullDisplayBalance(new BigNumber(stakingLimit), stakingToken.decimals, 0),
             token: stakingToken.symbol,
           })}
         </Text>
       )}
-      <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
+      <Text ml="auto" color="textSubtle" fontSize="16px" mb="8px" mt='8px'>
         {t('Balance: %balance%', {
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
         })}
@@ -186,14 +192,16 @@ const StakeModal: React.FC<StakeModalProps> = ({
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
+        variant="four"
         disabled={!stakeAmount || parseFloat(stakeAmount) === 0 || hasReachedStakeLimit}
         mt="24px"
+        mb="8px"
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
         <StyledLink external href="/swap">
-          <Button width="100%" mt="8px" variant="secondary">
+          <Button width="100%" mt="8px" variant="primary">
             {t('Get %symbol%', { symbol: stakingToken.symbol })}
           </Button>
         </StyledLink>

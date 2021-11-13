@@ -102,7 +102,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
 
   return (
-    <Modal title={t('ROI')} onDismiss={onDismiss}>
+    <Modal title={t('ROI')} onDismiss={onDismiss} headerBackground="#3F09A1">
       {isFarm && (
         <Box>
           <Flex mb="8px" justifyContent="space-between">
