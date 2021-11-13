@@ -11,6 +11,7 @@ import Announcements from './components/Announcements'
 import FarmedStakingCard from './components/FarmStakingCard'
 import FarmAssetCard from './components/FarmAssetCard'
 import TeamMember from './components/TeamMember'
+import UpcomingIdo from './components/UpcomingIdo'
 
 const Hero = styled.div`
   display: flex;
@@ -174,6 +175,7 @@ const Home: React.FC = () => {
               </MetaWrapper>
             </Wrapper>
           </Hero>
+          <UpcomingIdo />
           <div>
             <Cards>
               <FarmedStakingCard />
