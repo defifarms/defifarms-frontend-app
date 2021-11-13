@@ -1,6 +1,4 @@
-import { BaseLayout, Heading, Text, Flex } from '@pancakeswap/uikit'
-import { MainBackground } from 'components/Layout/MainBackground'
-import Page from 'components/Layout/Page'
+import { Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import React from 'react'
 import styled from 'styled-components'

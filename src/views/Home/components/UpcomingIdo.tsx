@@ -1,6 +1,4 @@
-import { BaseLayout, Heading, Text, Flex, Button } from '@pancakeswap/uikit'
-import { MainBackground } from 'components/Layout/MainBackground'
-import Page from 'components/Layout/Page'
+import { BaseLayout, Heading, Text, Flex } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import React from 'react'
 import styled from 'styled-components'
@@ -25,7 +23,7 @@ const Hero = styled.div`
   text-align: center;
   align-items: center;
   padding: 19px 18px;
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     flex-wrap: nowrap;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -34,51 +32,6 @@ const Hero = styled.div`
   }
 `
 
-const Cards = styled(BaseLayout)`
-  align-items: stretch;
-  justify-content: stretch;
-  margin-bottom: 24px;
-  grid-gap: 24px;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 32px;
-    grid-gap: 60px;
-  }
-`
-
-const MetaImage = styled.div`
-  background-image: url(/images/home/bg-meta.png);
-  background-repeat: no-repeat;
-  background-position: 36px;
-  background-size: contain;
-  padding-left: 90px;
-`
-
-const Wrapper = styled.div`
-  height: 306px;
-  width: 504px;
-  overflow: hidden;
-  border-radius: 10px;
-`
-const MetaWrapper = styled.div`
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-color: #fff;
-  border-radius: 50%;
-  height: 450px;
-  width: 450px;
-  margin-top: 0;
-  margin-left: -50px;
-  padding-top: 22px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-top: -150px;
-    padding-top: 150px;
-    height: 573px;
-    width: 573px;
-    margin-left: 0;
-  }
-`
 const HeadingWrapper = styled.div`
 `
 
@@ -86,25 +39,10 @@ const Image = styled.img`
   width: 100%;
   height: auto;
   margin-top: 30px;
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: 378px;
     height: 232px;
     margin-top: 0px;
-  }
-`
-
-const CardImage = styled.div`
-  background-image: ${({ theme }) =>
-    theme.isDark
-      ? 'url(/images/home/logo-partner-binance-smart-chain.png)'
-      : 'url(/images/home/logo-partner-binance-smart-chain-light.png)'};
-  height: 53px;
-  width: 188px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    width: 155px;
   }
 `
 
@@ -120,6 +58,15 @@ const HeadingHome = styled(Heading)`
   }
 `
 
+const BlockWrapper = styled.div`
+  display: list-item;
+  padding: 25px 0;
+  flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+  }
+`
+
 const Label = styled(Text)`
   margin: HK Grotesk;
   font-style: normal;
@@ -130,11 +77,6 @@ const Label = styled(Text)`
   & > span {
     font-family: HK Grotesk Bold;
   }
-`
-
-const FlexBox = styled(Flex)`
-  align-items: center;
-  padding-top: 20px;
 `
 
 const StyledButtonMenu = styled.a`
@@ -157,7 +99,7 @@ const Block = styled.div<ThemedBlock>`
   border-radius: 4px;
   padding: 13px 10px 0;
   margin: 10px 0;
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: 153.36px;
     margin: ${({margin}) => (margin || '0px')};
   }
@@ -189,14 +131,14 @@ const UpcomingIdo: React.FC = () => {
         <HeadingHome as="h1" scale="xl" mb="24px">
           {t('Upcoming IDO')}
         </HeadingHome>
-        <Flex pb={13}>
+        <Flex pb={13} justifyContent="center">
           <Time time={19} label="Day" />
           <Time time={19} label="Hours" />
           <Time time={19} label="Minutes" />
           <Time time={19} label="Seconds" />
         </Flex>
         <Label>Estimated Target Date: <span>Mon Nov 29 2021 07:07:38 GMT+0700 (Indochina Time)</span></Label>
-        <Flex padding="25px 0" flexWrap="wrap">
+        <BlockWrapper>
           <Block>
             <BlockLabel>Countdown For block:</BlockLabel>
             <BlockValue>#12999999</BlockValue>
@@ -209,7 +151,7 @@ const UpcomingIdo: React.FC = () => {
             <BlockLabel>Remaining Block:</BlockLabel>
             <BlockValue>#468099</BlockValue>
           </Block>
-        </Flex>
+        </BlockWrapper>
         
         <StyledButtonMenu href="https://rocket.defifarms.org/" target="_blank">
           {t('Join now')}

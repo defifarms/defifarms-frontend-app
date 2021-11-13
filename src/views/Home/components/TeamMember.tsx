@@ -1,12 +1,11 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text, Flex } from '@pancakeswap/uikit'
+import { Heading, Text, Flex } from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'
 import Slider from 'react-slick'
 import { useTranslation } from 'contexts/Localization'
 import { getDefiyAddress } from 'utils/addressHelpers'
-import { formatEther } from 'ethers/lib/utils'
 import { usePriceCakeBusd } from '../../../state/farms/hooks'
 
 const StyledContainer = styled.div`
@@ -146,8 +145,6 @@ const CakeStats = () => {
   const burnedBalance = getBalanceNumber(useBurnedBalance(getDefiyAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
   const cakePriceBusd = usePriceCakeBusd()
-  const mcap = cakePriceBusd.times(cakeSupply)
-  const maxTransferAmount = useMaxTransferAmount()
 
   const slides = []
 
