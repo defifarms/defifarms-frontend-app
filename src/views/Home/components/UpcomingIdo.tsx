@@ -1,7 +1,8 @@
 import { BaseLayout, Heading, Text, Flex } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
+import useCountDownTimer from 'hooks/useCountDownTimer'
 import Time from './Time'
 
 interface ThemedBlock {
@@ -123,7 +124,20 @@ const BlockValue = styled.p`
 `
 
 const UpcomingIdo: React.FC = () => {
+  const nextTime = 'Sat Nov 27 2021 05:10:47 GMT+0700'
   const { t } = useTranslation()
+  const [timeHarvestRemaining, setTimeHarvestRemaining, isFinish] = useCountDownTimer()
+  useEffect(() => {
+    const current = new Date(nextTime).getTime()
+    setTimeHarvestRemaining(Math.max(current - new Date().getTime(), 0))
+  }, [setTimeHarvestRemaining])
+
+  const timeLeft = {
+      days: Math.floor(timeHarvestRemaining / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((timeHarvestRemaining / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((timeHarvestRemaining / 1000 / 60) % 60),
+      seconds: Math.floor((timeHarvestRemaining / 1000) % 60),
+  };
 
   return (
     <Hero>
@@ -132,12 +146,12 @@ const UpcomingIdo: React.FC = () => {
           {t('Upcoming IDO')}
         </HeadingHome>
         <Flex pb={13} justifyContent="center">
-          <Time time={19} label="Day" />
-          <Time time={19} label="Hours" />
-          <Time time={19} label="Minutes" />
-          <Time time={19} label="Seconds" />
+          <Time time={timeLeft.days} label="Day" />
+          <Time time={timeLeft.hours} label="Hours" />
+          <Time time={timeLeft.minutes} label="Minutes" />
+          <Time time={timeLeft.seconds} label="Seconds" />
         </Flex>
-        <Label>Estimated Target Date: <span>Mon Nov 29 2021 07:07:38 GMT+0700 (Indochina Time)</span></Label>
+        <Label>Estimated Target Date: <span>{nextTime}</span></Label>
         <BlockWrapper>
           <Block>
             <BlockLabel>Countdown For block:</BlockLabel>
