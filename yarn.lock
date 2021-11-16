@@ -1363,10 +1363,10 @@
   resolved "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-10.1.0.tgz"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@defifarms/eslint-config-pancake@^1.0.0":
+"@defifarms/eslint-config-defifarms@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@defifarms/eslint-config-pancake/-/eslint-config-pancake-1.0.0.tgz#c854067112b617b4bc23c3cd77b258ef9c686aba"
-  integrity sha512-kTgffRcuF19laa7ylsyiJ5KmPTMxKmf9M1148/0Zsyme3FXBmgThQr8Ye44/40exklVQSNCnAQJO+GlZrjNDSw==
+  resolved "https://registry.yarnpkg.com/@defifarms/eslint-config-defifarms/-/eslint-config-defifarms-1.0.0.tgz#b51bc2bf78b1d77f7d9dbff689ad41409b2f2ac1"
+  integrity sha512-xMc5lMM947r5JG8GRE/hQ5M875PjEy9p9xB7vnTHZP3P7eypdA2hKQecDLRoLYyiUKAgChHbSipDz6vmXAJ27Q==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.7.0"
     "@typescript-eslint/parser" "^4.7.0"

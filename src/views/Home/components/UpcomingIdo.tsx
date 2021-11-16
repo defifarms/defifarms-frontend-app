@@ -1,6 +1,6 @@
 import { BaseLayout, Heading, Text, Flex } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import useCountDownTimer from 'hooks/useCountDownTimer'
 import Time from './Time'
@@ -125,7 +125,7 @@ const BlockValue = styled.p`
 
 const TimeWrapper = styled(Flex)`
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  padding-bottom:13px;
+  padding-bottom: 13px;
   margin-bottom: 11px;
   justify-content: center;
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -144,11 +144,11 @@ const UpcomingIdo: React.FC = () => {
   }, [setTimeHarvestRemaining])
 
   const timeLeft = {
-      days: Math.floor(timeHarvestRemaining / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((timeHarvestRemaining / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((timeHarvestRemaining / 1000 / 60) % 60),
-      seconds: Math.floor((timeHarvestRemaining / 1000) % 60),
-  };
+    days: Math.floor(timeHarvestRemaining / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((timeHarvestRemaining / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((timeHarvestRemaining / 1000 / 60) % 60),
+    seconds: Math.floor((timeHarvestRemaining / 1000) % 60),
+  }
 
   return (
     <Hero>
@@ -162,7 +162,9 @@ const UpcomingIdo: React.FC = () => {
           <Time time={timeLeft.minutes} label="Minutes" />
           <Time time={timeLeft.seconds} label="Seconds" />
         </TimeWrapper>
-        <Label>Estimated Target Date: <span>{nextTime}</span></Label>
+        <Label>
+          Estimated Target Date: <span>{nextTime}</span>
+        </Label>
         <BlockWrapper>
           <Block>
             <BlockLabel>Countdown For block:</BlockLabel>
