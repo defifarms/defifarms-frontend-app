@@ -40,3 +40,10 @@ debug.log*
 # config
 /.vscode
 
+# package-lock file
+package-lock.json
+!test/api/**/package-lock.json
+
+# build files
+packages/**/lib
+packages/**/yarn.lock
