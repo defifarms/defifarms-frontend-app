@@ -1,4 +1,4 @@
-import { CardBody, CardRibbon, Flex, Text } from '@pancakeswap/uikit'
+import { CardBody, CardRibbon, Flex, Text } from '@defifarms/uikit'
 import BigNumber from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Flex, HelpIcon, Skeleton, Text, useMatchBreakpoints, useModal, useTooltip } from '@pancakeswap/uikit'
+import { Box, Flex, HelpIcon, Skeleton, Text, useMatchBreakpoints, useModal, useTooltip } from '@defifarms/uikit'
 import { Pool } from 'state/types'
 import BigNumber from 'bignumber.js'
 import { PoolCategory } from 'config/constants/types'

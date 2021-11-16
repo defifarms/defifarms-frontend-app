@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 // eslint-disable-next-line import/no-unresolved
-import { PancakeTheme } from '@pancakeswap/uikit/dist/theme'
+import { PancakeTheme } from '@defifarms/uikit/dist/theme'
 import HKGrotesk from '../fonts/HKGrotesk-Medium.otf'
 import HKGroteskBold from '../fonts/HKGrotesk-Bold.otf'
 import HKGroteskLight from '../fonts/HKGrotesk-Light.otf'

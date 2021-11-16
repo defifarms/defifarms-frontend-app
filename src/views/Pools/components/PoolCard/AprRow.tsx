@@ -1,5 +1,5 @@
 import React from 'react'
-import { CalculateIcon, Flex, IconButton, Skeleton, TooltipText, useModal, useTooltip, Text } from '@pancakeswap/uikit'
+import { CalculateIcon, Flex, IconButton, Skeleton, TooltipText, useModal, useTooltip, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'

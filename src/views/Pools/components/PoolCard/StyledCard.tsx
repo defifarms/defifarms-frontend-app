@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
-import { Box, Card } from '@pancakeswap/uikit'
+import { Box, Card } from '@defifarms/uikit'
 
 const PromotedGradient = keyframes`
   0% {

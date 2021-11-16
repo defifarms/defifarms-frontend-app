@@ -9,7 +9,7 @@ import {
   UserMenuDivider,
   UserMenuItem,
   // ThemeSwitcher,
-} from '@pancakeswap/uikit'
+} from '@defifarms/uikit'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
 import useTheme from 'hooks/useTheme'

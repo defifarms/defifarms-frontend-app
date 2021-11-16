@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CardViewIcon, IconButton, ListViewIcon } from '@pancakeswap/uikit'
+import { CardViewIcon, IconButton, ListViewIcon } from '@defifarms/uikit'
 
 export enum ViewMode {
   'TABLE' = 'TABLE',

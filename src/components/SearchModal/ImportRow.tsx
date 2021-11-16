@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import { Token } from '@pancakeswap/sdk'
-import { Button, CheckmarkCircleIcon, Text } from '@pancakeswap/uikit'
+import { Button, CheckmarkCircleIcon, Text } from '@defifarms/uikit'
 import { AutoRow, RowFixed } from 'components/Layout/Row'
 import { AutoColumn } from 'components/Layout/Column'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'

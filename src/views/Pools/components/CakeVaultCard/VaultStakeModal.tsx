@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Modal, Slider, Text } from '@pancakeswap/uikit'
+import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Modal, Slider, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'

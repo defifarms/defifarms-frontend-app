@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { Button, Link, Modal, OpenNewIcon, Text } from '@pancakeswap/uikit'
+import { Button, Link, Modal, OpenNewIcon, Text } from '@defifarms/uikit'
 import useTheme from 'hooks/useTheme'
 
 interface NotEnoughTokensModalProps {

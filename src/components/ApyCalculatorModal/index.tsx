@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Flex, LinkExternal, Modal, Text } from '@pancakeswap/uikit'
+import { Box, Flex, LinkExternal, Modal, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 

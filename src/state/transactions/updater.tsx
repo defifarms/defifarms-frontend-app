@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Link, Text } from '@pancakeswap/uikit'
+import { Flex, Link, Text } from '@defifarms/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getBscScanLink } from 'utils'
 import useToast from 'hooks/useToast'

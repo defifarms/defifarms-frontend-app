@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { Flex, LinkExternal, Skeleton, Text } from '@pancakeswap/uikit'
+import { Flex, LinkExternal, Skeleton, Text } from '@defifarms/uikit'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string

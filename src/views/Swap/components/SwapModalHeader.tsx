@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Trade, TradeType } from '@pancakeswap/sdk'
-import { ArrowDownIcon, Button, ErrorIcon, Text } from '@pancakeswap/uikit'
+import { ArrowDownIcon, Button, ErrorIcon, Text } from '@defifarms/uikit'
 import { Field } from 'state/swap/actions'
 import { isAddress, shortenAddress } from 'utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from 'utils/prices'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Flex, InjectedModalProps, Message, Modal, ModalBody, PancakeToggle, Text } from '@pancakeswap/uikit'
+import { Button, Flex, InjectedModalProps, Message, Modal, ModalBody, PancakeToggle, Text } from '@defifarms/uikit'
 import {
   useAudioModeManager,
   useExpertModeManager,
