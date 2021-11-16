@@ -17,7 +17,7 @@ const StyledCardBody = styled.div`
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   background-repeat: no-repeat;
   background-position: 36px;
   background-size: contain;

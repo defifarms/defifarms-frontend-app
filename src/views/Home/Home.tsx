@@ -16,7 +16,7 @@ import UpcomingIdo from './components/UpcomingIdo'
 const Hero = styled.div`
   display: flex;
   margin: auto;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding-top: 116px;
   background-color: #c4f4ff;
   border-radius: 10px;

@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
   background-position: center;
   background-size: cover;
   padding: 36px 24px 96px;
-  margin-top: 35px;
+  margin-top: 24px;
 }
 `
 

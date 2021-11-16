@@ -13,7 +13,7 @@ interface ThemedBlock {
 const Hero = styled.div`
   display: flex;
   margin: auto;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding-top: 116px;
   justify-content: space-between;
   flex-wrap: wrap;
