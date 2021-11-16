@@ -168,7 +168,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           })}
         </Text>
       )}
-      <Text ml="auto" color="textSubtle" fontSize="16px" mb="8px" mt='8px'>
+      <Text ml="auto" color="textSubtle" fontSize="16px" mb="8px" mt="8px">
         {t('Balance: %balance%', {
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
         })}

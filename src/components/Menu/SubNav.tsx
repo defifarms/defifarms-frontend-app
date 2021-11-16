@@ -11,9 +11,7 @@ const ButtonMenuStyled = styled(ButtonMenu)`
   background-color: #41128f;
   border-radius: 16px;
 `
-const ButtonMenuItemStyled = styled(ButtonMenuItem)`
-
-`
+const ButtonMenuItemStyled = styled(ButtonMenuItem)``
 
 const getActiveIndex = (pathname: string): number => {
   if (

@@ -21,7 +21,6 @@ export interface FarmWithStakedValue extends Farm {
   liquidity?: BigNumber
 }
 
-
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
   background: ${(props) => props.theme.card.backgroundCardTransparent};

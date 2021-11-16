@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Flex, InjectedModalProps, Message, Modal, ModalBody, PancakeToggle, Text } from '@defifarms/uikit'
+import { Button, Flex, InjectedModalProps, Message, Modal, ModalBody, DefifarmsToggle, Text } from '@defifarms/uikit'
 import {
   useAudioModeManager,
   useExpertModeManager,
@@ -85,7 +85,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
                 ml="4px"
               />
             </RowFixed>
-            <PancakeToggle
+            <DefifarmsToggle
               id="toggle-expert-mode-button"
               checked={expertMode}
               onChange={
@@ -103,7 +103,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
               <Text fontSize="14px">{t('Disable Multihops')}</Text>
               <QuestionHelper text={t('Restricts swaps to direct pairs only.')} ml="4px" />
             </RowFixed>
-            <PancakeToggle
+            <DefifarmsToggle
               id="toggle-disable-multihop-button"
               checked={singleHopOnly}
               onChange={() => {
@@ -116,7 +116,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
               <Text fontSize="14px">{t('Audio')}</Text>
               <QuestionHelper text={t('🐰 Turn down your volume a bit before you swap')} ml="4px" />
             </RowFixed>
-            <PancakeToggle checked={audioPlay} onChange={toggleSetAudioMode} />
+            <DefifarmsToggle checked={audioPlay} onChange={toggleSetAudioMode} />
           </Flex>
         </AutoColumn>
       </ModalBody>
