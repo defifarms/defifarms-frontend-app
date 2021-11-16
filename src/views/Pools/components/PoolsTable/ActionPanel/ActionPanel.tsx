@@ -63,8 +63,8 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   justify-content: center;
   padding: 12px;
   background-color: #37049380;
-  
-   ${({ theme }) => theme.mediaQueries.lg} {
+
+  ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
     padding: 16px 32px;
   }

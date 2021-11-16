@@ -1,6 +1,6 @@
 import React from 'react'
-import styled, { css, DefaultTheme } from 'styled-components'
-import { Box } from '@defifarms/uikit'
+import styled, { css } from 'styled-components'
+import { Box, DefifarmsTheme } from '@defifarms/uikit'
 import { ClipFill } from '../types'
 
 interface CurveProps {
@@ -11,7 +11,7 @@ interface ContainerProps extends CurveProps {
   clipPath: string
 }
 
-const sharedStyles = (theme: DefaultTheme, clipPath: string, clipFill?: ClipFill) => css`
+const sharedStyles = (theme: DefifarmsTheme, clipPath: string, clipFill?: ClipFill) => css`
   width: 100%;
   height: 20px;
   clip-path: url(${clipPath});

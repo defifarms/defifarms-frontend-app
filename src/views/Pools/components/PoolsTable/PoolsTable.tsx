@@ -33,7 +33,7 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 const ButtonStyled = styled(Button)`
-    color: ${({ theme }) => theme.colors.four};
+  color: ${({ theme }) => theme.colors.four};
 `
 
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {

@@ -9,7 +9,7 @@ interface FarmTabButtonsProps {
 }
 
 const ButtonMenuStyled = styled(ButtonMenu)`
-  background-color: #631AD1;
+  background-color: #631ad1;
 `
 
 const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {

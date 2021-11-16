@@ -42,8 +42,6 @@ const CardInnerStyled = styled(Card)`
   border: 0.887863px solid #ac8aea70;
 `
 
-
-
 interface PositionCardProps extends CardProps {
   pair: Pair
   showUnwrapped?: boolean

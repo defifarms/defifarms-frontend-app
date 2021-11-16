@@ -2051,9 +2051,9 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@defifarms/uikitit+ssh://git@51.79.243.48:7999/def/sdk.git#develop":
+"@pancakeswap/sdk@git+ssh://git@51.79.243.48:7999/def/sdk.git#develop":
   version "2.3.2"
-  resolved "git+ssh://git@51.79.243.48:7999/def/sdk.git#12a9fb68797942f775deb944e56ba9ed865b302a"
+  resolved "git+ssh://git@51.79.243.48:7999/def/sdk.git#3e53ef729f32fcfcece355af7f811afbcb07a7ef"
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"

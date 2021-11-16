@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import Time from './Time'
 
 interface ThemedBlock {
-  disable?: boolean;
-  margin?: string;
+  disable?: boolean
+  margin?: string
 }
 
 const Hero = styled.div`
@@ -16,7 +16,7 @@ const Hero = styled.div`
   padding-top: 116px;
   justify-content: space-between;
   flex-wrap: wrap;
-  background: #06D5EE;
+  background: #06d5ee;
   opacity: 0.9;
   backdrop-filter: blur(200px);
   border-radius: 10px;
@@ -32,8 +32,7 @@ const Hero = styled.div`
   }
 `
 
-const HeadingWrapper = styled.div`
-`
+const HeadingWrapper = styled.div``
 
 const Image = styled.img`
   width: 100%;
@@ -51,7 +50,7 @@ const HeadingHome = styled(Heading)`
   font-style: normal;
   font-size: 43px;
   line-height: 63px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 9px;
   ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 54.8571px;
@@ -73,14 +72,14 @@ const Label = styled(Text)`
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  color: #FFFFFF;
+  color: #ffffff;
   & > span {
     font-family: HK Grotesk Bold;
   }
 `
 
 const StyledButtonMenu = styled.a`
-  background: #FFD400;
+  background: #ffd400;
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: 500;
@@ -95,13 +94,13 @@ const StyledButtonMenu = styled.a`
 const Block = styled.div<ThemedBlock>`
   width: 100%;
   height: 66.89px;
-  background: ${({disable}) => (disable ? '#E3E3E3' : '#fff')};
+  background: ${({ disable }) => (disable ? '#E3E3E3' : '#fff')};
   border-radius: 4px;
   padding: 13px 10px 0;
   margin: 10px 0;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 153.36px;
-    margin: ${({margin}) => (margin || '0px')};
+    margin: ${({ margin }) => margin || '0px'};
   }
 `
 
@@ -137,7 +136,9 @@ const UpcomingIdo: React.FC = () => {
           <Time time={19} label="Minutes" />
           <Time time={19} label="Seconds" />
         </Flex>
-        <Label>Estimated Target Date: <span>Mon Nov 29 2021 07:07:38 GMT+0700 (Indochina Time)</span></Label>
+        <Label>
+          Estimated Target Date: <span>Mon Nov 29 2021 07:07:38 GMT+0700 (Indochina Time)</span>
+        </Label>
         <BlockWrapper>
           <Block>
             <BlockLabel>Countdown For block:</BlockLabel>
@@ -152,7 +153,7 @@ const UpcomingIdo: React.FC = () => {
             <BlockValue>#468099</BlockValue>
           </Block>
         </BlockWrapper>
-        
+
         <StyledButtonMenu href="https://rocket.defifarms.org/" target="_blank">
           {t('Join now')}
         </StyledButtonMenu>

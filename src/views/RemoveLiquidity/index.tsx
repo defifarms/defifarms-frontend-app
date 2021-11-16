@@ -36,9 +36,6 @@ import { currencyId } from '../../utils/currencyId'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import Page from '../Page'
 
-
-
-
 const BorderCard = styled.div`
   border: solid 1px ${({ theme }) => theme.colors.cardBorder};
   border-radius: 16px;

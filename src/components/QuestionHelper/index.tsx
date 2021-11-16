@@ -7,7 +7,7 @@ interface Props extends BoxProps {
 }
 
 const QuestionWrapper = styled.div`
-  display: inline;  
+  display: inline;
   :hover,
   :focus {
     opacity: 0.7;
