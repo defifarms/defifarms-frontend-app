@@ -29,7 +29,7 @@ const StyledFarmStakingCard = styled(Card)`
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
     max-width: none;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     grid-column: span 4;
   }
 
