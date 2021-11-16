@@ -10,7 +10,7 @@ import {
   Modal,
   Text,
   useTooltip,
-} from '@pancakeswap/uikit'
+} from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'

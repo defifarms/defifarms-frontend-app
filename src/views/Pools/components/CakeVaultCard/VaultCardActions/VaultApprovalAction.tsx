@@ -1,5 +1,5 @@
 import React from 'react'
-import { AutoRenewIcon, Button, Skeleton } from '@pancakeswap/uikit'
+import { AutoRenewIcon, Button, Skeleton } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useVaultApprove } from '../../../hooks/useApprove'
 

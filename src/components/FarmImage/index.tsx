@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from '@pancakeswap/uikit'
+import { Image } from '@defifarms/uikit'
 
 interface FarmImageProps {
   src: string

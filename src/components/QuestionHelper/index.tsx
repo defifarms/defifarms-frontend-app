@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, BoxProps, HelpIcon, useTooltip } from '@pancakeswap/uikit'
+import { Box, BoxProps, HelpIcon, useTooltip } from '@defifarms/uikit'
 import styled from 'styled-components'
 
 interface Props extends BoxProps {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, memo } from 'react'
 import { useCountUp } from 'react-countup'
 import styled from 'styled-components'
-import { Text } from '@pancakeswap/uikit'
+import { Text } from '@defifarms/uikit'
 
 export interface CardValueProps {
   value: number

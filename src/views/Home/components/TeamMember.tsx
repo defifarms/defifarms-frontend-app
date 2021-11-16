@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Text, Flex } from '@pancakeswap/uikit'
+import { Heading, Text, Flex } from '@defifarms/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'

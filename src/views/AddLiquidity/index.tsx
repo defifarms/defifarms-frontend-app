@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap/sdk'
-import { AddIcon, Button, CardBody, Flex, Message, Text, useModal } from '@pancakeswap/uikit'
+import { AddIcon, Button, CardBody, Flex, Message, Text, useModal } from '@defifarms/uikit'
 import { MainBackground } from 'components/Layout/MainBackground'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { useTranslation } from 'contexts/Localization'

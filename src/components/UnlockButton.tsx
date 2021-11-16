@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, useWalletModal } from '@pancakeswap/uikit'
+import { Button, useWalletModal } from '@defifarms/uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, Text } from '@pancakeswap/uikit'
+import { ChevronDownIcon, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import BaseCell from './BaseCell'
 

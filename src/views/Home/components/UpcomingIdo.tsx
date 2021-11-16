@@ -1,4 +1,4 @@
-import { BaseLayout, Heading, Text, Flex } from '@pancakeswap/uikit'
+import { BaseLayout, Heading, Text, Flex } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import React, {useEffect} from 'react'
 import styled from 'styled-components'

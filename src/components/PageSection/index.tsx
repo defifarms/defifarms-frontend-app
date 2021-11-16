@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, BoxProps, Flex, FlexProps } from '@pancakeswap/uikit'
+import { Box, BoxProps, Flex, FlexProps } from '@defifarms/uikit'
 import Container from 'components/Layout/Container'
 import CurvedDivider from './CurvedDivider'
 import { ClipFill, DividerFill } from './types'

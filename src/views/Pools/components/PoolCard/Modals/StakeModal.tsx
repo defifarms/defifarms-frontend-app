@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Link, Modal, Slider, Text } from '@pancakeswap/uikit'
+import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Link, Modal, Slider, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'

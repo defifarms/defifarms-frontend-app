@@ -1,5 +1,5 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
-import { ArrowDownIcon, Box, Button, Text, useModal } from '@pancakeswap/uikit'
+import { ArrowDownIcon, Box, Button, Text, useModal } from '@defifarms/uikit'
 import { MainBackground } from 'components/Layout/MainBackground'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
