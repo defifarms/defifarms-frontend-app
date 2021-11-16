@@ -11,8 +11,8 @@ const StyledPage = styled(Container)`
   min-height: calc(100vh - 64px);
   padding-top: 16px;
   padding-bottom: 16px;
-  margin-left: 32px;
-  margin-right: 32px;
+  margin-left: 24px;
+  margin-right: 24px;
   padding-left: 0;
   padding-right: 0;
 
