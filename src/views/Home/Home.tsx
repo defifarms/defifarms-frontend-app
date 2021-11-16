@@ -43,7 +43,7 @@ const Cards = styled(BaseLayout)`
   grid-gap: 24px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     grid-gap: 24px;
   }
 `
