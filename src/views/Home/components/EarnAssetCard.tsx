@@ -40,6 +40,9 @@ const StyledFarmStakingCard = styled(Card)`
 const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
   line-height: 44px;
   padding-bottom: 28px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
 `
 const StyleCircleButton = styled.div`
   width: 44px;
@@ -72,12 +75,12 @@ const EarnAssetCard = () => {
       <StyledCardBody>
         <NavLink exact activeClassName="active" to="/pools" id="pool-cta">
           <CardBody>
-            <Heading scale="lg" color="#fff">
+            <Heading scale="md" color="#fff">
               {earn}
             </Heading>
             <CardMidContent color="#fff">{assets}</CardMidContent>
             <Flex justifyContent="space-between" alignItems="baseline">
-              <Heading color="#fff" scale="lg">
+              <Heading color="#fff" scale="md">
                 {InPools}
               </Heading>
               <StyleCircleButton>
