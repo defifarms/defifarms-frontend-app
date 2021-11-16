@@ -16,7 +16,7 @@ const StyledPage = styled(Container)`
   padding-left: 0;
   padding-right: 0;
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1500px) {
     padding-top: 24px;
     padding-bottom: 24px;
     margin-left: auto;
