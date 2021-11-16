@@ -140,7 +140,7 @@ const FarmedStakingCard = () => {
     return t(' %hour%h : %minute%m : %second%s', {
       hour: hours,
       minute: minutes,
-      second: seconds,
+      second: Math.round(seconds),
     })
   }
 
