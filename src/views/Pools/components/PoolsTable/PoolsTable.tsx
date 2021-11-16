@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@pancakeswap/uikit'
+import { Button, ChevronUpIcon } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -33,7 +33,7 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 const ButtonStyled = styled(Button)`
-    color: ${({ theme }) => theme.colors.four};
+  color: ${({ theme }) => theme.colors.four};
 `
 
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {

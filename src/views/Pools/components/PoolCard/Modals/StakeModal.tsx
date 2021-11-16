@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Link, Modal, Slider, Text } from '@pancakeswap/uikit'
+import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Link, Modal, Slider, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
@@ -168,7 +168,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           })}
         </Text>
       )}
-      <Text ml="auto" color="textSubtle" fontSize="16px" mb="8px" mt='8px'>
+      <Text ml="auto" color="textSubtle" fontSize="16px" mb="8px" mt="8px">
         {t('Balance: %balance%', {
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
         })}

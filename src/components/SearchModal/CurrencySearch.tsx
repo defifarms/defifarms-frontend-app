@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Currency, ETHER, Token } from '@pancakeswap/sdk'
-import { Box, Input, Text } from '@pancakeswap/uikit'
+import { Box, Input, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
 import { useAudioModeManager } from 'state/user/hooks'

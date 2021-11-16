@@ -1,5 +1,5 @@
 import React from 'react'
-import { dark, light, ModalProvider } from '@pancakeswap/uikit'
+import { dark, light, ModalProvider } from '@defifarms/uikit'
 import { Web3ReactProvider } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'

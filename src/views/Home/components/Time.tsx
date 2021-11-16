@@ -1,4 +1,4 @@
-import { Text } from '@pancakeswap/uikit'
+import { Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import React from 'react'
 import styled from 'styled-components'
@@ -10,7 +10,7 @@ const Label = styled(Text)`
   font-size: 18px;
   line-height: 21px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   padding-top: 4px;
 `
 
@@ -34,10 +34,10 @@ const Wrapper = styled.div`
 
 interface ITime {
   time: number
-  label: string 
+  label: string
 }
 
-const Time: React.FC<ITime> = ({time, label}: ITime) => {
+const Time: React.FC<ITime> = ({ time, label }: ITime) => {
   const { t } = useTranslation()
 
   return (

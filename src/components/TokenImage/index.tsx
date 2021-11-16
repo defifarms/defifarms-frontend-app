@@ -4,7 +4,7 @@ import {
   TokenImage as UIKitTokenImage,
   TokenPairImage as UIKitTokenPairImage,
   TokenPairImageProps as UIKitTokenPairImageProps,
-} from '@pancakeswap/uikit'
+} from '@defifarms/uikit'
 import tokens from 'config/constants/tokens'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'

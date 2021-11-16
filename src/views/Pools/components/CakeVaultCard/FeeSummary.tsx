@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, TooltipText, useTooltip } from '@pancakeswap/uikit'
+import { Flex, Text, TooltipText, useTooltip } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useCakeVault } from 'state/pools/hooks'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { AddIcon, Button, Flex, IconButton, MinusIcon, Skeleton, Text, useModal, useTooltip } from '@pancakeswap/uikit'
+import { AddIcon, Button, Flex, IconButton, MinusIcon, Skeleton, Text, useModal, useTooltip } from '@defifarms/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useWeb3React } from '@web3-react/core'
 import { useCakeVault } from 'state/pools/hooks'

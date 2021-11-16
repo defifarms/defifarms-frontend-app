@@ -1,6 +1,6 @@
 import React from 'react'
 import Switch from 'react-switch'
-import { Text, DarkIcon, LightIcon, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Text, DarkIcon, LightIcon, useMatchBreakpoints } from '@defifarms/uikit'
 
 interface ThemeToggleType {
   handleChange?: () => void

@@ -1,5 +1,5 @@
 import { Pair } from '@pancakeswap/sdk'
-import { AddIcon, Button, CardBody, CardFooter, Flex, Text } from '@pancakeswap/uikit'
+import { AddIcon, Button, CardBody, CardFooter, Flex, Text } from '@defifarms/uikit'
 import { MainBackground } from 'components/Layout/MainBackground'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

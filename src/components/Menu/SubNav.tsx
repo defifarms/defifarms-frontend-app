@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, lightColors } from '@pancakeswap/uikit'
+import { ButtonMenu, ButtonMenuItem, lightColors } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
@@ -11,9 +11,7 @@ const ButtonMenuStyled = styled(ButtonMenu)`
   background-color: #41128f;
   border-radius: 16px;
 `
-const ButtonMenuItemStyled = styled(ButtonMenuItem)`
-
-`
+const ButtonMenuItemStyled = styled(ButtonMenuItem)``
 
 const getActiveIndex = (pathname: string): number => {
   if (

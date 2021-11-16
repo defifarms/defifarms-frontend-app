@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import QuestionHelper from 'components/QuestionHelper'
-import { Flex, Skeleton, Text } from '@pancakeswap/uikit'
+import { Flex, Skeleton, Text } from '@defifarms/uikit'
 import { Farm } from 'state/types'
 import { getBscScanLink } from 'utils'
 import { useTranslation } from 'contexts/Localization'
@@ -20,7 +20,6 @@ export interface FarmWithStakedValue extends Farm {
   lpRewardsApr?: number
   liquidity?: BigNumber
 }
-
 
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;

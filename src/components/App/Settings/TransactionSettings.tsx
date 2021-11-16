@@ -1,4 +1,4 @@
-import { Button, Flex, Grid, Input, Text } from '@pancakeswap/uikit'
+import { Button, Flex, Grid, Input, Text } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import React, { useState } from 'react'
 import styled from 'styled-components'

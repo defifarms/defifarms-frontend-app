@@ -1,5 +1,5 @@
 import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap/sdk'
-import { AddIcon, Button, ChevronDownIcon, Text, useModal } from '@pancakeswap/uikit'
+import { AddIcon, Button, ChevronDownIcon, Text, useModal } from '@defifarms/uikit'
 import { MainBackground } from 'components/Layout/MainBackground'
 import { useTranslation } from 'contexts/Localization'
 import React, { useCallback, useEffect, useState } from 'react'

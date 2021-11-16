@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Checkbox, Flex, Link, Message, Text } from '@pancakeswap/uikit'
+import { Button, Checkbox, Flex, Link, Message, Text } from '@defifarms/uikit'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Layout/Column'
 import { RowBetween, RowFixed } from 'components/Layout/Row'

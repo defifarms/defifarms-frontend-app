@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ActionContainer = styled.div`
   padding: 24px 16px;
-  border: 1px solid #5503E8;
+  border: 1px solid #5503e8;
   border-radius: 16px;
   flex-grow: 1;
   flex-basis: 0;

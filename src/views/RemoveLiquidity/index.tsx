@@ -3,7 +3,7 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap/sdk'
-import { AddIcon, ArrowDownIcon, Box, Button, CardBody, Flex, Slider, Text, useModal } from '@pancakeswap/uikit'
+import { AddIcon, ArrowDownIcon, Box, Button, CardBody, Flex, Slider, Text, useModal } from '@defifarms/uikit'
 import { MainBackground } from 'components/Layout/MainBackground'
 import { useTranslation } from 'contexts/Localization'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -35,9 +35,6 @@ import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '
 import { currencyId } from '../../utils/currencyId'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import Page from '../Page'
-
-
-
 
 const BorderCard = styled.div`
   border: solid 1px ${({ theme }) => theme.colors.cardBorder};

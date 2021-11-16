@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation, useRouteMatch } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@pancakeswap/uikit'
+import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface FarmTabButtonsProps {
@@ -9,7 +9,7 @@ interface FarmTabButtonsProps {
 }
 
 const ButtonMenuStyled = styled(ButtonMenu)`
-  background-color: #631AD1;
+  background-color: #631ad1;
 `
 
 const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {

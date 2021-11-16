@@ -10,7 +10,7 @@ import {
   ChevronUpIcon,
   Flex,
   Text,
-} from '@pancakeswap/uikit'
+} from '@defifarms/uikit'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
@@ -41,8 +41,6 @@ const CardStyled = styled(Card)`
 const CardInnerStyled = styled(Card)`
   border: 0.887863px solid #ac8aea70;
 `
-
-
 
 interface PositionCardProps extends CardProps {
   pair: Pair

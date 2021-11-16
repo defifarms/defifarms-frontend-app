@@ -13,7 +13,7 @@ import {
   Modal,
   Spinner,
   Text,
-} from '@pancakeswap/uikit'
+} from '@defifarms/uikit'
 import { registerToken } from 'utils/wallet'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

@@ -12,7 +12,7 @@ import {
   Text,
   TimerIcon,
   useTooltip,
-} from '@pancakeswap/uikit'
+} from '@defifarms/uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
 import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
@@ -63,8 +63,8 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   justify-content: center;
   padding: 12px;
   background-color: #37049380;
-  
-   ${({ theme }) => theme.mediaQueries.lg} {
+
+  ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
     padding: 16px 32px;
   }
