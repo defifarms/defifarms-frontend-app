@@ -21,4 +21,4 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           password: ${{ secrets.PASSWORD }}
-          script: cd defifarms-frontend-app && git pull origin develop && yarn && yarn build && pm2 restart all
+          script: cd defifarms-frontend-app && git pull origin develop &&ls && yarn && yarn build && pm2 restart all
