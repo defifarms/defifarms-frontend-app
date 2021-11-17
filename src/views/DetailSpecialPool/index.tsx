@@ -2,14 +2,19 @@ import { Flex, Heading, Text } from '@defifarms/uikit'
 import { MainBackground } from 'components/Layout/MainBackground'
 import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
+import { RouteComponentProps } from 'react-router'
 import React from 'react'
-import { SpecialPoolsConfig } from './config'
-import SpecialPoolItem from './SpecialPoolItem'
+import { SpecialPoolsConfig } from '../SpecialPools/config'
 
 
-const SpecialPools: React.FC = () => {
+const DetailSpecialPool: React.FC<RouteComponentProps<{ groupPool:string }>> = ({
+  history,
+  match: {
+    params: { groupPool }
+    }
+  }) => {
   const { t } = useTranslation()
-
+  const currentSpecialPoolConfig = SpecialPoolsConfig.find(pool => pool.link === groupPool )
 
   return (
     <MainBackground>
@@ -17,7 +22,7 @@ const SpecialPools: React.FC = () => {
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="white">
-              {t('Special Pools')}
+              {t('Special Pools')} {groupPool}
             </Heading>
             <Heading scale="md" color="white">
               {t('Just stake some tokens to earn. High APR, low risk.')}
@@ -28,16 +33,12 @@ const SpecialPools: React.FC = () => {
             {/* <BountyCard /> */}
           </Flex>
         </Flex>
+        {currentSpecialPoolConfig.childrenPools.map((pool) => (
+          <Text>{pool.harvestInterval}</Text>
+        ))}
       </PageHeader>
-      {SpecialPoolsConfig.map((specialPool) => {
-        return (
-          <Flex justifyContent="center">
-            <SpecialPoolItem poolConfig={specialPool} />
-          </Flex>
-        )
-      })}
     </MainBackground>
   )
 }
 
-export default SpecialPools
+export default DetailSpecialPool

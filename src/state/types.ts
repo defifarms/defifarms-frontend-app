@@ -64,6 +64,8 @@ export interface Pool extends PoolConfig {
 }
 export interface SpecialPoolConfigType {
   name: string
+  link: string
+  childrenPools: Pool[]
 }
 
 export interface Profile {

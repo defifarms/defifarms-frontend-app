@@ -9,6 +9,7 @@ import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 // Views included in the main bundle
 import SpecialPools from 'views/SpecialPools'
+import DetailSpecialPool from 'views/DetailSpecialPool'
 import EasterEgg from './components/EasterEgg'
 import PageLoader from './components/Loader/PageLoader'
 import Menu from './components/Menu'
@@ -80,9 +81,8 @@ const App: React.FC = () => {
             <Route path="/pools">
               <Pools />
             </Route>
-            <Route path="/special-pools">
-              <SpecialPools />
-            </Route>
+            <Route exact path="/special-pools" component={SpecialPools} />
+            <Route exact strict path="/special-pools/:groupPool" component={DetailSpecialPool} />
             {/* <Route path="/lottery"> */}
             {/*  <Lottery /> */}
             {/* </Route> */}
