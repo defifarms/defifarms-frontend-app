@@ -21,9 +21,4 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           password: ${{ secrets.PASSWORD }}
-          script: cd defifarms-frontend-app && git pull origin develop && yarn && yarn build
-
-HOST:51.79.145.213
-USERNAME:debian
-PORT:22
-PASSWORD:defifarm@2021
+          script: cd defifarms-frontend-app && git pull origin develop && yarn && yarn build && pm2 restart all
