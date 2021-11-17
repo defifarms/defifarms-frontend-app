@@ -62,6 +62,9 @@ export interface Pool extends PoolConfig {
     harvest?: boolean
   }
 }
+export interface SpecialPoolConfigType {
+  name: string
+}
 
 export interface Profile {
   userId: number
