@@ -1,29 +1,32 @@
-import React, { lazy } from 'react'
-import { Redirect, Route, Router, Switch } from 'react-router-dom'
 import { ResetCSS } from '@defifarms/uikit'
 import BigNumber from 'bignumber.js'
-import useEagerConnect from 'hooks/useEagerConnect'
-import { usePollBlockNumber } from 'state/block/hooks'
-import { usePollCoreFarmData } from 'state/farms/hooks'
 // import { useFetchProfile } from 'state/profile/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
-import GlobalStyle from './style/Global'
+import useEagerConnect from 'hooks/useEagerConnect'
+import React, { lazy } from 'react'
+import { Redirect, Route, Router, Switch } from 'react-router-dom'
+import { usePollBlockNumber } from 'state/block/hooks'
+import { usePollCoreFarmData } from 'state/farms/hooks'
+// Views included in the main bundle
+import SpecialPools from 'views/SpecialPools'
+import DetailSpecialPool from 'views/DetailSpecialPool'
+import EasterEgg from './components/EasterEgg'
+import PageLoader from './components/Loader/PageLoader'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import { ToastListener } from './contexts/ToastsContext'
-import PageLoader from './components/Loader/PageLoader'
-import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
-// Views included in the main bundle
-import Pools from './views/Pools'
-import Swap from './views/Swap'
+import GlobalStyle from './style/Global'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
-  RedirectToAddLiquidity,
+  RedirectToAddLiquidity
 } from './views/AddLiquidity/redirects'
+import Pools from './views/Pools'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
+import Swap from './views/Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -78,6 +81,8 @@ const App: React.FC = () => {
             <Route path="/pools">
               <Pools />
             </Route>
+            <Route exact path="/special-pools" component={SpecialPools} />
+            <Route exact strict path="/special-pools/:groupPool" component={DetailSpecialPool} />
             {/* <Route path="/lottery"> */}
             {/*  <Lottery /> */}
             {/* </Route> */}

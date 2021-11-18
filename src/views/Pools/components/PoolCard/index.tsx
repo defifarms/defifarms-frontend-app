@@ -1,4 +1,4 @@
-import { CardBody, CardRibbon, Flex, Text } from '@defifarms/uikit'
+import { CardBody, CardRibbon, Flex, Text, Slider } from '@defifarms/uikit'
 import BigNumber from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'
@@ -22,6 +22,10 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
 
+
+  const handleChangePercent = (sliderPercent: number) => {
+    console.log('handleChangePercent', sliderPercent)
+  }
   return (
     <StyledCard
       isFinished={isFinished && sousId !== 0}
@@ -48,6 +52,24 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
               </>
             )}
           </Flex>
+          <Flex mt="24px" flexDirection="row" justifyContent='space-between'>
+            <Text bold color="four">
+              {t('Progress')}:
+            </Text>
+            <Text color="four">
+              {t('6.000/10.000$')}
+            </Text>
+          </Flex>
+          <Slider
+            min={0}
+            max={100}
+            value={60}
+            onValueChanged={handleChangePercent}
+            name="stake"
+            valueLabel={`${60}%`}
+            step={1}
+          />
+          <Text>{t('Closed in')}: 1d : 20h : 10m</Text>
         </CardBodyStyled>
         <CardFooter pool={pool} account={account} />
       </StyledCardInner>
