@@ -6,10 +6,8 @@ import React from 'react'
 import { SpecialPoolsConfig } from './config'
 import SpecialPoolItem from './SpecialPoolItem'
 
-
 const SpecialPools: React.FC = () => {
   const { t } = useTranslation()
-
 
   return (
     <MainBackground>

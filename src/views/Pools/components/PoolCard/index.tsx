@@ -22,7 +22,6 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
 
-
   const handleChangePercent = (sliderPercent: number) => {
     console.log('handleChangePercent', sliderPercent)
   }
@@ -52,13 +51,11 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
               </>
             )}
           </Flex>
-          <Flex mt="24px" flexDirection="row" justifyContent='space-between'>
+          <Flex mt="24px" flexDirection="row" justifyContent="space-between">
             <Text bold color="four">
               {t('Progress')}:
             </Text>
-            <Text color="four">
-              {t('6.000/10.000$')}
-            </Text>
+            <Text color="four">{t('6.000/10.000$')}</Text>
           </Flex>
           <Slider
             min={0}

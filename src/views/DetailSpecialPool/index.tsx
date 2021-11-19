@@ -6,15 +6,14 @@ import { RouteComponentProps } from 'react-router'
 import React from 'react'
 import { SpecialPoolsConfig } from '../SpecialPools/config'
 
-
-const DetailSpecialPool: React.FC<RouteComponentProps<{ groupPool:string }>> = ({
+const DetailSpecialPool: React.FC<RouteComponentProps<{ groupPool: string }>> = ({
   history,
   match: {
-    params: { groupPool }
-    }
-  }) => {
+    params: { groupPool },
+  },
+}) => {
   const { t } = useTranslation()
-  const currentSpecialPoolConfig = SpecialPoolsConfig.find(pool => pool.link === groupPool )
+  const currentSpecialPoolConfig = SpecialPoolsConfig.find((pool) => pool.link === groupPool)
 
   return (
     <MainBackground>
