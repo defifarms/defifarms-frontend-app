@@ -135,7 +135,7 @@ const TimeWrapper = styled(Flex)`
 `
 
 const UpcomingIdo: React.FC = () => {
-  const nextTime = 'Sat Nov 27 2021 05:10:47 GMT+0700'
+  const nextTime = 'Wed Dec 11 2024 12:28:10 GMT+0700'
   const { t } = useTranslation()
   const [timeHarvestRemaining, setTimeHarvestRemaining, isFinish] = useCountDownTimer()
   useEffect(() => {
@@ -168,15 +168,15 @@ const UpcomingIdo: React.FC = () => {
         <BlockWrapper>
           <Block>
             <BlockLabel>Countdown For block:</BlockLabel>
-            <BlockValue>#12999999</BlockValue>
+            <BlockValue>#20643376</BlockValue>
           </Block>
           <Block disable margin="0 10px">
             <BlockLabel>Current Block:</BlockLabel>
-            <BlockValue>#12531900</BlockValue>
+            <BlockValue>#13645985</BlockValue>
           </Block>
           <Block disable>
             <BlockLabel>Remaining Block:</BlockLabel>
-            <BlockValue>#468099</BlockValue>
+            <BlockValue>#6997391</BlockValue>
           </Block>
         </BlockWrapper>
 

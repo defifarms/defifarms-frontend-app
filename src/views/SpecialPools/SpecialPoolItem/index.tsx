@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import { SpecialPoolConfigType } from 'state/types'
 import { Link } from 'react-router-dom'
 
-
 const ItemWrap = styled.div`
   width: 100%;
   max-width: 1200px;
