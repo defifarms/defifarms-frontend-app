@@ -17,7 +17,7 @@ const ItemWrap = styled.div`
   overflow: hidden;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin: 8px 0 16px;
+    margin: 8px 32px 16px;
   }
 `
 const CountDownBlock = styled.div`
