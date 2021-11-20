@@ -51,7 +51,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
               </>
             )}
           </Flex>
-          <Flex mt="24px" flexDirection="row" justifyContent="space-between">
+          {/* <Flex mt="24px" flexDirection="row" justifyContent='space-between'>
             <Text bold color="four">
               {t('Progress')}:
             </Text>
@@ -66,7 +66,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
             valueLabel={`${60}%`}
             step={1}
           />
-          <Text>{t('Closed in')}: 1d : 20h : 10m</Text>
+          <Text>{t('Closed in')}: 1d : 20h : 10m</Text> */}
         </CardBodyStyled>
         <CardFooter pool={pool} account={account} />
       </StyledCardInner>

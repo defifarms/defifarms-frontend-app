@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Flex, Heading, Skeleton, Text, useModal } from '@defifarms/uikit'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import getTimePeriods from 'utils/getTimePeriods'
+import useCountDownTimer from 'hooks/useCountDownTimer'
 import Balance from 'components/Balance'
 import CollectModal from '../Modals/CollectModal'
 
@@ -35,6 +37,11 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const hasEarnings = earnings.toNumber() > 0
   const isCompoundPool = sousId === 0
+  // const [timeHarvestRemaining, setTimeHarvestRemaining, isFinish] = useCountDownTimer()
+
+  // useEffect(() => {
+  //   setTimeHarvestRemaining(Math.max(farmsPoolWithBalance.nextHarvestTime - new Date().getTime(), 0))
+  // }, [farmsPoolWithBalance.nextHarvestTime, setTimeHarvestRemaining])
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -52,6 +59,18 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   let isDisable = false
   if (hasEarnings && isHarvest) {
     isDisable = true
+  }
+
+  const getTimeRemainingText = (time) => {
+    const { hours, minutes, seconds } = getTimePeriods(time / 1000)
+    if (time <= 0) {
+      return ''
+    }
+    return t(' %hour%h : %minute%m : %second%s', {
+      hour: hours,
+      minute: minutes,
+      second: Math.round(seconds),
+    })
   }
 
   return (
@@ -90,6 +109,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       <Button disabled={!isDisable} onClick={onPresentCollect}>
         {isCompoundPool ? t('Collect') : t('Harvest')}
       </Button>
+      {/* <Text>{getTimeRemainingText(timeHarvestRemaining)}</Text> */}
     </Flex>
   )
 }
