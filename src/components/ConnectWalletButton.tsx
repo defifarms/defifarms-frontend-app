@@ -5,7 +5,7 @@ import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledButtonMenu = styled(Button)`
-  background: #3230B2;
+  background: #3230b2;
 `
 
 const ConnectWalletButton = (props) => {

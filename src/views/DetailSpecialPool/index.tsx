@@ -39,7 +39,7 @@ const StakeInfoWrap = styled(Flex)<{ background?: string }>`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 16px 0 16px 16px ;
+  margin: 16px 0 16px 16px;
   border: 1px solid #7b53c4;
   border-radius: 10px;
   background-color: #4a278a;
@@ -93,7 +93,7 @@ const DetailSpecialPool: React.FC<RouteComponentProps<{ groupPool: string }>> = 
             </Flex>
             <Flex justifyContent="center">
               <Heading as="h1" scale="xxl" color="white" fontFamily="HK Grotesk" mt="16px">
-                {t('Cap Goals')}: ${formatNumber(currentSpecialPoolConfig.capGoal, 0,2)}
+                {t('Cap Goals')}: ${formatNumber(currentSpecialPoolConfig.capGoal, 0, 2)}
               </Heading>
             </Flex>
             <Flex justifyContent="space-between">

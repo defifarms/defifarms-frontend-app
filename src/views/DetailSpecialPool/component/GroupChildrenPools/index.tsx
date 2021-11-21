@@ -15,7 +15,6 @@ import { wrappedCurrency } from 'utils/wrappedCurrency'
 
 import { SpecialPoolsConfig } from '../../../SpecialPools/config'
 
-
 interface IGroupPools {
   currentSpecialPoolConfig: SpecialPoolConfigType
 }
@@ -30,16 +29,13 @@ const ContainerWrap = styled(Container)`
   justify-content: center;
   flex-direction: column;
 `
-const ActionContainer = styled(Flex)`
-  
-`
+const ActionContainer = styled(Flex)``
 const RowPool = styled(Flex)`
   background-color: #2c007c;
   padding: 4px 16px;
   border-radius: 4px;
   width: 100%;
   margin-bottom: 16px;
-
 `
 const StakeInfo = styled.div`
   background-color: #512e91;
@@ -54,7 +50,6 @@ const ButtonStyled = styled(Button)`
   height: unset;
 `
 
-
 const GroupChildrenPools: React.FC<IGroupPools> = ({ currentSpecialPoolConfig }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
@@ -64,11 +59,7 @@ const GroupChildrenPools: React.FC<IGroupPools> = ({ currentSpecialPoolConfig })
       {currentSpecialPoolConfig.childrenPools.map((pool) => (
         <RowPool justifyContent="flex-start" alignItems="center">
           {/* <TokenImage token={pool.stakingToken} size="24px" /> */}
-          <TokenImage
-            token={pool.stakingToken}
-            width={40}
-            height={40}
-          />
+          <TokenImage token={pool.stakingToken} width={40} height={40} />
           <ActionContainer alignItems="center">
             <ButtonStyled scale="sm" minWidth={130} disabled={false} onClick={null} ml="16px" mr="16px">
               {t('Stake')}

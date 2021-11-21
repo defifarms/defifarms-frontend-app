@@ -27,7 +27,7 @@ const Hero = styled.div`
   text-align: center;
   align-items: center;
   padding: 19px 18px;
-  background: #FFA800;
+  background: #ffa800;
   opacity: 0.98;
   backdrop-filter: blur(200px);
   ${({ theme }) => theme.mediaQueries.md} {
@@ -120,10 +120,10 @@ const Label = styled(Text)`
 const StyledButtonMenu = styled.a`
   font-family: HK Grotesk Bold;
   font-size: 15.683px;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 41px;
   border-radius: 100px;
-  background: #00BDE4;
+  background: #00bde4;
   display: block;
   width: 174px;
   text-align: center;
@@ -171,8 +171,8 @@ const TimeWrapper = styled(Flex)`
 `
 
 const RealWrapper = styled(Flex)`
-  background: #FFFFFF;
-  border-radius: 5px; 
+  background: #ffffff;
+  border-radius: 5px;
   padding: 15px 25px 15px 15px;
   display: flex;
   flex-wrap: wrap;
@@ -186,7 +186,7 @@ const RealWrapper = styled(Flex)`
 `
 
 const RealTextWrapper = styled.div`
-  padding: 0;  
+  padding: 0;
   justify-content: center;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0 110px 0 28px;
@@ -220,7 +220,7 @@ const Icon = styled.span<StyleIcon>`
 const ImageWrapper = styled.div`
   width: 100%;
   height: auto;
-  background: #C0B3A8;
+  background: #c0b3a8;
   border-radius: 5px;
   padding: 5px 5px 0;
   margin-right: 0;
@@ -326,7 +326,6 @@ const UpcomingIdo: React.FC = () => {
         </div>
       </RealWrapper>
       <HeroWrapper />
-
     </Hero>
   )
 }
