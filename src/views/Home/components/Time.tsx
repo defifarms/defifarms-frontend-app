@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   text-align: center;
   padding-right: 15px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-right: 30px;
+    padding-right: 0px;
   }
 `
 
