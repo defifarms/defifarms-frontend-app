@@ -32,12 +32,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     items: [
       {
-        label: t('Special Pools'),
-        href: '/special-pools',
-      },
-      {
         label: t('Classic Pools'),
         href: '/pools',
+      },
+      {
+        label: t('Special Pools'),
+        href: '/special-pools',
       },
     ],
   },
