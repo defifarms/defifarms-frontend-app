@@ -95,9 +95,9 @@ const HeadingHome = styled(Heading)`
 `
 
 const BlockWrapper = styled.div`
-  display: list-item;
+  display: flex;
+  flex-wrap: nowrap;
   padding: 25px 0;
-  flex-wrap: wrap;
   ${({ theme }) => theme.mediaQueries.lg} {
     display: flex;
     flex-wrap: nowrap;
@@ -121,12 +121,14 @@ const StyledButtonMenu = styled.a`
   font-family: HK Grotesk Bold;
   font-size: 15.683px;
   color: #ffffff;
-  line-height: 41px;
   border-radius: 100px;
   background: #00bde4;
-  display: block;
-  width: 174px;
+  padding: 11px 56px;
   text-align: center;
+  display: inline-block;
+  ${({ theme }) => theme.mediaQueries.md} {
+    float: right;
+  }
 `
 
 const Block = styled.div<ThemedBlock>`
@@ -135,7 +137,7 @@ const Block = styled.div<ThemedBlock>`
   background: ${({ disable }) => (disable ? '#E3E3E3' : '#fff')};
   border-radius: 4px;
   padding: 13px 10px 0;
-  margin: 10px 0;
+  margin: ${({ margin }) => margin || '0px'};
   ${({ theme }) => theme.mediaQueries.md} {
     width: 147.36px;
     margin: ${({ margin }) => margin || '0px'};
@@ -146,17 +148,23 @@ const BlockLabel = styled.p`
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: 500;
-  font-size: 12.8px;
+  font-size: 9px;
   line-height: 15px;
   color: #333333;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 12.8px;
+  }
 `
 
 const BlockValue = styled.p`
   font-family: HK Grotesk Bold;
   font-weight: 500;
-  font-size: 19px;
+  font-size: 11px;
   line-height: 22px;
   color: #333333;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 19px;
+  }
 `
 
 const TimeWrapper = styled(Flex)`
@@ -188,6 +196,7 @@ const RealWrapper = styled(Flex)`
 const RealTextWrapper = styled.div`
   padding: 0;
   justify-content: center;
+  text-align: left;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0 110px 0 28px;
   }
@@ -218,15 +227,14 @@ const Icon = styled.span<StyleIcon>`
 `
 
 const ImageWrapper = styled.div`
-  width: 100%;
-  height: auto;
+  width: 150px;
+  height: 130px;
   background: #c0b3a8;
   border-radius: 5px;
   padding: 5px 5px 0;
   margin-right: 0;
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 150px;
-    height: 130px;
+    
     padding: 5px 5px 0;
     margin-right: 25px;
   }
@@ -238,7 +246,7 @@ const Price = styled.p`
   line-height: 21px;
   color: #000000;
   padding: 15px 0 46px;
-  text-align: center;
+  text-align: left;
   ${({ theme }) => theme.mediaQueries.lg} {
     text-align: right;
   }
@@ -247,13 +255,23 @@ const Price = styled.p`
 const IconWrapper = styled(Flex)`
   flex-wrap: wrap;
   padding-top: 10px;
-  justify-content: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+  justify-content: flex-start;
+`
+
+const PriceWrapper = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: auto;
   }
 `
 
+const Grid = styled.div`
+  display: grid;
+  flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+  }
+`
 const UpcomingIdo: React.FC = () => {
   const nextTime = 'Wed Dec 11 2024 12:28:10 GMT+0700'
   const { t } = useTranslation()
@@ -303,7 +321,7 @@ const UpcomingIdo: React.FC = () => {
         </BlockWrapper>
       </HeaderWrapper>
       <RealWrapper>
-        <Flex flexWrap="wrap" justifyContent="center">
+        <Grid>
           <ImageWrapper>
             <Image width="140px" height="88px" alt="alt" src="/images/home/real-realm.png" />
           </ImageWrapper>
@@ -317,13 +335,13 @@ const UpcomingIdo: React.FC = () => {
               <Icon bg="/images/home/twitter.png" />
             </IconWrapper>
           </RealTextWrapper>
-        </Flex>
-        <div>
+        </Grid>
+        <PriceWrapper>
           <Price>(GFX/BSUD)</Price>
           <StyledButtonMenu href="https://rocket.defifarms.org/" target="_blank">
             {t('Join now')}
           </StyledButtonMenu>
-        </div>
+        </PriceWrapper>
       </RealWrapper>
       <HeroWrapper />
     </Hero>
