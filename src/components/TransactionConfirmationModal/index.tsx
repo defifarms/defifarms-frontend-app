@@ -177,7 +177,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
 
   return (
     <Modal title={title} headerBackground="gradients.cardHeader" onDismiss={handleDismiss}>
-      {!attemptingTxn ? (
+      {attemptingTxn ? (
         <ConfirmationPendingContent pendingText={pendingText} />
       ) : hash ? (
         <TransactionSubmittedContent
