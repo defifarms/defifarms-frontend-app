@@ -425,12 +425,12 @@ export default function AddLiquidity({
                     }
                     onClick={() => {
                       if (expertMode) {
-                        onPresentAddLiquidityModal()
+                        onAdd()
                       } else {
                         onPresentAddLiquidityModal()
                       }
                     }}
-                    // disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
+                    disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
                   >
                     {error ?? t('Supply')}
                   </Button>
