@@ -78,6 +78,10 @@ export const USDC = new Token(
 const tokens = {
   bnb: {
     symbol: 'BNB',
+    address: {
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+      97: '0xbb5cc00198193e62bb1c02b2bbea4d542229cd8e',
+    },
     projectLink: 'https://www.binance.com/',
   },
   defiy: {
@@ -867,7 +871,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '0x99976b5D5fd5D83aA6089598deC7fd5336CC310f',
+      97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',

@@ -5,7 +5,7 @@ import {
   TokenPairImage as UIKitTokenPairImage,
   TokenPairImageProps as UIKitTokenPairImageProps,
 } from '@defifarms/uikit'
-import tokens from 'config/constants/tokens'
+import tokens, { WBNB } from 'config/constants/tokens'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'
 
@@ -15,7 +15,7 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token) => {
-  const address = getAddress(token.symbol === 'BNB' ? tokens.wbnb.address : token.address)
+  const address = getAddress(token.symbol === 'BNB' || token.symbol === 'wBNB' ? tokens.bnb.address : token.address)
   return `/images/tokens/${address}.svg`
 }
 
