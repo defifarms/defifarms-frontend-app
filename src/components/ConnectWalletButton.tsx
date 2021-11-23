@@ -1,7 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Button, useWalletModal } from '@defifarms/uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
+
+const StyledButtonMenu = styled(Button)`
+  background: #3230b2;
+`
 
 const ConnectWalletButton = (props) => {
   const { t } = useTranslation()
@@ -9,9 +14,9 @@ const ConnectWalletButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button variant="four" onClick={onPresentConnectModal} {...props}>
+    <StyledButtonMenu variant="four" onClick={onPresentConnectModal} {...props}>
       {t('Connect Wallet')}
-    </Button>
+    </StyledButtonMenu>
   )
 }
 

@@ -63,8 +63,6 @@ const CardImage = styled.img`
 
 const activeNonCakePools = pools.filter((pool) => pool.earningToken.symbol !== 'DEFIY')
 const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 5)
-// Always include CAKE
-const assets = ['DEFIY', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
 
 export interface FarmAssetCardProps {
   title: string
@@ -74,8 +72,6 @@ export interface FarmAssetCardProps {
 
 const FarmAssetCard = ({ title, value, navLink }: FarmAssetCardProps) => {
   const { t } = useTranslation()
-  const assetText = t('Earn %assets% in Pools', { assets })
-  const [earn, InPools] = assetText.split(assets)
   const Link = navLink ? NavLink : Fragment
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { Heading, Text, Flex } from '@defifarms/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useBurnedBalance, useTotalSupply, useMaxTransferAmount } from 'hooks/useTokenBalance'
+import { useBurnedBalance, useTotalSupply } from 'hooks/useTokenBalance'
 import Slider from 'react-slick'
 import { useTranslation } from 'contexts/Localization'
 import { getDefiyAddress } from 'utils/addressHelpers'
@@ -143,9 +143,6 @@ const CakeStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getDefiyAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
-  const cakePriceBusd = usePriceCakeBusd()
-
   const slides = []
 
   for (let i = 0; i < teams.length; i++) {

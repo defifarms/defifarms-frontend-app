@@ -1377,10 +1377,10 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@defifarms/sdk@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@defifarms/sdk/-/sdk-1.0.0.tgz#c4adca323d09a0d5b2c4ecd3d0f47d644503f5a1"
-  integrity sha512-wQh1pOsLiO7SGIB60j4gdeIJFQIzJaLtbBRCyhTxeY4TM6jkc8PW3s8iN4K1UTOrLQNr+8Cmo/BlbxXtegktqQ==
+"@defifarms/sdk@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@defifarms/sdk/-/sdk-2.3.3.tgz#2639ebe122326fe2d0d789fb9fdfb0ff831980f2"
+  integrity sha512-65dRqnhKLlbvjT7f4M+15Pi6cKlR+kz50gqMiTVmVRWX37hhi+ykXS5ppoG8nT31YTTvdTGewJqGEzy8yv8NAg==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
@@ -1389,10 +1389,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@defifarms/uikit@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@defifarms/uikit/-/uikit-0.0.1.tgz#1ed6223c1d155b36f4c93cc71c04fc5096625b20"
-  integrity sha512-axfzwy9wRhr3jSXE7IrXauEyhHgRU28Tg6FM9vVmQKcgPZzQ1nuuxAa3hwnyxo/6vP8uUFwc2U8dUEDOutebJA==
+"@defifarms/uikit@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@defifarms/uikit/-/uikit-0.0.3.tgz#fe5b8db9e46711e1c5c6cf17d0c93ea959fe50f1"
+  integrity sha512-NkrmDmvxxnLLV/Ca6BInauSPWPtViwZUgpw7ar4eSu6p50H1Mw0svFPKVY9d/LGCmRMcsyFejdFmpnQOJfG6Qw==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"

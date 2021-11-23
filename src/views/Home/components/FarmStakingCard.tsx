@@ -98,12 +98,6 @@ const FarmedStakingCard = () => {
   const [timeHarvestRemaining, setTimeHarvestRemaining, isFinish] = useCountDownTimer()
 
   useEffect(() => {
-    // console.log(
-    //   'farmsPoolWithBalance',
-    //   farmsPoolWithBalance.nextHarvestTime,
-    //   new Date().getTime(),
-    //   farmsPoolWithBalance.nextHarvestTime - (new Date().getTime()),
-    // )
     setTimeHarvestRemaining(Math.max(farmsPoolWithBalance.nextHarvestTime - new Date().getTime(), 0))
   }, [farmsPoolWithBalance.nextHarvestTime, setTimeHarvestRemaining])
 
