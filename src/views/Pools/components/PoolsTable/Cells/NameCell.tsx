@@ -63,7 +63,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       )}
       <CellContent>
         {showStakedTag && (
-          <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">
+          <Text fontSize="12px" bold color={isFinished ? 'failure' : 'white'} textTransform="uppercase">
             {t('Staked')}
           </Text>
         )}

@@ -14,7 +14,6 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.busd,
-    apr: 100,
   },
   {
     pid: 1,
@@ -25,7 +24,6 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.wbnb,
-    apr: 100,
   },
   {
     pid: 2,
@@ -36,7 +34,6 @@ const farms: FarmConfig[] = [
     },
     token: tokens.busd,
     quoteToken: tokens.wbnb,
-    apr: 100,
   },
   // {
   //   pid: 9,
@@ -91,7 +88,6 @@ const farms: FarmConfig[] = [
     },
     token: tokens.usdt,
     quoteToken: tokens.wbnb,
-    apr: 100,
   },
   // {
   //   pid: 14,
