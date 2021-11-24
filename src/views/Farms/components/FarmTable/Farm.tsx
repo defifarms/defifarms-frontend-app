@@ -41,7 +41,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
   const handleRenderFarming = (): JSX.Element => {
     if (rawStakedBalance) {
       return (
-        <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
+        <Text color="white" fontSize="12px" bold textTransform="uppercase">
           {t('Farming')}
         </Text>
       )
