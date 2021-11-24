@@ -26,7 +26,7 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+    '0x99976b5d5fd5d83aa6089598dec7fd5336cc310f',
     18,
     'BUSD',
     'Binance USD',
@@ -871,7 +871,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+      97: '0x99976b5d5fd5d83aa6089598dec7fd5336cc310f',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
