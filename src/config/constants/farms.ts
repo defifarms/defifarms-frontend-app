@@ -25,16 +25,16 @@ const farms: FarmConfig[] = [
     token: tokens.defiy,
     quoteToken: tokens.wbnb,
   },
-  {
-    pid: 2,
-    lpSymbol: 'BUSD-BNB LP',
-    lpAddresses: {
-      97: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
-      56: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
-    },
-    token: tokens.busd,
-    quoteToken: tokens.wbnb,
-  },
+  // {
+  //   pid: 2,
+  //   lpSymbol: 'BUSD-BNB LP',
+  //   lpAddresses: {
+  //     97: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
+  //     56: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
+  //   },
+  //   token: tokens.busd,
+  //   quoteToken: tokens.wbnb,
+  // },
   // {
   //   pid: 9,
   //   lpSymbol: 'DEFIY-BUSD LP',
@@ -79,16 +79,16 @@ const farms: FarmConfig[] = [
   //   quoteToken: tokens.wbnb,
   //   apr: 100,
   // },
-  {
-    pid: 13,
-    lpSymbol: 'USDT-BNB LP',
-    lpAddresses: {
-      97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
-      56: '',
-    },
-    token: tokens.usdt,
-    quoteToken: tokens.wbnb,
-  },
+  // {
+  //   pid: 13,
+  //   lpSymbol: 'USDT-BNB LP',
+  //   lpAddresses: {
+  //     97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
+  //     56: '',
+  //   },
+  //   token: tokens.usdt,
+  //   quoteToken: tokens.wbnb,
+  // },
   // {
   //   pid: 14,
   //   lpSymbol: 'CAKE-BNB LP',
