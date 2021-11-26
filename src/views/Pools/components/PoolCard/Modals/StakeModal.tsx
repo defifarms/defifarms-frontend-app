@@ -135,6 +135,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
             amount: getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0),
             token: stakingToken.symbol,
           })}
+          {console.log('pool', pool, new BigNumber(stakingLimit.toJSON()))}
         </Text>
       )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">

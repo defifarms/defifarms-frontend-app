@@ -115,14 +115,18 @@ export const fetchPoolsUserDataAsync =
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
     const harvest = await fetchCanHarvest(account)
-    const userData = poolsConfig.map((pool) => ({
-      sousId: pool.sousId,
-      allowance: allowances[pool.sousId],
-      stakingTokenBalance: stakingTokenBalances[pool.sousId],
-      stakedBalance: stakedBalances[pool.sousId],
-      pendingReward: pendingRewards[pool.sousId],
-      harvest: harvest[pool.sousId][0],
-    }))
+    const userData = poolsConfig.map((pool) => {
+      console.log('pool', pool);
+      
+      return ({
+        sousId: pool.sousId,
+        allowance: allowances[pool.sousId],
+        stakingTokenBalance: stakingTokenBalances[pool.sousId],
+        stakedBalance: stakedBalances[pool.sousId],
+        pendingReward: pendingRewards[pool.sousId],
+        harvest: harvest[pool.sousId]?.[0],
+      })
+    })
 
     dispatch(setPoolsUserData(userData))
   }

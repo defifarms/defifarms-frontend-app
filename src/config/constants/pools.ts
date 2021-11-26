@@ -35,6 +35,22 @@ const pools: Pool[] = [
   //   sortOrder: 2,
   //   isFinished: false,
   // },
+  {
+    sousId: 0,
+    apr: 100,
+    stakingToken: tokens.defiy,
+    earningToken: tokens.defiy,
+    contractAddress: {
+      97: '0x417d2fe6cf2208036233eb07cae183d6aa623672',
+      56: '',
+    },
+    poolCategory: PoolCategory.CORE,
+    depositFeeBP: '0',
+    harvestInterval: '14400',
+    tokenPerBlock: '0.01',
+    sortOrder: 999,
+    isFinished: false,
+  },
   // {
   //   sousId: 5,
   //   apr: 100,
