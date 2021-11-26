@@ -14,6 +14,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.busd,
+    isShow: false,
   },
   {
     pid: 1,
@@ -24,17 +25,19 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.wbnb,
+    isShow: true,
   },
-  // {
-  //   pid: 2,
-  //   lpSymbol: 'BUSD-BNB LP',
-  //   lpAddresses: {
-  //     97: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
-  //     56: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
-  //   },
-  //   token: tokens.busd,
-  //   quoteToken: tokens.wbnb,
-  // },
+  {
+    pid: 2,
+    lpSymbol: 'BUSD-BNB LP',
+    lpAddresses: {
+      97: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
+      56: '0xc1a3d5db7612d76330b6392b6caf0eaeba098a1b',
+    },
+    token: tokens.busd,
+    quoteToken: tokens.wbnb,
+    isShow: false,
+  },
   // {
   //   pid: 9,
   //   lpSymbol: 'DEFIY-BUSD LP',
