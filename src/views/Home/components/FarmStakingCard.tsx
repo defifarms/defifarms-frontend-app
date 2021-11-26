@@ -81,9 +81,13 @@ const Cards = styled(BaseLayout)`
 
 const StyledButtonMenu = styled(Button)`
   font-weight: 600;
-  font-size: 32.9627px;
-  line-height: 45px;
-  height: 80px;
+  font-size: 18px;
+  line-height: 52px;
+  height: 52px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 80px;
+    font-size: 32.9627px;
+  }
 `
 
 const FarmedStakingCard = () => {

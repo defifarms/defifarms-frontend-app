@@ -55,7 +55,6 @@ const useFarmsPoolWithBalance = () => {
     const getTimeNextHavest = async () => {
       const nextHarvestFarms = await fetchNextHarvestFarms(account, farmsConfig)
       const nextHarvestPools = await fetchNextHarvestPools(account, poolsConfig)
-      // console.log('getTimeNextHavest', nextHarvestFarms, nextHarvestPools, Math.max(...nextHarvestFarms, ...nextHarvestPools));
 
       setNextTimeHarvest(Math.max(...nextHarvestFarms, ...nextHarvestPools))
     }
