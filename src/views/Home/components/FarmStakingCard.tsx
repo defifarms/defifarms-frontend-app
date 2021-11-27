@@ -150,7 +150,7 @@ const FarmedStakingCard = () => {
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
-        <CardImage src="/images/home/farm-staking.png" />
+        <CardImage src="/images/home/farm-staking.webp" />
         <Cards>
           <Block>
             <Label>{t('DEFIY to Harvest')}:</Label>
