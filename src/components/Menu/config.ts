@@ -131,26 +131,27 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Contact'),
         href: 'https://docs.defifarms.org/contact-us',
+        target:"_blank"
       },
       {
         label: t('Docs'),
         href: 'https://docs.defifarms.org/',
+        target:"_blank"
       },
-      // {
-      //   label: t('Docs'),
-      //   href: 'https://docs.defifarms.org/',
-      // },
       {
         label: 'Github',
         href: 'https://github.com/defifarms',
+        target:"_blank"
       },
       {
         label: 'Blog',
         href: 'https://medium.com/@DefiFarmsNFTs',
+        target:"_blank"
       },
       {
         label: 'Audited by',
         href: 'https://callisto.network/defifarms-protocol-security-audit/',
+        target:"_blank"
       },
     ],
   },
