@@ -3,22 +3,21 @@ import { PoolCategory, PoolConfig } from './types'
 import { Pool } from '../../state/types'
 
 const pools: Pool[] = [
-  {
-    sousId: 3,
-    apr: 100,
-    stakingToken: tokens.busd,
-    earningToken: tokens.defiy,
-    contractAddress: {
-      97: '0xc7437617f89A23FA7eACB90f6b3D663055B5d467',
-      56: '',
-    },
-    poolCategory: PoolCategory.CORE,
-    depositFeeBP: '0',
-    harvestInterval: '14400',
-    tokenPerBlock: '0.01',
-    sortOrder: 1,
-    isFinished: false,
-  },
+  // {
+  //   sousId: 3,
+  //   stakingToken: tokens.busd,
+  //   earningToken: tokens.defiy,
+  //   contractAddress: {
+  //     97: '0xc7437617f89A23FA7eACB90f6b3D663055B5d467',
+  //     56: '',
+  //   },
+  //   poolCategory: PoolCategory.CORE,
+  //   depositFeeBP: '0',
+  //   harvestInterval: '14400',
+  //   tokenPerBlock: '0.01',
+  //   sortOrder: 1,
+  //   isFinished: false,
+  // },
   // {
   //   sousId: 4,
   //   apr: 100,
@@ -36,8 +35,7 @@ const pools: Pool[] = [
   //   isFinished: false,
   // },
   {
-    sousId: 0,
-    apr: 100,
+    sousId: 73678,
     stakingToken: tokens.defiy,
     earningToken: tokens.defiy,
     contractAddress: {

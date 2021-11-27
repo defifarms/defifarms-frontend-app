@@ -38,6 +38,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
   onDismiss,
 }) => {
   const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
+  console.log('pool >>>>', pool, pool.stakingLimit.toNumber(), )
+  
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { onStake } = useStakePool(sousId)
@@ -130,12 +132,12 @@ const StakeModal: React.FC<StakeModalProps> = ({
       headerBackground={theme.colors.gradients.cardHeader}
     >
       {stakingLimit.gt(0) && !isRemovingStake && (
-        <Text color="secondary" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
+        <Text color="four" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
           {t('Max stake for this pool: %amount% %token%', {
             amount: getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0),
             token: stakingToken.symbol,
           })}
-          {console.log('pool', pool, new BigNumber(stakingLimit.toJSON()))}
+          {/* {console.log('pool', pool, new BigNumber(stakingLimit.toString()))} */}
         </Text>
       )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
