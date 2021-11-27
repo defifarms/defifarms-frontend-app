@@ -167,7 +167,7 @@ const CakeStats = () => {
       </StyleCardBody>
       <IconWrapper>
         <StyleCircle />
-        <CardImage src="/images/home/4.png" />
+        <CardImage src="/images/home/4.webp" />
       </IconWrapper>
     </StyledCakeStats>
   )
