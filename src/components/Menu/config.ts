@@ -1,5 +1,5 @@
-import { MenuEntry } from '@defifarms/uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import {MenuEntry} from '@defifarms/uikit'
+import {ContextApi} from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {

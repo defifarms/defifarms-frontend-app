@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { DEFAULT_TOKEN_DECIMAL } from 'config'
+import {DEFAULT_TOKEN_DECIMAL} from 'config'
 
 export const stakeFarm = async (masterChefContract, pid, amount) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()

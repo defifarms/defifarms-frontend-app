@@ -1,16 +1,16 @@
 import React from 'react'
-import { Menu as UikitMenu } from '@defifarms/uikit'
-import { languageList } from 'config/localization/languages'
-import { useTranslation } from 'contexts/Localization'
+import {Menu as UikitMenu} from '@pancakeswap/uikit'
+import {languageList} from 'config/localization/languages'
+import {useTranslation} from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import config from './config'
 import UserMenu from './UserMenu'
-import { usePriceCakeBusd } from '../../state/farms/hooks'
+import {usePriceCakeBusd} from '../../state/farms/hooks'
 
 const Menu = (props) => {
-  const { isDark } = useTheme()
+  const {isDark} = useTheme()
   const cakePriceUsd = usePriceCakeBusd()
-  const { currentLanguage, setLanguage, t } = useTranslation()
+  const {currentLanguage, setLanguage, t} = useTranslation()
 
   return (
     <UikitMenu

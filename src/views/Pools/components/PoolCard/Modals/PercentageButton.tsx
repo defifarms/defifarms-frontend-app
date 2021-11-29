@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from '@defifarms/uikit'
+import {Button} from '@pancakeswap/uikit'
 
 interface PercentageButtonProps {
   onClick: () => void
@@ -12,7 +12,7 @@ const StyledButton = styled(Button)`
   font-size: 16px;
 `
 
-const PercentageButton: React.FC<PercentageButtonProps> = ({ children, onClick }) => {
+const PercentageButton: React.FC<PercentageButtonProps> = ({children, onClick}) => {
   return (
     <StyledButton scale="xs" mx="4px" p="16px 24px" variant="tertiary" onClick={onClick}>
       {children}

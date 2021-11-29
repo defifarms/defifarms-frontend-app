@@ -1,8 +1,8 @@
-import { Token, TokenAmount } from '@defifarms/sdk'
-import { useMemo } from 'react'
+import {Token, TokenAmount} from '@defifarms/sdk'
+import {useMemo} from 'react'
 
-import { useTokenContract } from './useContract'
-import { useSingleCallResult } from '../state/multicall/hooks'
+import {useTokenContract} from './useContract'
+import {useSingleCallResult} from '../state/multicall/hooks'
 
 function useTokenAllowance(token?: Token, owner?: string, spender?: string): TokenAmount | undefined {
   const contract = useTokenContract(token?.address, false)

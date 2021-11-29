@@ -1,8 +1,19 @@
-import { ThunkAction } from 'redux-thunk'
-import { AnyAction } from '@reduxjs/toolkit'
+import {ThunkAction} from 'redux-thunk'
+import {AnyAction} from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
-import { ethers } from 'ethers'
-import { CampaignType, FarmConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types'
+import {ethers} from 'ethers'
+import {
+  CampaignType,
+  SerializedFarmConfig,
+  LotteryStatus,
+  LotteryTicket,
+  DeserializedPoolConfig,
+  SerializedPoolConfig,
+  Team,
+  TranslatableText,
+  DeserializedFarmConfig,
+} from 'config/constants/types'
+import {NftToken, State as NftMarketState} from './nftMarket/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -11,81 +22,98 @@ export interface BigNumberToJson {
   hex: string
 }
 
-export type TranslatableText =
-  | string
-  | {
-      key: string
-      data?: {
-        [key: string]: string | number
-      }
-    }
-
 export type SerializedBigNumber = string
 
-export interface Farm extends FarmConfig {
-  tokenAmountMc?: SerializedBigNumber
-  quoteTokenAmountMc?: SerializedBigNumber
+interface SerializedFarmUserData {
+  allowance: string
+  tokenBalance: string
+  stakedBalance: string
+  earnings: string
+}
+
+export interface DeserializedFarmUserData {
+  allowance: BigNumber
+  tokenBalance: BigNumber
+  stakedBalance: BigNumber
+  earnings: BigNumber
+}
+
+export interface SerializedFarm extends SerializedFarmConfig {
+  tokenPriceBusd?: string
+  quoteTokenPriceBusd?: string
   tokenAmountTotal?: SerializedBigNumber
-  quoteTokenAmountTotal?: SerializedBigNumber
   lpTotalInQuoteToken?: SerializedBigNumber
   lpTotalSupply?: SerializedBigNumber
   tokenPriceVsQuote?: SerializedBigNumber
   poolWeight?: SerializedBigNumber
-  harvestInterval?: SerializedBigNumber
-  depositFeeBP?: string
-  apr?: number
-  userData?: {
-    allowance: string
-    tokenBalance: string
-    stakedBalance: string
-    earnings: string
-    harvest?: boolean
-  }
+  userData?: SerializedFarmUserData
 }
 
-export interface Pool extends PoolConfig {
-  totalStaked?: BigNumber
-  stakingLimit?: BigNumber
+export interface DeserializedFarm extends DeserializedFarmConfig {
+  tokenPriceBusd?: string
+  quoteTokenPriceBusd?: string
+  tokenAmountTotal?: BigNumber
+  lpTotalInQuoteToken?: BigNumber
+  lpTotalSupply?: BigNumber
+  tokenPriceVsQuote?: BigNumber
+  poolWeight?: BigNumber
+  userData?: DeserializedFarmUserData
+}
+
+interface CorePoolProps {
   startBlock?: number
   endBlock?: number
   apr?: number
   stakingTokenPrice?: number
   earningTokenPrice?: number
   isAutoVault?: boolean
-  harvestInterval?: SerializedBigNumber
-  depositFeeBP?: string
+}
+
+export interface DeserializedPool extends DeserializedPoolConfig, CorePoolProps {
+  totalStaked?: BigNumber
+  stakingLimit?: BigNumber
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
-    harvest?: boolean
   }
 }
-export interface SpecialPoolConfigType {
-  name: string
-  link: string
-  capGoal: number
-  childrenPools: Pool[]
+
+export interface SerializedPool extends SerializedPoolConfig, CorePoolProps {
+  totalStaked?: SerializedBigNumber
+  stakingLimit?: SerializedBigNumber
+  userData?: {
+    allowance: SerializedBigNumber
+    stakingTokenBalance: SerializedBigNumber
+    stakedBalance: SerializedBigNumber
+    pendingReward: SerializedBigNumber
+  }
 }
 
 export interface Profile {
   userId: number
   points: number
   teamId: number
-  nftAddress: string
+  collectionAddress: string
   tokenId: number
   isActive: boolean
   username: string
-  nft?: Nft
+  nft?: NftToken
   team: Team
   hasRegistered: boolean
 }
 
 // Slices states
 
-export interface FarmsState {
-  data: Farm[]
+export interface SerializedFarmsState {
+  data: SerializedFarm[]
+  loadArchivedFarmsData: boolean
+  userDataLoaded: boolean
+}
+
+export interface DeserializedFarmsState {
+  data: DeserializedFarm[]
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean
 }
@@ -115,9 +143,15 @@ export interface CakeVault {
 }
 
 export interface PoolsState {
-  data: Pool[]
+  data: SerializedPool[]
   cakeVault: CakeVault
   userDataLoaded: boolean
+}
+
+export enum ProfileAvatarFetchStatus {
+  NOT_FETCHED = 'not-fetched',
+  FETCHING = 'fetching',
+  FETCHED = 'fetched',
 }
 
 export interface ProfileState {
@@ -125,6 +159,15 @@ export interface ProfileState {
   isLoading: boolean
   hasRegistered: boolean
   data: Profile
+  profileAvatars: {
+    [key: string]: {
+      username: string
+      nft: NftToken
+      hasRegistered: boolean
+      usernameFetchStatus: ProfileAvatarFetchStatus
+      avatarFetchStatus: ProfileAvatarFetchStatus
+    }
+  }
 }
 
 export type TeamResponse = {
@@ -155,8 +198,16 @@ export interface Achievement {
   points: number
 }
 
+export enum AchievementFetchStatus {
+  ERROR = 'error',
+  NOT_FETCHED = 'not-fetched',
+  FETCHING = 'fetching',
+  FETCHED = 'fetched',
+}
+
 export interface AchievementState {
-  data: Achievement[]
+  achievements: Achievement[]
+  achievementFetchStatus: AchievementFetchStatus
 }
 
 // Block
@@ -164,16 +215,6 @@ export interface AchievementState {
 export interface BlockState {
   currentBlock: number
   initialBlock: number
-}
-
-// Collectibles
-
-export interface CollectiblesState {
-  isInitialized: boolean
-  isLoading: boolean
-  data: {
-    [key: string]: number[]
-  }
 }
 
 // Predictions
@@ -194,21 +235,27 @@ export enum PredictionStatus {
 export interface Round {
   id: string
   epoch: number
-  failed?: boolean
-  startBlock: number
+  position: BetPosition
+  failed: boolean
   startAt: number
+  startBlock: number
+  startHash: string
   lockAt: number
   lockBlock: number
+  lockHash: string
   lockPrice: number
-  endBlock: number
+  lockRoundId: string
+  closeAt: number
+  closeBlock: number
+  closeHash: string
   closePrice: number
+  closeRoundId: string
   totalBets: number
   totalAmount: number
   bullBets: number
+  bullAmount: number
   bearBets: number
   bearAmount: number
-  bullAmount: number
-  position: BetPosition
   bets?: Bet[]
 }
 
@@ -223,21 +270,34 @@ export interface Bet {
   amount: number
   position: BetPosition
   claimed: boolean
+  claimedAt: number
+  claimedBlock: number
   claimedHash: string
+  claimedBNB: number
+  claimedNetBNB: number
+  createdAt: number
+  updatedAt: number
   user?: PredictionUser
-  round: Round
+  round?: Round
 }
 
 export interface PredictionUser {
   id: string
-  address: string
+  createdAt: number
+  updatedAt: number
   block: number
   totalBets: number
+  totalBetsBull: number
+  totalBetsBear: number
   totalBNB: number
-}
-
-export interface HistoryData {
-  [key: string]: Bet[]
+  totalBNBBull: number
+  totalBNBBear: number
+  totalBetsClaimed: number
+  totalBNBClaimed: number
+  winRate: number
+  averageBNB: number
+  netBNB: number
+  bets?: Bet[]
 }
 
 export enum HistoryFilter {
@@ -270,9 +330,9 @@ export interface NodeLedger {
 
 export interface ReduxNodeRound {
   epoch: number
-  startBlock: number
-  lockBlock: number | null
-  endBlock: number | null
+  startTimestamp: number | null
+  lockTimestamp: number | null
+  closeTimestamp: number | null
   lockPrice: BigNumberToJson | null
   closePrice: BigNumberToJson | null
   totalAmount: BigNumberToJson
@@ -281,21 +341,39 @@ export interface ReduxNodeRound {
   rewardBaseCalAmount: BigNumberToJson
   rewardAmount: BigNumberToJson
   oracleCalled: boolean
+  lockOracleId: string
+  closeOracleId: string
 }
 
 export interface NodeRound {
   epoch: number
-  startBlock: number
-  lockBlock: number
-  endBlock: number
-  lockPrice: ethers.BigNumber
-  closePrice: ethers.BigNumber
+  startTimestamp: number | null
+  lockTimestamp: number | null
+  closeTimestamp: number | null
+  lockPrice: ethers.BigNumber | null
+  closePrice: ethers.BigNumber | null
   totalAmount: ethers.BigNumber
   bullAmount: ethers.BigNumber
   bearAmount: ethers.BigNumber
   rewardBaseCalAmount: ethers.BigNumber
   rewardAmount: ethers.BigNumber
   oracleCalled: boolean
+  closeOracleId: string
+  lockOracleId: string
+}
+
+export enum LeaderboardLoadingState {
+  INITIAL,
+  LOADING,
+  IDLE,
+}
+
+export type LeaderboardFilterTimePeriod = '1d' | '7d' | '1m' | 'all'
+
+export interface LeaderboardFilter {
+  address?: string
+  orderBy?: string
+  timePeriod?: LeaderboardFilterTimePeriod
 }
 
 export interface PredictionsState {
@@ -306,17 +384,29 @@ export interface PredictionsState {
   isFetchingHistory: boolean
   historyFilter: HistoryFilter
   currentEpoch: number
-  currentRoundStartBlockNumber: number
-  intervalBlocks: number
-  bufferBlocks: number
+  intervalSeconds: number
   minBetAmount: string
-  rewardRate: number
+  bufferSeconds: number
   lastOraclePrice: string
-  history: HistoryData
+  history: Bet[]
+  totalHistory: number
+  currentHistoryPage: number
+  hasHistoryLoaded: boolean
   rounds?: RoundData
   ledgers?: LedgerData
   claimableStatuses: {
     [key: string]: boolean
+  }
+  leaderboard: {
+    selectedAddress: string
+    loadingState: LeaderboardLoadingState
+    filters: LeaderboardFilter
+    skip: number
+    hasMoreResults: boolean
+    addressResults: {
+      [key: string]: PredictionUser
+    }
+    results: PredictionUser[]
   }
 }
 
@@ -444,7 +534,7 @@ export interface LotteryState {
   currentLotteryId: string
   maxNumberTicketsPerBuyOrClaim: string
   isTransitioning: boolean
-  currentRound: LotteryResponse & { userTickets?: LotteryRoundUserTickets }
+  currentRound: LotteryResponse & {userTickets?: LotteryRoundUserTickets}
   lotteriesData?: LotteryRoundGraphEntity[]
   userLotteryData?: LotteryUserGraphEntity
 }
@@ -484,12 +574,12 @@ export type UserTicketsResponse = [ethers.BigNumber[], number[], boolean[]]
 export interface State {
   achievements: AchievementState
   block: BlockState
-  farms: FarmsState
+  farms: SerializedFarmsState
   pools: PoolsState
   predictions: PredictionsState
   profile: ProfileState
   teams: TeamsState
-  collectibles: CollectiblesState
   voting: VotingState
   lottery: LotteryState
+  nftMarket: NftMarketState
 }

@@ -1,38 +1,38 @@
 import React from 'react'
-import { Flex, Text, TooltipText, useTooltip } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { useWeb3React } from '@web3-react/core'
+import {Flex, Text, TooltipText, useTooltip} from '@defifarms/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {useWeb3React} from '@web3-react/core'
 import useWithdrawalFeeTimer from 'views/Pools/hooks/useWithdrawalFeeTimer'
-import { useCakeVault } from 'state/pools/hooks'
+import {useCakeVault} from 'state/pools/hooks'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
 interface UnstakingFeeCountdownRowProps {
   isTableVariant?: boolean
 }
 
-const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isTableVariant }) => {
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
+const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({isTableVariant}) => {
+  const {t} = useTranslation()
+  const {account} = useWeb3React()
   const {
-    userData: { lastDepositedTime, userShares },
-    fees: { withdrawalFee, withdrawalFeePeriod },
+    userData: {lastDepositedTime, userShares},
+    fees: {withdrawalFee, withdrawalFeePeriod},
   } = useCakeVault()
   const feeAsDecimal = withdrawalFee / 100 || '-'
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(
     <>
       <Text bold mb="4px">
-        {t('Unstaking fee: %fee%%', { fee: feeAsDecimal })}
+        {t('Unstaking fee: %fee%%', {fee: feeAsDecimal})}
       </Text>
       <Text>
         {t(
-          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new DEFIY in the pool.',
+          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new CAKE in the pool.',
         )}
       </Text>
     </>,
-    { placement: 'bottom-start' },
+    {placement: 'bottom-start'},
   )
 
-  const { secondsRemaining, hasUnstakingFee } = useWithdrawalFeeTimer(
+  const {secondsRemaining, hasUnstakingFee} = useWithdrawalFeeTimer(
     parseInt(lastDepositedTime, 10),
     userShares,
     withdrawalFeePeriod,
@@ -46,7 +46,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
 
   const getRowText = () => {
     if (noFeeToPay) {
-      return t('Unstaking Fee').toLowerCase()
+      return t('Unstaking Fee')
     }
     if (shouldShowTimer) {
       return t('unstaking fee until')
@@ -61,7 +61,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
       flexDirection={isTableVariant ? 'column' : 'row'}
     >
       {tooltipVisible && tooltip}
-      <TooltipText ref={targetRef} small>
+      <TooltipText ref={targetRef} small textTransform="lowercase">
         {noFeeToPay ? '0' : feeAsDecimal}% {getRowText()}
       </TooltipText>
       {shouldShowTimer && <WithdrawalFeeTimer secondsRemaining={secondsRemaining} />}

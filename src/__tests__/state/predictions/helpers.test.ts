@@ -25,11 +25,11 @@ describe('makeFutureRoundResponse', () => {
       endBlock: null,
       lockPrice: null,
       closePrice: null,
-      totalAmount: { hex: '0x00', type: 'BigNumber' },
-      bullAmount: { hex: '0x00', type: 'BigNumber' },
-      bearAmount: { hex: '0x00', type: 'BigNumber' },
-      rewardBaseCalAmount: { hex: '0x00', type: 'BigNumber' },
-      rewardAmount: { hex: '0x00', type: 'BigNumber' },
+      totalAmount: {hex: '0x00', type: 'BigNumber'},
+      bullAmount: {hex: '0x00', type: 'BigNumber'},
+      bearAmount: {hex: '0x00', type: 'BigNumber'},
+      rewardBaseCalAmount: {hex: '0x00', type: 'BigNumber'},
+      rewardAmount: {hex: '0x00', type: 'BigNumber'},
       oracleCalled: false,
     })
   })
@@ -143,7 +143,7 @@ describe('transformTotalWonResponse', () => {
       totalBNB: '200',
       totalBNBTreasury: '100',
     }
-    const roundResponse = [{ totalAmount: '5' }, { totalAmount: '2' }]
+    const roundResponse = [{totalAmount: '5'}, {totalAmount: '2'}]
     expect(transformTotalWonResponse(totalWonMarketResponse, roundResponse)).toEqual(93)
   })
 })

@@ -1,15 +1,15 @@
-import { Currency, CurrencyAmount, JSBI, Pair, Percent, TokenAmount } from '@defifarms/sdk'
-import { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {Currency, CurrencyAmount, JSBI, Pair, Percent, TokenAmount} from '@defifarms/sdk'
+import {useCallback} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
-import { usePair } from 'hooks/usePairs'
+import {wrappedCurrency} from 'utils/wrappedCurrency'
+import {usePair} from 'hooks/usePairs'
 import useTotalSupply from 'hooks/useTotalSupply'
 
-import { AppDispatch, AppState } from '../index'
-import { tryParseAmount } from '../swap/hooks'
-import { useTokenBalances } from '../wallet/hooks'
-import { Field, typeInput } from './actions'
+import {AppDispatch, AppState} from '../index'
+import {tryParseAmount} from '../swap/hooks'
+import {useTokenBalances} from '../wallet/hooks'
+import {Field, typeInput} from './actions'
 
 export function useBurnState(): AppState['burn'] {
   return useSelector<AppState, AppState['burn']>((state) => state.burn)
@@ -28,9 +28,9 @@ export function useDerivedBurnInfo(
   }
   error?: string
 } {
-  const { account, chainId } = useActiveWeb3React()
+  const {account, chainId} = useActiveWeb3React()
 
-  const { independentField, typedValue } = useBurnState()
+  const {independentField, typedValue} = useBurnState()
 
   // pair + totalsupply
   const [, pair] = usePair(currencyA, currencyB)
@@ -66,7 +66,7 @@ export function useDerivedBurnInfo(
     JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
       ? new TokenAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).raw)
       : undefined
-  const liquidityValues: { [Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount } = {
+  const liquidityValues: {[Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount} = {
     [Field.CURRENCY_A]: liquidityValueA,
     [Field.CURRENCY_B]: liquidityValueB,
   }
@@ -124,7 +124,7 @@ export function useDerivedBurnInfo(
     error = error ?? 'Enter an amount'
   }
 
-  return { pair, parsedAmounts, error }
+  return {pair, parsedAmounts, error}
 }
 
 export function useBurnActionHandlers(): {
@@ -134,7 +134,7 @@ export function useBurnActionHandlers(): {
 
   const onUserInput = useCallback(
     (field: Field, typedValue: string) => {
-      dispatch(typeInput({ field, typedValue }))
+      dispatch(typeInput({field, typedValue}))
     },
     [dispatch],
   )

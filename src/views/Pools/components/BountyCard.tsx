@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, {useMemo} from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import {
@@ -13,27 +13,27 @@ import {
   Text,
   useModal,
   useTooltip,
-} from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
+} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {getBalanceNumber} from 'utils/formatBalance'
+import {usePriceCakeBusd} from 'state/farms/hooks'
+import {useCakeVault} from 'state/pools/hooks'
 import Balance from 'components/Balance'
 import BountyModal from './BountyModal'
 
 const StyledCard = styled(Card)`
   width: 100%;
   flex: 1;
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     min-width: 240px;
   }
 `
 
 const BountyCard = () => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const {
     estimatedCakeBountyReward,
-    fees: { callFee },
+    fees: {callFee},
   } = useCakeVault()
   const cakePriceBusd = usePriceCakeBusd()
 
@@ -46,7 +46,7 @@ const BountyCard = () => {
   const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 18) : 0
   const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
 
-  const TooltipComponent = ({ fee }: { fee: number }) => (
+  const TooltipComponent = ({fee}: {fee: number}) => (
     <>
       <Text mb="16px">{t('This bounty is given as a reward for providing a service to other users.')}</Text>
       <Text mb="16px">
@@ -54,15 +54,15 @@ const BountyCard = () => {
           'Whenever you successfully claim the bounty, you’re also helping out by activating the Auto DEFIY Pool’s compounding function for everyone.',
         )}
       </Text>
-      <Text style={{ fontWeight: 'bold' }}>
-        {t('Auto-Compound Bounty: %fee%% of all Auto DEFIY pool users pending yield', { fee: fee / 100 })}
+      <Text style={{fontWeight: 'bold'}}>
+        {t('Auto-Compound Bounty: %fee%% of all Auto DEFIY pool users pending yield', {fee: fee / 100})}
       </Text>
     </>
   )
 
   const [onPresentBountyModal] = useModal(<BountyModal TooltipComponent={TooltipComponent} />)
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent fee={callFee} />, {
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(<TooltipComponent fee={callFee} />, {
     placement: 'bottom-end',
     tooltipOffset: [20, 10],
   })

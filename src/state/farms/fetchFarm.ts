@@ -1,10 +1,10 @@
-import { Farm } from 'state/types'
+import {SerializedFarm} from 'state/types'
 import fetchPublicFarmData from './fetchPublicFarmData'
 
-const fetchFarm = async (farm: Farm): Promise<Farm> => {
+const fetchFarm = async (farm: SerializedFarm): Promise<SerializedFarm> => {
   const farmPublicData = await fetchPublicFarmData(farm)
 
-  return { ...farm, ...farmPublicData }
+  return {...farm, ...farmPublicData}
 }
 
 export default fetchFarm

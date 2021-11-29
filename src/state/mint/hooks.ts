@@ -1,15 +1,15 @@
-import { Currency, CurrencyAmount, ETHER, JSBI, Pair, Percent, Price, TokenAmount } from '@defifarms/sdk'
-import { useCallback, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {Currency, CurrencyAmount, ETHER, JSBI, Pair, Percent, Price, TokenAmount} from '@defifarms/sdk'
+import {useCallback, useMemo} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { PairState, usePair } from 'hooks/usePairs'
+import {PairState, usePair} from 'hooks/usePairs'
 import useTotalSupply from 'hooks/useTotalSupply'
 
-import { wrappedCurrency, wrappedCurrencyAmount } from 'utils/wrappedCurrency'
-import { AppDispatch, AppState } from '../index'
-import { tryParseAmount } from '../swap/hooks'
-import { useCurrencyBalances } from '../wallet/hooks'
-import { Field, typeInput } from './actions'
+import {wrappedCurrency, wrappedCurrencyAmount} from 'utils/wrappedCurrency'
+import {AppDispatch, AppState} from '../index'
+import {tryParseAmount} from '../swap/hooks'
+import {useCurrencyBalances} from '../wallet/hooks'
+import {Field, typeInput} from './actions'
 
 const ZERO = JSBI.BigInt(0)
 
@@ -25,13 +25,13 @@ export function useMintActionHandlers(noLiquidity: boolean | undefined): {
 
   const onFieldAInput = useCallback(
     (typedValue: string) => {
-      dispatch(typeInput({ field: Field.CURRENCY_A, typedValue, noLiquidity: noLiquidity === true }))
+      dispatch(typeInput({field: Field.CURRENCY_A, typedValue, noLiquidity: noLiquidity === true}))
     },
     [dispatch, noLiquidity],
   )
   const onFieldBInput = useCallback(
     (typedValue: string) => {
-      dispatch(typeInput({ field: Field.CURRENCY_B, typedValue, noLiquidity: noLiquidity === true }))
+      dispatch(typeInput({field: Field.CURRENCY_B, typedValue, noLiquidity: noLiquidity === true}))
     },
     [dispatch, noLiquidity],
   )
@@ -47,25 +47,25 @@ export function useDerivedMintInfo(
   currencyB: Currency | undefined,
 ): {
   dependentField: Field
-  currencies: { [field in Field]?: Currency }
+  currencies: {[field in Field]?: Currency}
   pair?: Pair | null
   pairState: PairState
-  currencyBalances: { [field in Field]?: CurrencyAmount }
-  parsedAmounts: { [field in Field]?: CurrencyAmount }
+  currencyBalances: {[field in Field]?: CurrencyAmount}
+  parsedAmounts: {[field in Field]?: CurrencyAmount}
   price?: Price
   noLiquidity?: boolean
   liquidityMinted?: TokenAmount
   poolTokenPercentage?: Percent
   error?: string
 } {
-  const { account, chainId } = useActiveWeb3React()
+  const {account, chainId} = useActiveWeb3React()
 
-  const { independentField, typedValue, otherTypedValue } = useMintState()
+  const {independentField, typedValue, otherTypedValue} = useMintState()
 
   const dependentField = independentField === Field.CURRENCY_A ? Field.CURRENCY_B : Field.CURRENCY_A
 
   // tokens
-  const currencies: { [field in Field]?: Currency } = useMemo(
+  const currencies: {[field in Field]?: Currency} = useMemo(
     () => ({
       [Field.CURRENCY_A]: currencyA ?? undefined,
       [Field.CURRENCY_B]: currencyB ?? undefined,
@@ -86,7 +86,7 @@ export function useDerivedMintInfo(
     currencies[Field.CURRENCY_A],
     currencies[Field.CURRENCY_B],
   ])
-  const currencyBalances: { [field in Field]?: CurrencyAmount } = {
+  const currencyBalances: {[field in Field]?: CurrencyAmount} = {
     [Field.CURRENCY_A]: balances[0],
     [Field.CURRENCY_B]: balances[1],
   }
@@ -117,7 +117,7 @@ export function useDerivedMintInfo(
     return undefined
   }, [noLiquidity, otherTypedValue, currencies, dependentField, independentAmount, currencyA, chainId, currencyB, pair])
 
-  const parsedAmounts: { [field in Field]: CurrencyAmount | undefined } = useMemo(
+  const parsedAmounts: {[field in Field]: CurrencyAmount | undefined} = useMemo(
     () => ({
       [Field.CURRENCY_A]: independentField === Field.CURRENCY_A ? independentAmount : dependentAmount,
       [Field.CURRENCY_B]: independentField === Field.CURRENCY_A ? dependentAmount : independentAmount,
@@ -127,7 +127,7 @@ export function useDerivedMintInfo(
 
   const price = useMemo(() => {
     if (noLiquidity) {
-      const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts
+      const {[Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount} = parsedAmounts
       if (currencyAAmount && currencyBAmount) {
         return new Price(currencyAAmount.currency, currencyBAmount.currency, currencyAAmount.raw, currencyBAmount.raw)
       }
@@ -139,7 +139,7 @@ export function useDerivedMintInfo(
 
   // liquidity minted
   const liquidityMinted = useMemo(() => {
-    const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts
+    const {[Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount} = parsedAmounts
     const [tokenAmountA, tokenAmountB] = [
       wrappedCurrencyAmount(currencyAAmount, chainId),
       wrappedCurrencyAmount(currencyBAmount, chainId),
@@ -170,7 +170,7 @@ export function useDerivedMintInfo(
     error = error ?? 'Enter an amount'
   }
 
-  const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts
+  const {[Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount} = parsedAmounts
 
   if (currencyAAmount && currencyBalances?.[Field.CURRENCY_A]?.lessThan(currencyAAmount)) {
     error = `Insufficient ${currencies[Field.CURRENCY_A]?.symbol} balance`

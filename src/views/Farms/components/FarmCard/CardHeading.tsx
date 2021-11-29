@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Skeleton, Tag } from '@defifarms/uikit'
-import { CommunityTag, CoreTag } from 'components/Tags'
-import { Token } from 'config/constants/types'
-import { TokenPairImage } from 'components/TokenImage'
+import {Tag, Flex, Heading, Skeleton} from '@pancakeswap/uikit'
+import {Token} from '@defifarms/sdk'
+import {CommunityTag, CoreTag} from 'components/Tags'
+import {TokenPairImage} from 'components/TokenImage'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -14,11 +14,6 @@ export interface ExpandableSectionProps {
 }
 
 const Wrapper = styled(Flex)`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  padding: 35px;
-  margin-bottom: 24px;
-  background: ${(props) => props.theme.card.background};
-
   svg {
     margin-right: 4px;
   }
@@ -28,17 +23,21 @@ const MultiplierTag = styled(Tag)`
   margin-left: 4px;
 `
 
-const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm, token, quoteToken }) => {
+const CardHeading: React.FC<ExpandableSectionProps> = ({lpLabel, multiplier, isCommunityFarm, token, quoteToken}) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <Flex flexDirection="column" alignItems="flex-start">
-        <Heading mb="9px">{lpLabel.split(' ')[0]}</Heading>
+      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+      <Flex flexDirection="column" alignItems="flex-end">
+        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
           {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-          {multiplier ? <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> : null}
+          {multiplier ? (
+            <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+          ) : (
+            <Skeleton ml="4px" width={42} height={28} />
+          )}
         </Flex>
       </Flex>
-      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
     </Wrapper>
   )
 }

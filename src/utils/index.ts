@@ -1,13 +1,13 @@
-import { Contract } from '@ethersproject/contracts'
-import { getAddress } from '@ethersproject/address'
-import { AddressZero } from '@ethersproject/constants'
-import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
-import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, Percent, Token } from '@defifarms/sdk'
-import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ROUTER_ADDRESS } from '../config/constants'
-import { BASE_BSC_SCAN_URLS } from '../config'
-import { TokenAddressMap } from '../state/lists/hooks'
+import {Contract} from '@ethersproject/contracts'
+import {getAddress} from '@ethersproject/address'
+import {AddressZero} from '@ethersproject/constants'
+import {JsonRpcSigner, Web3Provider} from '@ethersproject/providers'
+import {BigNumber} from '@ethersproject/bignumber'
+import {abi as IUniswapV2Router02ABI} from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
+import {ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER} from '@defifarms/sdk'
+import {ROUTER_ADDRESS} from '../config/constants'
+import {BASE_BSC_SCAN_URLS} from '../config'
+import {TokenAddressMap} from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -42,13 +42,12 @@ export function getBscScanLink(
   }
 }
 
-// shorten the checksummed version of the input address to have 0x + 4 characters at start and end
-export function shortenAddress(address: string, chars = 4): string {
-  const parsed = isAddress(address)
-  if (!parsed) {
-    throw Error(`Invalid 'address' parameter '${address}'.`)
-  }
-  return `${parsed.substring(0, chars + 2)}...${parsed.substring(42 - chars)}`
+export function getBscScanLinkForNft(
+  collectionAddress: string,
+  tokenId: string,
+  chainId: ChainId = ChainId.MAINNET,
+): string {
+  return `${BASE_BSC_SCAN_URLS[chainId]}/token/${collectionAddress}?a=${tokenId}`
 }
 
 // add 10%

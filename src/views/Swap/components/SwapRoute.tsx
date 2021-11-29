@@ -1,9 +1,9 @@
-import React, { Fragment, memo } from 'react'
-import { Trade } from '@defifarms/sdk'
-import { ChevronRightIcon, Flex, Text } from '@defifarms/uikit'
-import { unwrappedToken } from 'utils/wrappedCurrency'
+import React, {Fragment, memo} from 'react'
+import {Trade} from '@defifarms/sdk'
+import {Text, Flex, ChevronRightIcon} from '@pancakeswap/uikit'
+import {unwrappedToken} from 'utils/wrappedCurrency'
 
-export default memo(function SwapRoute({ trade }: { trade: Trade }) {
+export default memo(function SwapRoute({trade}: {trade: Trade}) {
   return (
     <Flex flexWrap="wrap" width="100%" justifyContent="flex-end" alignItems="center">
       {trade.route.path.map((token, i, path) => {

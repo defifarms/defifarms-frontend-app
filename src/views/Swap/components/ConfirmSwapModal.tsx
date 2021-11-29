@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo } from 'react'
-import { currencyEquals, Trade } from '@defifarms/sdk'
-import { InjectedModalProps } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import React, {useCallback, useMemo} from 'react'
+import {currencyEquals, Trade} from '@defifarms/sdk'
+import {InjectedModalProps} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,
   TransactionErrorContent,
@@ -54,7 +54,7 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
     [originalTrade, trade],
   )
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const modalHeader = useCallback(() => {
     return trade ? (

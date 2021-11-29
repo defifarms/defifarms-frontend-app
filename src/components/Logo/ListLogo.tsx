@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import Logo from './Logo'
 
-const StyledListLogo = styled(Logo)<{ size: string }>`
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
+const StyledListLogo = styled(Logo)<{size: string}>`
+  width: ${({size}) => size};
+  height: ${({size}) => size};
 `
 
 export default function ListLogo({

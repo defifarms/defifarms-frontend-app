@@ -1,5 +1,5 @@
-import { createReducer } from '@reduxjs/toolkit'
-import { Field, resetMintState, typeInput } from './actions'
+import {createReducer} from '@reduxjs/toolkit'
+import {Field, resetMintState, typeInput} from './actions'
 
 export interface MintState {
   readonly independentField: Field
@@ -16,7 +16,7 @@ const initialState: MintState = {
 export default createReducer<MintState>(initialState, (builder) =>
   builder
     .addCase(resetMintState, () => initialState)
-    .addCase(typeInput, (state, { payload: { field, typedValue, noLiquidity } }) => {
+    .addCase(typeInput, (state, {payload: {field, typedValue, noLiquidity}}) => {
       if (noLiquidity) {
         // they're typing into the field they've last typed in
         if (field === state.independentField) {

@@ -1,15 +1,15 @@
 import React from 'react'
-import { CardHeader, Flex, Heading, Text } from '@defifarms/uikit'
+import {CardHeader, Heading, Text, Flex} from '@pancakeswap/uikit'
+import {Token} from '@defifarms/sdk'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
-import { Token } from 'config/constants/types'
-import { TokenPairImage } from 'components/TokenImage'
+import {useTranslation} from 'contexts/Localization'
+import {TokenPairImage} from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
-const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
-  background: ${({ isFinished, background, theme }) => theme.card.background};
-  border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
-  border-bottom: ${({ theme }) => ` 1px solid ${theme.colors.cardBorder}`};
+const Wrapper = styled(CardHeader)<{isFinished?: boolean; background?: string}>`
+  background: ${({isFinished, background, theme}) =>
+    isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
+  border-radius: ${({theme}) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
 const StyledCardHeader: React.FC<{
@@ -18,9 +18,10 @@ const StyledCardHeader: React.FC<{
   isAutoVault?: boolean
   isFinished?: boolean
   isStaking?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
-  const { t } = useTranslation()
-  const isCakePool = earningToken.symbol === 'DEFIY' && stakingToken.symbol === 'DEFIY'
+}> = ({earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false}) => {
+  const {t} = useTranslation()
+  const isCakePool = earningToken.symbol === 'CAKE' && stakingToken.symbol === 'CAKE'
+  const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
@@ -40,16 +41,16 @@ const StyledCardHeader: React.FC<{
       return t('Automatic restaking')
     }
     if (isCakePool) {
-      return t('Earn DEFIY, stake DEFIY')
+      return t('Earn CAKE, stake CAKE')
     }
-    return t('Stake %symbol%', { symbol: stakingToken.symbol })
+    return t('Stake %symbol%', {symbol: stakingToken.symbol})
   }
 
   return (
-    <Wrapper isFinished={isFinished}>
+    <Wrapper isFinished={isFinished} background={background}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'white'} scale="md">
+          <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
             {`${getHeadingPrefix()} ${earningToken.symbol}`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>

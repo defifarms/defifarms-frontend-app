@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Label = styled.div`
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({theme}) => theme.colors.textSubtle};
   text-align: left;
 `
 
@@ -17,7 +17,7 @@ interface CellLayoutProps {
   label?: string
 }
 
-const CellLayout: React.FC<CellLayoutProps> = ({ label = '', children }) => {
+const CellLayout: React.FC<CellLayoutProps> = ({label = '', children}) => {
   return (
     <div>
       {label && <Label>{label}</Label>}

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Box, CopyIcon, Flex, FlexProps, IconButton } from '@defifarms/uikit'
+import React, {useState} from 'react'
+import {Box, CopyIcon, Flex, FlexProps, IconButton} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 
 interface CopyAddressProps extends FlexProps {
   account: string
@@ -9,7 +9,7 @@ interface CopyAddressProps extends FlexProps {
 
 const Wrapper = styled(Flex)`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.dropdown};
+  background-color: ${({theme}) => theme.colors.dropdown};
   border-radius: 16px;
   position: relative;
 `
@@ -22,7 +22,7 @@ const Address = styled.div`
   & > input {
     background: transparent;
     border: 0;
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({theme}) => theme.colors.text};
     display: block;
     font-weight: 600;
     font-size: 16px;
@@ -37,8 +37,8 @@ const Address = styled.div`
   &:after {
     background: linear-gradient(
       to right,
-      ${({ theme }) => theme.colors.background}00,
-      ${({ theme }) => theme.colors.background}E6
+      ${({theme}) => theme.colors.background}00,
+      ${({theme}) => theme.colors.background}E6
     );
     content: '';
     height: 100%;
@@ -50,23 +50,23 @@ const Address = styled.div`
   }
 `
 
-const Tooltip = styled.div<{ isTooltipDisplayed: boolean }>`
-  display: ${({ isTooltipDisplayed }) => (isTooltipDisplayed ? 'inline-block' : 'none')};
+const Tooltip = styled.div<{isTooltipDisplayed: boolean}>`
+  display: ${({isTooltipDisplayed}) => (isTooltipDisplayed ? 'inline-block' : 'none')};
   position: absolute;
   padding: 8px;
   top: -38px;
   right: 0;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.contrast};
-  color: ${({ theme }) => theme.colors.invertedContrast};
+  background-color: ${({theme}) => theme.colors.contrast};
+  color: ${({theme}) => theme.colors.invertedContrast};
   border-radius: 16px;
   opacity: 0.7;
   width: 100px;
 `
 
-const CopyAddress: React.FC<CopyAddressProps> = ({ account, ...props }) => {
+const CopyAddress: React.FC<CopyAddressProps> = ({account, ...props}) => {
   const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false)
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const copyAddress = () => {
     if (navigator.clipboard && navigator.permissions) {

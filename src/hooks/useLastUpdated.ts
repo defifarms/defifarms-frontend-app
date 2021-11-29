@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import {useCallback, useState} from 'react'
 import usePreviousValue from './usePreviousValue'
 
 /**
@@ -13,7 +13,7 @@ const useLastUpdated = () => {
     setStateLastUpdated(Date.now())
   }, [setStateLastUpdated])
 
-  return { lastUpdated, previousLastUpdated, setLastUpdated }
+  return {lastUpdated, previousLastUpdated, setLastUpdated}
 }
 
 export default useLastUpdated

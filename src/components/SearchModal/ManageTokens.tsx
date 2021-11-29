@@ -1,18 +1,18 @@
-import React, { RefObject, useCallback, useMemo, useRef, useState } from 'react'
-import { Token } from '@defifarms/sdk'
-import { Button, CloseIcon, IconButton, Input, Link, LinkExternal, Text } from '@defifarms/uikit'
+import React, {RefObject, useCallback, useMemo, useRef, useState} from 'react'
+import {Token} from '@defifarms/sdk'
+import {Button, CloseIcon, IconButton, Input, Link, LinkExternal, Text} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import Row, { RowBetween, RowFixed } from 'components/Layout/Row'
-import { useToken } from 'hooks/Tokens'
-import { useRemoveUserAddedToken } from 'state/user/hooks'
+import Row, {RowBetween, RowFixed} from 'components/Layout/Row'
+import {useToken} from 'hooks/Tokens'
+import {useRemoveUserAddedToken} from 'state/user/hooks'
 import useUserAddedTokens from 'state/user/hooks/useUserAddedTokens'
-import { CurrencyLogo } from 'components/Logo'
-import { getBscScanLink, isAddress } from 'utils'
+import {CurrencyLogo} from 'components/Logo'
+import {getBscScanLink, isAddress} from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useTranslation } from 'contexts/Localization'
-import Column, { AutoColumn } from '../Layout/Column'
+import {useTranslation} from 'contexts/Localization'
+import Column, {AutoColumn} from '../Layout/Column'
 import ImportRow from './ImportRow'
-import { CurrencyModalView } from './types'
+import {CurrencyModalView} from './types'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,9 +37,9 @@ export default function ManageTokens({
   setModalView: (view: CurrencyModalView) => void
   setImportToken: (token: Token) => void
 }) {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const [searchQuery, setSearchQuery] = useState<string>('')
 
@@ -92,7 +92,7 @@ export default function ManageTokens({
 
   return (
     <Wrapper>
-      <Column style={{ width: '100%', flex: '1 1' }}>
+      <Column style={{width: '100%', flex: '1 1'}}>
         <AutoColumn gap="14px">
           <Row>
             <Input
@@ -112,7 +112,7 @@ export default function ManageTokens({
               token={searchToken}
               showImportView={() => setModalView(CurrencyModalView.importToken)}
               setImportToken={setImportToken}
-              style={{ height: 'fit-content' }}
+              style={{height: 'fit-content'}}
             />
           )}
         </AutoColumn>

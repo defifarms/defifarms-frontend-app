@@ -1,5 +1,5 @@
-import { BigNumber, FixedNumber } from 'ethers'
-import { formatBigNumber, formatBigNumberToFixed, formatFixedNumber } from 'utils/formatBalance'
+import {BigNumber, FixedNumber} from 'ethers'
+import {formatBigNumber, formatBigNumberToFixed, formatFixedNumber} from 'utils/formatBalance'
 
 describe('formatBigNumber', () => {
   it.each([

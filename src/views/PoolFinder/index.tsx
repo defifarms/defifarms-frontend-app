@@ -1,23 +1,23 @@
-import { Currency, ETHER, JSBI, TokenAmount } from '@defifarms/sdk'
-import { AddIcon, Button, ChevronDownIcon, Text, useModal } from '@defifarms/uikit'
-import { MainBackground } from 'components/Layout/MainBackground'
-import { useTranslation } from 'contexts/Localization'
-import React, { useCallback, useEffect, useState } from 'react'
+import {Currency, ETHER, JSBI, TokenAmount} from '@defifarms/sdk'
+import {AddIcon, Button, ChevronDownIcon, Text, useModal} from '@pancakeswap/uikit'
+import {MainBackground} from 'components/Layout/MainBackground'
+import {useTranslation} from 'contexts/Localization'
+import React, {useCallback, useEffect, useState} from 'react'
 import styled from 'styled-components'
-import { AppBody, AppHeader } from '../../components/App'
-import { LightCard } from '../../components/Card'
-import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
+import {AppBody, AppHeader} from '../../components/App'
+import {LightCard} from '../../components/Card'
+import {AutoColumn, ColumnCenter} from '../../components/Layout/Column'
 import Row from '../../components/Layout/Row'
 import StyledInternalLink from '../../components/Links'
 import Dots from '../../components/Loader/Dots'
-import { CurrencyLogo } from '../../components/Logo'
-import { MinimalPositionCard } from '../../components/PositionCard'
+import {CurrencyLogo} from '../../components/Logo'
+import {MinimalPositionCard} from '../../components/PositionCard'
 import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
-import { PairState, usePair } from '../../hooks/usePairs'
-import { usePairAdder } from '../../state/user/hooks'
-import { useTokenBalance } from '../../state/wallet/hooks'
-import { currencyId } from '../../utils/currencyId'
+import {PairState, usePair} from '../../hooks/usePairs'
+import {usePairAdder} from '../../state/user/hooks'
+import {useTokenBalance} from '../../state/wallet/hooks'
+import {currencyId} from '../../utils/currencyId'
 import Page from '../Page'
 
 enum Fields {
@@ -27,15 +27,15 @@ enum Fields {
 
 const StyledButton = styled(Button)`
   background-color: '#43109E';
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   box-shadow: none;
   border-radius: 8px;
   border: 0.887863px solid #ac8aea80;
 `
 
 export default function PoolFinder() {
-  const { account } = useActiveWeb3React()
-  const { t } = useTranslation()
+  const {account} = useActiveWeb3React()
+  const {t} = useTranslation()
 
   const [activeField, setActiveField] = useState<number>(Fields.TOKEN1)
   const [currency0, setCurrency0] = useState<Currency | null>(ETHER)
@@ -96,7 +96,7 @@ export default function PoolFinder() {
       <Page>
         <AppBody>
           <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
-          <AutoColumn style={{ padding: '1rem' }} gap="md">
+          <AutoColumn style={{padding: '1rem'}} gap="md">
             <StyledButton
               endIcon={<ChevronDownIcon />}
               onClick={() => {
@@ -137,7 +137,7 @@ export default function PoolFinder() {
 
             {hasPosition && (
               <ColumnCenter
-                style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
+                style={{justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px'}}
               >
                 <Text textAlign="center">{t('Pool Found!')}</Text>
                 <StyledInternalLink to="/pool">

@@ -1,18 +1,18 @@
-import React, { useCallback, useState } from 'react'
+import React, {useCallback, useState} from 'react'
 import styled from 'styled-components'
-import { Button, Checkbox, Flex, Link, Message, Text } from '@defifarms/uikit'
+import {Button, Checkbox, Flex, Link, Message, Text} from '@pancakeswap/uikit'
 import Card from 'components/Card'
-import { AutoColumn } from 'components/Layout/Column'
-import { RowBetween, RowFixed } from 'components/Layout/Row'
+import {AutoColumn} from 'components/Layout/Column'
+import {RowBetween, RowFixed} from 'components/Layout/Row'
 import useTheme from 'hooks/useTheme'
-import { ListLogo } from 'components/Logo'
-import { TokenList } from '@uniswap/token-lists'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from 'state'
+import {ListLogo} from 'components/Logo'
+import {TokenList} from '@uniswap/token-lists'
+import {useDispatch} from 'react-redux'
+import {AppDispatch} from 'state'
 import useFetchListCallback from 'hooks/useFetchListCallback'
-import { enableList, removeList } from 'state/lists/actions'
-import { useAllLists } from 'state/lists/hooks'
-import { useTranslation } from 'contexts/Localization'
+import {enableList, removeList} from 'state/lists/actions'
+import {useAllLists} from 'state/lists/hooks'
+import {useTranslation} from 'contexts/Localization'
 
 interface ImportProps {
   listURL: string
@@ -28,15 +28,15 @@ const Wrapper = styled.div`
 const TextDot = styled.div`
   height: 3px;
   width: 3px;
-  background-color: ${({ theme }) => theme.colors.text};
+  background-color: ${({theme}) => theme.colors.text};
   border-radius: 50%;
 `
 
-function ImportList({ listURL, list, onImport }: ImportProps) {
-  const { theme } = useTheme()
+function ImportList({listURL, list, onImport}: ImportProps) {
+  const {theme} = useTheme()
   const dispatch = useDispatch<AppDispatch>()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   // user must accept
   const [confirmed, setConfirmed] = useState(false)
@@ -70,7 +70,7 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
             <RowBetween>
               <RowFixed>
                 {list.logoURI && <ListLogo logoURI={list.logoURI} size="40px" />}
-                <AutoColumn gap="sm" style={{ marginLeft: '20px' }}>
+                <AutoColumn gap="sm" style={{marginLeft: '20px'}}>
                   <RowFixed>
                     <Text bold mr="6px">
                       {list.name}
@@ -115,7 +115,7 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
                   onChange={() => setConfirmed(!confirmed)}
                   scale="sm"
                 />
-                <Text ml="10px" style={{ userSelect: 'none' }}>
+                <Text ml="10px" style={{userSelect: 'none'}}>
                   {t('I understand')}
                 </Text>
               </Flex>
@@ -126,7 +126,7 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
             {t('Import')}
           </Button>
           {addError ? (
-            <Text color="failure" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+            <Text color="failure" style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>
               {addError}
             </Text>
           ) : null}

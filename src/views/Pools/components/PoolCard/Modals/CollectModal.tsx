@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {
-  AutoRenewIcon,
-  Button,
-  ButtonMenu,
-  ButtonMenuItem,
-  Flex,
-  Heading,
-  HelpIcon,
   Modal,
   Text,
+  Button,
+  Heading,
+  Flex,
+  AutoRenewIcon,
+  ButtonMenu,
+  ButtonMenuItem,
+  HelpIcon,
   useTooltip,
-} from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
-import { Token } from 'config/constants/types'
-import { formatNumber } from 'utils/formatBalance'
+import {Token} from '@defifarms/sdk'
+import {formatNumber} from 'utils/formatBalance'
 import useHarvestPool from '../../../hooks/useHarvestPool'
 import useStakePool from '../../../hooks/useStakePool'
 
@@ -40,19 +40,19 @@ const CollectModal: React.FC<CollectModalProps> = ({
   isCompoundPool = false,
   onDismiss,
 }) => {
-  const { t } = useTranslation()
-  const { theme } = useTheme()
-  const { toastSuccess, toastError } = useToast()
-  const { onReward } = useHarvestPool(sousId)
-  const { onStake } = useStakePool(sousId)
+  const {t} = useTranslation()
+  const {theme} = useTheme()
+  const {toastSuccess, toastError} = useToast()
+  const {onReward} = useHarvestPool(sousId, isBnbPool)
+  const {onStake} = useStakePool(sousId, isBnbPool)
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(
     <>
-      <Text mb="12px">{t('Compound: collect and restake DEFIY into pool.')}</Text>
-      <Text>{t('Harvest: collect DEFIY and send to wallet')}</Text>
+      <Text mb="12px">{t('Compound: collect and restake CAKE into pool.')}</Text>
+      <Text>{t('Harvest: collect CAKE and send to wallet')}</Text>
     </>,
-    { placement: 'bottom-end', tooltipOffset: [20, 10] },
+    {placement: 'bottom-end', tooltipOffset: [20, 10]},
   )
 
   const handleHarvestConfirm = async () => {
@@ -60,10 +60,10 @@ const CollectModal: React.FC<CollectModalProps> = ({
     // compounding
     if (shouldCompound) {
       try {
-        await onStake(fullBalance)
+        await onStake(fullBalance, earningToken.decimals)
         toastSuccess(
           `${t('Compounded')}!`,
-          t('Your %symbol% earnings have been re-invested into the pool!', { symbol: earningToken.symbol }),
+          t('Your %symbol% earnings have been re-invested into the pool!', {symbol: earningToken.symbol}),
         )
         setPendingTx(false)
         onDismiss()
@@ -78,7 +78,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
         await onReward()
         toastSuccess(
           `${t('Harvested')}!`,
-          t('Your %symbol% earnings have been sent to your wallet!', { symbol: earningToken.symbol }),
+          t('Your %symbol% earnings have been sent to your wallet!', {symbol: earningToken.symbol}),
         )
         setPendingTx(false)
         onDismiss()

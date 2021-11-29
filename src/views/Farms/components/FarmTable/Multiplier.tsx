@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Skeleton, useTooltip } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {HelpIcon, Skeleton, useTooltip} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 const ReferenceElement = styled.div`
   display: inline-block;
@@ -12,14 +12,14 @@ export interface MultiplierProps {
 }
 
 const MultiplierWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   width: 36px;
   text-align: right;
   margin-right: 14px;
   font-size: 20px;
   font-weight: 500;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     text-align: left;
     margin-right: 0;
   }
@@ -30,9 +30,9 @@ const Container = styled.div`
   align-items: center;
 `
 
-const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) => {
+const Multiplier: React.FunctionComponent<MultiplierProps> = ({multiplier}) => {
   const displayMultiplier = multiplier ? multiplier.toLowerCase() : <Skeleton width={30} />
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const tooltipContent = (
     <>
       {t('The multiplier represents the amount of DEFIY rewards each farm gets.')}
@@ -41,7 +41,7 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
       {t('For example, if a 1x farm was getting 1 DEFIY per block, a 40x farm would be getting 40 DEFIY per block.')}
     </>
   )
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(tooltipContent, {
     placement: 'top-end',
     tooltipOffset: [20, 10],
   })

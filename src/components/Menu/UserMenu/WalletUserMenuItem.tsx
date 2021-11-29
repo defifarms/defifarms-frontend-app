@@ -1,14 +1,14 @@
 import React from 'react'
-import { Flex, UserMenuItem, WarningIcon } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Flex, UserMenuItem, WarningIcon} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 interface WalletUserMenuItemProps {
   hasLowBnbBalance: boolean
   onPresentWalletModal: () => void
 }
 
-const WalletUserMenuItem: React.FC<WalletUserMenuItemProps> = ({ hasLowBnbBalance, onPresentWalletModal }) => {
-  const { t } = useTranslation()
+const WalletUserMenuItem: React.FC<WalletUserMenuItemProps> = ({hasLowBnbBalance, onPresentWalletModal}) => {
+  const {t} = useTranslation()
 
   return (
     <UserMenuItem as="button" onClick={onPresentWalletModal}>

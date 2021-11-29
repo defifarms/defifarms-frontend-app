@@ -26,7 +26,7 @@ describe('Check translations available', () => {
   throughDirectory('src/')
 
   it.each(files)('Translation key should exist in translations json', (file) => {
-    const data = fs.readFileSync(file, { encoding: 'utf8', flag: 'r' })
+    const data = fs.readFileSync(file, {encoding: 'utf8', flag: 'r'})
 
     let match
 

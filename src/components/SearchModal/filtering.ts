@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
-import { Token } from '@defifarms/sdk'
-import { isAddress } from '../../utils'
+import {useMemo} from 'react'
+import {Token} from '@defifarms/sdk'
+import {isAddress} from '../../utils'
 
 export function filterTokens(tokens: Token[], search: string): Token[] {
   if (search.length === 0) return tokens
@@ -30,7 +30,7 @@ export function filterTokens(tokens: Token[], search: string): Token[] {
   }
 
   return tokens.filter((token) => {
-    const { symbol, name } = token
+    const {symbol, name} = token
     return (symbol && matchesSearch(symbol)) || (name && matchesSearch(name))
   })
 }

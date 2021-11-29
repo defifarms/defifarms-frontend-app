@@ -1,1 +1,1 @@
-export { default } from './ExpandableSectionButton'
+export {default} from './ExpandableSectionButton'

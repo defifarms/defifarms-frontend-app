@@ -1,5 +1,5 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@defifarms/sdk'
-import { BTCB, BUSD, DAI, DEFIY, ETH, USDC, USDT, UST, WBNB } from './tokens'
+import {ChainId, JSBI, Percent, Token, WETH} from '@defifarms/sdk'
+import {BTCB, BUSD, DAI, DEFIY, ETH, USDC, USDT, UST, WBNB} from './tokens'
 
 // export const ROUTER_ADDRESS = '0x64D2D8720F5986fE1cc7A474aa38176A85314D0C' // MainNet
 
@@ -20,7 +20,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * Addittional bases for specific tokens
  * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
  */
-export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+export const ADDITIONAL_BASES: {[chainId in ChainId]?: {[tokenAddress: string]: Token[]}} = {
   [ChainId.MAINNET]: {},
 }
 
@@ -29,7 +29,7 @@ export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]
  * tokens.
  * @example [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
  */
-export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+export const CUSTOM_BASES: {[chainId in ChainId]?: {[tokenAddress: string]: Token[]}} = {
   [ChainId.MAINNET]: {},
 }
 
@@ -45,7 +45,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 
-export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
+export const PINNED_PAIRS: {readonly [chainId in ChainId]?: [Token, Token][]} = {
   [ChainId.MAINNET]: [
     [DEFIY[ChainId.MAINNET], WBNB[ChainId.MAINNET]],
     [BUSD[ChainId.MAINNET], USDT],
@@ -90,5 +90,5 @@ export const BLOCKED_ADDRESSES: string[] = [
   '0x8576aCC5C05D6Ce88f4e49bf65BdF0C62F91353C',
 ]
 
-export { default as farmsConfig } from './farms'
-export { default as poolsConfig } from './pools'
+export {default as farmsConfig} from './farms'
+export {default as poolsConfig} from './pools'

@@ -1,4 +1,4 @@
-import ethers, { Contract, ContractFunction } from 'ethers'
+import ethers, {Contract, ContractFunction} from 'ethers'
 
 export type MultiCallResponse<T> = T | null
 
@@ -15,11 +15,13 @@ export type PredictionsRefundableResponse = boolean
 
 export interface PredictionsRoundsResponse {
   epoch: ethers.BigNumber
-  startBlock: ethers.BigNumber
-  lockBlock: ethers.BigNumber
-  endBlock: ethers.BigNumber
+  startTimestamp: ethers.BigNumber
+  lockTimestamp: ethers.BigNumber
+  closeTimestamp: ethers.BigNumber
   lockPrice: ethers.BigNumber
   closePrice: ethers.BigNumber
+  lockOracleId: ethers.BigNumber
+  closeOracleId: ethers.BigNumber
   totalAmount: ethers.BigNumber
   bullAmount: ethers.BigNumber
   bearAmount: ethers.BigNumber
@@ -28,14 +30,21 @@ export interface PredictionsRoundsResponse {
   oracleCalled: boolean
 }
 
+// [rounds, ledgers, count]
+export type PredictionsGetUserRoundsResponse = [ethers.BigNumber[], PredictionsLedgerResponse[], ethers.BigNumber]
+
+export type PredictionsGetUserRoundsLengthResponse = ethers.BigNumber
+
 export interface PredictionsContract extends Contract {
   claimable: ContractFunction<PredictionsClaimableResponse>
+  getUserRounds: ContractFunction<PredictionsGetUserRoundsResponse>
+  getUserRoundsLength: ContractFunction<PredictionsGetUserRoundsLengthResponse>
   ledger: ContractFunction<PredictionsLedgerResponse>
   refundable: ContractFunction<PredictionsRefundableResponse>
   rounds: ContractFunction<PredictionsRoundsResponse>
 }
 
-// Chainlink Orance
+// Chainlink Oracle
 export type ChainLinkOracleLatestAnswerResponse = ethers.BigNumber
 
 export interface ChainLinkOracleContract extends Contract {
@@ -44,7 +53,7 @@ export interface ChainLinkOracleContract extends Contract {
 
 // Farm Auction
 
-// Note: slightly different from AuctionStatus used thoughout UI
+// Note: slightly different from AuctionStatus used throughout UI
 export enum FarmAuctionContractStatus {
   Pending,
   Open,
@@ -95,4 +104,20 @@ export interface FarmAuctionContract extends Contract {
   whitelisted: ContractFunction<boolean>
   getWhitelistedAddresses: ContractFunction<GetWhitelistedAddressesResponse>
   auctionsHistory: ContractFunction<AuctionsHistoryResponse>
+}
+
+// Profile contract
+// [userId, points, teamId, tokenId, collectionAddress isActive]
+export type GetUserProfileResponse = [
+  ethers.BigNumber,
+  ethers.BigNumber,
+  ethers.BigNumber,
+  string,
+  ethers.BigNumber,
+  boolean,
+]
+
+export interface PancakeProfileContract extends Contract {
+  getUserProfile: ContractFunction<GetUserProfileResponse>
+  hasRegistered: ContractFunction<boolean>
 }

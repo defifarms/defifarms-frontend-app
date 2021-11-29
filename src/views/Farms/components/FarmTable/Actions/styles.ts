@@ -1,24 +1,25 @@
 import styled from 'styled-components'
 
 export const ActionContainer = styled.div`
-  padding: 24px 16px;
-  border: 1px solid #5503e8;
+  padding: 16px;
+  border: 2px solid ${({theme}) => theme.colors.input};
   border-radius: 16px;
   flex-grow: 1;
   flex-basis: 0;
   margin-bottom: 16px;
-  margin-top: 16px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     margin-left: 12px;
     margin-right: 12px;
-    max-height: 140px;
+    margin-bottom: 0;
+    max-height: 100px;
   }
 
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({theme}) => theme.mediaQueries.xl} {
     margin-left: 48px;
     margin-right: 0;
-    max-height: 140px;
+    margin-bottom: 0;
+    max-height: 100px;
   }
 `
 

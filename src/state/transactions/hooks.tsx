@@ -1,21 +1,21 @@
-import { TransactionResponse } from '@ethersproject/providers'
-import { useCallback, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {TransactionResponse} from '@ethersproject/providers'
+import {useCallback, useMemo} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { AppDispatch, AppState } from '../index'
-import { addTransaction } from './actions'
-import { TransactionDetails } from './reducer'
+import {AppDispatch, AppState} from '../index'
+import {addTransaction} from './actions'
+import {TransactionDetails} from './reducer'
 
 // helper that can take a ethers library transaction response and add it to the list of transactions
 export function useTransactionAdder(): (
   response: TransactionResponse,
   customData?: {
     summary?: string
-    approval?: { tokenAddress: string; spender: string }
-    claim?: { recipient: string }
+    approval?: {tokenAddress: string; spender: string}
+    claim?: {recipient: string}
   },
 ) => void {
-  const { chainId, account } = useActiveWeb3React()
+  const {chainId, account} = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
 
   return useCallback(
@@ -25,24 +25,24 @@ export function useTransactionAdder(): (
         summary,
         approval,
         claim,
-      }: { summary?: string; claim?: { recipient: string }; approval?: { tokenAddress: string; spender: string } } = {},
+      }: {summary?: string; claim?: {recipient: string}; approval?: {tokenAddress: string; spender: string}} = {},
     ) => {
       if (!account) return
       if (!chainId) return
 
-      const { hash } = response
+      const {hash} = response
       if (!hash) {
         throw Error('No transaction hash found.')
       }
-      dispatch(addTransaction({ hash, from: account, chainId, approval, summary, claim }))
+      dispatch(addTransaction({hash, from: account, chainId, approval, summary, claim}))
     },
     [dispatch, chainId, account],
   )
 }
 
 // returns all the transactions for the current chain
-export function useAllTransactions(): { [txHash: string]: TransactionDetails } {
-  const { chainId } = useActiveWeb3React()
+export function useAllTransactions(): {[txHash: string]: TransactionDetails} {
+  const {chainId} = useActiveWeb3React()
 
   const state = useSelector<AppState, AppState['transactions']>((s) => s.transactions)
 
@@ -78,7 +78,7 @@ export function useHasPendingApproval(tokenAddress: string | undefined, spender:
         if (tx.receipt) {
           return false
         }
-        const { approval } = tx
+        const {approval} = tx
         if (!approval) return false
         return approval.spender === spender && approval.tokenAddress === tokenAddress && isTransactionRecent(tx)
       }),

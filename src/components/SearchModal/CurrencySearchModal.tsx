@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react'
-import { Currency, Token } from '@defifarms/sdk'
+import React, {useCallback, useState} from 'react'
+import {Currency, Token} from '@defifarms/sdk'
 import {
   Button,
   Heading,
@@ -10,16 +10,16 @@ import {
   ModalContainer,
   ModalHeader,
   ModalTitle,
-} from '@defifarms/uikit'
+} from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
-import { TokenList } from '@uniswap/token-lists'
-import { useTranslation } from 'contexts/Localization'
+import {TokenList} from '@uniswap/token-lists'
+import {useTranslation} from 'contexts/Localization'
 import CurrencySearch from './CurrencySearch'
 import ImportToken from './ImportToken'
 import Manage from './Manage'
 import ImportList from './ImportList'
-import { CurrencyModalView } from './types'
+import {CurrencyModalView} from './types'
 
 const Footer = styled.div`
   width: 100%;
@@ -74,17 +74,17 @@ export default function CurrencySearchModal({
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const config = {
-    [CurrencyModalView.search]: { title: t('Select a Token'), onBack: undefined },
-    [CurrencyModalView.manage]: { title: t('Manage'), onBack: () => setModalView(CurrencyModalView.search) },
+    [CurrencyModalView.search]: {title: t('Select a Token'), onBack: undefined},
+    [CurrencyModalView.manage]: {title: t('Manage'), onBack: () => setModalView(CurrencyModalView.search)},
     [CurrencyModalView.importToken]: {
       title: t('Import Tokens'),
       onBack: () =>
         setModalView(prevView && prevView !== CurrencyModalView.importToken ? prevView : CurrencyModalView.search),
     },
-    [CurrencyModalView.importList]: { title: t('Import List'), onBack: () => setModalView(CurrencyModalView.search) },
+    [CurrencyModalView.importList]: {title: t('Import List'), onBack: () => setModalView(CurrencyModalView.search)},
   }
 
   return (

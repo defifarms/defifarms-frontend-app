@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 
 const useWithdrawalFeeTimer = (lastDepositedTime: number, userShares: BigNumber, withdrawalFeePeriod = 259200) => {
   const [secondsRemaining, setSecondsRemaining] = useState(null)
@@ -26,7 +26,7 @@ const useWithdrawalFeeTimer = (lastDepositedTime: number, userShares: BigNumber,
     return () => clearInterval(timerInterval)
   }, [lastDepositedTime, withdrawalFeePeriod, setSecondsRemaining, currentSeconds, userShares])
 
-  return { hasUnstakingFee, secondsRemaining }
+  return {hasUnstakingFee, secondsRemaining}
 }
 
 export default useWithdrawalFeeTimer

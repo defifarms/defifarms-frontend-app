@@ -1,6 +1,6 @@
 import CID from 'cids'
-import { getCodec, rmPrefix } from 'multicodec'
-import { decode, toB58String } from 'multihashes'
+import {getCodec, rmPrefix} from 'multicodec'
+import {decode, toB58String} from 'multihashes'
 
 function hexToUint8Array(hex: string): Uint8Array {
   // eslint-disable-next-line no-param-reassign

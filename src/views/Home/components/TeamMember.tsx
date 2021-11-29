@@ -1,12 +1,12 @@
 import React from 'react'
-import { Heading, Text, Flex } from '@defifarms/uikit'
+import {Heading, Text, Flex} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useBurnedBalance, useTotalSupply } from 'hooks/useTokenBalance'
+import {getBalanceNumber} from 'utils/formatBalance'
+import {useBurnedBalance, useTotalSupply} from 'hooks/useTokenBalance'
 import Slider from 'react-slick'
-import { useTranslation } from 'contexts/Localization'
-import { getDefiyAddress } from 'utils/addressHelpers'
-import { usePriceCakeBusd } from '../../../state/farms/hooks'
+import {useTranslation} from 'contexts/Localization'
+import {getDefiyAddress} from 'utils/addressHelpers'
+import {usePriceCakeBusd} from '../../../state/farms/hooks'
 
 const StyledContainer = styled.div`
   background-image: url(/images/home/team-bg.png);
@@ -26,7 +26,7 @@ const HeadingCard = styled(Heading)`
   line-height: 42px;
   color: #ffffff;
   padding: 0 0 42px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     font-size: 36px;
   }
 `
@@ -39,7 +39,7 @@ const CardWrapper = styled.div`
   overflow: hidden;
   padding: 18px;
   margin-bottom: 25px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     width: 270px !important;
     margin-bottom: 0;
   }
@@ -87,7 +87,7 @@ const CardButton = styled.a`
 
 const SliderWrapper = styled.div`
   padding: 0 0 50px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     padding: 0 35px 50px;
   }
 `
@@ -98,10 +98,10 @@ const FlexBox = styled.div`
   flex-wrap: wrap;
 `
 
-const Partners = styled.img<{ margin?: string }>`
+const Partners = styled.img<{margin?: string}>`
   width: 270px;
   height: 116px;
-  margin: ${({ margin }) => margin || '0 15px'};
+  margin: ${({margin}) => margin || '0 15px'};
 `
 
 const teams = [
@@ -140,14 +140,14 @@ const settings = {
 }
 
 const CakeStats = () => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getDefiyAddress()))
   const slides = []
 
   for (let i = 0; i < teams.length; i++) {
     slides.push(
-      <div style={{ padding: '0 10px' }}>
+      <div style={{padding: '0 10px'}}>
         <CardWrapper>
           <CardImage src={teams[i].image} />
           <CardName>{teams[i].name}</CardName>
@@ -168,7 +168,7 @@ const CakeStats = () => {
       <SliderWrapper>
         <Slider {...settings}>
           <FlexBox>
-            <div style={{ padding: '0 10px' }}>
+            <div style={{padding: '0 10px'}}>
               <CardWrapper>
                 <CardImage src={teams[0].image} />
                 <CardName>{teams[0].name}</CardName>
@@ -178,7 +178,7 @@ const CakeStats = () => {
                 </CardButton>
               </CardWrapper>
             </div>
-            <div style={{ padding: '0 10px' }}>
+            <div style={{padding: '0 10px'}}>
               <CardWrapper>
                 <CardImage src={teams[1].image} />
                 <CardName>{teams[1].name}</CardName>
@@ -188,7 +188,7 @@ const CakeStats = () => {
                 </CardButton>
               </CardWrapper>
             </div>
-            <div style={{ padding: '0 10px' }}>
+            <div style={{padding: '0 10px'}}>
               <CardWrapper>
                 <CardImage src={teams[2].image} />
                 <CardName>{teams[2].name}</CardName>
@@ -200,7 +200,7 @@ const CakeStats = () => {
             </div>
           </FlexBox>
           <FlexBox>
-            <div style={{ padding: '0 10px' }}>
+            <div style={{padding: '0 10px'}}>
               <CardWrapper>
                 <CardImage src={teams[3].image} />
                 <CardName>{teams[3].name}</CardName>

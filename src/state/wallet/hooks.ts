@@ -1,11 +1,11 @@
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@defifarms/sdk'
-import { useMemo } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import {Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount} from '@defifarms/sdk'
+import {useMemo} from 'react'
+import {useWeb3React} from '@web3-react/core'
 import ERC20_INTERFACE from 'config/abi/erc20'
-import { useAllTokens } from 'hooks/Tokens'
-import { useMulticallContract } from 'hooks/useContract'
-import { isAddress } from 'utils'
-import { useMultipleContractSingleData, useSingleContractMultipleData } from '../multicall/hooks'
+import {useAllTokens} from 'hooks/Tokens'
+import {useMulticallContract} from 'hooks/useContract'
+import {isAddress} from 'utils'
+import {useMultipleContractSingleData, useSingleContractMultipleData} from '../multicall/hooks'
 
 /**
  * Returns a map of the given addresses to their eventually consistent BNB balances.
@@ -34,7 +34,7 @@ export function useBNBBalances(uncheckedAddresses?: (string | undefined)[]): {
 
   return useMemo(
     () =>
-      addresses.reduce<{ [address: string]: CurrencyAmount }>((memo, address, i) => {
+      addresses.reduce<{[address: string]: CurrencyAmount}>((memo, address, i) => {
         const value = results?.[i]?.result?.[0]
         if (value) memo[address] = CurrencyAmount.ether(JSBI.BigInt(value.toString()))
         return memo
@@ -49,7 +49,7 @@ export function useBNBBalances(uncheckedAddresses?: (string | undefined)[]): {
 export function useTokenBalancesWithLoadingIndicator(
   address?: string,
   tokens?: (Token | undefined)[],
-): [{ [tokenAddress: string]: TokenAmount | undefined }, boolean] {
+): [{[tokenAddress: string]: TokenAmount | undefined}, boolean] {
   const validatedTokens: Token[] = useMemo(
     () => tokens?.filter((t?: Token): t is Token => isAddress(t?.address) !== false) ?? [],
     [tokens],
@@ -65,7 +65,7 @@ export function useTokenBalancesWithLoadingIndicator(
     useMemo(
       () =>
         address && validatedTokens.length > 0
-          ? validatedTokens.reduce<{ [tokenAddress: string]: TokenAmount | undefined }>((memo, token, i) => {
+          ? validatedTokens.reduce<{[tokenAddress: string]: TokenAmount | undefined}>((memo, token, i) => {
               const value = balances?.[i]?.result?.[0]
               const amount = value ? JSBI.BigInt(value.toString()) : undefined
               if (amount) {
@@ -83,7 +83,7 @@ export function useTokenBalancesWithLoadingIndicator(
 export function useTokenBalances(
   address?: string,
   tokens?: (Token | undefined)[],
-): { [tokenAddress: string]: TokenAmount | undefined } {
+): {[tokenAddress: string]: TokenAmount | undefined} {
   return useTokenBalancesWithLoadingIndicator(address, tokens)[0]
 }
 
@@ -124,8 +124,8 @@ export function useCurrencyBalance(account?: string, currency?: Currency): Curre
 }
 
 // mimics useAllBalances
-export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | undefined } {
-  const { account } = useWeb3React()
+export function useAllTokenBalances(): {[tokenAddress: string]: TokenAmount | undefined} {
+  const {account} = useWeb3React()
   const allTokens = useAllTokens()
   const allTokensArray = useMemo(() => Object.values(allTokens ?? {}), [allTokens])
   const balances = useTokenBalances(account ?? undefined, allTokensArray)

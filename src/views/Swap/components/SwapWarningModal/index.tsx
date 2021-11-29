@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
-import { Box, Heading, Message, ModalBody, ModalContainer, ModalHeader } from '@defifarms/uikit'
+import {ModalBody, ModalContainer, Message, ModalHeader, Box, Heading} from '@pancakeswap/uikit'
 import useTheme from 'hooks/useTheme'
-import { getAddress } from 'utils/addressHelpers'
-import { useTranslation } from 'contexts/Localization'
-import { WrappedTokenInfo } from 'state/lists/hooks'
+import {useTranslation} from 'contexts/Localization'
+import {WrappedTokenInfo} from 'state/lists/hooks'
 import SwapWarningTokensConfig from 'config/constants/swapWarningTokens'
 import SafemoonWarning from './SafemoonWarning'
 import BondlyWarning from './BondlyWarning'
@@ -45,20 +44,20 @@ const usePreventModalOverlayClick = () => {
   }, [])
 }
 
-const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDismiss }) => {
-  const { t } = useTranslation()
-  const { theme } = useTheme()
+const SwapWarningModal: React.FC<SwapWarningModalProps> = ({swapCurrency, onDismiss}) => {
+  const {t} = useTranslation()
+  const {theme} = useTheme()
   usePreventModalOverlayClick()
 
   const TOKEN_WARNINGS = {
-    [getAddress(SwapWarningTokensConfig.safemoon.address)]: {
-      symbol: SwapWarningTokensConfig.safemoon.symbol,
-      component: <SafemoonWarning />,
-    },
-    [getAddress(SwapWarningTokensConfig.bondly.address)]: {
-      symbol: SwapWarningTokensConfig.bondly.symbol,
-      component: <BondlyWarning />,
-    },
+    // [SwapWarningTokensConfig.safemoon.address]: {
+    //   symbol: SwapWarningTokensConfig.safemoon.symbol,
+    //   component: <SafemoonWarning />,
+    // },
+    // [SwapWarningTokensConfig.bondly.address]: {
+    //   symbol: SwapWarningTokensConfig.bondly.symbol,
+    //   component: <BondlyWarning />,
+    // },
   }
 
   const SWAP_WARNING = TOKEN_WARNINGS[swapCurrency.address]
@@ -66,7 +65,7 @@ const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDis
   return (
     <StyledModalContainer minWidth="280px">
       <ModalHeader background={theme.colors.gradients.cardHeader}>
-        <Heading p="12px 24px">{t('Notice for trading %symbol%', { symbol: SWAP_WARNING.symbol })}</Heading>
+        <Heading p="12px 24px">{t('Notice for trading %symbol%', {symbol: SWAP_WARNING.symbol})}</Heading>
       </ModalHeader>
       <ModalBody p="24px">
         <MessageContainer variant="warning" mb="24px">

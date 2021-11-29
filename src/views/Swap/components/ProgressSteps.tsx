@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { RowBetween } from 'components/Layout/Row'
-import { AutoColumn } from 'components/Layout/Column'
+import {RowBetween} from 'components/Layout/Row'
+import {AutoColumn} from 'components/Layout/Column'
 
 const Grouping = styled(RowBetween)`
   width: 50%;
 `
 
-const Circle = styled.div<{ confirmed?: boolean; disabled?: boolean }>`
+const Circle = styled.div<{confirmed?: boolean; disabled?: boolean}>`
   min-width: 20px;
   min-height: 20px;
-  background-color: ${({ theme, confirmed, disabled }) =>
+  background-color: ${({theme, confirmed, disabled}) =>
     disabled ? theme.colors.backgroundDisabled : confirmed ? theme.colors.success : theme.colors.primary};
   border-radius: 50%;
   color: #ffffff;
@@ -27,15 +27,15 @@ const CircleRow = styled.div`
   align-items: center;
 `
 
-const Connector = styled.div<{ prevConfirmed?: boolean; disabled?: boolean }>`
+const Connector = styled.div<{prevConfirmed?: boolean; disabled?: boolean}>`
   width: 100%;
   height: 2px;
   background: linear-gradient(
     90deg,
-    ${({ theme, prevConfirmed, disabled }) =>
+    ${({theme, prevConfirmed, disabled}) =>
         disabled ? theme.colors.backgroundDisabled : prevConfirmed ? theme.colors.success : theme.colors.primary}
       0%,
-    ${({ theme, prevConfirmed, disabled }) =>
+    ${({theme, prevConfirmed, disabled}) =>
         disabled
           ? theme.colors.backgroundDisabled
           : prevConfirmed
@@ -61,7 +61,7 @@ interface ProgressCirclesProps {
  *
  * @param steps  array of booleans where true means step is complete
  */
-export default function ProgressCircles({ steps, disabled = false, ...rest }: ProgressCirclesProps) {
+export default function ProgressCircles({steps, disabled = false, ...rest}: ProgressCirclesProps) {
   return (
     <AutoColumn justify="center" {...rest}>
       <Grouping>

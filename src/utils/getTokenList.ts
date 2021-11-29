@@ -1,13 +1,13 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-await-in-loop */
-import { TokenList } from '@uniswap/token-lists'
+import {TokenList} from '@uniswap/token-lists'
 import schema from '@uniswap/token-lists/src/tokenlist.schema.json'
 import Ajv from 'ajv'
 import contenthashToUri from './contenthashToUri'
-import { parseENSAddress } from './ENS/parseENSAddress'
+import {parseENSAddress} from './ENS/parseENSAddress'
 import uriToHttp from './uriToHttp'
 
-const tokenListValidator = new Ajv({ allErrors: true }).compile(schema)
+const tokenListValidator = new Ajv({allErrors: true}).compile(schema)
 
 /**
  * Contains the logic for resolving a list URL to a validated token list

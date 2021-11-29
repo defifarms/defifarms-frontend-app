@@ -1,8 +1,8 @@
 import BigNumber from 'bignumber.js'
-import { ethers } from 'ethers'
-import { formatUnits } from 'ethers/lib/utils'
-import { getLanguageCodeFromLS } from 'contexts/Localization/helpers'
-import { BIG_TEN } from './bigNumber'
+import {ethers} from 'ethers'
+import {formatUnits} from 'ethers/lib/utils'
+import {getLanguageCodeFromLS} from 'contexts/Localization/helpers'
+import {BIG_TEN} from './bigNumber'
 
 /**
  * Take a formatted amount, e.g. 15 BNB and convert it to full decimal value, e.g. 15000000000000000

@@ -1,21 +1,20 @@
 import React from 'react'
-import { AddIcon, Button, Flex, IconButton, MinusIcon, Skeleton, Text, useModal, useTooltip } from '@defifarms/uikit'
+import {Flex, Text, Button, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip} from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { Pool } from 'state/types'
+import {useTranslation} from 'contexts/Localization'
+import {getBalanceNumber} from 'utils/formatBalance'
+import {DeserializedPool} from 'state/types'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
 
 interface StakeActionsProps {
-  pool: Pool
+  pool: DeserializedPool
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
   isBnbPool: boolean
   isStaked: ConstrainBoolean
   isLoading?: boolean
-  userData: any
 }
 
 const StakeAction: React.FC<StakeActionsProps> = ({
@@ -26,8 +25,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
-  const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData } = pool
-  const { t } = useTranslation()
+  const {stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData} = pool
+  const {t} = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
@@ -55,18 +54,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     />,
   )
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(
     t('You’ve already staked the maximum amount you can stake in this pool!'),
-    { placement: 'bottom' },
+    {placement: 'bottom'},
   )
 
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
-
-  const isHarvest = userData?.harvest
-  let isDisable = true
-  if (isHarvest) {
-    isDisable = true
-  }
 
   const renderStakeAction = () => {
     return isStaked ? (
@@ -88,38 +81,30 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             )}
           </>
         </Flex>
-        {isDisable ? (
-          <Flex>
-            <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
-              <MinusIcon color="primary" width="24px" />
-            </IconButton>
-            {reachStakingLimit ? (
-              <span ref={targetRef}>
-                <IconButton variant="secondary" disabled>
-                  <AddIcon color="textDisabled" width="24px" height="24px" />
-                </IconButton>
-              </span>
-            ) : (
-              <IconButton
-                variant="secondary"
-                onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
-                disabled={isFinished}
-              >
-                <AddIcon color="primary" width="24px" height="24px" />
+        <Flex>
+          <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
+            <MinusIcon color="primary" width="24px" />
+          </IconButton>
+          {reachStakingLimit ? (
+            <span ref={targetRef}>
+              <IconButton variant="secondary" disabled>
+                <AddIcon color="textDisabled" width="24px" height="24px" />
               </IconButton>
-            )}
-          </Flex>
-        ) : (
-          ''
-        )}
+            </span>
+          ) : (
+            <IconButton
+              variant="secondary"
+              onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
+              disabled={isFinished}
+            >
+              <AddIcon color="primary" width="24px" height="24px" />
+            </IconButton>
+          )}
+        </Flex>
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button
-        variant="four"
-        disabled={isFinished}
-        onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
-      >
+      <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
         {t('Stake')}
       </Button>
     )

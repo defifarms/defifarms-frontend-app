@@ -22,27 +22,27 @@ const withExistingTickets = [
   {
     ...withoutExistingNumbers[0],
     numbersToGenerate: 99,
-    existingTickets: [{ id: '1', number: '1000000' }],
+    existingTickets: [{id: '1', number: '1000000'}],
   },
   {
     ...withoutExistingNumbers[1],
     numbersToGenerate: 1996,
     existingTickets: [
-      { id: '1', number: '1998000' },
-      { id: '2', number: '1998001' },
-      { id: '3', number: '1998002' },
-      { id: '4', number: '1998003' },
+      {id: '1', number: '1998000'},
+      {id: '2', number: '1998001'},
+      {id: '3', number: '1998002'},
+      {id: '4', number: '1998003'},
     ],
   },
   {
     ...withoutExistingNumbers[2],
     numbersToGenerate: 4995,
     existingTickets: [
-      { id: '1', number: '1156791' },
-      { id: '2', number: '1156991' },
-      { id: '3', number: '1161780' },
-      { id: '4', number: '1161789' },
-      { id: '5', number: '1161790' },
+      {id: '1', number: '1156791'},
+      {id: '2', number: '1156991'},
+      {id: '3', number: '1161780'},
+      {id: '4', number: '1161789'},
+      {id: '5', number: '1161790'},
     ],
   },
 ]
@@ -61,7 +61,7 @@ describe('generateTicketNumbers', () => {
   })
 
   withoutExistingNumbers.forEach((data) => {
-    const { startingNumber, endingNumber, numbersToGenerate } = data
+    const {startingNumber, endingNumber, numbersToGenerate} = data
 
     it(`generates ${numbersToGenerate} unique numbers between ${startingNumber} & ${endingNumber} WITHOUT existing numbers`, () => {
       const ticketsArray = generateTicketNumbers(numbersToGenerate, null, startingNumber, endingNumber)
@@ -81,7 +81,7 @@ describe('generateTicketNumbers', () => {
   })
 
   withExistingTickets.forEach((data) => {
-    const { startingNumber, endingNumber, numbersToGenerate, existingTickets } = data
+    const {startingNumber, endingNumber, numbersToGenerate, existingTickets} = data
     const numberExistingTickets = existingTickets.length
 
     it(`generates ${numbersToGenerate} unique numbers between ${startingNumber} & ${endingNumber} WITH ${numberExistingTickets} existing numbers`, () => {

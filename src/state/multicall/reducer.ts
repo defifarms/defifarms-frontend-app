@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit'
+import {createReducer} from '@reduxjs/toolkit'
 import {
   addMulticallListeners,
   errorFetchingMulticallResults,
@@ -37,7 +37,7 @@ const initialState: MulticallState = {
 
 export default createReducer(initialState, (builder) =>
   builder
-    .addCase(addMulticallListeners, (state, { payload: { calls, chainId, options: { blocksPerFetch = 1 } = {} } }) => {
+    .addCase(addMulticallListeners, (state, {payload: {calls, chainId, options: {blocksPerFetch = 1} = {}}}) => {
       const listeners: MulticallState['callListeners'] = state.callListeners
         ? state.callListeners
         : (state.callListeners = {})
@@ -48,28 +48,25 @@ export default createReducer(initialState, (builder) =>
         listeners[chainId][callKey][blocksPerFetch] = (listeners[chainId][callKey][blocksPerFetch] ?? 0) + 1
       })
     })
-    .addCase(
-      removeMulticallListeners,
-      (state, { payload: { chainId, calls, options: { blocksPerFetch = 1 } = {} } }) => {
-        const listeners: MulticallState['callListeners'] = state.callListeners
-          ? state.callListeners
-          : (state.callListeners = {})
+    .addCase(removeMulticallListeners, (state, {payload: {chainId, calls, options: {blocksPerFetch = 1} = {}}}) => {
+      const listeners: MulticallState['callListeners'] = state.callListeners
+        ? state.callListeners
+        : (state.callListeners = {})
 
-        if (!listeners[chainId]) return
-        calls.forEach((call) => {
-          const callKey = toCallKey(call)
-          if (!listeners[chainId][callKey]) return
-          if (!listeners[chainId][callKey][blocksPerFetch]) return
+      if (!listeners[chainId]) return
+      calls.forEach((call) => {
+        const callKey = toCallKey(call)
+        if (!listeners[chainId][callKey]) return
+        if (!listeners[chainId][callKey][blocksPerFetch]) return
 
-          if (listeners[chainId][callKey][blocksPerFetch] === 1) {
-            delete listeners[chainId][callKey][blocksPerFetch]
-          } else {
-            listeners[chainId][callKey][blocksPerFetch]--
-          }
-        })
-      },
-    )
-    .addCase(fetchingMulticallResults, (state, { payload: { chainId, fetchingBlockNumber, calls } }) => {
+        if (listeners[chainId][callKey][blocksPerFetch] === 1) {
+          delete listeners[chainId][callKey][blocksPerFetch]
+        } else {
+          listeners[chainId][callKey][blocksPerFetch]--
+        }
+      })
+    })
+    .addCase(fetchingMulticallResults, (state, {payload: {chainId, fetchingBlockNumber, calls}}) => {
       state.callResults[chainId] = state.callResults[chainId] ?? {}
       calls.forEach((call) => {
         const callKey = toCallKey(call)
@@ -84,7 +81,7 @@ export default createReducer(initialState, (builder) =>
         }
       })
     })
-    .addCase(errorFetchingMulticallResults, (state, { payload: { fetchingBlockNumber, chainId, calls } }) => {
+    .addCase(errorFetchingMulticallResults, (state, {payload: {fetchingBlockNumber, chainId, calls}}) => {
       state.callResults[chainId] = state.callResults[chainId] ?? {}
       calls.forEach((call) => {
         const callKey = toCallKey(call)
@@ -97,7 +94,7 @@ export default createReducer(initialState, (builder) =>
         }
       })
     })
-    .addCase(updateMulticallResults, (state, { payload: { chainId, results, blockNumber } }) => {
+    .addCase(updateMulticallResults, (state, {payload: {chainId, results, blockNumber}}) => {
       state.callResults[chainId] = state.callResults[chainId] ?? {}
       Object.keys(results).forEach((callKey) => {
         const current = state.callResults[chainId][callKey]

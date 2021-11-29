@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, HelpIcon, Link, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Button, HelpIcon, Link, Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 const ButtonText = styled(Text)`
   display: none;
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({theme}) => theme.mediaQueries.xs} {
     display: block;
   }
 `
@@ -18,13 +18,13 @@ const StyledLink = styled(Link)`
   &:hover {
     text-decoration: none;
   }
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     flex: 1;
   }
 `
 
 const HelpButton = () => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   return (
     <StyledLink external href="https://docs.defifarms.org/">
       <Button px={['14px', null, null, null, '20px']} variant="subtle">

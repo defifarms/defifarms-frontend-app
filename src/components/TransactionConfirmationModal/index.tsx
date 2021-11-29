@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react'
-import { ChainId, Currency, Token } from '@defifarms/sdk'
+import React, {useCallback} from 'react'
+import {ChainId, Currency, Token} from '@defifarms/sdk'
 import styled from 'styled-components'
 import {
   ArrowUpIcon,
@@ -13,14 +13,14 @@ import {
   Modal,
   Spinner,
   Text,
-} from '@defifarms/uikit'
-import { registerToken } from 'utils/wallet'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import {registerToken} from 'utils/wallet'
+import {useTranslation} from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
-import { RowFixed } from '../Layout/Row'
-import { AutoColumn, ColumnCenter } from '../Layout/Column'
-import { getBscScanLink } from '../../utils'
+import {wrappedCurrency} from 'utils/wrappedCurrency'
+import {RowFixed} from '../Layout/Row'
+import {AutoColumn, ColumnCenter} from '../Layout/Column'
+import {getBscScanLink} from '../../utils'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,8 +37,8 @@ const ConfirmedIcon = styled(ColumnCenter)`
   }
 `
 
-function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
-  const { t } = useTranslation()
+function ConfirmationPendingContent({pendingText}: {pendingText: string}) {
+  const {t} = useTranslation()
   return (
     <Wrapper>
       <ConfirmedIcon>
@@ -70,9 +70,9 @@ function TransactionSubmittedContent({
   chainId: ChainId
   currencyToAdd?: Currency | undefined
 }) {
-  const { library } = useActiveWeb3React()
+  const {library} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const token: Token | undefined = wrappedCurrency(currencyToAdd, chainId)
 
@@ -97,7 +97,7 @@ function TransactionSubmittedContent({
               onClick={() => registerToken(token.address, token.symbol, token.decimals)}
             >
               <RowFixed>
-                {t('Add %asset% to Metamask', { asset: currencyToAdd.symbol })}
+                {t('Add %asset% to Metamask', {asset: currencyToAdd.symbol})}
                 <MetamaskIcon width="16px" ml="6px" />
               </RowFixed>
             </Button>
@@ -126,13 +126,13 @@ export function ConfirmationModalContent({
   )
 }
 
-export function TransactionErrorContent({ message, onDismiss }: { message: string; onDismiss: () => void }) {
-  const { t } = useTranslation()
+export function TransactionErrorContent({message, onDismiss}: {message: string; onDismiss: () => void}) {
+  const {t} = useTranslation()
   return (
     <Wrapper>
       <AutoColumn justify="center">
         <ErrorIcon color="failure" width="64px" />
-        <Text color="failure" style={{ textAlign: 'center', width: '85%' }}>
+        <Text color="failure" style={{textAlign: 'center', width: '85%'}}>
           {message}
         </Text>
       </AutoColumn>
@@ -164,7 +164,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   content,
   currencyToAdd,
 }) => {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
 
   const handleDismiss = useCallback(() => {
     if (customOnDismiss) {

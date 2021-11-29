@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ConcaveBottom, ConcaveTop, ConvexBottom, ConvexTop } from './svg/CurvedSvg'
-import { ClipFill, DividerFill } from './types'
+import {ConcaveTop, ConcaveBottom, ConvexTop, ConvexBottom} from './svg/CurvedSvg'
+import {DividerFill, ClipFill} from './types'
 
 interface CurvedDividerProps extends WrapperProps {
   svgFill?: string
@@ -16,13 +16,13 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  background: ${({ theme, dividerFill }) => {
+  background: ${({theme, dividerFill}) => {
     if (theme.isDark) {
       return dividerFill?.dark || dividerFill?.light || 'none'
     }
     return dividerFill?.light || dividerFill?.dark || 'none'
   }};
-  z-index: ${({ index }) => index};
+  z-index: ${({index}) => index};
   position: relative;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ const Wrapper = styled.div<WrapperProps>`
 `
 
 const ComponentWrapper = styled.div<WrapperProps>`
-  z-index: ${({ index }) => index + 1};
+  z-index: ${({index}) => index + 1};
   position: absolute;
   top: 50%;
   left: 50%;
@@ -50,7 +50,7 @@ const CurvedDivider: React.FC<CurvedDividerProps> = ({
   const showConcaveTop = dividerPosition === 'top' && concave
   const showConcaveBottom = dividerPosition === 'bottom' && concave
 
-  const getconcaveDivider = () => {
+  const getConcaveDivider = () => {
     return (
       <>
         {showConcaveTop && <ConcaveTop clipFill={clipFill} />}
@@ -71,7 +71,7 @@ const CurvedDivider: React.FC<CurvedDividerProps> = ({
   return (
     <Wrapper index={index} dividerFill={dividerFill}>
       {dividerComponent && <ComponentWrapper index={index}>{dividerComponent}</ComponentWrapper>}
-      {getconcaveDivider()}
+      {getConcaveDivider()}
       {getConvexDivider()}
     </Wrapper>
   )

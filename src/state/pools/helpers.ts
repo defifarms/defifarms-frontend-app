@@ -1,16 +1,15 @@
 import BigNumber from 'bignumber.js'
-import { Farm, Pool } from 'state/types'
-import { getAddress } from 'utils/addressHelpers'
-import { BIG_ZERO } from 'utils/bigNumber'
+import {SerializedFarm, DeserializedPool, SerializedPool} from 'state/types'
+import {deserializeToken} from 'state/user/hooks/helpers'
+import {BIG_ZERO} from 'utils/bigNumber'
 
 type UserData =
-  | Pool['userData']
+  | DeserializedPool['userData']
   | {
       allowance: number | string
       stakingTokenBalance: number | string
       stakedBalance: number | string
       pendingReward: number | string
-      harvest: boolean
     }
 
 export const transformUserData = (userData: UserData) => {
@@ -19,31 +18,32 @@ export const transformUserData = (userData: UserData) => {
     stakingTokenBalance: userData ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO,
     stakedBalance: userData ? new BigNumber(userData.stakedBalance) : BIG_ZERO,
     pendingReward: userData ? new BigNumber(userData.pendingReward) : BIG_ZERO,
-    harvest: userData ? userData.harvest : false,
   }
 }
 
-export const transformPool = (pool: Pool): Pool => {
-  const { totalStaked, stakingLimit, userData, ...rest } = pool
+export const transformPool = (pool: SerializedPool): DeserializedPool => {
+  const {totalStaked, stakingLimit, userData, stakingToken, earningToken, ...rest} = pool
 
   return {
     ...rest,
+    stakingToken: deserializeToken(stakingToken),
+    earningToken: deserializeToken(earningToken),
     userData: transformUserData(userData),
     totalStaked: new BigNumber(totalStaked),
     stakingLimit: new BigNumber(stakingLimit),
-  } as Pool
+  }
 }
 
-export const getTokenPricesFromFarm = (farms: Farm[]) => {
+export const getTokenPricesFromFarm = (farms: SerializedFarm[]) => {
   return farms.reduce((prices, farm) => {
-    const quoteTokenAddress = getAddress(farm.quoteToken.address).toLocaleLowerCase()
-    const tokenAddress = getAddress(farm.token.address).toLocaleLowerCase()
+    const quoteTokenAddress = farm.quoteToken.address.toLocaleLowerCase()
+    const tokenAddress = farm.token.address.toLocaleLowerCase()
     /* eslint-disable no-param-reassign */
     if (!prices[quoteTokenAddress]) {
-      prices[quoteTokenAddress] = new BigNumber(farm.quoteToken.busdPrice).toNumber()
+      prices[quoteTokenAddress] = new BigNumber(farm.quoteTokenPriceBusd).toNumber()
     }
     if (!prices[tokenAddress]) {
-      prices[tokenAddress] = new BigNumber(farm.token.busdPrice).toNumber()
+      prices[tokenAddress] = new BigNumber(farm.tokenPriceBusd).toNumber()
     }
     /* eslint-enable no-param-reassign */
     return prices

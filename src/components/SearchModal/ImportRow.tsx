@@ -1,17 +1,17 @@
-import React, { CSSProperties } from 'react'
-import { Token } from '@defifarms/sdk'
-import { Button, CheckmarkCircleIcon, Text } from '@defifarms/uikit'
-import { AutoRow, RowFixed } from 'components/Layout/Row'
-import { AutoColumn } from 'components/Layout/Column'
+import React, {CSSProperties} from 'react'
+import {Token} from '@defifarms/sdk'
+import {Button, CheckmarkCircleIcon, Text} from '@pancakeswap/uikit'
+import {AutoRow, RowFixed} from 'components/Layout/Row'
+import {AutoColumn} from 'components/Layout/Column'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
-import { ListLogo } from 'components/Logo'
+import {ListLogo} from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCombinedInactiveList } from 'state/lists/hooks'
+import {useCombinedInactiveList} from 'state/lists/hooks'
 import styled from 'styled-components'
-import { useIsTokenActive, useIsUserAddedToken } from 'hooks/Tokens'
-import { useTranslation } from 'contexts/Localization'
+import {useIsTokenActive, useIsUserAddedToken} from 'hooks/Tokens'
+import {useTranslation} from 'contexts/Localization'
 
-const TokenSection = styled.div<{ dim?: boolean }>`
+const TokenSection = styled.div<{dim?: boolean}>`
   padding: 4px 20px;
   height: 56px;
   display: grid;
@@ -19,14 +19,14 @@ const TokenSection = styled.div<{ dim?: boolean }>`
   grid-gap: 16px;
   align-items: center;
 
-  opacity: ${({ dim }) => (dim ? '0.4' : '1')};
+  opacity: ${({dim}) => (dim ? '0.4' : '1')};
 `
 
 const CheckIcon = styled(CheckmarkCircleIcon)`
   height: 16px;
   width: 16px;
   margin-right: 6px;
-  stroke: ${({ theme }) => theme.colors.success};
+  stroke: ${({theme}) => theme.colors.success};
 `
 
 const NameOverflow = styled.div`
@@ -52,9 +52,9 @@ export default function ImportRow({
   setImportToken: (token: Token) => void
 }) {
   // gloabls
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   // check if token comes from list
   const inactiveTokenList = useCombinedInactiveList()
@@ -66,8 +66,8 @@ export default function ImportRow({
 
   return (
     <TokenSection style={style}>
-      <CurrencyLogo currency={token} size="24px" style={{ opacity: dim ? '0.6' : '1' }} />
-      <AutoColumn gap="4px" style={{ opacity: dim ? '0.6' : '1' }}>
+      <CurrencyLogo currency={token} size="24px" style={{opacity: dim ? '0.6' : '1'}} />
+      <AutoColumn gap="4px" style={{opacity: dim ? '0.6' : '1'}}>
         <AutoRow>
           <Text>{token.symbol}</Text>
           <Text color="textDisabled" ml="8px">
@@ -96,7 +96,7 @@ export default function ImportRow({
           {t('Import')}
         </Button>
       ) : (
-        <RowFixed style={{ minWidth: 'fit-content' }}>
+        <RowFixed style={{minWidth: 'fit-content'}}>
           <CheckIcon />
           <Text color="success">Active</Text>
         </RowFixed>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ArrowBackIcon, Flex, Heading, IconButton, Text } from '@defifarms/uikit'
-import { Link } from 'react-router-dom'
+import {ArrowBackIcon, Flex, Heading, IconButton, Text} from '@pancakeswap/uikit'
+import {Link} from 'react-router-dom'
 import Settings from './Settings'
 import Transactions from './Transactions'
 import QuestionHelper from '../QuestionHelper'
@@ -23,7 +23,7 @@ const AppHeaderContainer = styled(Flex)`
   backdrop-filter: blur(177.573px);
 `
 
-const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {
+const AppHeader: React.FC<Props> = ({title, subtitle, helper, backTo, noConfig = false}) => {
   return (
     <AppHeaderContainer>
       <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>

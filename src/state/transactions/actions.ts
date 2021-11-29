@@ -1,5 +1,5 @@
-import { createAction } from '@reduxjs/toolkit'
-import { ChainId } from '@defifarms/sdk'
+import {createAction} from '@reduxjs/toolkit'
+import {ChainId} from '@defifarms/sdk'
 
 export interface SerializableTransactionReceipt {
   to: string
@@ -16,11 +16,11 @@ export const addTransaction = createAction<{
   chainId: ChainId
   hash: string
   from: string
-  approval?: { tokenAddress: string; spender: string }
-  claim?: { recipient: string }
+  approval?: {tokenAddress: string; spender: string}
+  claim?: {recipient: string}
   summary?: string
 }>('transactions/addTransaction')
-export const clearAllTransactions = createAction<{ chainId: ChainId }>('transactions/clearAllTransactions')
+export const clearAllTransactions = createAction<{chainId: ChainId}>('transactions/clearAllTransactions')
 export const finalizeTransaction = createAction<{
   chainId: ChainId
   hash: string

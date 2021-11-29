@@ -4,10 +4,10 @@ import {
   TokenImage as UIKitTokenImage,
   TokenPairImage as UIKitTokenPairImage,
   TokenPairImageProps as UIKitTokenPairImageProps,
-} from '@defifarms/uikit'
-import tokens, { WBNB } from 'config/constants/tokens'
-import { Token } from 'config/constants/types'
-import { getAddress } from 'utils/addressHelpers'
+} from '@pancakeswap/uikit'
+import tokens, {WBNB} from 'config/constants/tokens'
+import {Token} from '@defifarms/sdk'
+import {getAddress} from 'utils/addressHelpers'
 
 interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc' | 'secondarySrc'> {
   primaryToken: Token
@@ -15,11 +15,11 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token) => {
-  const address = getAddress(token.symbol === 'BNB' || token.symbol === 'wBNB' ? tokens.bnb.address : token.address)
+  const address = token.symbol === 'BNB' || token.symbol === 'wBNB' ? tokens.bnb.address : token.address
   return `/images/tokens/${address}.svg`
 }
 
-export const TokenPairImage: React.FC<TokenPairImageProps> = ({ primaryToken, secondaryToken, ...props }) => {
+export const TokenPairImage: React.FC<TokenPairImageProps> = ({primaryToken, secondaryToken, ...props}) => {
   return (
     <UIKitTokenPairImage
       primarySrc={getImageUrlFromToken(primaryToken)}
@@ -33,6 +33,6 @@ interface TokenImageProps extends ImageProps {
   token: Token
 }
 
-export const TokenImage: React.FC<TokenImageProps> = ({ token, ...props }) => {
+export const TokenImage: React.FC<TokenImageProps> = ({token, ...props}) => {
   return <UIKitTokenImage src={getImageUrlFromToken(token)} {...props} />
 }

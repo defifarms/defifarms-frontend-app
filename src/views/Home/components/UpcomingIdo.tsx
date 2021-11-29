@@ -1,6 +1,6 @@
-import { Heading, Text, Flex } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import React, { useEffect } from 'react'
+import {Heading, Text, Flex} from '@defifarms/uikit'
+import {useTranslation} from 'contexts/Localization'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import useCountDownTimer from 'hooks/useCountDownTimer'
 import Time from './Time'
@@ -30,10 +30,10 @@ const Hero = styled.div`
   background: #ffa800;
   opacity: 0.98;
   backdrop-filter: blur(200px);
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     flex-wrap: nowrap;
   }
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     padding: 40px 50px 46px 60px;
     justify-content: space-between;
     text-align: unset;
@@ -48,10 +48,10 @@ const HeaderWrapper = styled.div`
   text-align: center;
   align-items: end;
   padding-bottom: 20px;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     flex-wrap: nowrap;
   }
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     justify-content: space-between;
     text-align: unset;
   }
@@ -72,12 +72,12 @@ const HeadingWrapper = styled.div`
 `
 
 const Image = styled.img<ThemedImage>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: ${({width}) => width};
+  height: ${({height}) => height};
   margin-top: 10px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
+  ${({theme}) => theme.mediaQueries.md} {
+    width: ${({width}) => width};
+    height: ${({height}) => height};
     margin-top: 10px;
   }
 `
@@ -89,7 +89,7 @@ const HeadingHome = styled(Heading)`
   line-height: 63px;
   color: #ffffff;
   margin-bottom: 9px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     font-size: 54.8571px;
   }
 `
@@ -98,7 +98,7 @@ const BlockWrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   padding: 25px 0;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     display: flex;
     flex-wrap: nowrap;
     padding: 0;
@@ -126,7 +126,7 @@ const StyledButtonMenu = styled.a`
   padding: 11px 56px;
   text-align: center;
   display: inline-block;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     float: right;
   }
 `
@@ -134,13 +134,13 @@ const StyledButtonMenu = styled.a`
 const Block = styled.div<ThemedBlock>`
   width: 100%;
   height: 66.89px;
-  background: ${({ disable }) => (disable ? '#E3E3E3' : '#fff')};
+  background: ${({disable}) => (disable ? '#E3E3E3' : '#fff')};
   border-radius: 4px;
   padding: 13px 10px 0;
-  margin: ${({ margin }) => margin || '0px'};
-  ${({ theme }) => theme.mediaQueries.md} {
+  margin: ${({margin}) => margin || '0px'};
+  ${({theme}) => theme.mediaQueries.md} {
     width: 147.36px;
-    margin: ${({ margin }) => margin || '0px'};
+    margin: ${({margin}) => margin || '0px'};
   }
 `
 
@@ -151,7 +151,7 @@ const BlockLabel = styled.p`
   font-size: 9px;
   line-height: 15px;
   color: #333333;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     font-size: 12.8px;
   }
 `
@@ -162,7 +162,7 @@ const BlockValue = styled.p`
   font-size: 11px;
   line-height: 22px;
   color: #333333;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     font-size: 19px;
   }
 `
@@ -172,7 +172,7 @@ const TimeWrapper = styled(Flex)`
   padding-bottom: 13px;
   margin-bottom: 11px;
   justify-content: space-between;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     justify-content: space-between;
     margin-right: 40px;
   }
@@ -186,7 +186,7 @@ const RealWrapper = styled(Flex)`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     flex-wrap: nowrap;
     width: 100%;
     justify-content: space-between;
@@ -197,7 +197,7 @@ const RealTextWrapper = styled.div`
   padding: 0;
   justify-content: center;
   text-align: left;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     padding: 0 110px 0 28px;
   }
 `
@@ -221,7 +221,7 @@ const Icon = styled.span<StyleIcon>`
   width: 25px;
   height: 25px;
   display: block;
-  background-image: ${({ bg }) => `url(${bg})`};
+  background-image: ${({bg}) => `url(${bg})`};
   margin-right: 20px;
   border-radius: 50%;
 `
@@ -233,7 +233,7 @@ const ImageWrapper = styled.div`
   border-radius: 5px;
   padding: 5px 5px 0;
   margin-right: 0;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     padding: 5px 5px 0;
     margin-right: 25px;
   }
@@ -246,7 +246,7 @@ const Price = styled.p`
   color: #000000;
   padding: 15px 0 46px;
   text-align: left;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     text-align: right;
   }
 `
@@ -259,7 +259,7 @@ const IconWrapper = styled(Flex)`
 
 const PriceWrapper = styled.div`
   width: 100%;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     width: auto;
   }
 `
@@ -267,13 +267,13 @@ const PriceWrapper = styled.div`
 const Grid = styled.div`
   display: grid;
   flex-wrap: wrap;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     display: flex;
   }
 `
 const UpcomingIdo: React.FC = () => {
   const nextTime = 'Wed Dec 11 2024 12:28:10 GMT+0700'
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const [timeHarvestRemaining, setTimeHarvestRemaining] = useCountDownTimer()
   useEffect(() => {
     const current = new Date(nextTime).getTime()

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Input, InputProps, Link, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { BigNumber } from 'bignumber.js'
+import {Button, Flex, Input, InputProps, Link, Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {BigNumber} from 'bignumber.js'
 
 interface ModalInputProps {
   max: string
@@ -16,7 +16,7 @@ interface ModalInputProps {
   decimals?: number
 }
 
-const getBoxShadow = ({ isWarning = false, theme }) => {
+const getBoxShadow = ({isWarning = false, theme}) => {
   if (isWarning) {
     return theme.shadows.warning
   }
@@ -27,10 +27,10 @@ const getBoxShadow = ({ isWarning = false, theme }) => {
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.input};
+  background-color: ${({theme}) => theme.colors.input};
   border-radius: 16px;
   box-shadow: ${getBoxShadow};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   padding: 8px 16px 8px 0;
   width: 100%;
 `
@@ -41,11 +41,11 @@ const StyledInput = styled(Input)`
   margin: 0 8px;
   padding: 0 8px;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({theme}) => theme.mediaQueries.xs} {
     width: 80px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     width: auto;
   }
 `
@@ -68,7 +68,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
   inputTitle,
   decimals = 18,
 }) => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const isBalanceZero = max === '0' || !max
 
   const displayBalance = (balance: string) => {
@@ -83,11 +83,11 @@ const ModalInput: React.FC<ModalInputProps> = ({
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{position: 'relative'}}>
       <StyledTokenInput isWarning={isBalanceZero}>
         <Flex justifyContent="space-between" pl="16px">
           <Text fontSize="14px">{inputTitle}</Text>
-          <Text fontSize="14px">{t('Balance: %balance%', { balance: displayBalance(max) })}</Text>
+          <Text fontSize="14px">{t('Balance: %balance%', {balance: displayBalance(max)})}</Text>
         </Flex>
         <Flex alignItems="flex-end" justifyContent="space-around">
           <StyledInput
@@ -109,7 +109,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
         <StyledErrorMessage fontSize="14px" color="failure">
           {t('No tokens to stake')}:{' '}
           <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
-            {t('Get %symbol%', { symbol })}
+            {t('Get %symbol%', {symbol})}
           </Link>
         </StyledErrorMessage>
       )}

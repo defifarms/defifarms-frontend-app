@@ -1,13 +1,13 @@
-import React, { useCallback, useMemo } from 'react'
+import React, {useCallback, useMemo} from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useDispatch } from 'react-redux'
-import { Button, Flex, InjectedModalProps, Modal, ModalBody, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
-import { TransactionDetails } from 'state/transactions/reducer'
-import { AppDispatch } from 'state'
-import { clearAllTransactions } from 'state/transactions/actions'
-import { AutoRow } from '../../Layout/Row'
+import {useDispatch} from 'react-redux'
+import {Button, Flex, InjectedModalProps, Modal, ModalBody, Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {isTransactionRecent, useAllTransactions} from 'state/transactions/hooks'
+import {TransactionDetails} from 'state/transactions/reducer'
+import {AppDispatch} from 'state'
+import {clearAllTransactions} from 'state/transactions/actions'
+import {AutoRow} from '../../Layout/Row'
 import Transaction from './Transaction'
 
 // we want the latest one to come first, so return negative if a is after b
@@ -25,12 +25,12 @@ function renderTransactions(transactions: TransactionDetails[]) {
   )
 }
 
-const TransactionsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
-  const { account, chainId } = useActiveWeb3React()
+const TransactionsModal: React.FC<InjectedModalProps> = ({onDismiss}) => {
+  const {account, chainId} = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const allTransactions = useAllTransactions()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const sortedRecentTransactions = useMemo(() => {
     const txs = Object.values(allTransactions)
@@ -41,7 +41,7 @@ const TransactionsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   const confirmed = sortedRecentTransactions.filter((tx) => tx.receipt)
 
   const clearAllTransactionsCallback = useCallback(() => {
-    if (chainId) dispatch(clearAllTransactions({ chainId }))
+    if (chainId) dispatch(clearAllTransactions({chainId}))
   }, [dispatch, chainId])
 
   return (
@@ -50,7 +50,7 @@ const TransactionsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
         <ModalBody>
           {!!pending.length || !!confirmed.length ? (
             <>
-              <AutoRow mb="1rem" style={{ justifyContent: 'space-between' }}>
+              <AutoRow mb="1rem" style={{justifyContent: 'space-between'}}>
                 <Text>{t('Recent Transactions')}</Text>
                 <Button variant="tertiary" scale="xs" onClick={clearAllTransactionsCallback}>
                   {t('clear all')}

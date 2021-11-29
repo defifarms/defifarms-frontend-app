@@ -1,9 +1,9 @@
-import { Button, Flex, Grid, Input, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import React, { useState } from 'react'
+import {Button, Flex, Grid, Input, Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import React, {useState} from 'react'
 import styled from 'styled-components'
-import { AutoColumn } from '../../Layout/Column'
-import { RowBetween, RowFixed } from '../../Layout/Row'
+import {AutoColumn} from '../../Layout/Column'
+import {RowBetween, RowFixed} from '../../Layout/Row'
 import QuestionHelper from '../../QuestionHelper'
 
 enum SlippageError {
@@ -43,11 +43,11 @@ export interface SlippageTabsProps {
   setDeadline: (deadline: number) => void
 }
 
-export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, setDeadline }: SlippageTabsProps) {
+export default function SlippageTabs({rawSlippage, setRawSlippage, deadline, setDeadline}: SlippageTabsProps) {
   const [slippageInput, setSlippageInput] = useState('')
   const [deadlineInput, setDeadlineInput] = useState('')
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const slippageInputIsValid =
     slippageInput === '' || (rawSlippage / 100).toFixed(2) === Number.parseFloat(slippageInput).toFixed(2)
@@ -185,7 +185,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
             placeholder={(deadline / 60).toString()}
             value={deadlineInput}
             onChange={(e) => parseCustomDeadline(e.target.value)}
-            style={{ height: 56 }}
+            style={{height: 56}}
           />
           <Text pl="8px" fontSize="14px">
             {t('minutes')}

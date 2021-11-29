@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { getCakeVaultContract } from 'utils/contractHelpers'
+import {getCakeVaultContract} from 'utils/contractHelpers'
 
 const cakeVaultContract = getCakeVaultContract()
 

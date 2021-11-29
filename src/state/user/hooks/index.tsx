@@ -1,11 +1,11 @@
-import { Pair, Token } from '@defifarms/sdk'
+import {ChainId, Pair, Token} from '@defifarms/sdk'
 import flatMap from 'lodash/flatMap'
-import { useCallback, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from 'config/constants'
+import {useCallback, useMemo} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS} from 'config/constants'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useAllTokens } from 'hooks/Tokens'
-import { AppDispatch, AppState } from '../../index'
+import {useAllTokens} from 'hooks/Tokens'
+import {AppDispatch, AppState} from '../../index'
 import {
   addSerializedPair,
   addSerializedToken,
@@ -20,8 +20,21 @@ import {
   updateUserFarmStakedOnly,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
+  updateGasPrice,
+  addWatchlistToken,
+  addWatchlistPool,
+  updateUserPoolStakedOnly,
+  updateUserPoolsViewMode,
+  ViewMode,
+  updateUserFarmsViewMode,
+  updateUserPredictionChartDisclaimerShow,
+  updateUserPredictionAcceptedRisk,
+  updateUserUsernameVisibility,
+  updateUserExpertModeAcknowledgementShow,
+  hidePhishingWarningBanner,
+  setIsExchangeChartDisplayed,
 } from '../actions'
-import { deserializeToken, serializeToken } from './helpers'
+import {deserializeToken, GAS_PRICE_GWEI, serializeToken} from './helpers'
 
 export function useAudioModeManager(): [boolean, () => void] {
   const dispatch = useDispatch<AppDispatch>()
@@ -38,6 +51,37 @@ export function useAudioModeManager(): [boolean, () => void] {
   return [audioPlay, toggleSetAudioMode]
 }
 
+export function usePhishingBannerManager(): [boolean, () => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const showPhishingWarningBanner = useSelector<AppState, AppState['user']['showPhishingWarningBanner']>(
+    (state) => state.user.showPhishingWarningBanner,
+  )
+
+  const hideBanner = useCallback(() => {
+    dispatch(hidePhishingWarningBanner())
+  }, [dispatch])
+
+  return [showPhishingWarningBanner, hideBanner]
+}
+
+// Get user preference for exchange price chart
+// For mobile layout chart is hidden by default
+export function useExchangeChartManager(isMobile: boolean): [boolean, (isDisplayed: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const isChartDisplayed = useSelector<AppState, AppState['user']['isExchangeChartDisplayed']>(
+    (state) => state.user.isExchangeChartDisplayed,
+  )
+
+  const setUserChartPreference = useCallback(
+    (isDisplayed: boolean) => {
+      dispatch(setIsExchangeChartDisplayed(isDisplayed))
+    },
+    [dispatch],
+  )
+
+  return [isMobile ? false : isChartDisplayed, setUserChartPreference]
+}
+
 export function useIsExpertMode(): boolean {
   return useSelector<AppState, AppState['user']['userExpertMode']>((state) => state.user.userExpertMode)
 }
@@ -47,7 +91,7 @@ export function useExpertModeManager(): [boolean, () => void] {
   const expertMode = useIsExpertMode()
 
   const toggleSetExpertMode = useCallback(() => {
-    dispatch(updateUserExpertMode({ userExpertMode: !expertMode }))
+    dispatch(updateUserExpertMode({userExpertMode: !expertMode}))
   }, [expertMode, dispatch])
 
   return [expertMode, toggleSetExpertMode]
@@ -73,7 +117,7 @@ export function useUserSingleHopOnly(): [boolean, (newSingleHopOnly: boolean) =>
 
   const setSingleHopOnly = useCallback(
     (newSingleHopOnly: boolean) => {
-      dispatch(updateUserSingleHopOnly({ userSingleHopOnly: newSingleHopOnly }))
+      dispatch(updateUserSingleHopOnly({userSingleHopOnly: newSingleHopOnly}))
     },
     [dispatch],
   )
@@ -89,7 +133,7 @@ export function useUserSlippageTolerance(): [number, (slippage: number) => void]
 
   const setUserSlippageTolerance = useCallback(
     (slippage: number) => {
-      dispatch(updateUserSlippageTolerance({ userSlippageTolerance: slippage }))
+      dispatch(updateUserSlippageTolerance({userSlippageTolerance: slippage}))
     },
     [dispatch],
   )
@@ -106,7 +150,7 @@ export function useUserFarmStakedOnly(isActive: boolean): [boolean, (stakedOnly:
   const setUserFarmStakedOnly = useCallback(
     (stakedOnly: boolean) => {
       const farmStakedOnly = stakedOnly ? FarmStakedOnly.TRUE : FarmStakedOnly.FALSE
-      dispatch(updateUserFarmStakedOnly({ userFarmStakedOnly: farmStakedOnly }))
+      dispatch(updateUserFarmStakedOnly({userFarmStakedOnly: farmStakedOnly}))
     },
     [dispatch],
   )
@@ -117,6 +161,124 @@ export function useUserFarmStakedOnly(isActive: boolean): [boolean, (stakedOnly:
   ]
 }
 
+export function useUserPoolStakedOnly(): [boolean, (stakedOnly: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userPoolStakedOnly = useSelector<AppState, AppState['user']['userPoolStakedOnly']>((state) => {
+    return state.user.userPoolStakedOnly
+  })
+
+  const setUserPoolStakedOnly = useCallback(
+    (stakedOnly: boolean) => {
+      dispatch(updateUserPoolStakedOnly({userPoolStakedOnly: stakedOnly}))
+    },
+    [dispatch],
+  )
+
+  return [userPoolStakedOnly, setUserPoolStakedOnly]
+}
+
+export function useUserPoolsViewMode(): [ViewMode, (viewMode: ViewMode) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userPoolsViewMode = useSelector<AppState, AppState['user']['userPoolsViewMode']>((state) => {
+    return state.user.userPoolsViewMode
+  })
+
+  const setUserPoolsViewMode = useCallback(
+    (viewMode: ViewMode) => {
+      dispatch(updateUserPoolsViewMode({userPoolsViewMode: viewMode}))
+    },
+    [dispatch],
+  )
+
+  return [userPoolsViewMode, setUserPoolsViewMode]
+}
+
+export function useUserFarmsViewMode(): [ViewMode, (viewMode: ViewMode) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userFarmsViewMode = useSelector<AppState, AppState['user']['userFarmsViewMode']>((state) => {
+    return state.user.userFarmsViewMode
+  })
+
+  const setUserFarmsViewMode = useCallback(
+    (viewMode: ViewMode) => {
+      dispatch(updateUserFarmsViewMode({userFarmsViewMode: viewMode}))
+    },
+    [dispatch],
+  )
+
+  return [userFarmsViewMode, setUserFarmsViewMode]
+}
+
+export function useUserPredictionAcceptedRisk(): [boolean, (acceptedRisk: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userPredictionAcceptedRisk = useSelector<AppState, AppState['user']['userPredictionAcceptedRisk']>((state) => {
+    return state.user.userPredictionAcceptedRisk
+  })
+
+  const setUserPredictionAcceptedRisk = useCallback(
+    (acceptedRisk: boolean) => {
+      dispatch(updateUserPredictionAcceptedRisk({userAcceptedRisk: acceptedRisk}))
+    },
+    [dispatch],
+  )
+
+  return [userPredictionAcceptedRisk, setUserPredictionAcceptedRisk]
+}
+
+export function useUserPredictionChartDisclaimerShow(): [boolean, (showDisclaimer: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userPredictionChartDisclaimerShow = useSelector<
+    AppState,
+    AppState['user']['userPredictionChartDisclaimerShow']
+  >((state) => {
+    return state.user.userPredictionChartDisclaimerShow
+  })
+
+  const setPredictionUserChartDisclaimerShow = useCallback(
+    (showDisclaimer: boolean) => {
+      dispatch(updateUserPredictionChartDisclaimerShow({userShowDisclaimer: showDisclaimer}))
+    },
+    [dispatch],
+  )
+
+  return [userPredictionChartDisclaimerShow, setPredictionUserChartDisclaimerShow]
+}
+
+export function useUserExpertModeAcknowledgementShow(): [boolean, (showAcknowledgement: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userExpertModeAcknowledgementShow = useSelector<
+    AppState,
+    AppState['user']['userExpertModeAcknowledgementShow']
+  >((state) => {
+    return state.user.userExpertModeAcknowledgementShow
+  })
+
+  const setUserExpertModeAcknowledgementShow = useCallback(
+    (showAcknowledgement: boolean) => {
+      dispatch(updateUserExpertModeAcknowledgementShow({userExpertModeAcknowledgementShow: showAcknowledgement}))
+    },
+    [dispatch],
+  )
+
+  return [userExpertModeAcknowledgementShow, setUserExpertModeAcknowledgementShow]
+}
+
+export function useUserUsernameVisibility(): [boolean, (usernameVisibility: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userUsernameVisibility = useSelector<AppState, AppState['user']['userUsernameVisibility']>((state) => {
+    return state.user.userUsernameVisibility
+  })
+
+  const setUserUsernameVisibility = useCallback(
+    (usernameVisibility: boolean) => {
+      dispatch(updateUserUsernameVisibility({userUsernameVisibility: usernameVisibility}))
+    },
+    [dispatch],
+  )
+
+  return [userUsernameVisibility, setUserUsernameVisibility]
+}
+
 export function useUserTransactionTTL(): [number, (slippage: number) => void] {
   const dispatch = useDispatch<AppDispatch>()
   const userDeadline = useSelector<AppState, AppState['user']['userDeadline']>((state) => {
@@ -125,7 +287,7 @@ export function useUserTransactionTTL(): [number, (slippage: number) => void] {
 
   const setUserDeadline = useCallback(
     (deadline: number) => {
-      dispatch(updateUserDeadline({ userDeadline: deadline }))
+      dispatch(updateUserDeadline({userDeadline: deadline}))
     },
     [dispatch],
   )
@@ -137,7 +299,7 @@ export function useAddUserToken(): (token: Token) => void {
   const dispatch = useDispatch<AppDispatch>()
   return useCallback(
     (token: Token) => {
-      dispatch(addSerializedToken({ serializedToken: serializeToken(token) }))
+      dispatch(addSerializedToken({serializedToken: serializeToken(token)}))
     },
     [dispatch],
   )
@@ -147,10 +309,30 @@ export function useRemoveUserAddedToken(): (chainId: number, address: string) =>
   const dispatch = useDispatch<AppDispatch>()
   return useCallback(
     (chainId: number, address: string) => {
-      dispatch(removeSerializedToken({ chainId, address }))
+      dispatch(removeSerializedToken({chainId, address}))
     },
     [dispatch],
   )
+}
+
+export function useGasPrice(): string {
+  const chainId = process.env.REACT_APP_CHAIN_ID
+  const userGas = useSelector<AppState, AppState['user']['gasPrice']>((state) => state.user.gasPrice)
+  return chainId === ChainId.MAINNET.toString() ? userGas : GAS_PRICE_GWEI.testnet
+}
+
+export function useGasPriceManager(): [string, (userGasPrice: string) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userGasPrice = useGasPrice()
+
+  const setGasPrice = useCallback(
+    (gasPrice: string) => {
+      dispatch(updateGasPrice({gasPrice}))
+    },
+    [dispatch],
+  )
+
+  return [userGasPrice, setGasPrice]
 }
 
 function serializePair(pair: Pair): SerializedPair {
@@ -165,7 +347,7 @@ export function usePairAdder(): (pair: Pair) => void {
 
   return useCallback(
     (pair: Pair) => {
-      dispatch(addSerializedPair({ serializedPair: serializePair(pair) }))
+      dispatch(addSerializedPair({serializedPair: serializePair(pair)}))
     },
     [dispatch],
   )
@@ -177,14 +359,14 @@ export function usePairAdder(): (pair: Pair) => void {
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
-  return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB), 18, 'DEFIY-LP', 'DefiySwap LPs')
+  return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB), 18, 'Cake-LP', 'Pancake LPs')
 }
 
 /**
  * Returns all the pairs of tokens that are tracked by the user for the current chain ID.
  */
 export function useTrackedTokenPairs(): [Token, Token][] {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
   const tokens = useAllTokens()
 
   // pinned pairs
@@ -215,7 +397,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
   )
 
   // pairs saved by users
-  const savedSerializedPairs = useSelector<AppState, AppState['user']['pairs']>(({ user: { pairs } }) => pairs)
+  const savedSerializedPairs = useSelector<AppState, AppState['user']['pairs']>(({user: {pairs}}) => pairs)
 
   const userPairs: [Token, Token][] = useMemo(() => {
     if (!chainId || !savedSerializedPairs) return []
@@ -234,7 +416,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
   return useMemo(() => {
     // dedupes pairs of tokens in the combined list
-    const keyed = combinedList.reduce<{ [key: string]: [Token, Token] }>((memo, [tokenA, tokenB]) => {
+    const keyed = combinedList.reduce<{[key: string]: [Token, Token]}>((memo, [tokenA, tokenB]) => {
       const sorted = tokenA.sortsBefore(tokenB)
       const key = sorted ? `${tokenA.address}:${tokenB.address}` : `${tokenB.address}:${tokenA.address}`
       if (memo[key]) return memo
@@ -244,4 +426,28 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
     return Object.keys(keyed).map((key) => keyed[key])
   }, [combinedList])
+}
+
+export const useWatchlistTokens = (): [string[], (address: string) => void] => {
+  const dispatch = useDispatch<AppDispatch>()
+  const savedTokens = useSelector((state: AppState) => state.user.watchlistTokens) ?? []
+  const updatedSavedTokens = useCallback(
+    (address: string) => {
+      dispatch(addWatchlistToken({address}))
+    },
+    [dispatch],
+  )
+  return [savedTokens, updatedSavedTokens]
+}
+
+export const useWatchlistPools = (): [string[], (address: string) => void] => {
+  const dispatch = useDispatch<AppDispatch>()
+  const savedPools = useSelector((state: AppState) => state.user.watchlistPools) ?? []
+  const updateSavedPools = useCallback(
+    (address: string) => {
+      dispatch(addWatchlistPool({address}))
+    },
+    [dispatch],
+  )
+  return [savedPools, updateSavedPools]
 }

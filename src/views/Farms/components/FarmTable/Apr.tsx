@@ -1,18 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import ApyButton from 'views/Farms/components/FarmCard/ApyButton'
-import { Address } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
-import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import {BASE_ADD_LIQUIDITY_URL} from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { Skeleton } from '@defifarms/uikit'
+import {Skeleton} from '@pancakeswap/uikit'
 
 export interface AprProps {
   value: string
   multiplier: string
+  pid: number
   lpLabel: string
-  tokenAddress?: Address
-  quoteTokenAddress?: Address
+  lpSymbol: string
+  tokenAddress?: string
+  quoteTokenAddress?: string
   cakePrice: BigNumber
   originalValue: number
   hideButton?: boolean
@@ -21,7 +22,7 @@ export interface AprProps {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
 
   button {
     width: 20px;
@@ -29,7 +30,7 @@ const Container = styled.div`
 
     svg {
       path {
-        fill: ${({ theme }) => theme.colors.textSubtle};
+        fill: ${({theme}) => theme.colors.textSubtle};
       }
     }
   }
@@ -38,37 +39,37 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   min-width: 60px;
   text-align: left;
-  font-size: 20px;
-  font-weight: 500;
 `
 
 const Apr: React.FC<AprProps> = ({
   value,
+  pid,
   lpLabel,
+  lpSymbol,
+  multiplier,
   tokenAddress,
   quoteTokenAddress,
   cakePrice,
   originalValue,
   hideButton = false,
 }) => {
-  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({quoteTokenAddress, tokenAddress})
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   return originalValue !== 0 ? (
     <Container>
       {originalValue ? (
-        <>
-          <AprWrapper>{value}%</AprWrapper>
-          {!hideButton && (
-            <ApyButton
-              lpLabel={lpLabel}
-              cakePrice={cakePrice}
-              apr={originalValue}
-              displayApr={value}
-              addLiquidityUrl={addLiquidityUrl}
-            />
-          )}
-        </>
+        <ApyButton
+          variant={hideButton ? 'text' : 'text-and-button'}
+          pid={pid}
+          lpSymbol={lpSymbol}
+          lpLabel={lpLabel}
+          multiplier={multiplier}
+          cakePrice={cakePrice}
+          apr={originalValue}
+          displayApr={value}
+          addLiquidityUrl={addLiquidityUrl}
+        />
       ) : (
         <AprWrapper>
           <Skeleton width={60} />

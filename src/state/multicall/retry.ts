@@ -31,8 +31,8 @@ export class RetryableError extends Error {}
  */
 export function retry<T>(
   fn: () => Promise<T>,
-  { n, minWait, maxWait }: { n: number; minWait: number; maxWait: number },
-): { promise: Promise<T>; cancel: () => void } {
+  {n, minWait, maxWait}: {n: number; minWait: number; maxWait: number},
+): {promise: Promise<T>; cancel: () => void} {
   let completed = false
   let rejectCancelled: (error: Error) => void
   const promise = new Promise<T>(async (resolve, reject) => {

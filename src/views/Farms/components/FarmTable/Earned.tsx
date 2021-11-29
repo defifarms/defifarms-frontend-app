@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Skeleton } from '@defifarms/uikit'
+import {Skeleton} from '@pancakeswap/uikit'
 
 export interface EarnedProps {
   earnings: number
@@ -11,15 +11,13 @@ interface EarnedPropsWithLoading extends EarnedProps {
   userDataReady: boolean
 }
 
-const Amount = styled.span<{ earned: number }>`
-  color: ${({ earned, theme }) => (earned ? theme.colors.text : theme.colors.textDisabled)};
+const Amount = styled.span<{earned: number}>`
+  color: ${({earned, theme}) => (earned ? theme.colors.text : theme.colors.textDisabled)};
   display: flex;
   align-items: center;
-  font-size: 20px;
-  font-weight: 500;
 `
 
-const Earned: React.FunctionComponent<EarnedPropsWithLoading> = ({ earnings, userDataReady }) => {
+const Earned: React.FunctionComponent<EarnedPropsWithLoading> = ({earnings, userDataReady}) => {
   if (userDataReady) {
     return <Amount earned={earnings}>{earnings.toLocaleString()}</Amount>
   }

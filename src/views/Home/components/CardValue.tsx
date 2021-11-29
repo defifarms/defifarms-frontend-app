@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, memo } from 'react'
-import { useCountUp } from 'react-countup'
+import React, {useEffect, useRef, memo} from 'react'
+import {useCountUp} from 'react-countup'
 import styled from 'styled-components'
-import { Text } from '@defifarms/uikit'
+import {Text} from '@pancakeswap/uikit'
 
 export interface CardValueProps {
   value: number
@@ -29,7 +29,7 @@ const CardValue: React.FC<CardValueProps> = ({
   bold = true,
   color = 'text',
 }) => {
-  const { countUp, update } = useCountUp({
+  const {countUp, update} = useCountUp({
     start: 0,
     end: value,
     duration: 1,
@@ -46,7 +46,7 @@ const CardValue: React.FC<CardValueProps> = ({
   }, [value, updateValue])
 
   return (
-    <StyleText style={{ lineHeight }} color={color}>
+    <StyleText style={{lineHeight}} color={color}>
       {prefix}
       {/* {countUp} */}
       {value.toFixed(value < 0 ? 4 : value > 1e5 ? 4 : 6)}

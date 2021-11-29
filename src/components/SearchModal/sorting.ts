@@ -1,6 +1,6 @@
-import { Token, TokenAmount } from '@defifarms/sdk'
-import { useMemo } from 'react'
-import { useAllTokenBalances } from '../../state/wallet/hooks'
+import {Token, TokenAmount} from '@defifarms/sdk'
+import {useMemo} from 'react'
+import {useAllTokenBalances} from '../../state/wallet/hooks'
 
 // compare two token amounts with highest one coming first
 function balanceComparator(balanceA?: TokenAmount, balanceB?: TokenAmount) {

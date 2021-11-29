@@ -1,15 +1,15 @@
-import { createReducer } from '@reduxjs/toolkit'
-import { DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
-import { updateVersion } from '../global/actions'
+import {createReducer} from '@reduxjs/toolkit'
+import {SerializedToken} from 'config/constants/types'
+import {DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE} from '../../config/constants'
+import {updateVersion} from '../global/actions'
 import {
   addSerializedPair,
   addSerializedToken,
   FarmStakedOnly,
-  muteAudio,
   removeSerializedPair,
   removeSerializedToken,
   SerializedPair,
-  SerializedToken,
+  muteAudio,
   toggleTheme,
   unmuteAudio,
   updateUserDeadline,
@@ -17,7 +17,9 @@ import {
   updateUserFarmStakedOnly,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
+  ViewMode,
 } from './actions'
+import {GAS_PRICE_GWEI} from './hooks/helpers'
 
 const currentTimestamp = () => new Date().getTime()
 
@@ -52,7 +54,19 @@ export interface UserState {
   timestamp: number
   audioPlay: boolean
   isDark: boolean
+  isExchangeChartDisplayed: boolean
   userFarmStakedOnly: FarmStakedOnly
+  userPoolStakedOnly: boolean
+  userPoolsViewMode: ViewMode
+  userFarmsViewMode: ViewMode
+  userPredictionAcceptedRisk: boolean
+  userPredictionChartDisclaimerShow: boolean
+  userExpertModeAcknowledgementShow: boolean
+  userUsernameVisibility: boolean
+  gasPrice: string
+  watchlistTokens: string[]
+  watchlistPools: string[]
+  showPhishingWarningBanner: boolean
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -69,7 +83,19 @@ export const initialState: UserState = {
   timestamp: currentTimestamp(),
   audioPlay: true,
   isDark: false,
+  isExchangeChartDisplayed: true,
   userFarmStakedOnly: FarmStakedOnly.ON_FINISHED,
+  userPoolStakedOnly: false,
+  userPoolsViewMode: ViewMode.TABLE,
+  userFarmsViewMode: ViewMode.TABLE,
+  userPredictionAcceptedRisk: false,
+  userPredictionChartDisclaimerShow: true,
+  userExpertModeAcknowledgementShow: true,
+  userUsernameVisibility: false,
+  gasPrice: GAS_PRICE_GWEI.default,
+  watchlistTokens: [],
+  watchlistPools: [],
+  showPhishingWarningBanner: true,
 }
 
 export default createReducer(initialState, (builder) =>
@@ -104,7 +130,7 @@ export default createReducer(initialState, (builder) =>
     .addCase(updateUserSingleHopOnly, (state, action) => {
       state.userSingleHopOnly = action.payload.userSingleHopOnly
     })
-    .addCase(addSerializedToken, (state, { payload: { serializedToken } }) => {
+    .addCase(addSerializedToken, (state, {payload: {serializedToken}}) => {
       if (!state.tokens) {
         state.tokens = {}
       }
@@ -112,7 +138,7 @@ export default createReducer(initialState, (builder) =>
       state.tokens[serializedToken.chainId][serializedToken.address] = serializedToken
       state.timestamp = currentTimestamp()
     })
-    .addCase(removeSerializedToken, (state, { payload: { address, chainId } }) => {
+    .addCase(removeSerializedToken, (state, {payload: {address, chainId}}) => {
       if (!state.tokens) {
         state.tokens = {}
       }
@@ -120,18 +146,18 @@ export default createReducer(initialState, (builder) =>
       delete state.tokens[chainId][address]
       state.timestamp = currentTimestamp()
     })
-    .addCase(addSerializedPair, (state, { payload: { serializedPair } }) => {
+    .addCase(addSerializedPair, (state, {payload: {serializedPair}}) => {
       if (
         serializedPair.token0.chainId === serializedPair.token1.chainId &&
         serializedPair.token0.address !== serializedPair.token1.address
       ) {
-        const { chainId } = serializedPair.token0
+        const {chainId} = serializedPair.token0
         state.pairs[chainId] = state.pairs[chainId] || {}
         state.pairs[chainId][pairKey(serializedPair.token0.address, serializedPair.token1.address)] = serializedPair
       }
       state.timestamp = currentTimestamp()
     })
-    .addCase(removeSerializedPair, (state, { payload: { chainId, tokenAAddress, tokenBAddress } }) => {
+    .addCase(removeSerializedPair, (state, {payload: {chainId, tokenAAddress, tokenBAddress}}) => {
       if (state.pairs[chainId]) {
         // just delete both keys if either exists
         delete state.pairs[chainId][pairKey(tokenAAddress, tokenBAddress)]
@@ -148,7 +174,7 @@ export default createReducer(initialState, (builder) =>
     .addCase(toggleTheme, (state) => {
       state.isDark = !state.isDark
     })
-    .addCase(updateUserFarmStakedOnly, (state, { payload: { userFarmStakedOnly } }) => {
+    .addCase(updateUserFarmStakedOnly, (state, {payload: {userFarmStakedOnly}}) => {
       state.userFarmStakedOnly = userFarmStakedOnly
     }),
 )

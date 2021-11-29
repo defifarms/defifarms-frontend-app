@@ -1,29 +1,31 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { Pool } from 'state/types'
+import {Button, ChevronUpIcon} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {DeserializedPool} from 'state/types'
 import PoolRow from './PoolRow'
 
 interface PoolsTableProps {
-  pools: Pool[]
+  pools: DeserializedPool[]
   userDataLoaded: boolean
   account: string
 }
 
 const StyledTable = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
+  border-radius: ${({theme}) => theme.radii.card};
+  scroll-margin-top: 64px;
 
-  background-color: ${({ theme }) => theme.card.backgroundCardTransparent};
+  background-color: ${({theme}) => theme.card.background};
   > div:not(:last-child) {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
+    border-bottom: 2px solid ${({theme}) => theme.colors.disabled};
   }
 `
 
 const StyledTableBorder = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
+  border-radius: ${({theme}) => theme.radii.card};
+  background-color: ${({theme}) => theme.colors.cardBorder};
   padding: 1px 1px 3px 1px;
-  overflow: hidden;
+  background-size: 400% 400%;
 `
 
 const ScrollButtonContainer = styled.div`
@@ -32,12 +34,9 @@ const ScrollButtonContainer = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
 `
-const ButtonStyled = styled(Button)`
-  color: ${({ theme }) => theme.colors.four};
-`
 
-const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
-  const { t } = useTranslation()
+const PoolsTable: React.FC<PoolsTableProps> = ({pools, userDataLoaded, account}) => {
+  const {t} = useTranslation()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
@@ -46,7 +45,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
   }
   return (
     <StyledTableBorder>
-      <StyledTable role="table" ref={tableWrapperEl}>
+      <StyledTable id="pools-table" role="table" ref={tableWrapperEl}>
         {pools.map((pool) => (
           <PoolRow
             key={pool.isAutoVault ? 'auto-cake' : pool.sousId}
@@ -56,10 +55,10 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
           />
         ))}
         <ScrollButtonContainer>
-          <ButtonStyled variant="text" onClick={scrollToTop}>
+          <Button variant="text" onClick={scrollToTop}>
             {t('To Top')}
-            <ChevronUpIcon color="four" />
-          </ButtonStyled>
+            <ChevronUpIcon color="primary" />
+          </Button>
         </ScrollButtonContainer>
       </StyledTable>
     </StyledTableBorder>

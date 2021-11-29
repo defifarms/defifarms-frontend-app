@@ -1,32 +1,34 @@
-import { Flex, Heading, Text } from '@defifarms/uikit'
-import { useWeb3React } from '@web3-react/core'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
+import {useLocation} from 'react-router-dom'
+import styled from 'styled-components'
+import {ethers} from 'ethers'
+import {formatUnits} from 'ethers/lib/utils'
 import BigNumber from 'bignumber.js'
-import FlexLayout from 'components/Layout/Flex'
-import { MainBackground } from 'components/Layout/MainBackground'
-import Page from 'components/Layout/Page'
-import Loading from 'components/Loading'
-import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
-import { useTranslation } from 'contexts/Localization'
-import usePersistState from 'hooks/usePersistState'
+import {useWeb3React} from '@web3-react/core'
+import {Heading, Flex, Image, Text} from '@pancakeswap/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { usePollFarmsData } from 'state/farms/hooks'
-import { useCakeVault, useFetchCakeVault, useFetchPublicPoolsData, usePools } from 'state/pools/hooks'
-import { Pool } from 'state/types'
-import styled from 'styled-components'
-import { latinise } from 'utils/latinise'
-import HelpButton from './components/HelpButton'
+import {useTranslation} from 'contexts/Localization'
+import useIntersectionObserver from 'hooks/useIntersectionObserver'
+import {useFetchPublicPoolsData, usePools, useFetchUserPools, useFetchCakeVault, useCakeVault} from 'state/pools/hooks'
+import {usePollFarmsPublicData} from 'state/farms/hooks'
+import {latinise} from 'utils/latinise'
+import FlexLayout from 'components/Layout/Flex'
+import Page from 'components/Layout/Page'
+import PageHeader from 'components/PageHeader'
+import SearchInput from 'components/SearchInput'
+import Select, {OptionProps} from 'components/Select/Select'
+import {DeserializedPool} from 'state/types'
+import {useUserPoolStakedOnly, useUserPoolsViewMode} from 'state/user/hooks'
+import {ViewMode} from 'state/user/actions'
+import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
-// import BountyCard from './components/BountyCard'
-import PoolsTable from './components/PoolsTable/PoolsTable'
-// import CakeVaultCard from './components/CakeVaultCard'
+import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
+import BountyCard from './components/BountyCard'
+import HelpButton from './components/HelpButton'
+import PoolsTable from './components/PoolsTable/PoolsTable'
+import {getAprData, getCakeVaultEarnings} from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -41,19 +43,12 @@ const PoolControls = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
-  border-radius: 16px;
-  padding: 0 0 16px 0;
-  margin-left: 32px;
-  margin-right: 32px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 18px;
-  }
-  @media screen and (min-width: 1400px) {
-    margin-left: auto;
-    margin-right: auto;
+    padding: 16px 32px;
+    margin-bottom: 0;
   }
 `
 
@@ -63,7 +58,7 @@ const FilterContainer = styled.div`
   width: 100%;
   padding: 8px 0px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     width: auto;
     padding: 0;
   }
@@ -85,20 +80,19 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
   const location = useLocation()
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
-  const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
-  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
+  const {t} = useTranslation()
+  const {account} = useWeb3React()
+  const {pools: poolsWithoutAutoVault, userDataLoaded} = usePools()
+  const [stakedOnly, setStakedOnly] = useUserPoolStakedOnly()
+  const [viewMode, setViewMode] = useUserPoolsViewMode()
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
-  const [observerIsSet, setObserverIsSet] = useState(false)
-  const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'pancake_pool_view' })
+  const {observerRef, isIntersecting} = useIntersectionObserver()
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
   const {
-    userData: { cakeAtLastUserAction, userShares },
-    fees: { performanceFee },
+    userData: {cakeAtLastUserAction, userShares},
+    fees: {performanceFee},
     pricePerFullShare,
     totalCakeInVault,
   } = useCakeVault()
@@ -106,8 +100,9 @@ const Pools: React.FC = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    // const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 3)
+    // const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
     // const cakeAutoVault = { ...cakePool, isAutoVault: true }
+    // return [cakeAutoVault, ...poolsWithoutAutoVault]
     return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
@@ -135,32 +130,21 @@ const Pools: React.FC = () => {
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
-  usePollFarmsData()
+  usePollFarmsPublicData()
   useFetchCakeVault()
   useFetchPublicPoolsData()
+  useFetchUserPools(account)
 
   useEffect(() => {
-    const showMorePools = (entries) => {
-      const [entry] = entries
-      if (entry.isIntersecting) {
-        setNumberOfPoolsVisible((poolsCurrentlyVisible) => {
-          if (poolsCurrentlyVisible <= chosenPoolsLength.current) {
-            return poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE
-          }
-          return poolsCurrentlyVisible
-        })
-      }
-    }
-
-    if (!observerIsSet) {
-      const loadMoreObserver = new IntersectionObserver(showMorePools, {
-        rootMargin: '0px',
-        threshold: 1,
+    if (isIntersecting) {
+      setNumberOfPoolsVisible((poolsCurrentlyVisible) => {
+        if (poolsCurrentlyVisible <= chosenPoolsLength.current) {
+          return poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE
+        }
+        return poolsCurrentlyVisible
       })
-      loadMoreObserver.observe(loadMoreRef.current)
-      setObserverIsSet(true)
     }
-  }, [observerIsSet])
+  }, [isIntersecting])
 
   const showFinishedPools = location.pathname.includes('history')
 
@@ -172,19 +156,19 @@ const Pools: React.FC = () => {
     setSortOption(option.value)
   }
 
-  const sortPools = (poolsToSort: Pool[]) => {
+  const sortPools = (poolsToSort: DeserializedPool[]) => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
+          (pool: DeserializedPool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
           'desc',
         )
       case 'earned':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => {
+          (pool: DeserializedPool) => {
             if (!pool.userData || !pool.earningTokenPrice) {
               return 0
             }
@@ -203,7 +187,29 @@ const Pools: React.FC = () => {
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
+          (pool: DeserializedPool) => {
+            let totalStaked = Number.NaN
+            if (pool.isAutoVault) {
+              if (pool.stakingTokenPrice && totalCakeInVault.isFinite()) {
+                totalStaked =
+                  +formatUnits(ethers.BigNumber.from(totalCakeInVault.toString()), pool.stakingToken.decimals) *
+                  pool.stakingTokenPrice
+              }
+            } else if (pool.sousId === 0) {
+              if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice && totalCakeInVault.isFinite()) {
+                const manualCakeTotalMinusAutoVault = ethers.BigNumber.from(pool.totalStaked.toString()).sub(
+                  totalCakeInVault.toString(),
+                )
+                totalStaked =
+                  +formatUnits(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals) * pool.stakingTokenPrice
+              }
+            } else if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice) {
+              totalStaked =
+                +formatUnits(ethers.BigNumber.from(pool.totalStaked.toString()), pool.stakingToken.decimals) *
+                pool.stakingTokenPrice
+            }
+            return Number.isFinite(totalStaked) ? totalStaked : 0
+          },
           'desc',
         )
       default:
@@ -217,6 +223,7 @@ const Pools: React.FC = () => {
   } else {
     chosenPools = stakedOnly ? stakedOnlyOpenPools : openPools
   }
+  console.log(stakedOnlyOpenPools, openPools)
 
   if (searchQuery) {
     const lowercaseQuery = latinise(searchQuery.toLowerCase())
@@ -229,30 +236,37 @@ const Pools: React.FC = () => {
   chosenPoolsLength.current = chosenPools.length
 
   const cardLayout = (
-    <CardLayout style={{ margin: '0px -26px' }}>
-      {chosenPools.map((pool) => (
-        <PoolCard key={pool.sousId} pool={pool} account={account} />
-      ))}
+    <CardLayout>
+      {chosenPools.map((pool) =>
+        pool.isAutoVault ? (
+          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+        ) : (
+          <PoolCard key={pool.sousId} pool={pool} account={account} />
+        ),
+      )}
     </CardLayout>
   )
 
   const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 
   return (
-    <MainBackground>
-      <PageHeader background="linear-gradient(269.58deg, #18ACFF 25.78%, #00A3FF 88.47%)" pageName="pools">
+    <>
+      <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="white">
-              {t('Pools')}
+            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+              {t('Syrup Pools')}
             </Heading>
-            <Heading scale="md" color="white">
-              {t('Just stake some tokens to earn. High APR, low risk.')}
+            <Heading scale="md" color="text">
+              {t('Just stake some tokens to earn.')}
+            </Heading>
+            <Heading scale="md" color="text">
+              {t('High APR, low risk.')}
             </Heading>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            {/* <HelpButton /> */}
-            {/* <BountyCard /> */}
+            <HelpButton />
+            <BountyCard />
           </Flex>
         </Flex>
       </PageHeader>
@@ -285,12 +299,16 @@ const Pools: React.FC = () => {
                       label: t('Earned'),
                       value: 'earned',
                     },
+                    {
+                      label: t('Total staked'),
+                      value: 'totalStaked',
+                    },
                   ]}
-                  onChange={handleSortOptionChange}
+                  onOptionChange={handleSortOptionChange}
                 />
               </ControlStretch>
             </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
+            <LabelWrapper style={{marginLeft: 16}}>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
@@ -309,9 +327,17 @@ const Pools: React.FC = () => {
           </Flex>
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        <div ref={loadMoreRef} />
+        <div ref={observerRef} />
+        <Image
+          mx="auto"
+          mt="12px"
+          src="/images/decorations/3d-syrup-bunnies.png"
+          alt="Pancake illustration"
+          width={192}
+          height={184.5}
+        />
       </Page>
-    </MainBackground>
+    </>
   )
 }
 

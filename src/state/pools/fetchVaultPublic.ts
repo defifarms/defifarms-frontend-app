@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
-import { convertSharesToCake } from 'views/Pools/helpers'
-import { multicallv2 } from 'utils/multicall'
+import {convertSharesToCake} from 'views/Pools/helpers'
+import {multicallv2} from 'utils/multicall'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
-import { getCakeVaultAddress } from 'utils/addressHelpers'
-import { BIG_ZERO } from 'utils/bigNumber'
+import {getCakeVaultAddress} from 'utils/addressHelpers'
+import {BIG_ZERO} from 'utils/bigNumber'
 
 export const fetchPublicVaultData = async () => {
   try {

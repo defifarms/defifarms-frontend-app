@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { JSBI, Pair, Percent } from '@defifarms/sdk'
+import React, {useState} from 'react'
+import {JSBI, Pair, Percent} from '@defifarms/sdk'
 import {
   AddIcon,
   Button,
@@ -10,23 +10,23 @@ import {
   ChevronUpIcon,
   Flex,
   Text,
-} from '@defifarms/uikit'
-import { Link } from 'react-router-dom'
+} from '@pancakeswap/uikit'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTotalSupply from '../../hooks/useTotalSupply'
 
-import { useTokenBalance } from '../../state/wallet/hooks'
-import { currencyId } from '../../utils/currencyId'
-import { unwrappedToken } from '../../utils/wrappedCurrency'
+import {useTokenBalance} from '../../state/wallet/hooks'
+import {currencyId} from '../../utils/currencyId'
+import {unwrappedToken} from '../../utils/wrappedCurrency'
 
-import { LightCard } from '../Card'
-import { AutoColumn } from '../Layout/Column'
+import {LightCard} from '../Card'
+import {AutoColumn} from '../Layout/Column'
 import CurrencyLogo from '../Logo/CurrencyLogo'
-import { DoubleCurrencyLogo } from '../Logo'
-import { RowBetween, RowFixed } from '../Layout/Row'
-import { BIG_INT_ZERO } from '../../config/constants'
+import {DoubleCurrencyLogo} from '../Logo'
+import {RowBetween, RowFixed} from '../Layout/Row'
+import {BIG_INT_ZERO} from '../../config/constants'
 import Dots from '../Loader/Dots'
 
 const FixedHeightRow = styled(RowBetween)`
@@ -47,10 +47,10 @@ interface PositionCardProps extends CardProps {
   showUnwrapped?: boolean
 }
 
-export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
-  const { account } = useActiveWeb3React()
+export function MinimalPositionCard({pair, showUnwrapped = false}: PositionCardProps) {
+  const {account} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
   const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
@@ -110,7 +110,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    {t('Pooled %asset%', { asset: currency0.symbol })}:
+                    {t('Pooled %asset%', {asset: currency0.symbol})}:
                   </Text>
                   {token0Deposited ? (
                     <RowFixed>
@@ -122,7 +122,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    {t('Pooled %asset%', { asset: currency1.symbol })}:
+                    {t('Pooled %asset%', {asset: currency1.symbol})}:
                   </Text>
                   {token1Deposited ? (
                     <RowFixed>
@@ -138,7 +138,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
         </CardInnerStyled>
       ) : (
         <LightCard>
-          <Text fontSize="14px" style={{ textAlign: 'center' }}>
+          <Text fontSize="14px" style={{textAlign: 'center'}}>
             <span role="img" aria-label="pancake-icon">
               🥞
             </span>{' '}
@@ -152,8 +152,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   )
 }
 
-export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
-  const { account } = useActiveWeb3React()
+export default function FullPositionCard({pair, ...props}: PositionCardProps) {
+  const {account} = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
@@ -198,7 +198,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
       </Flex>
 
       {showMore && (
-        <AutoColumn gap="8px" style={{ padding: '16px' }}>
+        <AutoColumn gap="8px" style={{padding: '16px'}}>
           <FixedHeightRow>
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency0} />

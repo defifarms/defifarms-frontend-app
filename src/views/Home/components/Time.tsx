@@ -1,5 +1,5 @@
-import { Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   width: fit-content;
   text-align: center;
   padding-right: 15px;
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     padding-right: 0px;
   }
 `
@@ -37,8 +37,8 @@ interface ITime {
   label: string
 }
 
-const Time: React.FC<ITime> = ({ time, label }: ITime) => {
-  const { t } = useTranslation()
+const Time: React.FC<ITime> = ({time, label}: ITime) => {
+  const {t} = useTranslation()
 
   return (
     <Wrapper>

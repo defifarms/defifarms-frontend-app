@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'contexts/Localization'
-import { Button, Checkbox, Flex, Text } from '@defifarms/uikit'
+import React, {useState} from 'react'
+import {useTranslation} from 'contexts/Localization'
+import {Text, Flex, Checkbox, Button} from '@pancakeswap/uikit'
 
 interface AcknowledgementProps {
   handleContinueClick: () => void
 }
 
-const Acknowledgement: React.FC<AcknowledgementProps> = ({ handleContinueClick }) => {
-  const { t } = useTranslation()
+const Acknowledgement: React.FC<AcknowledgementProps> = ({handleContinueClick}) => {
+  const {t} = useTranslation()
   const [isConfirmed, setIsConfirmed] = useState(false)
 
   return (
@@ -21,7 +21,7 @@ const Acknowledgement: React.FC<AcknowledgementProps> = ({ handleContinueClick }
             onChange={() => setIsConfirmed(!isConfirmed)}
             scale="sm"
           />
-          <Text ml="10px" style={{ userSelect: 'none' }}>
+          <Text ml="10px" style={{userSelect: 'none'}}>
             {t('I understand')}
           </Text>
         </Flex>

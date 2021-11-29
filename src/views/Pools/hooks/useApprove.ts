@@ -1,20 +1,20 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Contract, ethers } from 'ethers'
+import {useCallback, useEffect, useState} from 'react'
+import {useWeb3React} from '@web3-react/core'
+import {Contract, ethers} from 'ethers'
 import BigNumber from 'bignumber.js'
-import { useAppDispatch } from 'state'
-import { updateUserAllowance } from 'state/actions'
-import { useTranslation } from 'contexts/Localization'
-import { useCake, useCakeVaultContract, useSousChef } from 'hooks/useContract'
+import {useAppDispatch} from 'state'
+import {updateUserAllowance} from 'state/actions'
+import {useTranslation} from 'contexts/Localization'
+import {useCake, useCakeVaultContract, useSousChef} from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
 
 export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { toastSuccess, toastError } = useToast()
-  const { t } = useTranslation()
+  const {toastSuccess, toastError} = useToast()
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const {account} = useWeb3React()
   const sousChefContract = useSousChef(sousId)
 
   const handleApprove = useCallback(async () => {
@@ -25,10 +25,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
 
       dispatch(updateUserAllowance(sousId, account))
       if (receipt.status) {
-        toastSuccess(
-          t('Contract Enabled'),
-          t('You can now stake in the %symbol% pool!', { symbol: earningTokenSymbol }),
-        )
+        toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% pool!', {symbol: earningTokenSymbol}))
         setRequestedApproval(false)
       } else {
         // user rejected tx or didn't go thru
@@ -41,14 +38,14 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
     }
   }, [account, dispatch, lpContract, sousChefContract, sousId, earningTokenSymbol, t, toastError, toastSuccess])
 
-  return { handleApprove, requestedApproval }
+  return {handleApprove, requestedApproval}
 }
 
 // Approve CAKE auto pool
 export const useVaultApprove = (setLastUpdated: () => void) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { t } = useTranslation()
-  const { toastSuccess, toastError } = useToast()
+  const {t} = useTranslation()
+  const {toastSuccess, toastError} = useToast()
   const cakeVaultContract = useCakeVaultContract()
   const cakeContract = useCake()
 
@@ -57,7 +54,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
     setRequestedApproval(true)
     const receipt = await tx.wait()
     if (receipt.status) {
-      toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'DEFIY' }))
+      toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', {symbol: 'DEFIY'}))
       setLastUpdated()
       setRequestedApproval(false)
     } else {
@@ -66,15 +63,15 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
     }
   }
 
-  return { handleApprove, requestedApproval }
+  return {handleApprove, requestedApproval}
 }
 
 export const useCheckVaultApprovalStatus = () => {
   const [isVaultApproved, setIsVaultApproved] = useState(false)
-  const { account } = useWeb3React()
+  const {account} = useWeb3React()
   const cakeContract = useCake()
   const cakeVaultContract = useCakeVaultContract()
-  const { lastUpdated, setLastUpdated } = useLastUpdated()
+  const {lastUpdated, setLastUpdated} = useLastUpdated()
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
@@ -89,5 +86,5 @@ export const useCheckVaultApprovalStatus = () => {
     checkApprovalStatus()
   }, [account, cakeContract, cakeVaultContract, lastUpdated])
 
-  return { isVaultApproved, setLastUpdated }
+  return {isVaultApproved, setLastUpdated}
 }

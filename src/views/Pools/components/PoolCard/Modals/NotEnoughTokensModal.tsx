@@ -1,7 +1,7 @@
 import React from 'react'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 import styled from 'styled-components'
-import { Button, Link, Modal, OpenNewIcon, Text } from '@defifarms/uikit'
+import {Button, Link, Modal, OpenNewIcon, Text} from '@pancakeswap/uikit'
 import useTheme from 'hooks/useTheme'
 
 interface NotEnoughTokensModalProps {
@@ -13,20 +13,20 @@ const StyledLink = styled(Link)`
   width: 100%;
 `
 
-const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, onDismiss }) => {
-  const { t } = useTranslation()
-  const { theme } = useTheme()
+const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({tokenSymbol, onDismiss}) => {
+  const {t} = useTranslation()
+  const {theme} = useTheme()
 
   return (
     <Modal
-      title={t('%symbol% required', { symbol: tokenSymbol })}
+      title={t('%symbol% required', {symbol: tokenSymbol})}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
       <Text color="failure" bold>
-        {t('Insufficient %symbol% balance', { symbol: tokenSymbol })}
+        {t('Insufficient %symbol% balance', {symbol: tokenSymbol})}
       </Text>
-      <Text mt="24px">{t('You’ll need %symbol% to stake in this pool!', { symbol: tokenSymbol })}</Text>
+      <Text mt="24px">{t('You’ll need %symbol% to stake in this pool!', {symbol: tokenSymbol})}</Text>
       <Text>
         {t('Buy some %symbol%, or make sure your %symbol% isn’t in another pool or LP.', {
           symbol: tokenSymbol,

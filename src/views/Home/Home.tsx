@@ -1,196 +1,110 @@
-import { BaseLayout, Heading, Text, Flex } from '@defifarms/uikit'
-// import TotalValueLockedCard from './components/TotalValueLockedCard'
-import { MainBackground } from 'components/Layout/MainBackground'
-import Page from 'components/Layout/Page'
-import { useTranslation } from 'contexts/Localization'
 import React from 'react'
 import styled from 'styled-components'
-import CakeStats from 'views/Home/components/CakeStats'
-import EarnAssetCard from 'views/Home/components/EarnAssetCard'
-import Announcements from './components/Announcements'
-import FarmedStakingCard from './components/FarmStakingCard'
-import FarmAssetCard from './components/FarmAssetCard'
-import TeamMember from './components/TeamMember'
-import UpcomingIdo from './components/UpcomingIdo'
+import PageSection from 'components/PageSection'
+import {useWeb3React} from '@web3-react/core'
+import useTheme from 'hooks/useTheme'
+import Container from 'components/Layout/Container'
+// import { PageMeta } from 'components/Layout/Page'
+// import Hero from './components/Hero'
+// import { swapSectionData, earnSectionData, cakeSectionData } from './components/SalesSection/data'
+// import MetricsSection from './components/MetricsSection'
+// import SalesSection from './components/SalesSection'
+// import WinSection from './components/WinSection'
+// import FarmsPoolsRow from './components/FarmsPoolsRow'
+// import Footer from './components/Footer'
+// import CakeDataRow from './components/CakeDataRow'
+// import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
+// import UserBanner from './components/UserBanner'
 
-const Hero = styled.div`
-  display: flex;
-  margin: auto;
-  margin-bottom: 24px;
-  padding-top: 116px;
-  background-color: #c4f4ff;
-  border-radius: 10px;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-wrap: nowrap;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 0;
-  }
+const StyledHeroSection = styled(PageSection)`
+  padding-top: 16px;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
-    padding: 0px;
-    // text-align: center;
-    // flex-wrap: wrap;
+  ${({theme}) => theme.mediaQueries.md} {
+    padding-top: 48px;
   }
 `
 
-const Cards = styled(BaseLayout)`
-  align-items: stretch;
-  justify-content: stretch;
-  margin-bottom: 24px;
-  grid-gap: 24px;
+const UserBannerWrapper = styled(Container)`
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding-left: 0px;
+  padding-right: 0px;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 24px;
-    grid-gap: 24px;
+  ${({theme}) => theme.mediaQueries.lg} {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 `
 
-const MetaImage = styled.div`
-  background-image: url(/images/home/bg-meta.png);
-  background-repeat: no-repeat;
-  background-position: 36px;
-  background-size: contain;
-  padding-left: 90px;
-`
-
-const Wrapper = styled.div`
-  height: 306px;
-  width: 504px;
-  overflow: hidden;
-  border-radius: 10px;
-`
-const MetaWrapper = styled.div`
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-color: #fff;
-  border-radius: 50%;
-  height: 450px;
-  width: 450px;
-  margin-top: 0;
-  margin-left: -50px;
-  padding-top: 22px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-top: -150px;
-    padding-top: 150px;
-    height: 573px;
-    width: 573px;
-    margin-left: 0;
-  }
-`
-const HeadingWrapper = styled.div`
-  width: 515px;
-  margin-left: 0;
-  padding: 30px;
-  text-align: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 70px;
-    padding: 0;
-    text-align: unset;
-  }
-`
-
-const Image = styled.img`
-  width: 306px;
-  height: 306px;
-  margin-left: 0px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 95px;
-  }
-`
-const CardImage = styled.div`
-  background-image: ${({ theme }) =>
-    theme.isDark
-      ? 'url(/images/home/logo-partner-binance-smart-chain.png)'
-      : 'url(/images/home/logo-partner-binance-smart-chain-light.png)'};
-  height: 53px;
-  width: 188px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    width: 155px;
-  }
-`
-
-const HeadingHome = styled(Heading)`
-  font-family: HK Grotesk Bold;
-  font-style: normal;
-  font-size: 49px;
-  line-height: 57px;
-  background: #0f0b5f;
-  color: #0f0b5f;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
-  margin-top: 9px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-top: 47px;
-  }
-`
-
-const TextHome = styled(Text)`
-  font-family: HK Grotesk Light;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 27px;
-  letter-spacing: 0em;
-`
-
-const FlexBox = styled(Flex)`
-  align-items: center;
-  padding-top: 20px;
-`
 const Home: React.FC = () => {
-  const { t } = useTranslation()
+  const {theme} = useTheme()
+  const {account} = useWeb3React()
+
+  const HomeSectionContainerStyles = {margin: '0', width: '100%', maxWidth: '968px'}
 
   return (
     <>
-      <MainBackground>
-        <Page>
-          <Hero>
-            <HeadingWrapper>
-              <HeadingHome as="h1" scale="xl" mb="24px">
-                {t('DeFiFarms')}
-              </HeadingHome>
-              <TextHome fontSize="18px" mb={18} color="#0F0B5F">
-                {t('The First NFTs Protocol Powerful Automatic Liquidity Acquisition Yield Farm & AMM')}
-              </TextHome>
+      <StyledHeroSection
+        innerProps={{style: {margin: '0', width: '100%'}}}
+        background={
+          theme.isDark
+            ? 'radial-gradient(103.12% 50% at 50% 50%, #21193A 0%, #191326 100%)'
+            : 'linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)'
+        }
+        index={2}
+        hasCurvedDivider={false}
+      >
+        {account && <UserBannerWrapper />}
+      </StyledHeroSection>
+      <PageSection
+        innerProps={{style: {margin: '0', width: '100%'}}}
+        background={
+          theme.isDark
+            ? 'linear-gradient(180deg, #09070C 22%, #201335 100%)'
+            : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
+        }
+        index={2}
+        hasCurvedDivider={false}
+      />
 
-              <FlexBox>
-                <TextHome fontSize="18px" mb={2} color="#FE0000">
-                  {t('Powered by')}
-                </TextHome>
-                <CardImage />
-              </FlexBox>
-            </HeadingWrapper>
-            <Wrapper>
-              <MetaWrapper>
-                <MetaImage>
-                  <Image alt="alt" src="/images/home/meta.png" />
-                </MetaImage>
-              </MetaWrapper>
-            </Wrapper>
-          </Hero>
-          <UpcomingIdo />
-          <div>
-            <Cards>
-              <FarmedStakingCard />
-              <Announcements />
-            </Cards>
-            <Cards>
-              <FarmAssetCard title="Earn up to" value="378.89% APR" navLink="/farms" />
-              <EarnAssetCard />
-              <FarmAssetCard title="Lottery" value="Coming Soon" />
-            </Cards>
-          </div>
-          <CakeStats />
-          <TeamMember />
-        </Page>
-      </MainBackground>
+      <PageSection
+        innerProps={{style: HomeSectionContainerStyles}}
+        background={theme.colors.background}
+        index={2}
+        hasCurvedDivider={false}
+      />
+      <PageSection
+        innerProps={{style: HomeSectionContainerStyles}}
+        background={theme.colors.gradients.cardHeader}
+        index={2}
+        hasCurvedDivider={false}
+      />
+      <PageSection
+        innerProps={{style: HomeSectionContainerStyles}}
+        background={
+          theme.isDark
+            ? 'linear-gradient(180deg, #0B4576 0%, #091115 100%)'
+            : 'linear-gradient(180deg, #6FB6F1 0%, #EAF2F6 100%)'
+        }
+        index={2}
+        hasCurvedDivider={false}
+      />
+      <PageSection
+        innerProps={{style: HomeSectionContainerStyles}}
+        background={theme.colors.background}
+        index={2}
+        hasCurvedDivider={false}
+      />
+      <PageSection
+        innerProps={{style: HomeSectionContainerStyles}}
+        background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
+        index={2}
+        hasCurvedDivider={false}
+      />
     </>
   )
 }

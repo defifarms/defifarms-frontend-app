@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
-import { escapeRegExp } from '../../utils'
+import {useTranslation} from 'contexts/Localization'
+import {escapeRegExp} from '../../utils'
 
-const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string; fontWeight?: number }>`
-  color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
+const StyledInput = styled.input<{error?: boolean; fontSize?: string; align?: string; fontWeight?: number}>`
+  color: ${({error, theme}) => (error ? theme.colors.failure : theme.colors.text)};
   width: 0;
   position: relative;
-  font-weight: ${({ fontWeight }) => fontWeight};
+  font-weight: ${({fontWeight}) => fontWeight};
   outline: none;
   border: none;
   flex: 1 1 auto;
   background-color: transparent;
   font-size: 16px;
-  text-align: ${({ align }) => align && align};
+  text-align: ${({align}) => align && align};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,7 +34,7 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({theme}) => theme.colors.textSubtle};
   }
 `
 
@@ -60,7 +60,7 @@ export const Input = React.memo(function InnerInput({
     }
   }
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   return (
     <StyledInput

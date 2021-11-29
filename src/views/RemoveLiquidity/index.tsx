@@ -1,43 +1,43 @@
-import { BigNumber } from '@ethersproject/bignumber'
-import { splitSignature } from '@ethersproject/bytes'
-import { Contract } from '@ethersproject/contracts'
-import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, Percent, WETH } from '@defifarms/sdk'
-import { AddIcon, ArrowDownIcon, Box, Button, CardBody, Flex, Slider, Text, useModal } from '@defifarms/uikit'
-import { MainBackground } from 'components/Layout/MainBackground'
-import { useTranslation } from 'contexts/Localization'
-import React, { useCallback, useMemo, useState } from 'react'
-import { RouteComponentProps } from 'react-router'
+import {BigNumber} from '@ethersproject/bignumber'
+import {splitSignature} from '@ethersproject/bytes'
+import {Contract} from '@ethersproject/contracts'
+import {TransactionResponse} from '@ethersproject/providers'
+import {Currency, currencyEquals, ETHER, Percent, WETH} from '@defifarms/sdk'
+import {AddIcon, ArrowDownIcon, Box, Button, CardBody, Flex, Slider, Text, useModal} from '@pancakeswap/uikit'
+import {MainBackground} from 'components/Layout/MainBackground'
+import {useTranslation} from 'contexts/Localization'
+import React, {useCallback, useMemo, useState} from 'react'
+import {RouteComponentProps} from 'react-router'
 import styled from 'styled-components'
-import { AppBody, AppHeader } from '../../components/App'
-import { LightGreyCard } from '../../components/Card'
+import {AppBody, AppHeader} from '../../components/App'
+import {LightGreyCard} from '../../components/Card'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
-import { RowBetween, RowFixed } from '../../components/Layout/Row'
+import {AutoColumn, ColumnCenter} from '../../components/Layout/Column'
+import {RowBetween, RowFixed} from '../../components/Layout/Row'
 import StyledInternalLink from '../../components/Links'
 import Dots from '../../components/Loader/Dots'
-import { CurrencyLogo, DoubleCurrencyLogo } from '../../components/Logo'
-import { MinimalPositionCard } from '../../components/PositionCard'
-import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
-import { ROUTER_ADDRESS } from '../../config/constants'
-import { useCurrency } from '../../hooks/Tokens'
+import {CurrencyLogo, DoubleCurrencyLogo} from '../../components/Logo'
+import {MinimalPositionCard} from '../../components/PositionCard'
+import TransactionConfirmationModal, {ConfirmationModalContent} from '../../components/TransactionConfirmationModal'
+import {ROUTER_ADDRESS} from '../../config/constants'
+import {useCurrency} from '../../hooks/Tokens'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
-import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
-import { usePairContract } from '../../hooks/useContract'
+import {ApprovalState, useApproveCallback} from '../../hooks/useApproveCallback'
+import {usePairContract} from '../../hooks/useContract'
 import useDebouncedChangeHandler from '../../hooks/useDebouncedChangeHandler'
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
-import { Field } from '../../state/burn/actions'
-import { useBurnActionHandlers, useBurnState, useDerivedBurnInfo } from '../../state/burn/hooks'
-import { useTransactionAdder } from '../../state/transactions/hooks'
-import { useUserSlippageTolerance } from '../../state/user/hooks'
-import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
-import { currencyId } from '../../utils/currencyId'
-import { wrappedCurrency } from '../../utils/wrappedCurrency'
+import {Field} from '../../state/burn/actions'
+import {useBurnActionHandlers, useBurnState, useDerivedBurnInfo} from '../../state/burn/hooks'
+import {useTransactionAdder} from '../../state/transactions/hooks'
+import {useUserSlippageTolerance} from '../../state/user/hooks'
+import {calculateGasMargin, calculateSlippageAmount, getRouterContract} from '../../utils'
+import {currencyId} from '../../utils/currencyId'
+import {wrappedCurrency} from '../../utils/wrappedCurrency'
 import Page from '../Page'
 
 const BorderCard = styled.div`
-  border: solid 1px ${({ theme }) => theme.colors.cardBorder};
+  border: solid 1px ${({theme}) => theme.colors.cardBorder};
   border-radius: 16px;
   padding: 16px;
 `
@@ -45,22 +45,22 @@ const BorderCard = styled.div`
 export default function RemoveLiquidity({
   history,
   match: {
-    params: { currencyIdA, currencyIdB },
+    params: {currencyIdA, currencyIdB},
   },
-}: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+}: RouteComponentProps<{currencyIdA: string; currencyIdB: string}>) {
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
-  const { account, chainId, library } = useActiveWeb3React()
+  const {account, chainId, library} = useActiveWeb3React()
   const [tokenA, tokenB] = useMemo(
     () => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)],
     [currencyA, currencyB, chainId],
   )
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   // burn state
-  const { independentField, typedValue } = useBurnState()
-  const { pair, parsedAmounts, error } = useDerivedBurnInfo(currencyA ?? undefined, currencyB ?? undefined)
-  const { onUserInput: _onUserInput } = useBurnActionHandlers()
+  const {independentField, typedValue} = useBurnState()
+  const {pair, parsedAmounts, error} = useDerivedBurnInfo(currencyA ?? undefined, currencyB ?? undefined)
+  const {onUserInput: _onUserInput} = useBurnActionHandlers()
   const isValid = !error
 
   // modal and loading
@@ -92,7 +92,7 @@ export default function RemoveLiquidity({
   const pairContract: Contract | null = usePairContract(pair?.liquidityToken?.address)
 
   // allowance handling
-  const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
+  const [signatureData, setSignatureData] = useState<{v: number; r: string; s: string; deadline: number} | null>(null)
   const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS)
 
   const onAttemptToApprove = async () => {
@@ -104,10 +104,10 @@ export default function RemoveLiquidity({
     const nonce = await pairContract.nonces(account)
 
     const EIP712Domain = [
-      { name: 'name', type: 'string' },
-      { name: 'version', type: 'string' },
-      { name: 'chainId', type: 'uint256' },
-      { name: 'verifyingContract', type: 'address' },
+      {name: 'name', type: 'string'},
+      {name: 'version', type: 'string'},
+      {name: 'chainId', type: 'uint256'},
+      {name: 'verifyingContract', type: 'address'},
     ]
     const domain = {
       name: 'DefiySwap LPs',
@@ -116,11 +116,11 @@ export default function RemoveLiquidity({
       verifyingContract: pair.liquidityToken.address,
     }
     const Permit = [
-      { name: 'owner', type: 'address' },
-      { name: 'spender', type: 'address' },
-      { name: 'value', type: 'uint256' },
-      { name: 'nonce', type: 'uint256' },
-      { name: 'deadline', type: 'uint256' },
+      {name: 'owner', type: 'address'},
+      {name: 'spender', type: 'address'},
+      {name: 'value', type: 'uint256'},
+      {name: 'nonce', type: 'uint256'},
+      {name: 'deadline', type: 'uint256'},
     ]
     const message = {
       owner: account,
@@ -175,7 +175,7 @@ export default function RemoveLiquidity({
   const addTransaction = useTransactionAdder()
   const onRemove = async () => {
     if (!chainId || !library || !account || !deadline) throw new Error('missing dependencies')
-    const { [Field.CURRENCY_A]: currencyAmountA, [Field.CURRENCY_B]: currencyAmountB } = parsedAmounts
+    const {[Field.CURRENCY_A]: currencyAmountA, [Field.CURRENCY_B]: currencyAmountB} = parsedAmounts
     if (!currencyAmountA || !currencyAmountB) {
       throw new Error('missing currency amounts')
     }
@@ -347,7 +347,7 @@ export default function RemoveLiquidity({
     return (
       <>
         <RowBetween>
-          {t('%assetA%/%assetB% Burned', { assetA: currencyA?.symbol ?? '', assetB: currencyB?.symbol ?? '' })}
+          {t('%assetA%/%assetB% Burned', {assetA: currencyA?.symbol ?? '', assetB: currencyB?.symbol ?? ''})}
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
             <Text>{parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}</Text>
@@ -470,7 +470,7 @@ export default function RemoveLiquidity({
               </RowBetween>
               {!showDetailed && (
                 <BorderCard>
-                  <Text fontSize="40px" bold mb="16px" style={{ lineHeight: 1 }}>
+                  <Text fontSize="40px" bold mb="16px" style={{lineHeight: 1}}>
                     {formattedAmounts[Field.LIQUIDITY_PERCENT]}%
                   </Text>
                   <Slider
@@ -527,7 +527,7 @@ export default function RemoveLiquidity({
                       <Text small>{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
                     </Flex>
                     {chainId && (oneCurrencyIsWETH || oneCurrencyIsETH) ? (
-                      <RowBetween style={{ justifyContent: 'flex-end', fontSize: '14px' }}>
+                      <RowBetween style={{justifyContent: 'flex-end', fontSize: '14px'}}>
                         {oneCurrencyIsETH ? (
                           <StyledInternalLink
                             to={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${
@@ -598,7 +598,7 @@ export default function RemoveLiquidity({
               </Box>
             )}
             {pair && (
-              <AutoColumn gap="10px" style={{ marginTop: '16px' }}>
+              <AutoColumn gap="10px" style={{marginTop: '16px'}}>
                 <Text bold color="white" fontSize="12px" textTransform="uppercase">
                   {t('Prices')}
                 </Text>
@@ -663,7 +663,7 @@ export default function RemoveLiquidity({
         </AppBody>
 
         {pair ? (
-          <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
+          <AutoColumn style={{minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem'}}>
             <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
           </AutoColumn>
         ) : null}

@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
-import { Button, Heading, Skeleton, Text } from '@defifarms/uikit'
+import React, {useState} from 'react'
+import {Button, Heading, Skeleton, Text} from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
-import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
+import {useWeb3React} from '@web3-react/core'
+import {FarmWithStakedValue} from 'views/Farms/components/FarmCard/FarmCard'
 import Balance from 'components/Balance'
-import { BIG_ZERO } from 'utils/bigNumber'
-import { getBalanceAmount } from 'utils/formatBalance'
-import { useAppDispatch } from 'state'
-import { fetchFarmUserDataAsync } from 'state/farms'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import {BIG_ZERO} from 'utils/bigNumber'
+import {getBalanceAmount} from 'utils/formatBalance'
+import {useAppDispatch} from 'state'
+import {fetchFarmUserDataAsync} from 'state/farms'
+import {usePriceCakeBusd} from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 import useHarvestFarm from '../../../hooks/useHarvestFarm'
 
-import { ActionContainer, ActionContent, ActionTitles } from './styles'
+import {ActionContainer, ActionTitles, ActionContent} from './styles'
 
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
 
-const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady }) => {
-  const { toastSuccess, toastError } = useToast()
+const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({pid, userData, userDataReady}) => {
+  const {toastSuccess, toastError} = useToast()
   const earningsBigNumber = new BigNumber(userData.earnings)
   const cakePrice = usePriceCakeBusd()
   let earnings = BIG_ZERO
@@ -35,22 +35,16 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   }
 
   const [pendingTx, setPendingTx] = useState(false)
-  const { onReward } = useHarvestFarm(pid)
-  const { t } = useTranslation()
+  const {onReward} = useHarvestFarm(pid)
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
-
-  const isHarvest = userData?.harvest
-  let isDisable = false
-  if (isHarvest) {
-    isDisable = true
-  }
+  const {account} = useWeb3React()
 
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text bold textTransform="uppercase" color="white" fontSize="12px" pr="4px">
-          DEFIY
+        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+          CAKE
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}
@@ -64,14 +58,14 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           )}
         </div>
         <Button
-          disabled={earnings.eq(0) || pendingTx || !userDataReady || !isDisable}
+          disabled={earnings.eq(0) || pendingTx || !userDataReady}
           onClick={async () => {
             setPendingTx(true)
             try {
               await onReward()
               toastSuccess(
                 `${t('Harvested')}!`,
-                t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'DEFIY' }),
+                t('Your %symbol% earnings have been sent to your wallet!', {symbol: 'CAKE'}),
               )
             } catch (e) {
               toastError(
@@ -82,11 +76,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             } finally {
               setPendingTx(false)
             }
-            dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
+            dispatch(fetchFarmUserDataAsync({account, pids: [pid]}))
           }}
           ml="4px"
         >
-          {t('Harvest')}
+          {pendingTx ? t('Harvesting') : t('Harvest')}
         </Button>
       </ActionContent>
     </ActionContainer>

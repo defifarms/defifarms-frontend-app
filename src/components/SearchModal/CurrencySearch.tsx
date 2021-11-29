@@ -1,18 +1,18 @@
-import React, { KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Currency, ETHER, Token } from '@defifarms/sdk'
-import { Box, Input, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { FixedSizeList } from 'react-window'
-import { useAudioModeManager } from 'state/user/hooks'
+import React, {KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {Currency, ETHER, Token} from '@defifarms/sdk'
+import {Box, Input, Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {FixedSizeList} from 'react-window'
+import {useAudioModeManager} from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useAllTokens, useFoundOnInactiveList, useIsUserAddedToken, useToken } from '../../hooks/Tokens'
-import { isAddress } from '../../utils'
-import Column, { AutoColumn } from '../Layout/Column'
+import {useAllTokens, useFoundOnInactiveList, useIsUserAddedToken, useToken} from '../../hooks/Tokens'
+import {isAddress} from '../../utils'
+import Column, {AutoColumn} from '../Layout/Column'
 import Row from '../Layout/Row'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
-import { filterTokens, useSortedTokensByQuery } from './filtering'
+import {filterTokens, useSortedTokensByQuery} from './filtering'
 import useTokenComparator from './sorting'
 
 import ImportRow from './ImportRow'
@@ -36,8 +36,8 @@ function CurrencySearch({
   showImportView,
   setImportToken,
 }: CurrencySearchProps) {
-  const { t } = useTranslation()
-  const { chainId } = useActiveWeb3React()
+  const {t} = useTranslation()
+  const {chainId} = useActiveWeb3React()
 
   // refs for fixed size lists
   const fixedList = useRef<FixedSizeList>()
@@ -137,7 +137,7 @@ function CurrencySearch({
           )}
         </AutoColumn>
         {searchToken && !searchTokenIsAdded ? (
-          <Column style={{ padding: '20px 0', height: '100%' }}>
+          <Column style={{padding: '20px 0', height: '100%'}}>
             <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
           </Column>
         ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
@@ -158,7 +158,7 @@ function CurrencySearch({
             />
           </Box>
         ) : (
-          <Column style={{ padding: '20px', height: '100%' }}>
+          <Column style={{padding: '20px', height: '100%'}}>
             <Text color="textSubtle" textAlign="center" mb="20px">
               {t('No results found.')}
             </Text>

@@ -1,26 +1,26 @@
-import { InjectedConnector } from '@web3-react/injected-connector'
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import { BscConnector } from '@binance-chain/bsc-connector'
-import { ConnectorNames } from '@defifarms/uikit'
-import { ethers } from 'ethers'
+import {InjectedConnector} from '@web3-react/injected-connector'
+import {WalletConnectConnector} from '@web3-react/walletconnect-connector'
+import {BscConnector} from '@binance-chain/bsc-connector'
+import {ConnectorNames} from '@pancakeswap/uikit'
+import {ethers} from 'ethers'
 import getNodeUrl from './getRpcUrl'
 
 const POLLING_INTERVAL = 12000
 const rpcUrl = getNodeUrl()
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
-const injected = new InjectedConnector({ supportedChainIds: [chainId] })
+const injected = new InjectedConnector({supportedChainIds: [chainId]})
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [chainId]: rpcUrl },
+  rpc: {[chainId]: rpcUrl},
   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
   qrcode: true,
-  pollingInterval: POLLING_INTERVAL,
+  // pollingInterval: POLLING_INTERVAL,
 })
 
-const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
+const bscConnector = new BscConnector({supportedChainIds: [chainId]})
 
-export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
+export const connectorsByName: {[connectorName in ConnectorNames]: any} = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
@@ -38,7 +38,7 @@ export const getLibrary = (provider): ethers.providers.Web3Provider => {
  */
 export const signMessage = async (provider: any, account: string, message: string): Promise<string> => {
   if (window.BinanceChain) {
-    const { signature } = await window.BinanceChain.bnbSign(account, message)
+    const {signature} = await window.BinanceChain.bnbSign(account, message)
     return signature
   }
 

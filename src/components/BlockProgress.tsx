@@ -1,14 +1,14 @@
 import React from 'react'
-import { Progress, ProgressProps } from '@defifarms/uikit'
-import { useBlock } from 'state/block/hooks'
+import {Progress, ProgressProps} from '@pancakeswap/uikit'
+import {useBlock} from 'state/block/hooks'
 
 interface BlockProgressProps extends ProgressProps {
   startBlock: number
   endBlock: number
 }
 
-const BlockProgress: React.FC<BlockProgressProps> = ({ startBlock, endBlock, ...props }) => {
-  const { currentBlock } = useBlock()
+const BlockProgress: React.FC<BlockProgressProps> = ({startBlock, endBlock, ...props}) => {
+  const {currentBlock} = useBlock()
   const rawProgress = ((currentBlock - startBlock) / (endBlock - startBlock)) * 100
   const progress = rawProgress <= 100 ? rawProgress : 100
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Button, Flex, InjectedModalProps, Message, Modal, ModalBody, DefifarmsToggle, Text } from '@defifarms/uikit'
+import React, {useState} from 'react'
+import {Button, Flex, InjectedModalProps, Message, Modal, ModalBody, Text} from '@pancakeswap/uikit'
+import {DefifarmsToggle} from '@defifarms/uikit'
 import {
   useAudioModeManager,
   useExpertModeManager,
@@ -7,24 +8,24 @@ import {
   useUserSlippageTolerance,
   useUserTransactionTTL,
 } from 'state/user/hooks'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 
-import { useSwapActionHandlers } from 'state/swap/hooks'
-import { AutoColumn } from '../../Layout/Column'
+import {useSwapActionHandlers} from 'state/swap/hooks'
+import {AutoColumn} from '../../Layout/Column'
 import QuestionHelper from '../../QuestionHelper'
-import { RowBetween, RowFixed } from '../../Layout/Row'
+import {RowBetween, RowFixed} from '../../Layout/Row'
 import TransactionSettings from './TransactionSettings'
 
-const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
+const SettingsModal: React.FC<InjectedModalProps> = ({onDismiss}) => {
   const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance()
   const [ttl, setTtl] = useUserTransactionTTL()
   const [expertMode, toggleExpertMode] = useExpertModeManager()
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
   const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
-  const { onChangeRecipient } = useSwapActionHandlers()
+  const {onChangeRecipient} = useSwapActionHandlers()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   if (showConfirmExpertModal) {
     return (
@@ -32,7 +33,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
         title={t('Are you sure?')}
         onBack={() => setShowConfirmExpertModal(false)}
         onDismiss={onDismiss}
-        style={{ maxWidth: '420px' }}
+        style={{maxWidth: '420px'}}
       >
         <ModalBody>
           <Message variant="warning" mb="24px">
@@ -64,7 +65,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   return (
     <Modal title={t('Settings')} headerBackground="gradients.cardHeader" onDismiss={onDismiss}>
       <ModalBody>
-        <AutoColumn gap="md" style={{ padding: '1rem' }}>
+        <AutoColumn gap="md" style={{padding: '1rem'}}>
           <Text bold fontSize="20px">
             {t('Transaction Settings')}
           </Text>

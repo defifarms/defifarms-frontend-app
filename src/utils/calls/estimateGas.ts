@@ -1,4 +1,4 @@
-import { Contract, ethers } from 'ethers'
+import {Contract, ethers} from 'ethers'
 
 /**
  * Estimate the gas needed to call a function, and add a 10% margin

@@ -1,15 +1,15 @@
-import { MaxUint256 } from '@ethersproject/constants'
-import { TransactionResponse } from '@ethersproject/providers'
-import { CurrencyAmount, ETHER, TokenAmount, Trade } from '@defifarms/sdk'
-import { useCallback, useMemo } from 'react'
+import {MaxUint256} from '@ethersproject/constants'
+import {TransactionResponse} from '@ethersproject/providers'
+import {CurrencyAmount, ETHER, TokenAmount, Trade} from '@defifarms/sdk'
+import {useCallback, useMemo} from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ROUTER_ADDRESS } from '../config/constants'
+import {ROUTER_ADDRESS} from '../config/constants'
 import useTokenAllowance from './useTokenAllowance'
-import { Field } from '../state/swap/actions'
-import { useHasPendingApproval, useTransactionAdder } from '../state/transactions/hooks'
-import { computeSlippageAdjustedAmounts } from '../utils/prices'
-import { calculateGasMargin } from '../utils'
-import { useTokenContract } from './useContract'
+import {Field} from '../state/swap/actions'
+import {useHasPendingApproval, useTransactionAdder} from '../state/transactions/hooks'
+import {computeSlippageAdjustedAmounts} from '../utils/prices'
+import {calculateGasMargin} from '../utils'
+import {useTokenContract} from './useContract'
 
 export enum ApprovalState {
   UNKNOWN,
@@ -23,7 +23,7 @@ export function useApproveCallback(
   amountToApprove?: CurrencyAmount,
   spender?: string,
 ): [ApprovalState, () => Promise<void>] {
-  const { account } = useActiveWeb3React()
+  const {account} = useActiveWeb3React()
   const token = amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined
   const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
   const pendingApproval = useHasPendingApproval(token?.address, spender)
@@ -86,7 +86,7 @@ export function useApproveCallback(
       .then((response: TransactionResponse) => {
         addTransaction(response, {
           summary: `Approve ${amountToApprove.currency.symbol}`,
-          approval: { tokenAddress: token.address, spender },
+          approval: {tokenAddress: token.address, spender},
         })
       })
       .catch((error: Error) => {

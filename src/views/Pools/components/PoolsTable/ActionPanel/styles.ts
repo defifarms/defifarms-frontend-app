@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ActionContainer = styled.div`
+export const ActionContainer = styled.div<{isAutoVault?: boolean}>`
   padding: 24px 16px;
   border: 1px solid #5503e8;
   border-radius: 16px;
@@ -9,7 +9,7 @@ export const ActionContainer = styled.div`
   margin-bottom: 16px;
   margin-top: 16px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 0;
@@ -17,7 +17,7 @@ export const ActionContainer = styled.div`
     max-height: 140px;
   }
 
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({theme}) => theme.mediaQueries.xl} {
     margin-left: 32px;
     margin-right: 0;
     margin-bottom: 0;

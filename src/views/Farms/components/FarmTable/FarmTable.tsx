@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon, ColumnType, useTable } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {useTable, Button, ChevronUpIcon, ColumnType} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
-import Row, { RowProps } from './Row'
+import Row, {RowProps} from './Row'
 
 export interface ITableProps {
   data: RowProps[]
@@ -13,17 +13,16 @@ export interface ITableProps {
 }
 
 const Container = styled.div`
-  filter: ${({ theme }) => theme.card.dropShadow};
+  filter: ${({theme}) => theme.card.dropShadow};
   width: 100%;
-  background: ${({ theme }) => theme.card.backgroundCardTransparent};
-  overflow: hidden;
-  backdrop-filter: blur(5px);
-  border-radius: ${({ theme }) => theme.radii.default};
+  background: ${({theme}) => theme.card.background};
+  border-radius: 16px;
   margin: 16px 0px;
 `
 
 const TableWrapper = styled.div`
   overflow: visible;
+  scroll-margin-top: 64px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -58,16 +57,13 @@ const ScrollButtonContainer = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
 `
-const ButtonStyled = styled(Button)`
-  color: ${({ theme }) => theme.colors.four};
-`
 
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
-  const { t } = useTranslation()
-  const { data, columns, userDataReady } = props
+  const {t} = useTranslation()
+  const {data, columns, userDataReady} = props
 
-  const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
+  const {rows} = useTable(columns, data, {sortable: true, sortColumn: 'farm'})
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
@@ -76,7 +72,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   }
 
   return (
-    <Container>
+    <Container id="farms-table">
       <TableContainer>
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
@@ -88,10 +84,10 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           </StyledTable>
         </TableWrapper>
         <ScrollButtonContainer>
-          <ButtonStyled variant="text" onClick={scrollToTop}>
+          <Button variant="text" onClick={scrollToTop}>
             {t('To Top')}
-            <ChevronUpIcon color="four" />
-          </ButtonStyled>
+            <ChevronUpIcon color="primary" />
+          </Button>
         </ScrollButtonContainer>
       </TableContainer>
     </Container>

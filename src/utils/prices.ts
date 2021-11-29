@@ -1,13 +1,13 @@
-import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from '@defifarms/sdk'
+import {CurrencyAmount, Fraction, JSBI, Percent, Price, TokenAmount, Trade} from '@defifarms/sdk'
 import {
+  BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,
   ALLOWED_PRICE_IMPACT_LOW,
   ALLOWED_PRICE_IMPACT_MEDIUM,
-  BLOCKED_PRICE_IMPACT_NON_EXPERT,
 } from '../config/constants'
 
-import { Field } from '../state/swap/actions'
-import { basisPointsToPercent } from './index'
+import {Field} from '../state/swap/actions'
+import {basisPointsToPercent} from './index'
 
 const BASE_FEE = new Percent(JSBI.BigInt(25), JSBI.BigInt(10000))
 const ONE_HUNDRED_PERCENT = new Percent(JSBI.BigInt(10000), JSBI.BigInt(10000))
@@ -45,14 +45,14 @@ export function computeTradePriceBreakdown(trade?: Trade | null): {
       ? new TokenAmount(trade.inputAmount.token, realizedLPFee.multiply(trade.inputAmount.raw).quotient)
       : CurrencyAmount.ether(realizedLPFee.multiply(trade.inputAmount.raw).quotient))
 
-  return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
+  return {priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount}
 }
 
 // computes the minimum amount out and maximum amount in for a trade given a user specified allowed slippage in bips
 export function computeSlippageAdjustedAmounts(
   trade: Trade | undefined,
   allowedSlippage: number,
-): { [field in Field]?: CurrencyAmount } {
+): {[field in Field]?: CurrencyAmount} {
   const pct = basisPointsToPercent(allowedSlippage)
   return {
     [Field.INPUT]: trade?.maximumAmountIn(pct),
@@ -79,4 +79,15 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
     : `${trade.executionPrice.toSignificant(6)} ${trade.outputAmount.currency.symbol} / ${
         trade.inputAmount.currency.symbol
       }`
+}
+
+/**
+ * Helper to multiply a Price object by an arbitrary amount
+ */
+export const multiplyPriceByAmount = (price: Price, amount: number, significantDigits = 18) => {
+  if (!price) {
+    return 0
+  }
+
+  return parseFloat(price.toSignificant(significantDigits)) * amount
 }

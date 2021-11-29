@@ -1,9 +1,9 @@
 import React from 'react'
-import { ToastContainer } from '@defifarms/uikit'
+import {ToastContainer} from '@defifarms/uikit'
 import useToast from 'hooks/useToast'
 
 const ToastListener = () => {
-  const { toasts, remove } = useToast()
+  const {toasts, remove} = useToast()
 
   const handleRemove = (id: string) => remove(id)
 

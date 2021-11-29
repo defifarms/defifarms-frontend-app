@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, currencyEquals, ETHER, Token } from '@defifarms/sdk'
-import { useMemo } from 'react'
-import { arrayify } from 'ethers/lib/utils'
+import {parseBytes32String} from '@ethersproject/strings'
+import {Currency, currencyEquals, ETHER, Token} from '@defifarms/sdk'
+import {useMemo} from 'react'
+import {arrayify} from 'ethers/lib/utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   TokenAddressMap,
@@ -12,23 +12,23 @@ import {
   useUnsupportedTokenList,
 } from '../state/lists/hooks'
 
-import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
+import {NEVER_RELOAD, useSingleCallResult} from '../state/multicall/hooks'
 import useUserAddedTokens from '../state/user/hooks/useUserAddedTokens'
-import { isAddress } from '../utils'
+import {isAddress} from '../utils'
 
-import { useBytes32TokenContract, useTokenContract } from './useContract'
-import { filterTokens } from '../components/SearchModal/filtering'
+import {useBytes32TokenContract, useTokenContract} from './useContract'
+import {filterTokens} from '../components/SearchModal/filtering'
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
-function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
-  const { chainId } = useActiveWeb3React()
+function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): {[address: string]: Token} {
+  const {chainId} = useActiveWeb3React()
   const userAddedTokens = useUserAddedTokens()
 
   return useMemo(() => {
     if (!chainId) return {}
 
     // reduce to just tokens
-    const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {
+    const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{[address: string]: Token}>((newMap, address) => {
       newMap[address] = tokenMap[chainId][address].token
       return newMap
     }, {})
@@ -37,14 +37,14 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
       return (
         userAddedTokens
           // reduce into all ALL_TOKENS filtered by the current chain
-          .reduce<{ [address: string]: Token }>(
+          .reduce<{[address: string]: Token}>(
             (tokenMap_, token) => {
               tokenMap_[token.address] = token
               return tokenMap_
             },
             // must make a copy because reduce modifies the map, and we do not
             // want to make a copy in every iteration
-            { ...mapWithoutUrls },
+            {...mapWithoutUrls},
           )
       )
     }
@@ -53,17 +53,17 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
   }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
 }
 
-export function useDefaultTokens(): { [address: string]: Token } {
+export function useDefaultTokens(): {[address: string]: Token} {
   const defaultList = useDefaultTokenList()
   return useTokensFromMap(defaultList, false)
 }
 
-export function useAllTokens(): { [address: string]: Token } {
+export function useAllTokens(): {[address: string]: Token} {
   const allTokens = useCombinedActiveList()
   return useTokensFromMap(allTokens, true)
 }
 
-export function useAllInactiveTokens(): { [address: string]: Token } {
+export function useAllInactiveTokens(): {[address: string]: Token} {
   // get inactive tokens
   const inactiveTokensMap = useCombinedInactiveList()
   const inactiveTokens = useTokensFromMap(inactiveTokensMap, false)
@@ -71,7 +71,7 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
   // filter out any token that are on active list
   const activeTokensAddresses = Object.keys(useAllTokens())
   const filteredInactive = activeTokensAddresses
-    ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
+    ? Object.keys(inactiveTokens).reduce<{[address: string]: Token}>((newMap, address) => {
         if (!activeTokensAddresses.includes(address)) {
           newMap[address] = inactiveTokens[address]
         }
@@ -82,7 +82,7 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
   return filteredInactive
 }
 
-export function useUnsupportedTokens(): { [address: string]: Token } {
+export function useUnsupportedTokens(): {[address: string]: Token} {
   const unsupportedTokensMap = useUnsupportedTokenList()
   return useTokensFromMap(unsupportedTokensMap, false)
 }
@@ -99,7 +99,7 @@ export function useIsTokenActive(token: Token | undefined | null): boolean {
 
 // used to detect extra search results
 export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
   const inactiveTokens = useAllInactiveTokens()
 
   return useMemo(() => {
@@ -138,7 +138,7 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
 // null if loading
 // otherwise returns the token
 export function useToken(tokenAddress?: string): Token | undefined | null {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
   const tokens = useAllTokens()
 
   const address = isAddress(tokenAddress)

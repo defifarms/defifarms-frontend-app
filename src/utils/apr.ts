@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { BLOCKS_PER_YEAR, CAKE_PER_YEAR } from 'config'
+import {BLOCKS_PER_YEAR, CAKE_PER_YEAR} from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
 
 /**
@@ -27,22 +27,23 @@ export const getPoolApr = (
  * @param poolWeight allocationPoint / totalAllocationPoint
  * @param cakePriceUsd Cake price in USD
  * @param poolLiquidityUsd Total pool liquidity in USD
- * @returns
+ * @param farmAddress Farm Address
+ * @returns Farm Apr
  */
 export const getFarmApr = (
   poolWeight: BigNumber,
   cakePriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
-): { cakeRewardsApr: number; lpRewardsApr: number } => {
-  const yearlyCakeRewardAllocation = CAKE_PER_YEAR.times(poolWeight)
+): {cakeRewardsApr: number; lpRewardsApr: number} => {
+  const yearlyCakeRewardAllocation = poolWeight ? poolWeight.times(CAKE_PER_YEAR) : new BigNumber(NaN)
   const cakeRewardsApr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
   let cakeRewardsAprAsNumber = null
   if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
   }
-  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 8.89 // TODO: change 8.89 to 0 if subgraph ready
-  return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
+  return {cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr}
 }
 
 export default null

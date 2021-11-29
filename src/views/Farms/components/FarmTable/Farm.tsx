@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useFarmUser } from 'state/farms/hooks'
-import { useTranslation } from 'contexts/Localization'
-import { Text } from '@defifarms/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { Token } from 'config/constants/types'
-import { TokenPairImage } from 'components/TokenImage'
+import {useFarmUser} from 'state/farms/hooks'
+import {useTranslation} from 'contexts/Localization'
+import {Text} from '@pancakeswap/uikit'
+import {Token} from '@defifarms/sdk'
+import {getBalanceNumber} from 'utils/formatBalance'
+import {TokenPairImage} from 'components/TokenImage'
 
 export interface FarmProps {
   label: string
@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     padding-left: 32px;
   }
 `
@@ -28,20 +28,20 @@ const TokenWrapper = styled.div`
   padding-right: 8px;
   width: 24px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     width: 40px;
   }
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid }) => {
-  const { stakedBalance } = useFarmUser(pid)
-  const { t } = useTranslation()
+const Farm: React.FunctionComponent<FarmProps> = ({token, quoteToken, label, pid}) => {
+  const {stakedBalance} = useFarmUser(pid)
+  const {t} = useTranslation()
   const rawStakedBalance = getBalanceNumber(stakedBalance)
 
   const handleRenderFarming = (): JSX.Element => {
     if (rawStakedBalance) {
       return (
-        <Text color="white" fontSize="12px" bold textTransform="uppercase">
+        <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
           {t('Farming')}
         </Text>
       )

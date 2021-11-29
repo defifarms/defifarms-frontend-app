@@ -1,6 +1,6 @@
-import { useCallback } from 'react'
-import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
-import { NoBscProviderError } from '@binance-chain/bsc-connector'
+import {useCallback} from 'react'
+import {UnsupportedChainIdError, useWeb3React} from '@web3-react/core'
+import {NoBscProviderError} from '@binance-chain/bsc-connector'
 import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
@@ -9,18 +9,18 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { connectorLocalStorageKey, ConnectorNames } from '@defifarms/uikit'
-import { connectorsByName } from 'utils/web3React'
-import { setupNetwork } from 'utils/wallet'
+import {connectorLocalStorageKey, ConnectorNames} from '@pancakeswap/uikit'
+import {connectorsByName} from 'utils/web3React'
+import {setupNetwork} from 'utils/wallet'
 import useToast from 'hooks/useToast'
-import { useAppDispatch } from 'state'
-import { useTranslation } from 'contexts/Localization'
+import {useAppDispatch} from 'state'
+import {useTranslation} from 'contexts/Localization'
 
 const useAuth = () => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate } = useWeb3React()
-  const { toastError } = useToast()
+  const {activate, deactivate} = useWeb3React()
+  const {toastError} = useToast()
 
   const login = useCallback(
     (connectorID: ConnectorNames) => {
@@ -72,7 +72,7 @@ const useAuth = () => {
     }
   }, [deactivate, dispatch])
 
-  return { login, logout }
+  return {login, logout}
 }
 
 export default useAuth

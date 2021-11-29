@@ -1,11 +1,13 @@
-import { BigNumber } from '@ethersproject/bignumber'
-import { Contract } from '@ethersproject/contracts'
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@defifarms/sdk'
-import { useMemo } from 'react'
+import {BigNumber} from '@ethersproject/bignumber'
+import {Contract} from '@ethersproject/contracts'
+import {JSBI, Percent, Router, SwapParameters, Trade, TradeType} from '@defifarms/sdk'
+import {useMemo} from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../config/constants'
-import { useTransactionAdder } from '../state/transactions/hooks'
-import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils'
+import {useGasPrice} from 'state/user/hooks'
+import truncateHash from 'utils/truncateHash'
+import {BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE} from '../config/constants'
+import {useTransactionAdder} from '../state/transactions/hooks'
+import {calculateGasMargin, getRouterContract, isAddress} from '../utils'
 import isZero from '../utils/isZero'
 import useTransactionDeadline from './useTransactionDeadline'
 import useENS from './ENS/useENS'
@@ -44,9 +46,9 @@ function useSwapCallArguments(
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): SwapCall[] {
-  const { account, chainId, library } = useActiveWeb3React()
+  const {account, chainId, library} = useActiveWeb3React()
 
-  const { address: recipientAddress } = useENS(recipientAddressOrName)
+  const {address: recipientAddress} = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
   const deadline = useTransactionDeadline()
 
@@ -80,7 +82,7 @@ function useSwapCallArguments(
       )
     }
 
-    return swapMethods.map((parameters) => ({ parameters, contract }))
+    return swapMethods.map((parameters) => ({parameters, contract}))
   }, [account, allowedSlippage, chainId, deadline, library, recipient, trade])
 }
 
@@ -90,25 +92,26 @@ export function useSwapCallback(
   trade: Trade | undefined, // trade to execute, required
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
-): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
-  const { account, chainId, library } = useActiveWeb3React()
+): {state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null} {
+  const {account, chainId, library} = useActiveWeb3React()
+  const gasPrice = useGasPrice()
 
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName)
 
   const addTransaction = useTransactionAdder()
 
-  const { address: recipientAddress } = useENS(recipientAddressOrName)
+  const {address: recipientAddress} = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
 
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
-      return { state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies' }
+      return {state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies'}
     }
     if (!recipient) {
       if (recipientAddressOrName !== null) {
-        return { state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient' }
+        return {state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient'}
       }
-      return { state: SwapCallbackState.LOADING, callback: null, error: null }
+      return {state: SwapCallbackState.LOADING, callback: null, error: null}
     }
 
     return {
@@ -117,10 +120,10 @@ export function useSwapCallback(
         const estimatedCalls: EstimatedSwapCall[] = await Promise.all(
           swapCalls.map((call) => {
             const {
-              parameters: { methodName, args, value },
+              parameters: {methodName, args, value},
               contract,
             } = call
-            const options = !value || isZero(value) ? {} : { value }
+            const options = !value || isZero(value) ? {} : {value}
 
             return contract.estimateGas[methodName](...args, options)
               .then((gasEstimate) => {
@@ -135,7 +138,7 @@ export function useSwapCallback(
                 return contract.callStatic[methodName](...args, options)
                   .then((result) => {
                     console.error('Unexpected successful call after failed estimate gas', call, gasError, result)
-                    return { call, error: new Error('Unexpected issue with estimating the gas. Please try again.') }
+                    return {call, error: new Error('Unexpected issue with estimating the gas. Please try again.')}
                   })
                   .catch((callError) => {
                     console.error('Call threw error', call, callError)
@@ -144,7 +147,7 @@ export function useSwapCallback(
                       reason ?? 'Unknown error, check the logs'
                     }.`
 
-                    return { call, error: new Error(errorMessage) }
+                    return {call, error: new Error(errorMessage)}
                   })
               })
           }),
@@ -165,14 +168,15 @@ export function useSwapCallback(
         const {
           call: {
             contract,
-            parameters: { methodName, args, value },
+            parameters: {methodName, args, value},
           },
           gasEstimate,
         } = successfulEstimation
 
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
-          ...(value && !isZero(value) ? { value, from: account } : { from: account }),
+          gasPrice,
+          ...(value && !isZero(value) ? {value, from: account} : {from: account}),
         })
           .then((response: any) => {
             const inputSymbol = trade.inputAmount.currency.symbol
@@ -186,7 +190,7 @@ export function useSwapCallback(
                 ? base
                 : `${base} to ${
                     recipientAddressOrName && isAddress(recipientAddressOrName)
-                      ? shortenAddress(recipientAddressOrName)
+                      ? truncateHash(recipientAddressOrName)
                       : recipientAddressOrName
                   }`
 
@@ -209,5 +213,5 @@ export function useSwapCallback(
       },
       error: null,
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
+  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction, gasPrice])
 }

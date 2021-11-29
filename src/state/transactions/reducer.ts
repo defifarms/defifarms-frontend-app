@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createReducer } from '@reduxjs/toolkit'
+import {createReducer} from '@reduxjs/toolkit'
 import {
   addTransaction,
   checkedTransaction,
@@ -12,9 +12,9 @@ const now = () => new Date().getTime()
 
 export interface TransactionDetails {
   hash: string
-  approval?: { tokenAddress: string; spender: string }
+  approval?: {tokenAddress: string; spender: string}
   summary?: string
-  claim?: { recipient: string }
+  claim?: {recipient: string}
   receipt?: SerializableTransactionReceipt
   lastCheckedBlockNumber?: number
   addedTime: number
@@ -32,19 +32,19 @@ export const initialState: TransactionState = {}
 
 export default createReducer(initialState, (builder) =>
   builder
-    .addCase(addTransaction, (transactions, { payload: { chainId, from, hash, approval, summary, claim } }) => {
+    .addCase(addTransaction, (transactions, {payload: {chainId, from, hash, approval, summary, claim}}) => {
       if (transactions[chainId]?.[hash]) {
         throw Error('Attempted to add existing transaction.')
       }
       const txs = transactions[chainId] ?? {}
-      txs[hash] = { hash, approval, summary, claim, from, addedTime: now() }
+      txs[hash] = {hash, approval, summary, claim, from, addedTime: now()}
       transactions[chainId] = txs
     })
-    .addCase(clearAllTransactions, (transactions, { payload: { chainId } }) => {
+    .addCase(clearAllTransactions, (transactions, {payload: {chainId}}) => {
       if (!transactions[chainId]) return
       transactions[chainId] = {}
     })
-    .addCase(checkedTransaction, (transactions, { payload: { chainId, hash, blockNumber } }) => {
+    .addCase(checkedTransaction, (transactions, {payload: {chainId, hash, blockNumber}}) => {
       const tx = transactions[chainId]?.[hash]
       if (!tx) {
         return
@@ -55,7 +55,7 @@ export default createReducer(initialState, (builder) =>
         tx.lastCheckedBlockNumber = Math.max(blockNumber, tx.lastCheckedBlockNumber)
       }
     })
-    .addCase(finalizeTransaction, (transactions, { payload: { hash, chainId, receipt } }) => {
+    .addCase(finalizeTransaction, (transactions, {payload: {hash, chainId, receipt}}) => {
       const tx = transactions[chainId]?.[hash]
       if (!tx) {
         return

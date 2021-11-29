@@ -1,23 +1,23 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Button, CheckmarkIcon, CogIcon, Input, LinkExternal, Text, Toggle, useTooltip } from '@defifarms/uikit'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {memo, useCallback, useEffect, useMemo, useState} from 'react'
+import {Button, CheckmarkIcon, CogIcon, Input, LinkExternal, Text, Toggle, useTooltip} from '@pancakeswap/uikit'
+import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components'
-import { TokenList, Version } from '@uniswap/token-lists'
+import {TokenList, Version} from '@uniswap/token-lists'
 import Card from 'components/Card'
-import { UNSUPPORTED_LIST_URLS } from 'config/constants/lists'
-import { parseENSAddress } from 'utils/ENS/parseENSAddress'
-import { useTranslation } from 'contexts/Localization'
+import {UNSUPPORTED_LIST_URLS} from 'config/constants/lists'
+import {parseENSAddress} from 'utils/ENS/parseENSAddress'
+import {useTranslation} from 'contexts/Localization'
 import useFetchListCallback from '../../hooks/useFetchListCallback'
 
-import { AppDispatch, AppState } from '../../state'
-import { acceptListUpdate, disableList, enableList, removeList } from '../../state/lists/actions'
-import { useActiveListUrls, useAllLists, useIsListActive } from '../../state/lists/hooks'
+import {AppDispatch, AppState} from '../../state'
+import {acceptListUpdate, disableList, enableList, removeList} from '../../state/lists/actions'
+import {useActiveListUrls, useAllLists, useIsListActive} from '../../state/lists/hooks'
 import uriToHttp from '../../utils/uriToHttp'
 
-import Column, { AutoColumn } from '../Layout/Column'
-import { ListLogo } from '../Logo'
-import Row, { RowBetween, RowFixed } from '../Layout/Row'
-import { CurrencyModalView } from './types'
+import Column, {AutoColumn} from '../Layout/Column'
+import {ListLogo} from '../Logo'
+import Row, {RowBetween, RowFixed} from '../Layout/Row'
+import {CurrencyModalView} from './types'
 
 function listVersionLabel(version: Version): string {
   return `v${version.major}.${version.minor}.${version.patch}`
@@ -28,10 +28,10 @@ const Wrapper = styled(Column)`
   height: 100%;
 `
 
-const RowWrapper = styled(Row)<{ active: boolean }>`
-  background-color: ${({ active, theme }) => (active ? `${theme.colors.success}19` : 'transparent')};
+const RowWrapper = styled(Row)<{active: boolean}>`
+  background-color: ${({active, theme}) => (active ? `${theme.colors.success}19` : 'transparent')};
   border: solid 1px;
-  border-color: ${({ active, theme }) => (active ? theme.colors.success : theme.colors.tertiary)};
+  border-color: ${({active, theme}) => (active ? theme.colors.success : theme.colors.tertiary)};
   transition: 200ms;
   align-items: center;
   padding: 1rem;
@@ -42,14 +42,14 @@ function listUrlRowHTMLId(listUrl: string) {
   return `list-row-${listUrl.replace(/\./g, '-')}`
 }
 
-const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
+const ListRow = memo(function ListRow({listUrl}: {listUrl: string}) {
   const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>((state) => state.lists.byUrl)
   const dispatch = useDispatch<AppDispatch>()
-  const { current: list, pendingUpdate: pending } = listsByUrl[listUrl]
+  const {current: list, pendingUpdate: pending} = listsByUrl[listUrl]
 
   const isActive = useIsListActive(listUrl)
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const handleAcceptListUpdate = useCallback(() => {
     if (!pending) return
@@ -71,7 +71,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
     dispatch(disableList(listUrl))
   }, [dispatch, listUrl])
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(
     <div>
       <Text>{list && listVersionLabel(list.version)}</Text>
       <LinkExternal external href={`https://tokenlists.org/token-list?url=${listUrl}`}>
@@ -81,12 +81,12 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         {t('Remove')}
       </Button>
       {pending && (
-        <Button variant="text" onClick={handleAcceptListUpdate} style={{ fontSize: '12px' }}>
+        <Button variant="text" onClick={handleAcceptListUpdate} style={{fontSize: '12px'}}>
           {t('Update list')}
         </Button>
       )}
     </div>,
-    { placement: 'right-end', trigger: 'click' },
+    {placement: 'right-end', trigger: 'click'},
   )
 
   if (!list) return null
@@ -95,11 +95,11 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
     <RowWrapper active={isActive} key={listUrl} id={listUrlRowHTMLId(listUrl)}>
       {tooltipVisible && tooltip}
       {list.logoURI ? (
-        <ListLogo size="40px" style={{ marginRight: '1rem' }} logoURI={list.logoURI} alt={`${list.name} list logo`} />
+        <ListLogo size="40px" style={{marginRight: '1rem'}} logoURI={list.logoURI} alt={`${list.name} list logo`} />
       ) : (
-        <div style={{ width: '24px', height: '24px', marginRight: '1rem' }} />
+        <div style={{width: '24px', height: '24px', marginRight: '1rem'}} />
       )}
-      <Column style={{ flex: '1' }}>
+      <Column style={{flex: '1'}}>
         <Row>
           <Text bold>{list.name}</Text>
         </Row>
@@ -143,7 +143,7 @@ function ManageLists({
 }) {
   const [listUrlInput, setListUrlInput] = useState<string>('')
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const lists = useAllLists()
 
@@ -174,8 +174,8 @@ function ManageLists({
         return Boolean(lists[listUrl].current) && !UNSUPPORTED_LIST_URLS.includes(listUrl)
       })
       .sort((u1, u2) => {
-        const { current: l1 } = lists[u1]
-        const { current: l2 } = lists[u2]
+        const {current: l1} = lists[u1]
+        const {current: l2} = lists[u2]
 
         // first filter on active lists
         if (activeCopy?.includes(u1) && !activeCopy?.includes(u2)) {
@@ -248,18 +248,18 @@ function ManageLists({
           />
         </Row>
         {addError ? (
-          <Text color="failure" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+          <Text color="failure" style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>
             {addError}
           </Text>
         ) : null}
       </AutoColumn>
       {tempList && (
-        <AutoColumn style={{ paddingTop: 0 }}>
+        <AutoColumn style={{paddingTop: 0}}>
           <Card padding="12px 20px">
             <RowBetween>
               <RowFixed>
                 {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
-                <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
+                <AutoColumn gap="4px" style={{marginLeft: '20px'}}>
                   <Text bold>{tempList.name}</Text>
                   <Text color="textSubtle" small textTransform="lowercase">
                     {tempList.tokens.length} {t('Tokens')}

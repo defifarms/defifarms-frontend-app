@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactMarkdownLib, { ReactMarkdownOptions } from 'react-markdown'
+import ReactMarkdownLib, {ReactMarkdownOptions} from 'react-markdown'
 import gfm from 'remark-gfm'
 import markdownComponents from './styles'
 

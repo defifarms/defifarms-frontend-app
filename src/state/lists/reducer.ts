@@ -1,11 +1,11 @@
-import { createReducer } from '@reduxjs/toolkit'
-import { getVersionUpgrade, VersionUpgrade } from '@uniswap/token-lists'
+import {createReducer} from '@reduxjs/toolkit'
+import {getVersionUpgrade, VersionUpgrade} from '@uniswap/token-lists'
 // eslint-disable-next-line import/no-unresolved
-import { TokenList } from '@uniswap/token-lists/dist/types'
-import { DEFAULT_ACTIVE_LIST_URLS, DEFAULT_LIST_OF_LISTS, UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
+import {TokenList} from '@uniswap/token-lists/dist/types'
+import {DEFAULT_ACTIVE_LIST_URLS, UNSUPPORTED_LIST_URLS, DEFAULT_LIST_OF_LISTS} from '../../config/constants/lists'
 
-import { updateVersion } from '../global/actions'
-import { acceptListUpdate, addList, disableList, enableList, fetchTokenList, removeList } from './actions'
+import {updateVersion} from '../global/actions'
+import {acceptListUpdate, addList, fetchTokenList, removeList, enableList, disableList} from './actions'
 
 export interface ListsState {
   readonly byUrl: {
@@ -32,9 +32,9 @@ const NEW_LIST_STATE: ListState = {
   pendingUpdate: null,
 }
 
-type Mutable<T> = { -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P] }
+type Mutable<T> = {-readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P]}
 
-const initialState: ListsState = {
+export const initialState: ListsState = {
   lastInitializedDefaultListOfLists: DEFAULT_LIST_OF_LISTS,
   byUrl: {
     ...DEFAULT_LIST_OF_LISTS.concat(...UNSUPPORTED_LIST_URLS).reduce<Mutable<ListsState['byUrl']>>((memo, listUrl) => {
@@ -47,7 +47,7 @@ const initialState: ListsState = {
 
 export default createReducer(initialState, (builder) =>
   builder
-    .addCase(fetchTokenList.pending, (state, { payload: { requestId, url } }) => {
+    .addCase(fetchTokenList.pending, (state, {payload: {requestId, url}}) => {
       state.byUrl[url] = {
         current: null,
         pendingUpdate: null,
@@ -56,7 +56,7 @@ export default createReducer(initialState, (builder) =>
         error: null,
       }
     })
-    .addCase(fetchTokenList.fulfilled, (state, { payload: { requestId, tokenList, url } }) => {
+    .addCase(fetchTokenList.fulfilled, (state, {payload: {requestId, tokenList, url}}) => {
       const current = state.byUrl[url]?.current
       const loadingRequestId = state.byUrl[url]?.loadingRequestId
 
@@ -89,7 +89,7 @@ export default createReducer(initialState, (builder) =>
         }
       }
     })
-    .addCase(fetchTokenList.rejected, (state, { payload: { url, requestId, errorMessage } }) => {
+    .addCase(fetchTokenList.rejected, (state, {payload: {url, requestId, errorMessage}}) => {
       if (state.byUrl[url]?.loadingRequestId !== requestId) {
         // no-op since it's not the latest request
         return
@@ -103,12 +103,12 @@ export default createReducer(initialState, (builder) =>
         pendingUpdate: null,
       }
     })
-    .addCase(addList, (state, { payload: url }) => {
+    .addCase(addList, (state, {payload: url}) => {
       if (!state.byUrl[url]) {
         state.byUrl[url] = NEW_LIST_STATE
       }
     })
-    .addCase(removeList, (state, { payload: url }) => {
+    .addCase(removeList, (state, {payload: url}) => {
       if (state.byUrl[url]) {
         delete state.byUrl[url]
       }
@@ -117,7 +117,7 @@ export default createReducer(initialState, (builder) =>
         state.activeListUrls = state.activeListUrls.filter((u) => u !== url)
       }
     })
-    .addCase(enableList, (state, { payload: url }) => {
+    .addCase(enableList, (state, {payload: url}) => {
       if (!state.byUrl[url]) {
         state.byUrl[url] = NEW_LIST_STATE
       }
@@ -130,12 +130,12 @@ export default createReducer(initialState, (builder) =>
         state.activeListUrls = [url]
       }
     })
-    .addCase(disableList, (state, { payload: url }) => {
+    .addCase(disableList, (state, {payload: url}) => {
       if (state.activeListUrls && state.activeListUrls.includes(url)) {
         state.activeListUrls = state.activeListUrls.filter((u) => u !== url)
       }
     })
-    .addCase(acceptListUpdate, (state, { payload: url }) => {
+    .addCase(acceptListUpdate, (state, {payload: url}) => {
       if (!state.byUrl[url]?.pendingUpdate) {
         throw new Error('accept list update called without pending update')
       }

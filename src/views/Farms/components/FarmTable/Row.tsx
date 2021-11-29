@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {FarmWithStakedValue} from 'views/Farms/components/FarmCard/FarmCard'
+import {useMatchBreakpoints} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
-import { useFarmUser } from 'state/farms/hooks'
-import BigNumber from 'bignumber.js'
+import {useFarmUser} from 'state/farms/hooks'
 
-import Apr, { AprProps } from './Apr'
-import Farm, { FarmProps } from './Farm'
-import Earned, { EarnedProps } from './Earned'
+import Apr, {AprProps} from './Apr'
+import Farm, {FarmProps} from './Farm'
+import Earned, {EarnedProps} from './Earned'
 import Details from './Details'
-import Multiplier, { MultiplierProps } from './Multiplier'
-import Liquidity, { LiquidityProps } from './Liquidity'
+import Multiplier, {MultiplierProps} from './Multiplier'
+import Liquidity, {LiquidityProps} from './Liquidity'
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
-import { DesktopColumnSchema, MobileColumnSchema } from '../types'
+import {DesktopColumnSchema, MobileColumnSchema} from '../types'
 
 export interface RowProps {
   apr: AprProps
   farm: FarmProps
   earned: EarnedProps
   multiplier: MultiplierProps
+  liquidity: LiquidityProps
   details: FarmWithStakedValue
-  liquidity: BigNumber
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -36,6 +35,7 @@ const cells = {
   earned: Earned,
   details: Details,
   multiplier: Multiplier,
+  liquidity: Liquidity,
 }
 
 const CellInner = styled.div`
@@ -45,15 +45,14 @@ const CellInner = styled.div`
   align-items: center;
   padding-right: 8px;
 
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({theme}) => theme.mediaQueries.xl} {
     padding-right: 32px;
   }
 `
 
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  background-color: ${({ theme }) => theme.card.background};
+  border-bottom: 2px solid ${({theme}) => theme.colors.cardBorder};
 `
 
 const EarnedMobileCell = styled.td`
@@ -70,11 +69,11 @@ const FarmMobileCell = styled.td`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
-  const { details, userDataReady } = props
+  const {details, userDataReady} = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
   const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const toggleActionPanel = () => {
     setActionPanelExpanded(!actionPanelExpanded)
@@ -84,14 +83,14 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
     setActionPanelExpanded(hasStakedAmount)
   }, [hasStakedAmount])
 
-  const { isXl, isXs } = useMatchBreakpoints()
+  const {isDesktop, isMobile} = useMatchBreakpoints()
 
-  const isMobile = !isXl
-  const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
+  const isSmallerScreen = !isDesktop
+  const tableSchema = isSmallerScreen ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
   const handleRenderRow = () => {
-    if (!isXs) {
+    if (!isMobile) {
       return (
         <StyledTr onClick={toggleActionPanel}>
           {Object.keys(props).map((key) => {
@@ -116,7 +115,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={t('APR')}>
-                        <Apr {...props.apr} hideButton={isMobile} />
+                        <Apr {...props.apr} hideButton={isSmallerScreen} />
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -126,7 +125,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={t(tableSchema[columnIndex].label)}>
-                        {React.createElement(cells[key], { ...props[key], userDataReady })}
+                        {React.createElement(cells[key], {...props[key], userDataReady})}
                       </CellLayout>
                     </CellInner>
                   </td>

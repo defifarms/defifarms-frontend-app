@@ -1,9 +1,9 @@
 import React from 'react'
-import { BlockIcon, CheckmarkCircleIcon, Flex, Link, OpenNewIcon, RefreshIcon } from '@defifarms/uikit'
+import {BlockIcon, CheckmarkCircleIcon, Flex, Link, OpenNewIcon, RefreshIcon} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { TransactionDetails } from 'state/transactions/reducer'
+import {TransactionDetails} from 'state/transactions/reducer'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getBscScanLink } from 'utils'
+import {getBscScanLink} from 'utils'
 
 interface TransactionRowProps {
   txn: TransactionDetails
@@ -22,7 +22,7 @@ const Summary = styled.div`
 
 const TxnLink = styled(Link)`
   align-items: center;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   display: flex;
   margin-bottom: 16px;
   width: 100%;
@@ -44,8 +44,8 @@ const renderIcon = (txn: TransactionDetails) => {
   )
 }
 
-const TransactionRow: React.FC<TransactionRowProps> = ({ txn }) => {
-  const { chainId } = useActiveWeb3React()
+const TransactionRow: React.FC<TransactionRowProps> = ({txn}) => {
+  const {chainId} = useActiveWeb3React()
 
   if (!txn) {
     return null

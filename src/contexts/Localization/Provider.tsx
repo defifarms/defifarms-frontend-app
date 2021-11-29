@@ -1,9 +1,9 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react'
-import { Language } from '@defifarms/uikit'
-import { EN, languages } from 'config/localization/languages'
+import React, {createContext, useCallback, useEffect, useState} from 'react'
+import {Language} from '@pancakeswap/uikit'
+import {EN, languages} from 'config/localization/languages'
 import translations from 'config/localization/translations.json'
-import { ContextApi, ContextData, ProviderState } from './types'
-import { fetchLocale, getLanguageCodeFromLS, LS_KEY } from './helpers'
+import {ContextApi, ContextData, ProviderState} from './types'
+import {fetchLocale, getLanguageCodeFromLS, LS_KEY} from './helpers'
 
 const initialState: ProviderState = {
   isFetching: true,
@@ -16,7 +16,7 @@ languageMap.set(EN.locale, translations)
 
 export const LanguageContext = createContext<ContextApi>(undefined)
 
-export const LanguageProvider: React.FC = ({ children }) => {
+export const LanguageProvider: React.FC = ({children}) => {
   const [state, setState] = useState<ProviderState>(() => {
     const codeFromStorage = getLanguageCodeFromLS()
 
@@ -25,7 +25,7 @@ export const LanguageProvider: React.FC = ({ children }) => {
       currentLanguage: languages[codeFromStorage],
     }
   })
-  const { currentLanguage } = state
+  const {currentLanguage} = state
 
   useEffect(() => {
     const fetchInitialLocales = async () => {
@@ -34,7 +34,7 @@ export const LanguageProvider: React.FC = ({ children }) => {
       if (codeFromStorage !== EN.locale) {
         const enLocale = languageMap.get(EN.locale)
         const currentLocale = await fetchLocale(codeFromStorage)
-        languageMap.set(codeFromStorage, { ...enLocale, ...currentLocale })
+        languageMap.set(codeFromStorage, {...enLocale, ...currentLocale})
       }
 
       setState((prevState) => ({
@@ -57,7 +57,7 @@ export const LanguageProvider: React.FC = ({ children }) => {
       const enLocale = languageMap.get(EN.locale)
 
       // Merge the EN locale to ensure that any locale fetched has all the keys
-      languageMap.set(language.locale, { ...enLocale, ...locale })
+      languageMap.set(language.locale, {...enLocale, ...locale})
       localStorage.setItem(LS_KEY, language.locale)
 
       setState((prevState) => ({
@@ -100,5 +100,5 @@ export const LanguageProvider: React.FC = ({ children }) => {
     [currentLanguage],
   )
 
-  return <LanguageContext.Provider value={{ ...state, setLanguage, t: translate }}>{children}</LanguageContext.Provider>
+  return <LanguageContext.Provider value={{...state, setLanguage, t: translate}}>{children}</LanguageContext.Provider>
 }

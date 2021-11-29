@@ -1,28 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Link, Skeleton, Text, TimerIcon } from '@defifarms/uikit'
-import { getBscScanLink } from 'utils'
-import { Pool } from 'state/types'
-import { useBlock } from 'state/block/hooks'
+import {Flex, Link, Skeleton, Text, TimerIcon} from '@pancakeswap/uikit'
+import {getBscScanLink} from 'utils'
+import {DeserializedPool} from 'state/types'
+import {useBlock} from 'state/block/hooks'
 import Balance from 'components/Balance'
-import { useTranslation } from 'contexts/Localization'
-import { getPoolBlockInfo } from 'views/Pools/helpers'
-import BaseCell, { CellContent } from './BaseCell'
+import {useTranslation} from 'contexts/Localization'
+import {getPoolBlockInfo} from 'views/Pools/helpers'
+import BaseCell, {CellContent} from './BaseCell'
 
 interface FinishCellProps {
-  pool: Pool
+  pool: DeserializedPool
 }
 
 const StyledCell = styled(BaseCell)`
   flex: 2 0 100px;
 `
 
-const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
-  const { sousId, totalStaked, startBlock, endBlock, isFinished } = pool
-  const { currentBlock } = useBlock()
-  const { t } = useTranslation()
+const EndsInCell: React.FC<FinishCellProps> = ({pool}) => {
+  const {sousId, totalStaked, startBlock, endBlock, isFinished} = pool
+  const {currentBlock} = useBlock()
+  const {t} = useTranslation()
 
-  const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
+  const {shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay} =
     getPoolBlockInfo(pool, currentBlock)
 
   const isCakePool = sousId === 0
@@ -52,7 +52,8 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
   // A bit hacky way to determine if public data is loading relying on totalStaked
   // Opted to go for this since we don't really need a separate publicDataLoaded flag
   // anywhere else
-  const isLoadingPublicData = !totalStaked.gt(0) || !currentBlock || (!blocksRemaining && !blocksUntilStart)
+  const isLoadingPublicData =
+    !totalStaked || !totalStaked.gt(0) || !currentBlock || (!blocksRemaining && !blocksUntilStart)
   const showLoading = isLoadingPublicData && !isCakePool && !isFinished
   return (
     <StyledCell role="cell">

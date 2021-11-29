@@ -1,5 +1,5 @@
-import { currencyEquals, Percent, Trade } from '@defifarms/sdk'
-import { ONE_HUNDRED_PERCENT, ZERO_PERCENT } from '../config/constants/index'
+import {currencyEquals, Percent, Trade} from '@defifarms/sdk'
+import {ONE_HUNDRED_PERCENT, ZERO_PERCENT} from '../config/constants/index'
 
 // returns whether tradeB is better than tradeA by at least a threshold percentage amount
 export function isTradeBetter(

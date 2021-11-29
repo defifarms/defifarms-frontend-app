@@ -1,6 +1,10 @@
-import { ChainId, Token } from '@defifarms/sdk'
+import {ChainId, Token} from '@defifarms/sdk'
+import {SerializedToken} from './types'
 
-export const DEFIY: { [chainId: number]: Token } = {
+interface SerializedTokenList {
+  [symbol: string]: SerializedToken
+}
+export const DEFIY: {[chainId: number]: Token} = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
     '0x08d1Ed0e3816183e703a492dDD28d68fcc13bb61',
@@ -16,7 +20,7 @@ export const DEFIY: { [chainId: number]: Token } = {
     'DefiFarms Non-Fungible Yearn',
   ),
 }
-export const BUSD: { [chainId: number]: Token } = {
+export const BUSD: {[chainId: number]: Token} = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
     '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
@@ -33,7 +37,7 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
 }
 
-export const WBNB: { [chainId: number]: Token } = {
+export const WBNB: {[chainId: number]: Token} = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
     '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',

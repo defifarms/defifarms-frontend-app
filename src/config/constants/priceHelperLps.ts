@@ -1,11 +1,11 @@
-import tokens from './tokens'
-import { FarmConfig } from './types'
+import tokens from './tokensV1'
+import {SerializedFarmConfig} from './types'
 
-const priceHelperLps: FarmConfig[] = [
+const priceHelperLps: SerializedFarmConfig[] = [
   /**
    * These LPs are just used to help with price calculation for MasterChef LPs (farms.ts).
    * This list is added to the MasterChefLps and passed to fetchFarm. The calls to get contract information about the token/quoteToken in the LP are still made.
-   * The absense of a PID means the masterchef contract calls are skipped for this farm.
+   * The absence of a PID means the masterchef contract calls are skipped for this farm.
    * Prices are then fetched for all farms (masterchef + priceHelperLps).
    * Before storing to redux, farms without a PID are filtered out.
    */
@@ -13,7 +13,7 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'QSD-BNB LP',
     lpAddresses: {
-      97: '0xbd4a65aeff4879edd078da71ede745f9f53aec44',
+      97: '',
       56: '0x7b3ae32eE8C532016f3E31C8941D937c59e055B9',
     },
     token: tokens.qsd,

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 16px;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     justify-content: space-between;
     flex-direction: row;
   }

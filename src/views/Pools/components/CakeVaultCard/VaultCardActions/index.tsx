@@ -1,28 +1,29 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Flex, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { Pool } from 'state/types'
-import { BIG_ZERO } from 'utils/bigNumber'
+import {Flex, Text, Box} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {DeserializedPool} from 'state/types'
+import {BIG_ZERO} from 'utils/bigNumber'
 import VaultApprovalAction from './VaultApprovalAction'
 import VaultStakeActions from './VaultStakeActions'
-import { useCheckVaultApprovalStatus } from '../../../hooks/useApprove'
+import {useCheckVaultApprovalStatus} from '../../../hooks/useApprove'
 
 const InlineText = styled(Text)`
   display: inline;
 `
 
 const CakeVaultCardActions: React.FC<{
-  pool: Pool
+  pool: DeserializedPool
   accountHasSharesStaked: boolean
   isLoading: boolean
-}> = ({ pool, accountHasSharesStaked, isLoading }) => {
-  const { stakingToken, userData } = pool
-  const { t } = useTranslation()
+  performanceFee: number
+}> = ({pool, accountHasSharesStaked, isLoading, performanceFee}) => {
+  const {stakingToken, userData} = pool
+  const {t} = useTranslation()
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
 
-  const { isVaultApproved, setLastUpdated } = useCheckVaultApprovalStatus()
+  const {isVaultApproved, setLastUpdated} = useCheckVaultApprovalStatus()
 
   return (
     <Flex flexDirection="column">
@@ -51,6 +52,7 @@ const CakeVaultCardActions: React.FC<{
             pool={pool}
             stakingTokenBalance={stakingTokenBalance}
             accountHasSharesStaked={accountHasSharesStaked}
+            performanceFee={performanceFee}
           />
         ) : (
           <VaultApprovalAction isLoading={isLoading} setLastUpdated={setLastUpdated} />

@@ -1,9 +1,9 @@
 import React from 'react'
-import { useTranslation } from 'contexts/Localization'
-import DatePicker, { DatePickerProps } from './DatePicker'
+import {useTranslation} from 'contexts/Localization'
+import DatePicker, {DatePickerProps} from './DatePicker'
 
 const TimePicker: React.FC<DatePickerProps> = (props) => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   return (
     <DatePicker

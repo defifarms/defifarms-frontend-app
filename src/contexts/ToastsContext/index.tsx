@@ -1,2 +1,2 @@
 export * from './Provider'
-export { default as ToastListener } from './Listener'
+export {default as ToastListener} from './Listener'

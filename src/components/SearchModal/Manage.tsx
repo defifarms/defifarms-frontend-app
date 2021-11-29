@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Token } from '@defifarms/sdk'
-import { ButtonMenu, ButtonMenuItem, ModalBody } from '@defifarms/uikit'
+import React, {useState} from 'react'
+import {Token} from '@defifarms/sdk'
+import {ButtonMenu, ButtonMenuItem, ModalBody} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { TokenList } from '@uniswap/token-lists'
-import { useTranslation } from 'contexts/Localization'
+import {TokenList} from '@uniswap/token-lists'
+import {useTranslation} from 'contexts/Localization'
 import ManageLists from './ManageLists'
 import ManageTokens from './ManageTokens'
-import { CurrencyModalView } from './types'
+import {CurrencyModalView} from './types'
 
 const StyledButtonMenu = styled(ButtonMenu)`
   width: 100%;
@@ -25,7 +25,7 @@ export default function Manage({
 }) {
   const [showLists, setShowLists] = useState(true)
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   return (
     <ModalBody>

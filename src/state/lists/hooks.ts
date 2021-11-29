@@ -1,11 +1,11 @@
-import { ChainId, Token } from '@defifarms/sdk'
-import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
-import { useMemo } from 'react'
-import { useSelector } from 'react-redux'
-import { DEFAULT_LIST_OF_LISTS } from 'config/constants/lists'
-import { AppState } from '../index'
+import {ChainId, Token} from '@defifarms/sdk'
+import {Tags, TokenInfo, TokenList} from '@uniswap/token-lists'
+import {useMemo} from 'react'
+import {useSelector} from 'react-redux'
+import {DEFAULT_LIST_OF_LISTS} from 'config/constants/lists'
+import {AppState} from '../index'
 import DEFAULT_TOKEN_LIST from '../../config/constants/tokenLists/pancake-default.tokenlist.json'
-import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
+import {UNSUPPORTED_LIST_URLS} from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/pancake-unsupported.tokenlist.json'
 
 type TagDetails = Tags[keyof Tags]
@@ -44,7 +44,7 @@ export class WrappedTokenInfo extends Token {
 }
 
 export type TokenAddressMap = Readonly<{
-  [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }>
+  [chainId in ChainId]: Readonly<{[tokenAddress: string]: {token: WrappedTokenInfo; list: TokenList}}>
 }>
 
 /**
@@ -68,7 +68,7 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
         tokenInfo.tags
           ?.map((tagId) => {
             if (!list.tags?.[tagId]) return undefined
-            return { ...list.tags[tagId], id: tagId }
+            return {...list.tags[tagId], id: tagId}
           })
           ?.filter((x): x is TagInfo => Boolean(x)) ?? []
       const token = new WrappedTokenInfo(tokenInfo, tags)
@@ -84,7 +84,7 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
         },
       }
     },
-    { ...EMPTY_LIST },
+    {...EMPTY_LIST},
   )
   listCache?.set(list, map)
   return map
@@ -103,8 +103,8 @@ export function useAllLists(): {
 
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
-    [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
-    [ChainId.TESTNET]: { ...map1[ChainId.TESTNET], ...map2[ChainId.TESTNET] },
+    [ChainId.MAINNET]: {...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET]},
+    [ChainId.TESTNET]: {...map1[ChainId.TESTNET], ...map2[ChainId.TESTNET]},
   }
 }
 

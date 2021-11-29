@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 // eslint-disable-next-line import/no-unresolved
-import { DefifarmsTheme } from '@defifarms/uikit/dist/theme'
+import {DefifarmsTheme} from '@defifarms/uikit/dist/theme'
 import HKGrotesk from '../fonts/HKGrotesk-Medium.otf'
 import HKGroteskBold from '../fonts/HKGrotesk-Bold.otf'
 import HKGroteskLight from '../fonts/HKGrotesk-Light.otf'
@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
   }
   body {
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({theme}) => theme.colors.primary};
     overflow: hidden;
     img {
       height: auto;

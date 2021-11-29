@@ -1,6 +1,6 @@
-import { ethers } from 'ethers'
-import { BetPosition } from 'state/types'
-import { formatRoundTime, getNetPayoutv2, getPayoutv2, padTime } from 'views/Predictions/helpers'
+import {ethers} from 'ethers'
+import {BetPosition} from 'state/types'
+import {formatRoundTime, getNetPayoutv2, getPayoutv2, padTime} from 'views/Predictions/helpers'
 
 describe('padTime', () => {
   it.each([

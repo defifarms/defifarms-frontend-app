@@ -1,22 +1,18 @@
 import React from 'react'
-import { Button, Flex, Heading, Skeleton, Text, TooltipText, useModal, useTooltip } from '@defifarms/uikit'
+import {Button, Text, useModal, Flex, Skeleton, Heading} from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
-import { PoolCategory } from 'config/constants/types'
-import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { useTranslation } from 'contexts/Localization'
+import {useWeb3React} from '@web3-react/core'
+import {PoolCategory} from 'config/constants/types'
+import {formatNumber, getBalanceNumber, getFullDisplayBalance} from 'utils/formatBalance'
+import {useTranslation} from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { useCakeVault } from 'state/pools/hooks'
-import { BIG_ZERO } from 'utils/bigNumber'
-import { Pool } from 'state/types'
+import {BIG_ZERO} from 'utils/bigNumber'
+import {DeserializedPool} from 'state/types'
 
-import { ActionContainer, ActionContent, ActionTitles } from './styles'
+import {ActionContainer, ActionTitles, ActionContent} from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
-import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
-import { fetchCanHarvest } from '../../../../../state/pools/fetchPoolsUser'
 
-interface HarvestActionProps extends Pool {
+interface HarvestActionProps extends DeserializedPool {
   userDataLoaded: boolean
 }
 
@@ -26,45 +22,19 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   earningToken,
   userData,
   userDataLoaded,
-  isAutoVault,
   earningTokenPrice,
 }) => {
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const {t} = useTranslation()
+  const {account} = useWeb3React()
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  // These will be reassigned later if its Auto DEFIY vault
-  let earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
-  let earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
-  let hasEarnings = earnings.gt(0)
+  const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
+  const earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
+  const hasEarnings = earnings.gt(0)
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const isCompoundPool = sousId === 0
   const isBnbPool = poolCategory === PoolCategory.BINANCE
-  const isHarvest = userData?.harvest
-
-  // Auto DEFIY vault calculations
-  const {
-    userData: { cakeAtLastUserAction, userShares },
-    pricePerFullShare,
-    fees: { performanceFee },
-  } = useCakeVault()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
-    account,
-    cakeAtLastUserAction,
-    userShares,
-    pricePerFullShare,
-    earningTokenPrice,
-  )
-
-  earningTokenBalance = isAutoVault ? autoCakeToDisplay : earningTokenBalance
-  hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
-  earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
-
-  let isDisable = false
-  if (hasEarnings && isHarvest) {
-    isDisable = true
-  }
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -78,18 +48,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     />,
   )
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('Subtracted automatically from each yield harvest and burned.'),
-    { placement: 'bottom-start' },
-  )
-
-  const actionTitle = isAutoVault ? (
-    <Text fontSize="12px" bold color="white" as="span" textTransform="uppercase">
-      {t('Recent DEFIY profit')}
-    </Text>
-  ) : (
+  const actionTitle = (
     <>
-      <Text fontSize="12px" bold color="white" as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
         {earningToken.symbol}{' '}
       </Text>
       <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
@@ -152,26 +113,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             )}
           </>
         </Flex>
-        {isAutoVault ? (
-          <Flex flex="1.3" flexDirection="column" alignSelf="flex-start" alignItems="flex-start">
-            <UnstakingFeeCountdownRow isTableVariant />
-            <Flex mb="2px" justifyContent="space-between" alignItems="center">
-              {tooltipVisible && tooltip}
-              <TooltipText ref={targetRef} small>
-                {t('Performance Fee')}
-              </TooltipText>
-              <Flex alignItems="center">
-                <Text ml="4px" small>
-                  {performanceFee / 100}%
-                </Text>
-              </Flex>
-            </Flex>
-          </Flex>
-        ) : (
-          <Button disabled={!isDisable} onClick={onPresentCollect}>
-            {isCompoundPool ? t('Collect') : t('Harvest')}
-          </Button>
-        )}
+        <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          {isCompoundPool ? t('Collect') : t('Harvest')}
+        </Button>
       </ActionContent>
     </ActionContainer>
   )

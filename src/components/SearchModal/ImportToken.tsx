@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
-import { Currency, Token } from '@defifarms/sdk'
-import { Button, Checkbox, ErrorIcon, Flex, Grid, Link, Message, Tag, Text } from '@defifarms/uikit'
-import { AutoColumn } from 'components/Layout/Column'
-import { useAddUserToken } from 'state/user/hooks'
-import { getBscScanLink } from 'utils'
+import React, {useState} from 'react'
+import {Currency, Token} from '@defifarms/sdk'
+import {Button, Checkbox, ErrorIcon, Flex, Grid, Link, Message, Tag, Text} from '@pancakeswap/uikit'
+import {AutoColumn} from 'components/Layout/Column'
+import {useAddUserToken} from 'state/user/hooks'
+import {getBscScanLink} from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCombinedInactiveList } from 'state/lists/hooks'
-import { ListLogo } from 'components/Logo'
-import { useTranslation } from 'contexts/Localization'
+import {useCombinedInactiveList} from 'state/lists/hooks'
+import {ListLogo} from 'components/Logo'
+import {useTranslation} from 'contexts/Localization'
 
 interface ImportProps {
   tokens: Token[]
   handleCurrencySelect?: (currency: Currency) => void
 }
 
-function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
-  const { chainId } = useActiveWeb3React()
+function ImportToken({tokens, handleCurrencySelect}: ImportProps) {
+  const {chainId} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const [confirmed, setConfirmed] = useState(false)
 
@@ -85,7 +85,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             checked={confirmed}
             onChange={() => setConfirmed(!confirmed)}
           />
-          <Text ml="8px" style={{ userSelect: 'none' }}>
+          <Text ml="8px" style={{userSelect: 'none'}}>
             {t('I understand')}
           </Text>
         </Flex>

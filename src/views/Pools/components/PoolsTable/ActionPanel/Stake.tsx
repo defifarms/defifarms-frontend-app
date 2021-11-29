@@ -1,35 +1,34 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { AddIcon, Button, Flex, IconButton, MinusIcon, Skeleton, Text, useModal, useTooltip } from '@defifarms/uikit'
+import {Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text} from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { useWeb3React } from '@web3-react/core'
-import { useCakeVault } from 'state/pools/hooks'
-import { Pool } from 'state/types'
+import {useWeb3React} from '@web3-react/core'
+import {useCakeVault} from 'state/pools/hooks'
+import {DeserializedPool} from 'state/types'
 import Balance from 'components/Balance'
-import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { PoolCategory } from 'config/constants/types'
-import { BIG_ZERO } from 'utils/bigNumber'
-import { getAddress } from 'utils/addressHelpers'
-import { useERC20 } from 'hooks/useContract'
-import { convertSharesToCake } from 'views/Pools/helpers'
-import { ActionContainer, ActionContent, ActionTitles } from './styles'
+import {useTranslation} from 'contexts/Localization'
+import {getBalanceNumber} from 'utils/formatBalance'
+import {PoolCategory} from 'config/constants/types'
+import {BIG_ZERO} from 'utils/bigNumber'
+import {useERC20} from 'hooks/useContract'
+import {convertSharesToCake} from 'views/Pools/helpers'
+import {ActionContainer, ActionTitles, ActionContent} from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
 import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
-import { useApprovePool, useCheckVaultApprovalStatus, useVaultApprove } from '../../../hooks/useApprove'
+import {useCheckVaultApprovalStatus, useApprovePool, useVaultApprove} from '../../../hooks/useApprove'
 
 const IconButtonWrapper = styled.div`
   display: flex;
 `
 
 interface StackedActionProps {
-  pool: Pool
+  pool: DeserializedPool
   userDataLoaded: boolean
 }
 
-const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoaded }) => {
+const Staked: React.FunctionComponent<StackedActionProps> = ({pool, userDataLoaded}) => {
   const {
     sousId,
     stakingToken,
@@ -41,19 +40,18 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     stakingTokenPrice,
     isAutoVault,
   } = pool
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const {t} = useTranslation()
+  const {account} = useWeb3React()
 
-  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
-  const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useApprovePool(
+  const stakingTokenContract = useERC20(stakingToken.address || '')
+  const {handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval} = useApprovePool(
     stakingTokenContract,
     sousId,
     earningToken.symbol,
   )
 
-  const { isVaultApproved, setLastUpdated } = useCheckVaultApprovalStatus()
-  const { handleApprove: handleVaultApprove, requestedApproval: requestedVaultApproval } =
-    useVaultApprove(setLastUpdated)
+  const {isVaultApproved, setLastUpdated} = useCheckVaultApprovalStatus()
+  const {handleApprove: handleVaultApprove, requestedApproval: requestedVaultApproval} = useVaultApprove(setLastUpdated)
 
   const handleApprove = isAutoVault ? handleVaultApprove : handlePoolApprove
   const requestedApproval = isAutoVault ? requestedVaultApproval : requestedPoolApproval
@@ -72,11 +70,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   )
 
   const {
-    userData: { userShares },
+    userData: {userShares},
     pricePerFullShare,
   } = useCakeVault()
 
-  const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
+  const {cakeAsBigNumber, cakeAsNumberBalance} = convertSharesToCake(userShares, pricePerFullShare)
   const hasSharesStaked = userShares && userShares.gt(0)
   const isVaultWithShares = isAutoVault && hasSharesStaked
   const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
@@ -124,18 +122,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     }
   }
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(
     t("You've already staked the maximum amount you can stake in this pool!"),
-    { placement: 'bottom' },
+    {placement: 'bottom'},
   )
 
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
-
-  const isHarvest = userData?.harvest
-  let isDisable = true
-  if (isHarvest) {
-    isDisable = true
-  }
 
   if (!account) {
     return (
@@ -171,12 +163,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="text" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Enable pool')}
           </Text>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="primary">
+          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
             {t('Enable')}
           </Button>
         </ActionContent>
@@ -187,9 +179,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   // Wallet connected, user data loaded and approved
   if (isNotVaultAndHasStake || isVaultWithShares) {
     return (
-      <ActionContainer>
+      <ActionContainer isAutoVault={isAutoVault}>
         <ActionTitles>
-          <Text fontSize="12px" bold color="white" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
             {stakingToken.symbol}{' '}
           </Text>
           <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
@@ -215,30 +207,26 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
               prefix="~"
             />
           </Flex>
-          {isDisable ? (
-            <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onUnstake} mr="6px">
-                <MinusIcon color="primary" width="14px" />
-              </IconButton>
-              {reachStakingLimit ? (
-                <span ref={targetRef}>
-                  <IconButton variant="secondary" disabled>
-                    <AddIcon color="textDisabled" width="24px" height="24px" />
-                  </IconButton>
-                </span>
-              ) : (
-                <IconButton
-                  variant="secondary"
-                  onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-                  disabled={isFinished}
-                >
-                  <AddIcon color="primary" width="14px" />
+          <IconButtonWrapper>
+            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+              <MinusIcon color="primary" width="14px" />
+            </IconButton>
+            {reachStakingLimit ? (
+              <span ref={targetRef}>
+                <IconButton variant="secondary" disabled>
+                  <AddIcon color="textDisabled" width="24px" height="24px" />
                 </IconButton>
-              )}
-            </IconButtonWrapper>
-          ) : (
-            ''
-          )}
+              </span>
+            ) : (
+              <IconButton
+                variant="secondary"
+                onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
+                disabled={isFinished}
+              >
+                <AddIcon color="primary" width="14px" />
+              </IconButton>
+            )}
+          </IconButtonWrapper>
           {tooltipVisible && tooltip}
         </ActionContent>
       </ActionContainer>
@@ -248,7 +236,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text fontSize="12px" bold color="white" as="span" textTransform="uppercase">
+        <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
           {t('Stake')}{' '}
         </Text>
         <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
@@ -259,7 +247,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
         <Button
           width="100%"
           onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-          variant="four"
+          variant="secondary"
           disabled={isFinished}
         >
           {t('Stake')}

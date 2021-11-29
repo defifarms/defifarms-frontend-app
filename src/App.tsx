@@ -1,20 +1,20 @@
-import { ResetCSS } from '@defifarms/uikit'
+import {ResetCSS} from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 // import { useFetchProfile } from 'state/profile/hooks'
-import { DatePickerPortal } from 'components/DatePicker'
+import {DatePickerPortal} from 'components/DatePicker'
 import useEagerConnect from 'hooks/useEagerConnect'
-import React, { lazy } from 'react'
-import { Redirect, Route, Router, Switch } from 'react-router-dom'
-import { usePollBlockNumber } from 'state/block/hooks'
-import { usePollCoreFarmData } from 'state/farms/hooks'
+import React, {lazy} from 'react'
+import {Redirect, Route, Router, Switch} from 'react-router-dom'
+import {usePollBlockNumber} from 'state/block/hooks'
+import {usePollCoreFarmData} from 'state/farms/hooks'
 // Views included in the main bundle
-import SpecialPools from 'views/SpecialPools'
-import DetailSpecialPool from 'views/DetailSpecialPool'
+// import SpecialPools from 'views/SpecialPools'
+// import DetailSpecialPool from 'views/DetailSpecialPool'
 import EasterEgg from './components/EasterEgg'
 import PageLoader from './components/Loader/PageLoader'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
-import { ToastListener } from './contexts/ToastsContext'
+import {ToastListener} from './contexts/ToastsContext'
 import history from './routerHistory'
 import GlobalStyle from './style/Global'
 import {
@@ -25,7 +25,7 @@ import {
 import Pools from './views/Pools'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import Swap from './views/Swap'
-import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+import {RedirectPathToSwapOnly, RedirectToSwap} from './views/Swap/redirects'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -80,8 +80,8 @@ const App: React.FC = () => {
             <Route path="/pools">
               <Pools />
             </Route>
-            <Route exact path="/special-pools" component={SpecialPools} />
-            <Route exact strict path="/special-pools/:groupPool" component={DetailSpecialPool} />
+            {/* <Route exact path="/special-pools" component={SpecialPools} /> */}
+            {/* <Route exact strict path="/special-pools/:groupPool" component={DetailSpecialPool} /> */}
             {/* <Route path="/lottery"> */}
             {/*  <Lottery /> */}
             {/* </Route> */}
@@ -129,7 +129,7 @@ const App: React.FC = () => {
             <Route exact path="/create" component={AddLiquidity} />
             <Route exact path="/create/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
             <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
-            <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
+            <Route exact strict path="/remove/:tokensV1" component={RedirectOldRemoveLiquidityPathStructure} />
             <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 
             {/* Redirect */}

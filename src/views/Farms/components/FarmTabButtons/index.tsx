@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, useLocation, useRouteMatch } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Link, useLocation, useRouteMatch} from 'react-router-dom'
+import {ButtonMenu, ButtonMenuItem, NotificationDot} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 interface FarmTabButtonsProps {
   hasStakeInFinishedFarms: boolean
@@ -12,10 +12,10 @@ const ButtonMenuStyled = styled(ButtonMenu)`
   background-color: #631ad1;
 `
 
-const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {
-  const { url } = useRouteMatch()
+const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({hasStakeInFinishedFarms}) => {
+  const {url} = useRouteMatch()
   const location = useLocation()
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   let activeIndex
   switch (location.pathname) {
@@ -62,7 +62,7 @@ const Wrapper = styled.div`
     padding-right: 12px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     margin-left: 16px;
   }
 `

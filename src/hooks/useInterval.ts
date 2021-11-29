@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import {useEffect, useRef} from 'react'
 
 export default function useInterval(callback: () => void, delay: null | number, leading = true) {
   const savedCallback = useRef<() => void>()
@@ -11,7 +11,7 @@ export default function useInterval(callback: () => void, delay: null | number, 
   // Set up the interval.
   useEffect(() => {
     function tick() {
-      const { current } = savedCallback
+      const {current} = savedCallback
       if (current) {
         current()
       }

@@ -1,6 +1,6 @@
-import { BigNumber } from '@ethersproject/bignumber'
-import { AddressZero } from '@ethersproject/constants'
-import { ChainId, JSBI, Percent, Token, TokenAmount } from '@defifarms/sdk'
+import {BigNumber} from '@ethersproject/bignumber'
+import {AddressZero} from '@ethersproject/constants'
+import {ChainId, JSBI, Percent, Token, TokenAmount} from '@defifarms/sdk'
 
 import {
   basisPointsToPercent,

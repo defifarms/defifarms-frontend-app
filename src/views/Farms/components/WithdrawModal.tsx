@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@defifarms/uikit'
-import { ModalActions, ModalInput } from 'components/Modal'
-import { useTranslation } from 'contexts/Localization'
-import { getFullDisplayBalance } from 'utils/formatBalance'
+import React, {useCallback, useMemo, useState} from 'react'
+import {Button, Modal} from '@pancakeswap/uikit'
+import {ModalActions, ModalInput} from 'components/Modal'
+import {useTranslation} from 'contexts/Localization'
+import {getFullDisplayBalance} from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
 
 interface WithdrawModalProps {
@@ -13,11 +13,11 @@ interface WithdrawModalProps {
   tokenName?: string
 }
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
+const WithdrawModal: React.FC<WithdrawModalProps> = ({onConfirm, onDismiss, max, tokenName = ''}) => {
   const [val, setVal] = useState('')
-  const { toastSuccess, toastError } = useToast()
+  const {toastSuccess, toastError} = useToast()
   const [pendingTx, setPendingTx] = useState(false)
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])

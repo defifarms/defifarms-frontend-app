@@ -1,4 +1,4 @@
-import React, { Suspense, SuspenseProps } from 'react'
+import React, {Suspense, SuspenseProps} from 'react'
 
 interface State {
   hasError: boolean
@@ -7,12 +7,12 @@ interface State {
 class SuspenseWithChunkError extends React.Component<SuspenseProps, State> {
   constructor(props) {
     super(props)
-    this.state = { hasError: false }
+    this.state = {hasError: false}
   }
 
   static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true }
+    return {hasError: true}
   }
 
   componentDidCatch(error) {
@@ -26,7 +26,7 @@ class SuspenseWithChunkError extends React.Component<SuspenseProps, State> {
 
     // If was a chunk load error, refresh the page
     if (isChunkLoadError && !isRecoveringFromChunkError) {
-      const nextState = { ...window.history.state, isRecoveringFromChunkError: true }
+      const nextState = {...window.history.state, isRecoveringFromChunkError: true}
       window.history.replaceState(nextState, '')
       window.location.reload()
       return
@@ -36,8 +36,8 @@ class SuspenseWithChunkError extends React.Component<SuspenseProps, State> {
   }
 
   render() {
-    const { hasError } = this.state
-    const { fallback } = this.props
+    const {hasError} = this.state
+    const {fallback} = this.props
 
     if (hasError) {
       return fallback

@@ -1,34 +1,37 @@
 import React from 'react'
-import { AddIcon, Flex, IconButton, MinusIcon, Skeleton, Text, useModal } from '@defifarms/uikit'
+import {Flex, Text, IconButton, AddIcon, MinusIcon, useModal, Skeleton} from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { Pool } from 'state/types'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
+import {getBalanceNumber} from 'utils/formatBalance'
+import {DeserializedPool} from 'state/types'
+import {usePriceCakeBusd} from 'state/farms/hooks'
+import {useCakeVault} from 'state/pools/hooks'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
-import { convertSharesToCake } from '../../../helpers'
+import {convertSharesToCake} from '../../../helpers'
 import VaultStakeModal from '../VaultStakeModal'
 
 interface HasStakeActionProps {
-  pool: Pool
+  pool: DeserializedPool
   stakingTokenBalance: BigNumber
+  performanceFee: number
 }
 
-const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBalance }) => {
+const HasSharesActions: React.FC<HasStakeActionProps> = ({pool, stakingTokenBalance, performanceFee}) => {
   const {
-    userData: { userShares },
+    userData: {userShares},
     pricePerFullShare,
   } = useCakeVault()
-  const { stakingToken } = pool
-  const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
+  const {stakingToken} = pool
+  const {cakeAsBigNumber, cakeAsNumberBalance} = convertSharesToCake(userShares, pricePerFullShare)
   const cakePriceBusd = usePriceCakeBusd()
   const stakedDollarValue = cakePriceBusd.gt(0)
     ? getBalanceNumber(cakeAsBigNumber.multipliedBy(cakePriceBusd), stakingToken.decimals)
     : 0
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
-  const [onPresentStake] = useModal(<VaultStakeModal stakingMax={stakingTokenBalance} pool={pool} />)
+  const [onPresentStake] = useModal(
+    <VaultStakeModal stakingMax={stakingTokenBalance} performanceFee={performanceFee} pool={pool} />,
+  )
   const [onPresentUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
 
   return (

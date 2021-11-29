@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { connectorLocalStorageKey, ConnectorNames } from '@defifarms/uikit'
+import {useEffect} from 'react'
+import {connectorLocalStorageKey, ConnectorNames} from '@pancakeswap/uikit'
 import useAuth from 'hooks/useAuth'
 
 const _binanceChainListener = async () =>
@@ -17,7 +17,7 @@ const _binanceChainListener = async () =>
   )
 
 const useEagerConnect = () => {
-  const { login } = useAuth()
+  const {login} = useAuth()
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames

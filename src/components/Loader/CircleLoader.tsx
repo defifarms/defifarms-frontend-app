@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 const rotate = keyframes`
   from {
@@ -10,12 +10,12 @@ const rotate = keyframes`
   }
 `
 
-const StyledSVG = styled.svg<{ size: string; stroke?: string }>`
+const StyledSVG = styled.svg<{size: string; stroke?: string}>`
   animation: 2s ${rotate} linear infinite;
-  height: ${({ size }) => size};
-  width: ${({ size }) => size};
+  height: ${({size}) => size};
+  width: ${({size}) => size};
   path {
-    stroke: ${({ stroke, theme }) => stroke ?? theme.colors.primary};
+    stroke: ${({stroke, theme}) => stroke ?? theme.colors.primary};
   }
 `
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, RouteComponentProps } from 'react-router-dom'
+import {Redirect, RouteComponentProps} from 'react-router-dom'
 import AddLiquidity from './index'
 
 export function RedirectToAddLiquidity() {
@@ -7,10 +7,10 @@ export function RedirectToAddLiquidity() {
 }
 
 const OLD_PATH_STRUCTURE = /^(0x[a-fA-F0-9]{40}|BNB)-(0x[a-fA-F0-9]{40}|BNB)$/
-export function RedirectOldAddLiquidityPathStructure(props: RouteComponentProps<{ currencyIdA: string }>) {
+export function RedirectOldAddLiquidityPathStructure(props: RouteComponentProps<{currencyIdA: string}>) {
   const {
     match: {
-      params: { currencyIdA },
+      params: {currencyIdA},
     },
   } = props
   const match = currencyIdA.match(OLD_PATH_STRUCTURE)
@@ -21,10 +21,10 @@ export function RedirectOldAddLiquidityPathStructure(props: RouteComponentProps<
   return <AddLiquidity {...props} />
 }
 
-export function RedirectDuplicateTokenIds(props: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+export function RedirectDuplicateTokenIds(props: RouteComponentProps<{currencyIdA: string; currencyIdB: string}>) {
   const {
     match: {
-      params: { currencyIdA, currencyIdB },
+      params: {currencyIdA, currencyIdB},
     },
   } = props
   if (currencyIdA.toLowerCase() === currencyIdB.toLowerCase()) {

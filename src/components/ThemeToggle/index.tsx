@@ -1,14 +1,15 @@
 import React from 'react'
 import Switch from 'react-switch'
-import { Text, DarkIcon, LightIcon, useMatchBreakpoints } from '@defifarms/uikit'
+import {Text, useMatchBreakpoints} from '@pancakeswap/uikit'
+import {DarkIcon, LightIcon} from '@defifarms/uikit'
 
 interface ThemeToggleType {
   handleChange?: () => void
   checked?: boolean
 }
 
-const ThemeToggle = ({ handleChange, checked }: ThemeToggleType) => {
-  const { isXl } = useMatchBreakpoints()
+const ThemeToggle = ({handleChange, checked}: ThemeToggleType) => {
+  const {isXl} = useMatchBreakpoints()
   const isMobile = !isXl
 
   return (

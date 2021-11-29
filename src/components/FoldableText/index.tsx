@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
-import { ExpandableLabel, Flex, FlexProps, Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Flex, FlexProps, Text} from '@pancakeswap/uikit'
+import {ExpandableLabel} from '@defifarms/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 interface FoldableTextProps extends FlexProps {
   title?: string
@@ -18,15 +19,15 @@ const StyledExpandableLabelWrapper = styled(Flex)`
   }
 `
 
-const StyledChildrenFlex = styled(Flex)<{ isExpanded?: boolean }>`
+const StyledChildrenFlex = styled(Flex)<{isExpanded?: boolean}>`
   overflow: hidden;
-  height: ${({ isExpanded }) => (isExpanded ? '100%' : '0px')};
-  padding-bottom: ${({ isExpanded }) => (isExpanded ? '16px' : '0px')};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  height: ${({isExpanded}) => (isExpanded ? '100%' : '0px')};
+  padding-bottom: ${({isExpanded}) => (isExpanded ? '16px' : '0px')};
+  border-bottom: 1px solid ${({theme}) => theme.colors.inputSecondary};
 `
 
-const FoldableText: React.FC<FoldableTextProps> = ({ title, children, ...props }) => {
-  const { t } = useTranslation()
+const FoldableText: React.FC<FoldableTextProps> = ({title, children, ...props}) => {
+  const {t} = useTranslation()
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (

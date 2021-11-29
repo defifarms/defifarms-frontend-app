@@ -1,14 +1,14 @@
-import { namehash } from 'ethers/lib/utils'
-import { useMemo } from 'react'
-import { useSingleCallResult } from '../../state/multicall/hooks'
+import {namehash} from 'ethers/lib/utils'
+import {useMemo} from 'react'
+import {useSingleCallResult} from '../../state/multicall/hooks'
 import isZero from '../../utils/isZero'
-import { useENSRegistrarContract, useENSResolverContract } from '../useContract'
+import {useENSRegistrarContract, useENSResolverContract} from '../useContract'
 import useDebounce from '../useDebounce'
 
 /**
  * Does a lookup for an ENS name to find its address.
  */
-export default function useENSAddress(ensName?: string | null): { loading: boolean; address: string | null } {
+export default function useENSAddress(ensName?: string | null): {loading: boolean; address: string | null} {
   const debouncedName = useDebounce(ensName, 200)
   const ensNodeArgument = useMemo(() => {
     if (!debouncedName) return [undefined]

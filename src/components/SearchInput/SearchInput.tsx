@@ -1,34 +1,34 @@
-import React, { useMemo, useState } from 'react'
-import { Input } from '@defifarms/uikit'
+import React, {useMemo, useState} from 'react'
+import {Input} from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import debounce from 'lodash/debounce'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 
 const StyledInput = styled(Input)`
-  border-radius: ${({ theme }) => theme.radii.default};
+  border-radius: ${({theme}) => theme.radii.default};
   margin-left: auto;
-  border: 1px solid ${({ theme }) => theme.colors.cyan};
+  border: 1px solid ${({theme}) => theme.colors.cyan};
 `
 
 const InputWrapper = styled.div`
   position: relative;
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     display: block;
   }
 `
 
-const Container = styled.div<{ toggled: boolean }>``
+const Container = styled.div<{toggled: boolean}>``
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
 }
 
-const SearchInput: React.FC<Props> = ({ onChange: onChangeCallback, placeholder = 'Search' }) => {
+const SearchInput: React.FC<Props> = ({onChange: onChangeCallback, placeholder = 'Search'}) => {
   const [toggled, setToggled] = useState(false)
   const [searchText, setSearchText] = useState('')
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const debouncedOnChange = useMemo(
     () => debounce((e: React.ChangeEvent<HTMLInputElement>) => onChangeCallback(e), 500),

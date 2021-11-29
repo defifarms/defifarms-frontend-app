@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { useGetStats } from '../../../hooks/api'
+import {Card, CardBody, Heading} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {useGetStats} from '../../../hooks/api'
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
@@ -20,9 +20,9 @@ const HeadingCard = styled(Heading)`
 `
 
 const TotalValueLockedCard = () => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const data = useGetStats()
-  const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+  const tvl = data ? data.tvl.toLocaleString('en-US', {maximumFractionDigits: 0}) : null
 
   return (
     <StyledTotalValueLockedCard>

@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Card, CardBody, Heading} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 const StyledAnnouncements = styled(Card)`
   grid-column: span 6;
   width: 100%;
   background: radial-gradient(102.57% 100.59% at 52.92% 46.36%, #ffffff 15.39%, #d4d8f3 97.92%);
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     grid-column: span 8;
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     grid-column: span 4;
   }
 `
@@ -41,7 +41,7 @@ const Link = styled.a`
 `
 
 const Announcements = () => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   useEffect(() => {
     const scriptTag = document.createElement('script')

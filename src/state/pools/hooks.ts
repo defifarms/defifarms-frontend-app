@@ -1,24 +1,24 @@
-import { useEffect, useMemo } from 'react'
+import {useEffect, useMemo} from 'react'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'state'
-import { simpleRpcProvider } from 'utils/providers'
+import {useWeb3React} from '@web3-react/core'
+import {useSelector} from 'react-redux'
+import {useAppDispatch} from 'state'
+import {simpleRpcProvider} from 'utils/providers'
 import useRefresh from 'hooks/useRefresh'
 import {
-  fetchCakeVaultFees,
+  fetchPoolsPublicDataAsync,
+  fetchPoolsUserDataAsync,
   fetchCakeVaultPublicData,
   fetchCakeVaultUserData,
-  fetchPoolsPublicDataAsync,
+  fetchCakeVaultFees,
   fetchPoolsStakingLimitsAsync,
-  fetchPoolsUserDataAsync,
 } from '.'
-import { Pool, State } from '../types'
-import { transformPool } from './helpers'
+import {State, DeserializedPool} from '../types'
+import {transformPool} from './helpers'
 
 export const useFetchPublicPoolsData = () => {
   const dispatch = useAppDispatch()
-  const { slowRefresh } = useRefresh()
+  const {slowRefresh} = useRefresh()
 
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
@@ -31,25 +31,27 @@ export const useFetchPublicPoolsData = () => {
   }, [dispatch, slowRefresh])
 }
 
-export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {
-  const { fastRefresh } = useRefresh()
+export const useFetchUserPools = (account) => {
+  const {fastRefresh} = useRefresh()
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (account) {
       dispatch(fetchPoolsUserDataAsync(account))
     }
   }, [account, dispatch, fastRefresh])
+}
 
-  const { pools, userDataLoaded } = useSelector((state: State) => ({
+export const usePools = (): {pools: DeserializedPool[]; userDataLoaded: boolean} => {
+  const {pools, userDataLoaded} = useSelector((state: State) => ({
     pools: state.pools.data,
     userDataLoaded: state.pools.userDataLoaded,
   }))
-  return { pools: pools.map(transformPool), userDataLoaded }
+  return {pools: pools.map(transformPool), userDataLoaded}
 }
 
 export const useFetchCakeVault = () => {
-  const { account } = useWeb3React()
-  const { fastRefresh } = useRefresh()
+  const {account} = useWeb3React()
+  const {fastRefresh} = useRefresh()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export const useFetchCakeVault = () => {
   }, [dispatch, fastRefresh])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultUserData({ account }))
+    dispatch(fetchCakeVaultUserData({account}))
   }, [dispatch, fastRefresh, account])
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export const useCakeVault = () => {
     totalCakeInVault: totalCakeInVaultAsString,
     estimatedCakeBountyReward: estimatedCakeBountyRewardAsString,
     totalPendingCakeHarvest: totalPendingCakeHarvestAsString,
-    fees: { performanceFee, callFee, withdrawalFee, withdrawalFeePeriod },
+    fees: {performanceFee, callFee, withdrawalFee, withdrawalFeePeriod},
     userData: {
       isLoading,
       userShares: userSharesAsString,

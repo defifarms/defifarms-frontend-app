@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { Flex, Skeleton, UserMenuItem } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Link} from 'react-router-dom'
+import {Flex, Skeleton, UserMenuItem} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 
 interface ProfileUserMenuItemProps {
   isLoading: boolean
@@ -10,14 +10,14 @@ interface ProfileUserMenuItemProps {
 }
 
 const Dot = styled.div`
-  background-color: ${({ theme }) => theme.colors.failure};
+  background-color: ${({theme}) => theme.colors.failure};
   border-radius: 50%;
   height: 8px;
   width: 8px;
 `
 
-const ProfileUserMenuItem: React.FC<ProfileUserMenuItemProps> = ({ isLoading, hasProfile }) => {
-  const { t } = useTranslation()
+const ProfileUserMenuItem: React.FC<ProfileUserMenuItemProps> = ({isLoading, hasProfile}) => {
+  const {t} = useTranslation()
 
   if (isLoading) {
     return (

@@ -1,16 +1,16 @@
-import { Currency, ETHER, Token } from '@defifarms/sdk'
-import { BinanceIcon } from '@defifarms/uikit'
+import {Currency, ETHER, Token} from '@defifarms/sdk'
+import {BinanceIcon} from '@pancakeswap/uikit'
 import tokens from 'config/constants/tokens'
-import React, { useMemo } from 'react'
+import React, {useMemo} from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
-import { WrappedTokenInfo } from '../../state/lists/hooks'
+import {WrappedTokenInfo} from '../../state/lists/hooks'
 import getTokenLogoURL from '../../utils/getTokenLogoURL'
 import Logo from './Logo'
 
-const StyledLogo = styled(Logo)<{ size: string }>`
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
+const StyledLogo = styled(Logo)<{size: string}>`
+  width: ${({size}) => size};
+  height: ${({size}) => size};
 `
 
 export default function CurrencyLogo({

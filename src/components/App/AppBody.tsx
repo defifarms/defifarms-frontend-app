@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card } from '@defifarms/uikit'
+import {Card} from '@pancakeswap/uikit'
 
 export const BodyWrapper = styled(Card)`
   max-width: 436px;
@@ -13,6 +13,6 @@ export const BodyWrapper = styled(Card)`
 /**
  * The styled container element that wraps the content of most pages and the tabs.
  */
-export default function AppBody({ children }: { children: React.ReactNode }) {
+export default function AppBody({children}: {children: React.ReactNode}) {
   return <BodyWrapper>{children}</BodyWrapper>
 }

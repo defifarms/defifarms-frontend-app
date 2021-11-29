@@ -1,21 +1,21 @@
-import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@defifarms/sdk'
-import { Text } from '@defifarms/uikit'
+import React, {CSSProperties, MutableRefObject, useCallback, useMemo} from 'react'
+import {Currency, CurrencyAmount, currencyEquals, ETHER, Token} from '@defifarms/sdk'
+import {Text} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { FixedSizeList } from 'react-window'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
-import { LightGreyCard } from 'components/Card'
+import {FixedSizeList} from 'react-window'
+import {wrappedCurrency} from 'utils/wrappedCurrency'
+import {LightGreyCard} from 'components/Card'
 import QuestionHelper from 'components/QuestionHelper'
-import { useTranslation } from 'contexts/Localization'
+import {useTranslation} from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCombinedActiveList } from '../../state/lists/hooks'
-import { useCurrencyBalance } from '../../state/wallet/hooks'
-import { useAllInactiveTokens, useIsUserAddedToken } from '../../hooks/Tokens'
+import {useCombinedActiveList} from '../../state/lists/hooks'
+import {useCurrencyBalance} from '../../state/wallet/hooks'
+import {useAllInactiveTokens, useIsUserAddedToken} from '../../hooks/Tokens'
 import Column from '../Layout/Column'
-import { RowBetween, RowFixed } from '../Layout/Row'
-import { CurrencyLogo } from '../Logo'
+import {RowBetween, RowFixed} from '../Layout/Row'
+import {CurrencyLogo} from '../Logo'
 import CircleLoader from '../Loader/CircleLoader'
-import { isTokenOnList } from '../../utils'
+import {isTokenOnList} from '../../utils'
 import ImportRow from './ImportRow'
 
 function currencyKey(currency: Currency): string {
@@ -37,22 +37,22 @@ const FixedContentRow = styled.div`
   align-items: center;
 `
 
-function Balance({ balance }: { balance: CurrencyAmount }) {
+function Balance({balance}: {balance: CurrencyAmount}) {
   return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
 }
 
-const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
+const MenuItem = styled(RowBetween)<{disabled: boolean; selected: boolean}>`
   padding: 4px 20px;
   height: 56px;
   display: grid;
   grid-template-columns: auto minmax(auto, 1fr) minmax(0, 72px);
   grid-gap: 8px;
-  cursor: ${({ disabled }) => !disabled && 'pointer'};
-  pointer-events: ${({ disabled }) => disabled && 'none'};
+  cursor: ${({disabled}) => !disabled && 'pointer'};
+  pointer-events: ${({disabled}) => disabled && 'none'};
   :hover {
-    background-color: ${({ theme, disabled }) => !disabled && theme.colors.background};
+    background-color: ${({theme, disabled}) => !disabled && theme.colors.background};
   }
-  opacity: ${({ disabled, selected }) => (disabled || selected ? 0.5 : 1)};
+  opacity: ${({disabled, selected}) => (disabled || selected ? 0.5 : 1)};
 `
 
 function CurrencyRow({
@@ -68,7 +68,7 @@ function CurrencyRow({
   otherSelected: boolean
   style: CSSProperties
 }) {
-  const { account } = useActiveWeb3React()
+  const {account} = useActiveWeb3React()
   const key = currencyKey(currency)
   const selectedTokenList = useCombinedActiveList()
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
@@ -91,7 +91,7 @@ function CurrencyRow({
           {!isOnSelectedList && customAdded && 'Added by user •'} {currency.name}
         </Text>
       </Column>
-      <RowFixed style={{ justifySelf: 'flex-end' }}>
+      <RowFixed style={{justifySelf: 'flex-end'}}>
         {balance ? <Balance balance={balance} /> : account ? <CircleLoader /> : null}
       </RowFixed>
     </MenuItem>
@@ -129,16 +129,16 @@ export default function CurrencyList({
     return formatted
   }, [breakIndex, currencies, showETH])
 
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
   const inactiveTokens: {
     [address: string]: Token
   } = useAllInactiveTokens()
 
   const Row = useCallback(
-    ({ data, index, style }) => {
+    ({data, index, style}) => {
       const currency: Currency = data[index]
       const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
       const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))

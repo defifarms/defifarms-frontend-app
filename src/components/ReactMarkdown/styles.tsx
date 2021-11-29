@@ -1,6 +1,6 @@
 import React from 'react'
-import { Heading, Text } from '@defifarms/uikit'
-import { NormalComponents, SpecialComponents } from 'react-markdown/src/ast-to-react'
+import {Heading, Text} from '@pancakeswap/uikit'
+import {NormalComponents, SpecialComponents} from 'react-markdown/src/ast-to-react'
 import styled from 'styled-components'
 
 const Table = styled.table`
@@ -10,13 +10,13 @@ const Table = styled.table`
 
   td,
   th {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({theme}) => theme.colors.text};
     padding: 8px;
   }
 `
 
 const ThemedComponent = styled.div`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   margin-bottom: 16px;
   margin-top: 16px;
 
@@ -26,7 +26,7 @@ const ThemedComponent = styled.div`
 `
 
 const Pre = styled.pre`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   margin-bottom: 16px;
   margin-top: 16px;
   max-width: 100%;

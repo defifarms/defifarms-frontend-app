@@ -1,31 +1,31 @@
-import { Pair } from '@defifarms/sdk'
-import { AddIcon, Button, CardBody, CardFooter, Flex, Text } from '@defifarms/uikit'
-import { MainBackground } from 'components/Layout/MainBackground'
-import { useTranslation } from 'contexts/Localization'
+import {Pair} from '@defifarms/sdk'
+import {AddIcon, Button, CardBody, CardFooter, Flex, Text} from '@defifarms/uikit'
+import {MainBackground} from 'components/Layout/MainBackground'
+import {useTranslation} from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import React, { useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import React, {useMemo} from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import { AppBody, AppHeader } from '../../components/App'
+import {AppBody, AppHeader} from '../../components/App'
 import Dots from '../../components/Loader/Dots'
 import FullPositionCard from '../../components/PositionCard'
-import { usePairs } from '../../hooks/usePairs'
-import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
-import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
+import {usePairs} from '../../hooks/usePairs'
+import {toV2LiquidityToken, useTrackedTokenPairs} from '../../state/user/hooks'
+import {useTokenBalancesWithLoadingIndicator} from '../../state/wallet/hooks'
 import Page from '../Page'
 
 const Body = styled(CardBody)`
-  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+  background-color: ${({theme}) => theme.colors.dropdownDeep};
 `
 
 export default function Pool() {
-  const { account } = useActiveWeb3React()
-  const { t } = useTranslation()
+  const {account} = useActiveWeb3React()
+  const {t} = useTranslation()
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
   const tokenPairsWithLiquidityTokens = useMemo(
-    () => trackedTokenPairs.map((tokens) => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
+    () => trackedTokenPairs.map((tokens) => ({liquidityToken: toV2LiquidityToken(tokens), tokens})),
     [trackedTokenPairs],
   )
   const liquidityTokens = useMemo(
@@ -40,13 +40,13 @@ export default function Pool() {
   // fetch the reserves for all V2 pools in which the user has a balance
   const liquidityTokensWithBalances = useMemo(
     () =>
-      tokenPairsWithLiquidityTokens.filter(({ liquidityToken }) =>
+      tokenPairsWithLiquidityTokens.filter(({liquidityToken}) =>
         v2PairsBalances[liquidityToken.address]?.greaterThan('0'),
       ),
     [tokenPairsWithLiquidityTokens, v2PairsBalances],
   )
 
-  const v2Pairs = usePairs(liquidityTokensWithBalances.map(({ tokens }) => tokens))
+  const v2Pairs = usePairs(liquidityTokensWithBalances.map(({tokens}) => tokens))
   const v2IsLoading =
     fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some((V2Pair) => !V2Pair)
 
@@ -101,7 +101,7 @@ export default function Pool() {
               </Flex>
             )}
           </Body>
-          <CardFooter style={{ textAlign: 'center' }}>
+          <CardFooter style={{textAlign: 'center'}}>
             <Button
               variant="four"
               id="join-pool-button"

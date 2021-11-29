@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import {useMemo} from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   getBep20Contract,
@@ -6,25 +6,56 @@ import {
   getCakeVaultContract,
   getMasterchefContract,
   getSouschefContract,
+  getNftMarketContract,
+  getErc721CollectionContract,
+  getPointCenterIfoContract,
+  getProfileContract,
+  getBunnyFactoryContract,
 } from 'utils/contractHelpers'
 // Imports below migrated from Exchange useContract.ts
-import { Contract } from '@ethersproject/contracts'
-import { ChainId, WETH } from '@defifarms/sdk'
-import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import {Contract} from '@ethersproject/contracts'
+import {ChainId, WETH} from '@defifarms/sdk'
+import {abi as IUniswapV2PairABI} from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import ENS_PUBLIC_RESOLVER_ABI from '../config/abi/ens-public-resolver.json'
 import ENS_ABI from '../config/abi/ens-registrar.json'
-import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
+import {ERC20_BYTES32_ABI} from '../config/abi/erc20'
 import ERC20_ABI from '../config/abi/erc20.json'
 import WETH_ABI from '../config/abi/weth.json'
-import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../config/constants/multicall'
-import { getContract } from '../utils'
+import {MULTICALL_ABI, MULTICALL_NETWORKS} from '../config/constants/multicall'
+import {getContract, getProviderOrSigner} from '../utils'
 
+export const useBunnyFactory = () => {
+  const {library} = useActiveWeb3React()
+  return useMemo(() => getBunnyFactoryContract(library.getSigner()), [library])
+}
+
+export const usePointCenterIfoContract = () => {
+  const {library} = useActiveWeb3React()
+  return useMemo(() => getPointCenterIfoContract(library.getSigner()), [library])
+}
+
+export const useProfile = () => {
+  const {library} = useActiveWeb3React()
+  return useMemo(() => getProfileContract(library.getSigner()), [library])
+}
+
+export const useErc721CollectionContract = (collectionAddress: string) => {
+  const {library, account} = useActiveWeb3React()
+  return useMemo(() => {
+    return getErc721CollectionContract(getProviderOrSigner(library, account), collectionAddress)
+  }, [account, library, collectionAddress])
+}
+
+export const useNftMarketContract = () => {
+  const {library} = useActiveWeb3React()
+  return useMemo(() => getNftMarketContract(library.getSigner()), [library])
+}
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
 
 export const useERC20 = (address: string) => {
-  const { library } = useActiveWeb3React()
+  const {library} = useActiveWeb3React()
   return useMemo(() => getBep20Contract(address, library.getSigner()), [address, library])
 }
 
@@ -32,23 +63,23 @@ export const useERC20 = (address: string) => {
  * @see https://docs.openzeppelin.com/contracts/3.x/api/token/erc721
  */
 export const useCake = () => {
-  const { library } = useActiveWeb3React()
+  const {library} = useActiveWeb3React()
   return useMemo(() => getCakeContract(library.getSigner()), [library])
 }
 
 export const useMasterchef = () => {
-  const { library } = useActiveWeb3React()
+  const {library} = useActiveWeb3React()
   return useMemo(() => getMasterchefContract(library.getSigner()), [library])
 }
 
 export const useSousChef = (id) => {
-  const { library } = useActiveWeb3React()
+  const {library} = useActiveWeb3React()
   return useMemo(() => getSouschefContract(id, library.getSigner()), [id, library])
 }
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
-  const { library, account } = useActiveWeb3React()
+  const {library, account} = useActiveWeb3React()
 
   return useMemo(() => {
     if (!address || !ABI || !library) return null
@@ -66,12 +97,12 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 }
 
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
   return useContract(chainId ? WETH[chainId].address : undefined, WETH_ABI, withSignerIfPossible)
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
   let address: string | undefined
   if (chainId) {
     // eslint-disable-next-line default-case
@@ -98,11 +129,11 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 }
 
 export function useMulticallContract(): Contract | null {
-  const { chainId } = useActiveWeb3React()
+  const {chainId} = useActiveWeb3React()
   return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
 }
 
 export const useCakeVaultContract = () => {
-  const { library } = useActiveWeb3React()
+  const {library} = useActiveWeb3React()
   return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
 }

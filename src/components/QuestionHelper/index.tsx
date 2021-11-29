@@ -1,21 +1,21 @@
 import React from 'react'
-import { Box, BoxProps, HelpIcon, useTooltip } from '@defifarms/uikit'
+import {HelpIcon, useTooltip, Box, BoxProps, Placement} from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 interface Props extends BoxProps {
   text: string | React.ReactNode
+  placement?: Placement
 }
 
 const QuestionWrapper = styled.div`
-  display: inline;
   :hover,
   :focus {
     opacity: 0.7;
   }
 `
 
-const QuestionHelper: React.FC<Props> = ({ text, ...props }) => {
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(text, { placement: 'right-end', trigger: 'hover' })
+const QuestionHelper: React.FC<Props> = ({text, placement = 'right-end', ...props}) => {
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(text, {placement, trigger: 'hover'})
 
   return (
     <Box {...props}>

@@ -4,9 +4,9 @@ import sousChefABI from 'config/abi/masterchef.json'
 import cakeABI from 'config/abi/cake.json'
 import wbnbABI from 'config/abi/weth.json'
 import multicall from 'utils/multicall'
-import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
-import { BIG_ZERO } from 'utils/bigNumber'
-import { getSouschefV2Contract } from 'utils/contractHelpers'
+import {getAddress, getWbnbAddress} from 'utils/addressHelpers'
+import {BIG_ZERO} from 'utils/bigNumber'
+import {getSouschefV2Contract} from 'utils/contractHelpers'
 
 export const fetchPoolsBlockLimits = async () => {
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
@@ -16,14 +16,23 @@ export const fetchPoolsBlockLimits = async () => {
       name: 'startBlock',
     }
   })
+  const callsEndBlock = poolsWithEnd.map((poolConfig) => {
+    return {
+      address: getAddress(poolConfig.contractAddress),
+      name: 'bonusEndBlock',
+    }
+  })
 
   const starts = await multicall(sousChefABI, callsStartBlock)
+  const ends = await multicall(sousChefABI, callsEndBlock)
 
   return poolsWithEnd.map((cakePoolConfig, index) => {
     const startBlock = starts[index]
+    const endBlock = ends[index]
     return {
       sousId: cakePoolConfig.sousId,
       startBlock: new BigNumber(startBlock).toJSON(),
+      endBlock: new BigNumber(endBlock).toJSON(),
     }
   })
 }
@@ -34,12 +43,11 @@ export const fetchPoolsTotalStaking = async () => {
 
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
     return {
-      address: getAddress(poolConfig.stakingToken.address),
+      address: poolConfig.stakingToken.address,
       name: 'balanceOf',
       params: [getAddress(poolConfig.contractAddress)],
     }
   })
-
   const callsBnbPools = bnbPool.map((poolConfig) => {
     return {
       address: getWbnbAddress(),
@@ -73,9 +81,7 @@ export const fetchPoolStakingLimit = async (sousId: number): Promise<BigNumber> 
   }
 }
 
-export const fetchPoolsStakingLimits = async (
-  poolsWithStakingLimit: number[],
-): Promise<{ [key: string]: BigNumber }> => {
+export const fetchPoolsStakingLimits = async (poolsWithStakingLimit: number[]): Promise<{[key: string]: BigNumber}> => {
   const validPools = poolsConfig
     .filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
     .filter((p) => !poolsWithStakingLimit.includes(p.sousId))

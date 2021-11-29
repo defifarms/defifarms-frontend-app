@@ -1,24 +1,26 @@
 import React from 'react'
-import { Token } from '@defifarms/sdk'
-import { InjectedModalProps, Modal } from '@defifarms/uikit'
+import {Token} from '@defifarms/sdk'
+import {Modal, InjectedModalProps} from '@pancakeswap/uikit'
 import ImportToken from 'components/SearchModal/ImportToken'
+import {useTranslation} from 'contexts/Localization'
 
 interface Props extends InjectedModalProps {
   tokens: Token[]
   onCancel: () => void
 }
 
-const ImportTokenWarningModal: React.FC<Props> = ({ tokens, onDismiss, onCancel }) => {
+const ImportTokenWarningModal: React.FC<Props> = ({tokens, onDismiss, onCancel}) => {
+  const {t} = useTranslation()
   return (
     <Modal
-      title="Import Token"
+      title={t('Import Token')}
       onDismiss={() => {
         if (onDismiss) {
           onDismiss()
         }
         onCancel()
       }}
-      style={{ maxWidth: '420px' }}
+      style={{maxWidth: '420px'}}
     >
       <ImportToken tokens={tokens} handleCurrencySelect={onDismiss} />
     </Modal>

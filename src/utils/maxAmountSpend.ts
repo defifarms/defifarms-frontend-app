@@ -1,5 +1,5 @@
-import { CurrencyAmount, ETHER, JSBI } from '@defifarms/sdk'
-import { MIN_BNB } from '../config/constants'
+import {CurrencyAmount, ETHER, JSBI} from '@defifarms/sdk'
+import {MIN_BNB} from '../config/constants'
 
 /**
  * Given some token amount, return the max that can be spent of it

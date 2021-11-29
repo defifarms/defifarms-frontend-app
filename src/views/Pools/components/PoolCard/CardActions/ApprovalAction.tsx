@@ -1,21 +1,20 @@
 import React from 'react'
-import { AutoRenewIcon, Button, Skeleton } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { useERC20 } from 'hooks/useContract'
-import { getAddress } from 'utils/addressHelpers'
-import { Pool } from 'state/types'
-import { useApprovePool } from '../../../hooks/useApprove'
+import {Button, AutoRenewIcon, Skeleton} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {useERC20} from 'hooks/useContract'
+import {DeserializedPool} from 'state/types'
+import {useApprovePool} from '../../../hooks/useApprove'
 
 interface ApprovalActionProps {
-  pool: Pool
+  pool: DeserializedPool
   isLoading?: boolean
 }
 
-const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false }) => {
-  const { sousId, stakingToken, earningToken } = pool
-  const { t } = useTranslation()
-  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
-  const { handleApprove, requestedApproval } = useApprovePool(stakingTokenContract, sousId, earningToken.symbol)
+const ApprovalAction: React.FC<ApprovalActionProps> = ({pool, isLoading = false}) => {
+  const {sousId, stakingToken, earningToken} = pool
+  const {t} = useTranslation()
+  const stakingTokenContract = useERC20(stakingToken.address || '')
+  const {handleApprove, requestedApproval} = useApprovePool(stakingTokenContract, sousId, earningToken.symbol)
 
   return (
     <>
@@ -28,7 +27,6 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
           disabled={requestedApproval}
           onClick={handleApprove}
           width="100%"
-          variant="four"
         >
           {t('Enable')}
         </Button>

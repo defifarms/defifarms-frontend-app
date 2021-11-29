@@ -1,7 +1,7 @@
 import React from 'react'
-import { Price } from '@defifarms/sdk'
-import { AutoRenewIcon, Text } from '@defifarms/uikit'
-import { StyledBalanceMaxMini } from './styleds'
+import {Price} from '@defifarms/sdk'
+import {Text, AutoRenewIcon} from '@pancakeswap/uikit'
+import {StyledBalanceMaxMini} from './styleds'
 
 interface TradePriceProps {
   price?: Price
@@ -9,7 +9,7 @@ interface TradePriceProps {
   setShowInverted: (showInverted: boolean) => void
 }
 
-export default function TradePrice({ price, showInverted, setShowInverted }: TradePriceProps) {
+export default function TradePrice({price, showInverted, setShowInverted}: TradePriceProps) {
   const formattedPrice = showInverted ? price?.toSignificant(6) : price?.invert()?.toSignificant(6)
 
   const show = Boolean(price?.baseCurrency && price?.quoteCurrency)
@@ -18,7 +18,7 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
     : `${price?.baseCurrency?.symbol} per ${price?.quoteCurrency?.symbol}`
 
   return (
-    <Text style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+    <Text style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
       {show ? (
         <>
           {formattedPrice ?? '-'} {label}

@@ -1,8 +1,9 @@
 import tokens from './tokens'
-import { PoolCategory, PoolConfig } from './types'
-import { Pool } from '../../state/types'
+import {SerializedPoolConfig, PoolCategory} from './types'
+import {serializeTokens} from './tokensV1'
 
-const pools: Pool[] = [
+const serializedTokens = serializeTokens()
+const pools: SerializedPoolConfig[] = [
   // {
   //   sousId: 3,
   //   stakingToken: tokens.busd,
@@ -35,19 +36,17 @@ const pools: Pool[] = [
   //   isFinished: false,
   // },
   {
-    sousId: 73678,
-    stakingToken: tokens.defiy,
-    earningToken: tokens.defiy,
+    sousId: 236,
+    stakingToken: serializedTokens.defiy,
+    earningToken: serializedTokens.defiy,
     contractAddress: {
       97: '0x417d2fe6cf2208036233eb07cae183d6aa623672',
       56: '',
     },
     poolCategory: PoolCategory.CORE,
-    depositFeeBP: '0',
-    harvestInterval: '14400',
-    tokenPerBlock: '0.01',
+    harvest: true,
     sortOrder: 999,
-    isFinished: false,
+    tokenPerBlock: '0.0578',
   },
   // {
   //   sousId: 5,

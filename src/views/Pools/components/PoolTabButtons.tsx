@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link, useRouteMatch } from 'react-router-dom'
+import {Link, useRouteMatch} from 'react-router-dom'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, NotificationDot, Text, Toggle } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import ToggleView, { ViewMode } from './ToggleView/ToggleView'
+import {ButtonMenu, ButtonMenuItem, NotificationDot, Text, Toggle} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import ToggleView, {ViewMode} from './ToggleView/ToggleView'
 
 const ToggleWrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const ViewControls = styled.div`
     padding: 8px 0px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     justify-content: flex-start;
     width: auto;
 
@@ -47,7 +47,7 @@ const Wrapper = styled.div`
     padding-right: 12px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     margin-left: 16px;
   }
 `
@@ -55,9 +55,9 @@ const ButtonMenuStyled = styled(ButtonMenu)`
   background-color: #631ad1;
 `
 
-const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode }) => {
-  const { url, isExact } = useRouteMatch()
-  const { t } = useTranslation()
+const PoolTabButtons = ({stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode}) => {
+  const {url, isExact} = useRouteMatch()
+  const {t} = useTranslation()
 
   const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 

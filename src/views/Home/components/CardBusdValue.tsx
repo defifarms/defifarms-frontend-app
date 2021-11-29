@@ -1,5 +1,5 @@
 import React from 'react'
-import CardValue, { CardValueProps } from './CardValue'
+import CardValue, {CardValueProps} from './CardValue'
 
 const CardBusdValue: React.FC<CardValueProps> = (props) => {
   return (

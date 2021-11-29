@@ -1,7 +1,7 @@
-import { BigNumber } from 'ethers'
+import {BigNumber} from 'ethers'
 import farms from 'config/constants/farms'
-import { Farm } from 'state/types'
-import { getBep20Contract, getLpContract } from 'utils/contractHelpers'
+import {Farm} from 'state/types'
+import {getBep20Contract, getLpContract} from 'utils/contractHelpers'
 
 // Test only against the last 10 farms, for performance concern
 const farmsToTest: [number, Farm][] = farms

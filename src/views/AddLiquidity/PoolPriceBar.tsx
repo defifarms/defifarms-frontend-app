@@ -1,11 +1,11 @@
-import { Currency, Percent, Price } from '@defifarms/sdk'
+import {Currency, Percent, Price} from '@defifarms/sdk'
 import React from 'react'
-import { Text } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
-import { AutoColumn } from '../../components/Layout/Column'
-import { AutoRow } from '../../components/Layout/Row'
-import { ONE_BIPS } from '../../config/constants'
-import { Field } from '../../state/mint/actions'
+import {Text} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
+import {AutoColumn} from '../../components/Layout/Column'
+import {AutoRow} from '../../components/Layout/Row'
+import {ONE_BIPS} from '../../config/constants'
+import {Field} from '../../state/mint/actions'
 
 function PoolPriceBar({
   currencies,
@@ -13,12 +13,12 @@ function PoolPriceBar({
   poolTokenPercentage,
   price,
 }: {
-  currencies: { [field in Field]?: Currency }
+  currencies: {[field in Field]?: Currency}
   noLiquidity?: boolean
   poolTokenPercentage?: Percent
   price?: Price
 }) {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   return (
     <AutoColumn gap="md">
       <AutoRow justify="space-around" gap="4px">

@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
+import {useMemo} from 'react'
 import contenthashToUri from 'utils/contenthashToUri'
-import { parseENSAddress } from 'utils/ENS/parseENSAddress'
+import {parseENSAddress} from 'utils/ENS/parseENSAddress'
 import uriToHttp from 'utils/uriToHttp'
 import useENSContentHash from './ENS/useENSContentHash'
 

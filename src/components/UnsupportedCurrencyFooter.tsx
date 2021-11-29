@@ -1,14 +1,14 @@
 import React from 'react'
-import { Currency, Token } from '@defifarms/sdk'
-import { Button, InjectedModalProps, Link, Modal, Text, useModal } from '@defifarms/uikit'
+import {Currency, Token} from '@defifarms/sdk'
+import {Button, InjectedModalProps, Link, Modal, Text, useModal} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { AutoRow } from 'components/Layout/Row'
-import { AutoColumn } from 'components/Layout/Column'
-import { CurrencyLogo } from 'components/Logo'
+import {AutoRow} from 'components/Layout/Row'
+import {AutoColumn} from 'components/Layout/Column'
+import {CurrencyLogo} from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getBscScanLink } from 'utils'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
-import { useUnsupportedTokens } from '../hooks/Tokens'
+import {getBscScanLink} from 'utils'
+import {wrappedCurrency} from 'utils/wrappedCurrency'
+import {useUnsupportedTokens} from '../hooks/Tokens'
 
 interface Props extends InjectedModalProps {
   currencies: (Currency | undefined)[]
@@ -20,13 +20,13 @@ const DetailsFooter = styled.div`
   max-width: 400px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  color: ${({ theme }) => theme.colors.text};
-  background-color: ${({ theme }) => theme.colors.invertedContrast};
+  color: ${({theme}) => theme.colors.text};
+  background-color: ${({theme}) => theme.colors.invertedContrast};
   text-align: center;
 `
 
-const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
-  const { chainId } = useActiveWeb3React()
+const UnsupportedModal: React.FC<Props> = ({currencies, onDismiss}) => {
+  const {chainId} = useActiveWeb3React()
   const tokens =
     chainId && currencies
       ? currencies.map((currency) => {
@@ -34,7 +34,7 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
         })
       : []
 
-  const unsupportedTokens: { [address: string]: Token } = useUnsupportedTokens()
+  const unsupportedTokens: {[address: string]: Token} = useUnsupportedTokens()
 
   return (
     <Modal title="Unsupported Assets" maxWidth="420px" onDismiss={onDismiss}>
@@ -69,7 +69,7 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
   )
 }
 
-export default function UnsupportedCurrencyFooter({ currencies }: { currencies: (Currency | undefined)[] }) {
+export default function UnsupportedCurrencyFooter({currencies}: {currencies: (Currency | undefined)[]}) {
   const [onPresentModal] = useModal(<UnsupportedModal currencies={currencies} />)
 
   return (

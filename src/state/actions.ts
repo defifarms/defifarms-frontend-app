@@ -1,4 +1,4 @@
-export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
+export {fetchFarmsPublicDataAsync, fetchFarmUserDataAsync} from './farms'
 export {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -10,4 +10,4 @@ export {
   updateUserPendingReward,
   updateUserStakedBalance,
 } from './pools'
-export { setBlock } from './block'
+export {setBlock} from './block'

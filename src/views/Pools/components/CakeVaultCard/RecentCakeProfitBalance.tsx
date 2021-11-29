@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TooltipText, useTooltip } from '@defifarms/uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Text, TooltipText, useTooltip} from '@pancakeswap/uikit'
+import {useTranslation} from 'contexts/Localization'
 import Balance from 'components/Balance'
 
 interface RecentCakeProfitBalanceProps {
@@ -14,11 +14,11 @@ const RecentCakeProfitBalance: React.FC<RecentCakeProfitBalanceProps> = ({
   dollarValueToDisplay,
   dateStringToDisplay,
 }) => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const {targetRef, tooltip, tooltipVisible} = useTooltip(
     <>
-      <Balance fontSize="16px" value={cakeToDisplay} decimals={3} bold unit=" DEFIY" />
+      <Balance fontSize="16px" value={cakeToDisplay} decimals={3} bold unit=" CAKE" />
       <Balance fontSize="16px" value={dollarValueToDisplay} decimals={2} bold prefix="~$" />
       {t('Earned since your last action')}
       <Text>{dateStringToDisplay}</Text>

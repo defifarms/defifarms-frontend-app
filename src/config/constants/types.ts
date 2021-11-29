@@ -1,26 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { SerializedBigNumber, TranslatableText } from 'state/types'
-
-export interface Address {
-  97?: string
-  56: string
-}
-
-export interface Token {
-  symbol: string
-  address?: Address
-  decimals?: number
-  projectLink?: string
-  busdPrice?: string
-}
-
-export enum PoolCategory {
-  'COMMUNITY' = 'Community',
-  'CORE' = 'Core',
-  'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
-  'AUTO' = 'Auto',
-  'SPECIAL' = 'Special'
-}
+import {Token} from '@defifarms/sdk'
 
 export interface FarmConfig {
   pid: number
@@ -38,10 +17,90 @@ export interface FarmConfig {
   }
 }
 
-export interface PoolConfig {
+export type TranslatableText =
+  | string
+  | {
+      key: string
+      data?: {
+        [key: string]: string | number
+      }
+    }
+export interface Address {
+  97?: string
+  56: string
+}
+
+export interface SerializedToken {
+  chainId: number
+  address: string
+  decimals: number
+  symbol?: string
+  name?: string
+  projectLink?: string
+}
+
+export enum PoolIds {
+  poolBasic = 'poolBasic',
+  poolUnlimited = 'poolUnlimited',
+}
+
+export type IfoStatus = 'idle' | 'coming_soon' | 'live' | 'finished'
+
+interface IfoPoolInfo {
+  saleAmount: string
+  raiseAmount: string
+  cakeToBurn: string
+  distributionRatio: number // Range [0-1]
+}
+
+export interface Ifo {
+  id: string
+  isActive: boolean
+  address: string
+  name: string
+  currency: Token
+  token: Token
+  releaseBlockNumber: number
+  articleUrl: string
+  campaignId: string
+  tokenOfferingPrice: number
+  version: number
+  [PoolIds.poolBasic]?: IfoPoolInfo
+  [PoolIds.poolUnlimited]: IfoPoolInfo
+}
+
+export enum PoolCategory {
+  'COMMUNITY' = 'Community',
+  'CORE' = 'Core',
+  'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
+  'AUTO' = 'Auto',
+}
+
+interface FarmConfigBaseProps {
+  pid: number
+  lpSymbol: string
+  lpAddresses: Address
+  multiplier?: string
+  isCommunity?: boolean
+  dual?: {
+    rewardPerBlock: number
+    earnLabel: string
+    endBlock: number
+  }
+}
+
+export interface SerializedFarmConfig extends FarmConfigBaseProps {
+  token: SerializedToken
+  quoteToken: SerializedToken
+}
+
+export interface DeserializedFarmConfig extends FarmConfigBaseProps {
+  token: Token
+  quoteToken: Token
+}
+
+interface PoolConfigBaseProps {
   sousId: number
-  earningToken: Token
-  stakingToken: Token
   contractAddress: Address
   poolCategory: PoolCategory
   tokenPerBlock: string
@@ -51,48 +110,21 @@ export interface PoolConfig {
   enableEmergencyWithdraw?: boolean
 }
 
+export interface SerializedPoolConfig extends PoolConfigBaseProps {
+  earningToken: SerializedToken
+  stakingToken: SerializedToken
+}
+
+export interface DeserializedPoolConfig extends PoolConfigBaseProps {
+  earningToken: Token
+  stakingToken: Token
+}
+
 export type Images = {
   lg: string
   md: string
   sm: string
   ipfs?: string
-}
-
-export type NftImages = {
-  blur?: string
-} & Images
-
-export type NftVideo = {
-  webm: string
-  mp4: string
-}
-
-export type NftSource = {
-  [key in NftType]: {
-    address: Address
-    identifierKey: string
-  }
-}
-
-export enum NftType {
-  PANCAKE = 'pancake',
-  MIXIE = 'mixie',
-}
-
-export type Nft = {
-  description: string
-  name: string
-  images: NftImages
-  sortOrder: number
-  type: NftType
-  video?: NftVideo
-
-  // Uniquely identifies the nft.
-  // Used for matching an NFT from the config with the data from the NFT's tokenURI
-  identifier: string
-
-  // Used to be "bunnyId". Used when minting NFT
-  variationId?: number | string
 }
 
 export type TeamImages = {
@@ -140,7 +172,7 @@ export interface LotteryTicket {
   status: boolean
   rewardBracket?: number
   roundId?: string
-  cakeReward?: SerializedBigNumber
+  cakeReward?: string
 }
 
 export interface LotteryTicketClaimData {
@@ -179,10 +211,6 @@ export interface Auction {
   endBlock: number
   endDate: Date
   auctionDuration: number
-  farmStartBlock: number
-  farmStartDate: Date
-  farmEndBlock: number
-  farmEndDate: Date
   initialBidAmount: number
   topLeaderboard: number
   leaderboardThreshold: BigNumber

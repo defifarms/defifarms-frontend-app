@@ -1,4 +1,4 @@
-import React, { TextareaHTMLAttributes, useEffect, useRef } from 'react'
+import React, {TextareaHTMLAttributes, useEffect, useRef} from 'react'
 import EasyMde from 'easymde'
 import styled from 'styled-components'
 import merge from 'lodash/merge'
@@ -12,32 +12,32 @@ interface SimpleMdeProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement
 
 const Wrapper = styled.div`
   .EasyMDEContainer .CodeMirror {
-    background: ${({ theme }) => theme.colors.input};
-    border-color: ${({ theme }) => theme.colors.cardBorder};
+    background: ${({theme}) => theme.colors.input};
+    border-color: ${({theme}) => theme.colors.cardBorder};
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    box-shadow: ${({ theme }) => theme.shadows.inset};
+    box-shadow: ${({theme}) => theme.shadows.inset};
     padding: 16px;
   }
 
   .CodeMirror-code {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({theme}) => theme.colors.text};
   }
 
   .editor-toolbar {
-    background: ${({ theme }) => theme.card.background};
-    border-color: ${({ theme }) => theme.colors.cardBorder};
+    background: ${({theme}) => theme.card.background};
+    border-color: ${({theme}) => theme.colors.cardBorder};
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({theme}) => theme.colors.text};
 
     a,
     button {
-      color: ${({ theme }) => theme.colors.text};
+      color: ${({theme}) => theme.colors.text};
 
       &:hover,
       &.active {
-        background: ${({ theme }) => theme.colors.background};
+        background: ${({theme}) => theme.colors.background};
         border: 0;
       }
     }
@@ -55,12 +55,12 @@ const defaultOptions: EasyMde.Options = {
   styleSelectedText: false,
 }
 
-const SimpleMde: React.FC<SimpleMdeProps> = ({ options, onTextChange, ...props }) => {
+const SimpleMde: React.FC<SimpleMdeProps> = ({options, onTextChange, ...props}) => {
   const ref = useRef()
   const onTextChangeHandler = useRef(onTextChange)
 
   useEffect(() => {
-    let simpleMde = new EasyMde(merge({ element: ref.current }, defaultOptions, options))
+    let simpleMde = new EasyMde(merge({element: ref.current}, defaultOptions, options))
 
     simpleMde.codemirror.on('change', () => {
       onTextChangeHandler.current(simpleMde.value())

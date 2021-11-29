@@ -1,12 +1,12 @@
 import React from 'react'
-import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@defifarms/uikit'
-import { useWeb3React } from '@web3-react/core'
-import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
-import { getDefiyAddress } from 'utils/addressHelpers'
+import {Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Skeleton, Text} from '@pancakeswap/uikit'
+import {useWeb3React} from '@web3-react/core'
+import useTokenBalance, {FetchStatus, useGetBnbBalance} from 'hooks/useTokenBalance'
 import useAuth from 'hooks/useAuth'
-import { useTranslation } from 'contexts/Localization'
-import { getBscScanLink } from 'utils'
-import { getFullDisplayBalance } from 'utils/formatBalance'
+import {useTranslation} from 'contexts/Localization'
+import {getBscScanLink} from 'utils'
+import {getFullDisplayBalance, formatBigNumber} from 'utils/formatBalance'
+import tokens from 'config/constants/tokensV1'
 import CopyAddress from './CopyAddress'
 
 interface WalletInfoProps {
@@ -14,12 +14,12 @@ interface WalletInfoProps {
   onDismiss: InjectedModalProps['onDismiss']
 }
 
-const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) => {
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
-  const { balance } = useGetBnbBalance()
-  const { balance: cakeBalance } = useTokenBalance(getDefiyAddress())
-  const { logout } = useAuth()
+const WalletInfo: React.FC<WalletInfoProps> = ({hasLowBnbBalance, onDismiss}) => {
+  const {t} = useTranslation()
+  const {account} = useWeb3React()
+  const {balance, fetchStatus} = useGetBnbBalance()
+  const {balance: cakeBalance, fetchStatus: cakeFetchStatus} = useTokenBalance(tokens.cake.address)
+  const {logout} = useAuth()
 
   const handleLogout = () => {
     onDismiss()
@@ -42,11 +42,19 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       )}
       <Flex alignItems="center" justifyContent="space-between">
         <Text color="textSubtle">{t('BNB Balance')}</Text>
-        <Text>{getFullDisplayBalance(balance, 18, 6)}</Text>
+        {fetchStatus !== FetchStatus.SUCCESS ? (
+          <Skeleton height="22px" width="60px" />
+        ) : (
+          <Text>{formatBigNumber(balance, 6)}</Text>
+        )}
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
-        <Text color="textSubtle">{t('Defiy Balance')}</Text>
-        <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
+        <Text color="textSubtle">{t('CAKE Balance')}</Text>
+        {cakeFetchStatus !== FetchStatus.SUCCESS ? (
+          <Skeleton height="22px" width="60px" />
+        ) : (
+          <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
+        )}
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
         <LinkExternal href={getBscScanLink(account, 'address')}>{t('View on BscScan')}</LinkExternal>

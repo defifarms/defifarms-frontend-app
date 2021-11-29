@@ -1,49 +1,49 @@
-import { BigNumber } from '@ethersproject/bignumber'
-import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@defifarms/sdk'
-import { AddIcon, Button, CardBody, Flex, Message, Text, useModal } from '@defifarms/uikit'
-import { MainBackground } from 'components/Layout/MainBackground'
+import {BigNumber} from '@ethersproject/bignumber'
+import {TransactionResponse} from '@ethersproject/providers'
+import {Currency, currencyEquals, ETHER, TokenAmount, WETH} from '@defifarms/sdk'
+import {AddIcon, Button, CardBody, Flex, Message, Text, useModal} from '@pancakeswap/uikit'
+import {MainBackground} from 'components/Layout/MainBackground'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
-import { useTranslation } from 'contexts/Localization'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
+import {useTranslation} from 'contexts/Localization'
+import {useIsTransactionUnsupported} from 'hooks/Trades'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import React, { useCallback, useState } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { AppBody, AppHeader } from '../../components/App'
-import { LightCard } from '../../components/Card'
+import React, {useCallback, useState} from 'react'
+import {RouteComponentProps} from 'react-router-dom'
+import {AppBody, AppHeader} from '../../components/App'
+import {LightCard} from '../../components/Card'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
-import Row, { RowBetween } from '../../components/Layout/Row'
+import {AutoColumn, ColumnCenter} from '../../components/Layout/Column'
+import Row, {RowBetween} from '../../components/Layout/Row'
 import Dots from '../../components/Loader/Dots'
-import { DoubleCurrencyLogo } from '../../components/Logo'
-import { MinimalPositionCard } from '../../components/PositionCard'
-import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
-import { ROUTER_ADDRESS } from '../../config/constants'
-import { useCurrency } from '../../hooks/Tokens'
-import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
-import { PairState } from '../../hooks/usePairs'
+import {DoubleCurrencyLogo} from '../../components/Logo'
+import {MinimalPositionCard} from '../../components/PositionCard'
+import TransactionConfirmationModal, {ConfirmationModalContent} from '../../components/TransactionConfirmationModal'
+import {ROUTER_ADDRESS} from '../../config/constants'
+import {useCurrency} from '../../hooks/Tokens'
+import {ApprovalState, useApproveCallback} from '../../hooks/useApproveCallback'
+import {PairState} from '../../hooks/usePairs'
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
-import { Field } from '../../state/mint/actions'
-import { useDerivedMintInfo, useMintActionHandlers, useMintState } from '../../state/mint/hooks'
-import { useTransactionAdder } from '../../state/transactions/hooks'
-import { useIsExpertMode, useUserSlippageTolerance } from '../../state/user/hooks'
-import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
-import { currencyId } from '../../utils/currencyId'
-import { maxAmountSpend } from '../../utils/maxAmountSpend'
-import { wrappedCurrency } from '../../utils/wrappedCurrency'
+import {Field} from '../../state/mint/actions'
+import {useDerivedMintInfo, useMintActionHandlers, useMintState} from '../../state/mint/hooks'
+import {useTransactionAdder} from '../../state/transactions/hooks'
+import {useIsExpertMode, useUserSlippageTolerance} from '../../state/user/hooks'
+import {calculateGasMargin, calculateSlippageAmount, getRouterContract} from '../../utils'
+import {currencyId} from '../../utils/currencyId'
+import {maxAmountSpend} from '../../utils/maxAmountSpend'
+import {wrappedCurrency} from '../../utils/wrappedCurrency'
 import Page from '../Page'
 import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import PoolPriceBar from './PoolPriceBar'
 
 export default function AddLiquidity({
   match: {
-    params: { currencyIdA, currencyIdB },
+    params: {currencyIdA, currencyIdB},
   },
   history,
-}: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
-  const { account, chainId, library } = useActiveWeb3React()
-  const { t } = useTranslation()
+}: RouteComponentProps<{currencyIdA?: string; currencyIdB?: string}>) {
+  const {account, chainId, library} = useActiveWeb3React()
+  const {t} = useTranslation()
 
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
@@ -57,7 +57,7 @@ export default function AddLiquidity({
   const expertMode = useIsExpertMode()
 
   // mint state
-  const { independentField, typedValue, otherTypedValue } = useMintState()
+  const {independentField, typedValue, otherTypedValue} = useMintState()
   const {
     dependentField,
     currencies,
@@ -72,7 +72,7 @@ export default function AddLiquidity({
     error,
   } = useDerivedMintInfo(currencyA ?? undefined, currencyB ?? undefined)
 
-  const { onFieldAInput, onFieldBInput } = useMintActionHandlers(noLiquidity)
+  const {onFieldAInput, onFieldBInput} = useMintActionHandlers(noLiquidity)
 
   const isValid = !error
 
@@ -91,7 +91,7 @@ export default function AddLiquidity({
   }
 
   // get the max amounts user can add
-  const maxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+  const maxAmounts: {[field in Field]?: TokenAmount} = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
         ...accumulator,
@@ -101,7 +101,7 @@ export default function AddLiquidity({
     {},
   )
 
-  const atMaxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+  const atMaxAmounts: {[field in Field]?: TokenAmount} = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
         ...accumulator,
@@ -121,7 +121,7 @@ export default function AddLiquidity({
     if (!chainId || !library || !account) return
     const router = getRouterContract(chainId, library, account)
 
-    const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
+    const {[Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB} = parsedAmounts
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB || !deadline) {
       return
     }
@@ -165,10 +165,10 @@ export default function AddLiquidity({
     }
 
     setAttemptingTxn(true)
-    await estimate(...args, value ? { value } : {})
+    await estimate(...args, value ? {value} : {})
       .then((estimatedGasLimit) =>
         method(...args, {
-          ...(value ? { value } : {}),
+          ...(value ? {value} : {}),
           gasLimit: calculateGasMargin(estimatedGasLimit),
         }).then((response) => {
           setAttemptingTxn(false)
@@ -396,9 +396,9 @@ export default function AddLiquidity({
                             width={approvalB !== ApprovalState.APPROVED ? '48%' : '100%'}
                           >
                             {approvalA === ApprovalState.PENDING ? (
-                              <Dots>{t('Enabling %asset%', { asset: currencies[Field.CURRENCY_A]?.symbol })}</Dots>
+                              <Dots>{t('Enabling %asset%', {asset: currencies[Field.CURRENCY_A]?.symbol})}</Dots>
                             ) : (
-                              t('Enable %asset%', { asset: currencies[Field.CURRENCY_A]?.symbol })
+                              t('Enable %asset%', {asset: currencies[Field.CURRENCY_A]?.symbol})
                             )}
                           </Button>
                         )}
@@ -409,9 +409,9 @@ export default function AddLiquidity({
                             width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
                           >
                             {approvalB === ApprovalState.PENDING ? (
-                              <Dots>{t('Enabling %asset%', { asset: currencies[Field.CURRENCY_B]?.symbol })}</Dots>
+                              <Dots>{t('Enabling %asset%', {asset: currencies[Field.CURRENCY_B]?.symbol})}</Dots>
                             ) : (
-                              t('Enable %asset%', { asset: currencies[Field.CURRENCY_B]?.symbol })
+                              t('Enable %asset%', {asset: currencies[Field.CURRENCY_B]?.symbol})
                             )}
                           </Button>
                         )}
@@ -441,7 +441,7 @@ export default function AddLiquidity({
         </AppBody>
         {!addIsUnsupported ? (
           pair && !noLiquidity && pairState !== PairState.INVALID ? (
-            <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
+            <AutoColumn style={{minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem'}}>
               <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
             </AutoColumn>
           ) : null

@@ -1,21 +1,21 @@
 import React from 'react'
-import { Flex, Text } from '@defifarms/uikit'
-import { useWeb3React } from '@web3-react/core'
-import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import {Flex, Text} from '@pancakeswap/uikit'
+import {useWeb3React} from '@web3-react/core'
+import {useTranslation} from 'contexts/Localization'
+import {usePriceCakeBusd} from 'state/farms/hooks'
+import {useCakeVault} from 'state/pools/hooks'
+import {getCakeVaultEarnings} from 'views/Pools/helpers'
 import RecentCakeProfitBalance from './RecentCakeProfitBalance'
 
 const RecentCakeProfitCountdownRow = () => {
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const {t} = useTranslation()
+  const {account} = useWeb3React()
   const {
     pricePerFullShare,
-    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
+    userData: {cakeAtLastUserAction, userShares, lastUserActionTime},
   } = useCakeVault()
   const cakePriceBusd = usePriceCakeBusd()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  const {hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay} = getCakeVaultEarnings(
     account,
     cakeAtLastUserAction,
     userShares,
@@ -29,7 +29,7 @@ const RecentCakeProfitCountdownRow = () => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <Text fontSize="14px">{`${t('Recent DEFIY profit')}:`}</Text>
+      <Text fontSize="14px">{`${t('Recent CAKE profit')}:`}</Text>
       {hasAutoEarnings && (
         <RecentCakeProfitBalance
           cakeToDisplay={autoCakeToDisplay}
