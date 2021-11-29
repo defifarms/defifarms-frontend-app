@@ -11,9 +11,9 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts",
     "copyfolder": "cpx -C \"C:/Workspace/DefiV3/ui/toolkit---ui/**\" node_modules/@defifarms/uikit",
-    "syncuikit": "rm -rf node_modules/@defifarms/uikit/dist && cp -R ../defifarms-uikit/dist node_modules/@defifarms/uikit"
+    "syncuikit": "rm -rf node_modules/@defifarms/uikit/dist && cp -R ../defifarms-uikit/dist node_modules/@defifarms/uikit",
+    "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts"
   },
   "husky": {
     "hooks": {
