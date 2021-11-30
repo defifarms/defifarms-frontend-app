@@ -14,7 +14,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.busd,
-    apr: 100,
+    isShow: false,
   },
   {
     pid: 1,
@@ -25,7 +25,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.defiy,
     quoteToken: tokens.wbnb,
-    apr: 100,
+    isShow: true,
   },
   {
     pid: 2,
@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.busd,
     quoteToken: tokens.wbnb,
-    apr: 100,
+    isShow: false,
   },
   // {
   //   pid: 9,
@@ -82,17 +82,16 @@ const farms: FarmConfig[] = [
   //   quoteToken: tokens.wbnb,
   //   apr: 100,
   // },
-  {
-    pid: 13,
-    lpSymbol: 'USDT-BNB LP',
-    lpAddresses: {
-      97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
-      56: '',
-    },
-    token: tokens.usdt,
-    quoteToken: tokens.wbnb,
-    apr: 100,
-  },
+  // {
+  //   pid: 13,
+  //   lpSymbol: 'USDT-BNB LP',
+  //   lpAddresses: {
+  //     97: '0x0ee496078419fcb2cb62e2361de23211ddaf2606',
+  //     56: '',
+  //   },
+  //   token: tokens.usdt,
+  //   quoteToken: tokens.wbnb,
+  // },
   // {
   //   pid: 14,
   //   lpSymbol: 'CAKE-BNB LP',

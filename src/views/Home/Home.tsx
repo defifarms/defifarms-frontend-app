@@ -170,7 +170,7 @@ const Home: React.FC = () => {
             <Wrapper>
               <MetaWrapper>
                 <MetaImage>
-                  <Image alt="alt" src="/images/home/meta.png" />
+                  <Image alt="alt" src="/images/home/meta.webp" />
                 </MetaImage>
               </MetaWrapper>
             </Wrapper>

@@ -5,7 +5,7 @@ import { Pool } from '../../state/types'
 const pools: Pool[] = [
   {
     sousId: 3,
-    apr: 100,
+    // apr: 100,
     stakingToken: tokens.busd,
     earningToken: tokens.defiy,
     contractAddress: {

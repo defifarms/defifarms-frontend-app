@@ -37,7 +37,6 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     stakedBalance: stakedBalanceAsString = 0,
     earnings: earningsAsString = 0,
   } = farm.userData || {}
-  // console.log('farm', farm)
 
   const allowance = new BigNumber(allowanceAsString)
   const tokenBalance = new BigNumber(tokenBalanceAsString)
@@ -73,7 +72,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         userData={farm.userData}
       />
     ) : (
-      <Button variant="four" mt="16px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
+      <Button variant="four" mt="16px" width="100%" disabled={requestedApproval || !farm.apr} onClick={handleApprove}>
         {t('Enable Contract')}
       </Button>
     )

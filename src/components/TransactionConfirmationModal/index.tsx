@@ -31,6 +31,10 @@ const Section = styled(AutoColumn)`
 
 const ConfirmedIcon = styled(ColumnCenter)`
   padding: 24px 0;
+  & svg {
+    top: -35px;
+    left: -35px;
+  }
 `
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
