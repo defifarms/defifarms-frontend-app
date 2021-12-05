@@ -147,7 +147,7 @@ const App: React.FC = () => {
             {/* </Route> */}
 
             {/* 404 */}
-            <Route component={NotFound} />
+            {/* <Route component={NotFound} /> */}
           </Switch>
         </SuspenseWithChunkError>
       </Menu>
