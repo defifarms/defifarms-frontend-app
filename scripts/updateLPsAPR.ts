@@ -134,7 +134,6 @@ const getQuery = async (addresses: string) => {
   const weekAgoTimestamp = getWeekAgoTimestamp()
   const weekAgoTime = format(new Date(weekAgoTimestamp*1000), 'yyyy-MM-dd')
   const currentTime = format(getUnixTime(new Date())*1000, 'yyyy-MM-dd')
-  console.log('blockWeekAgo', weekAgoTimestamp, weekAgoTime, currentTime);
   
   const query = `
   query{

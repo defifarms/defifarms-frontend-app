@@ -9,7 +9,7 @@ import { getDefiyAddress } from 'utils/addressHelpers'
 import { usePriceCakeBusd } from '../../../state/farms/hooks'
 
 const StyledContainer = styled.div`
-  background-image: url(/images/home/team-bg.png);
+  background-image: url(/images/home/team-bg.webp);
   border-radius: 10px;
   background-repeat: no-repeat;
   background-position: center;
@@ -106,25 +106,25 @@ const Partners = styled.img<{ margin?: string }>`
 
 const teams = [
   {
-    image: '/images/home/teams/cesar.jpg',
+    image: '/images/home/teams/cesar.webp',
     name: 'Cesar Deandre',
     position: 'CEO & Co-Founder',
     linkedin: 'https://www.linkedin.com/in/cesar-deandre-b0867b1b3/',
   },
   {
-    image: '/images/home/teams/zack.jpg',
+    image: '/images/home/teams/zack.webp',
     name: 'Zackhary Brown',
     position: 'CMO & Co-Founder',
     linkedin: 'https://www.linkedin.com/in/zackhary-brown-ab3b731ba/',
   },
   {
-    image: '/images/home/teams/harr.jpg',
+    image: '/images/home/teams/harr.webp',
     name: 'Harrik Medsam',
     position: 'Chief Finacial Officer',
     linkedin: 'https://www.linkedin.com/in/harrik-medsam-22137120b/',
   },
   {
-    image: '/images/home/teams/cesar.jpg',
+    image: '/images/home/teams/blake.webp',
     name: 'Blake Dalton',
     position: 'Blockchain Developer',
     linkedin: 'https://www.linkedin.com/in/blake-dalton-8a4577206/',
