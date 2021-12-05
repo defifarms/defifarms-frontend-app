@@ -40,7 +40,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Special Pools'),
-        href: '/special-pools',
+        href: '/spools',
       },
     ],
   },
