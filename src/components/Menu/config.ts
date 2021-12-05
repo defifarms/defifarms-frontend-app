@@ -1,6 +1,8 @@
 import { MenuEntry } from '@defifarms/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 
+const specialUrl = process.env.REACT_APP_HOST_2
+
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
@@ -37,7 +39,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Special Pools'),
-        href: '/special-pools',
+        href: `${specialUrl}/spools`,
       },
     ],
   },
