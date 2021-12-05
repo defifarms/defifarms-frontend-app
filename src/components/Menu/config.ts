@@ -1,5 +1,6 @@
 import { MenuEntry } from '@defifarms/uikit'
 import { ContextApi } from 'contexts/Localization/types'
+
 const url = process.env.REACT_APP_HOST_1
 const specialUrl = process.env.REACT_APP_HOST_2
 
