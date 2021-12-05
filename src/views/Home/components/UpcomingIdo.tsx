@@ -234,7 +234,6 @@ const ImageWrapper = styled.div`
   padding: 5px 5px 0;
   margin-right: 0;
   ${({ theme }) => theme.mediaQueries.lg} {
-    
     padding: 5px 5px 0;
     margin-right: 25px;
   }
