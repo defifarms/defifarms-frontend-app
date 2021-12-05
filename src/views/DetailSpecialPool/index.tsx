@@ -97,7 +97,7 @@ const DetailSpecialPool: React.FC<RouteComponentProps<{ groupPool: string }>> = 
               </Heading>
             </Flex>
             <Flex justifyContent="space-between">
-              <Text>{t('Cap Goals raied')}</Text>
+              <Text>{t('Cap Goals raised')}</Text>
               <Text>60%</Text>
             </Flex>
             <Slider
@@ -142,7 +142,7 @@ const DetailSpecialPool: React.FC<RouteComponentProps<{ groupPool: string }>> = 
                 </Flex>
                 <Flex mt="16px">
                   <Text mr="16px">0.00</Text>
-                  <Text color="four"> {t('BSUD Staked')}</Text>
+                  <Text color="four"> {t('BUSD Staked')}</Text>
                 </Flex>
                 <Flex mt="16px">
                   <Text mr="16px">0.00</Text>

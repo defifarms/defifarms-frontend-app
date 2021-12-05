@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Tag } from '@defifarms/uikit'
+import { Flex, Heading, Skeleton, Tag } from '@defifarms/uikit'
 import { CommunityTag, CoreTag } from 'components/Tags'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
@@ -35,7 +35,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, is
         <Heading mb="9px">{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
           {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+          {multiplier ? <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> : null}
         </Flex>
       </Flex>
       <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
