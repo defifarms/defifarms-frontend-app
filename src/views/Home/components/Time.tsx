@@ -16,10 +16,14 @@ const Label = styled(Text)`
 
 const StyleTime = styled.p`
   font-family: HK Grotesk bold;
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 24px;
+  line-height: 28px;
   text-transform: uppercase;
   color: #fff;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 36px;
+    line-height: 42px;
+  }
 `
 
 const Wrapper = styled.div`
