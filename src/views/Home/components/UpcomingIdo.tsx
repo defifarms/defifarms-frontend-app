@@ -30,6 +30,7 @@ const Hero = styled.div`
   background: #ffa800;
   opacity: 0.98;
   backdrop-filter: blur(200px);
+  position: relative;
   ${({ theme }) => theme.mediaQueries.md} {
     flex-wrap: nowrap;
   }
@@ -85,12 +86,14 @@ const Image = styled.img<ThemedImage>`
 const HeadingHome = styled(Heading)`
   font-family: HK Grotesk Bold;
   font-style: normal;
-  font-size: 43px;
-  line-height: 63px;
+  font-size: 36px;
+  line-height: 42px;
   color: #ffffff;
   margin-bottom: 9px;
+  text-align: left;
   ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 54.8571px;
+    font-size: 55px;
+    text-align: center;
   }
 `
 
@@ -338,7 +341,7 @@ const UpcomingIdo: React.FC = () => {
         <PriceWrapper>
           <Price>(GFX/BSUD)</Price>
           <StyledButtonMenu href="https://rocket.defifarms.org/" target="_blank">
-            {t('Join now')}
+            {t('More detail')}
           </StyledButtonMenu>
         </PriceWrapper>
       </RealWrapper>
