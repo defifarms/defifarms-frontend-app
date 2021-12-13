@@ -1,4 +1,4 @@
-import { Heading, Text, Flex } from '@defifarms/uikit'
+import { Heading, Text, Flex, LogoIcon } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
@@ -232,13 +232,19 @@ const Icon = styled.span<StyleIcon>`
 const ImageWrapper = styled.div`
   width: 150px;
   height: 130px;
-  background: #c0b3a8;
+  background: #FFEEDC;
   border-radius: 5px;
-  padding: 5px 5px 0;
-  margin-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 5px 5px 0;
     margin-right: 25px;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
   }
 `
 
@@ -325,9 +331,9 @@ const UpcomingIdo: React.FC = () => {
       <RealWrapper>
         <Grid>
           <ImageWrapper>
-            <Image width="140px" height="88px" alt="alt" src="/images/home/real-realm.png" />
+            <LogoIcon />
           </ImageWrapper>
-          <Image width="75px" height="48px" alt="alt" src="/images/home/real-realm.png" />
+          <Image width="51px" height="51px" alt="alt" src="/images/home/defiLogo.png" />
           <RealTextWrapper>
             <RealLabel>Real Realm</RealLabel>
             <RealDesc>The 1st cross-chain lidydity DEX on Avalande</RealDesc>

@@ -1389,10 +1389,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@defifarms/uikit@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@defifarms/uikit/-/uikit-0.0.7.tgz#90ac8d47cc8770bf2a46571377f41d597d75520b"
-  integrity sha512-cJitmUq7erd6YH4TXusg/szTzAUMDM91TYBHbiHSda0phRGZTs+FouiTOxxNGUyspdto5pxPA5dMLqSTywo7AQ==
+"@defifarms/uikit@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@defifarms/uikit/-/uikit-0.0.8.tgz#7eafae94dff4220f1fcbfc2ac06064a28c790a2d"
+  integrity sha512-94BEyqlIMD0ZEtls44mD4o5xpL9RnLkM+VFRoToZAzRsqdPq3iEYFcezEIsqGJBjI3Uc3HBhPCY2nTeUT9xxFA==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
