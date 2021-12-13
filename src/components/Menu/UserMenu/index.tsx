@@ -23,7 +23,20 @@ import WalletUserMenuItem from './WalletUserMenuItem'
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+  right: 0;
 `
+
+const Image = styled.img`
+  height: 115px;
+  width: calc(100vw - 243px);
+`
+
+const MenuWrapper = styled.div`
+  position: absolute;
+  right: 16px;
+`
+
 
 const UserMenu = () => {
   const { t } = useTranslation()
@@ -39,23 +52,28 @@ const UserMenu = () => {
   const isMobile = !isXl
   return (
     <Wrapper>
-      {/* <ThemeToggle handleChange={toggleTheme} checked={isDark} /> */}
+      {!isMobile && <Image alt="alt" src="/images/header.png" />}
       {account ? (
-        <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
-          <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
-          <UserMenuItem as="button" onClick={onPresentTransactionModal}>
-            {t('Transactions')}
-          </UserMenuItem>
-          <UserMenuDivider />
-          <UserMenuItem as="button" onClick={logout}>
-            <Flex alignItems="center" justifyContent="space-between" width="100%">
-              {t('Disconnect')}
-              <LogoutIcon />
-            </Flex>
-          </UserMenuItem>
-        </UIKitUserMenu>
+        <MenuWrapper>
+          <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
+            <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
+            <UserMenuItem as="button" onClick={onPresentTransactionModal}>
+              {t('Transactions')}
+            </UserMenuItem>
+            <UserMenuDivider />
+            <UserMenuItem as="button" onClick={logout}>
+              <Flex alignItems="center" justifyContent="space-between" width="100%">
+                {t('Disconnect')}
+                <LogoutIcon />
+              </Flex>
+            </UserMenuItem>
+          </UIKitUserMenu>
+        </MenuWrapper>
       ) : (
-        <ConnectWalletButton scale={isMobile ? 'xs' : 'sm'} ml="24px" />
+        <MenuWrapper>
+          <ConnectWalletButton scale={isMobile ? 'xs' : 'sm'} ml="24px" />
+        </MenuWrapper>
+        
       )}
     </Wrapper>
   )

@@ -11,7 +11,8 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts"
+    "updateLPsAPR": "ts-node scripts/updateLPsAPR.ts",
+    "syncUi": "rm -rf node_modules/@defifarms/uikit/dist && cp -R ../toolkit---ui/dist node_modules/@defifarms/uikit"
   },
   "husky": {
     "hooks": {
@@ -34,7 +35,7 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@defifarms/sdk": "^2.3.3",
-    "@defifarms/uikit": "^0.0.7",
+    "@defifarms/uikit": "^0.0.8",
     "@ethersproject/experimental": "^5.0.1",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",
