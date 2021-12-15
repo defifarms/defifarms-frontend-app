@@ -37,6 +37,7 @@ const Block = styled.div``
 
 const CardImage = styled.img`
   margin-bottom: 25px;
+  border-radius: 20px;
   width: 100%;
 `
 
@@ -150,7 +151,7 @@ const FarmedStakingCard = () => {
         <HeadingStakingCard scale="xl" mb="24px">
           {t('Farms & Staking')}
         </HeadingStakingCard>
-        <CardImage src="/images/home/farm-staking.webp" />
+        <CardImage src="/images/home/farm-staking.jpg" />
         <Cards>
           <Block>
             <Label>{t('DEFIY to Harvest')}:</Label>
