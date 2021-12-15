@@ -1,9 +1,11 @@
 import { Heading, Text, Flex, LogoIcon } from '@defifarms/uikit'
 import { useTranslation } from 'contexts/Localization'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useCountDownTimer from 'hooks/useCountDownTimer'
 import Time from './Time'
+
+const bscUrl = `https://api.bscscan.com/api?module=block&action=getblockcountdown&blockno=${process.env.REACT_APP_BSC_BLOCK_NO}&apikey=${process.env.REACT_APP_BSC_API_KEY}`
 
 interface ThemedBlock {
   disable?: boolean
@@ -91,9 +93,8 @@ const HeadingHome = styled(Heading)`
   color: #ffffff;
   margin-bottom: 9px;
   text-align: left;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 55px;
-    text-align: center;
   }
 `
 
@@ -280,20 +281,46 @@ const Grid = styled.div`
     display: flex;
   }
 `
+
 const UpcomingIdo: React.FC = () => {
-  const nextTime = 'Wed Dec 11 2024 12:28:10 GMT+0700'
+  const [data, setData] = useState({
+    CountdownBlock: '',
+    CurrentBlock: '',
+    EstimateTimeInSec: 0,
+    RemainingBlock: '',
+  })
+  const [nextTime, setNextTime]= useState('')
   const { t } = useTranslation()
+
   const [timeHarvestRemaining, setTimeHarvestRemaining] = useCountDownTimer()
   useEffect(() => {
-    const current = new Date(nextTime).getTime()
-    setTimeHarvestRemaining(Math.max(current - new Date().getTime(), 0))
-  }, [setTimeHarvestRemaining])
+    const time = new Date(new Date().getTime() + data.EstimateTimeInSec *1000)
+    setNextTime(time.toString())
+    setTimeHarvestRemaining(data.EstimateTimeInSec * 1000)
+  }, [setTimeHarvestRemaining, data.EstimateTimeInSec])
 
-  const timeLeft = {
+
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+      const response = await fetch(bscUrl)
+      const res = await response.json()
+      setData(res.result)
+    }
+
+    fetchMyAPI()
+  }, [])
+
+  const timeLeft = timeHarvestRemaining ? {
     days: Math.floor(timeHarvestRemaining / (1000 * 60 * 60 * 24)),
     hours: Math.floor((timeHarvestRemaining / (1000 * 60 * 60)) % 24),
     minutes: Math.floor((timeHarvestRemaining / 1000 / 60) % 60),
     seconds: Math.floor((timeHarvestRemaining / 1000) % 60),
+  } : {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   }
 
   return (
@@ -316,15 +343,15 @@ const UpcomingIdo: React.FC = () => {
         <BlockWrapper>
           <Block>
             <BlockLabel>Countdown For block:</BlockLabel>
-            <BlockValue>#20643376</BlockValue>
+            <BlockValue>#{data.CountdownBlock}</BlockValue>
           </Block>
           <Block disable margin="0 10px">
             <BlockLabel>Current Block:</BlockLabel>
-            <BlockValue>#13645985</BlockValue>
+            <BlockValue>#{data.CurrentBlock}</BlockValue>
           </Block>
           <Block disable>
             <BlockLabel>Remaining Block:</BlockLabel>
-            <BlockValue>#6997391</BlockValue>
+            <BlockValue>#{data.RemainingBlock}</BlockValue>
           </Block>
         </BlockWrapper>
       </HeaderWrapper>
