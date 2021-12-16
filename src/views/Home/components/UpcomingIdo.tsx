@@ -362,18 +362,19 @@ const UpcomingIdo: React.FC = () => {
           </ImageWrapper>
           <Image width="51px" height="51px" alt="alt" src="/images/home/defiLogo.png" />
           <RealTextWrapper>
-            <RealLabel>Real Realm</RealLabel>
+            <RealLabel>DEFIY</RealLabel>
             <RealDesc>The 1st cross-chain lidydity DEX on Avalande</RealDesc>
             <IconWrapper>
-              <Icon bg="/images/home/medium.png" />
-              <Icon bg="/images/home/telegram.png" />
-              <Icon bg="/images/home/twitter.png" />
+            
+              <a target="_blank" rel="noreferrer" href="https://defifarmsnfts.medium.com/"><Icon bg="/images/home/medium.png" /></a>
+              <a target="_blank" rel="noreferrer" href="https://t.me/DefifarmsNFT"><Icon bg="/images/home/telegram.png" /></a>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/DeFiFarmsNFTs"><Icon bg="/images/home/twitter.png" /></a>
             </IconWrapper>
           </RealTextWrapper>
         </Grid>
         <PriceWrapper>
-          <Price>(GFX/BSUD)</Price>
-          <StyledButtonMenu href="https://rocket.defifarms.org/" target="_blank">
+          <Price>(DEFIY/BSUD)</Price>
+          <StyledButtonMenu href="https://docs.defifarms.org/" target="_blank">
             {t('More detail')}
           </StyledButtonMenu>
         </PriceWrapper>
