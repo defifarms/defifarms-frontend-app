@@ -5,7 +5,15 @@ import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledButtonMenu = styled(Button)`
+  width: 132px;
+  height: 35px;
+  border-radius: 75px;
   background: #3230b2;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 188.66px;
+    height: 50px; 
+    border-radius: 75px;
+  }
 `
 
 const ConnectWalletButton = (props) => {

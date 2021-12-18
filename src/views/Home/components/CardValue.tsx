@@ -48,8 +48,8 @@ const CardValue: React.FC<CardValueProps> = ({
   return (
     <StyleText style={{ lineHeight }} color={color}>
       {prefix}
-      {/* {countUp} */}
-      {value.toFixed(value < 0 ? 4 : value > 1e5 ? 4 : 6)}
+      {countUp}
+      {/* {value.toFixed(2)} */}
     </StyleText>
   )
 }
