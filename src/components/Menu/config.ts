@@ -47,7 +47,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Rocket'),
     icon: 'RocketIcon',
-    href: '#',
+    href: 'https://spool.defifarms.org/rocket',
     status: {
       text: "SOON",
       color: "warning",
@@ -56,7 +56,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('NFT'),
     icon: 'NftIcon',
-    href: '#',
+    href: 'https://spool.defifarms.org/nft',
     status: {
       text: "SOON",
       color: "warning",
@@ -65,7 +65,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Lottery'),
     icon: 'LotteryIcon',
-    href: '#',
+    href: 'https://spool.defifarms.org/lottery',
     status: {
       text: "SOON",
       color: "warning",
