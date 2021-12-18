@@ -121,7 +121,7 @@ const CakeStats = () => {
             <ArrowRightIcon color="none" />
             <StyleText>{t('Total Minted')}</StyleText>
           </Flex>
-          <CardValue decimals={0} value={totalMinted} />
+          <CardValue decimals={3} value={totalMinted} />
         </Row>
         <Row>
           <Flex>
