@@ -46,28 +46,28 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
   {
     label: t('Rocket'),
-    icon: 'PredictionsIcon',
-    href: '#',
+    icon: 'RocketIcon',
+    href: 'https://spool.defifarms.org/rocket',
     status: {
-      text: "Comming soon",
+      text: "SOON",
       color: "warning",
     }
   },
   {
     label: t('NFT'),
     icon: 'NftIcon',
-    href: '#',
+    href: 'https://spool.defifarms.org/nft',
     status: {
-      text: "Comming soon",
+      text: "SOON",
       color: "warning",
     }
   },
   {
     label: t('Lottery'),
-    icon: 'TicketIcon',
-    href: '#',
+    icon: 'LotteryIcon',
+    href: 'https://spool.defifarms.org/lottery',
     status: {
-      text: "Comming soon",
+      text: "SOON",
       color: "warning",
     }
   },
