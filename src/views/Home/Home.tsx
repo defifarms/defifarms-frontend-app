@@ -49,16 +49,12 @@ const Cards = styled(BaseLayout)`
 `
 
 const MetaImage = styled.div`
-  background-image: url(/images/home/bg-meta.png);
-  background-repeat: no-repeat;
-  background-position: 36px;
-  background-size: contain;
-  padding-left: 90px;
+
 `
 
 const Wrapper = styled.div`
   height: 306px;
-  width: 504px;
+  width: 490px;
   overflow: hidden;
   border-radius: 10px;
 `
@@ -94,11 +90,12 @@ const HeadingWrapper = styled.div`
 `
 
 const Image = styled.img`
-  width: 306px;
+  width: 425px;
   height: 306px;
   margin-left: 0px;
+  margin-top: 1px;
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 95px;
+    margin-left: 25px;
   }
 `
 const CardImage = styled.div`
@@ -170,7 +167,7 @@ const Home: React.FC = () => {
             <Wrapper>
               <MetaWrapper>
                 <MetaImage>
-                  <Image alt="alt" src="/images/home/meta.webp" />
+                  <Image alt="alt" src="/images/home/bg-meta.png" />
                 </MetaImage>
               </MetaWrapper>
             </Wrapper>
