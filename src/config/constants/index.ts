@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@defifarms/sdk'
-import { BTCB, BUSD, DAI, DEFIY, ETH, USDC, USDT, UST, WBNB } from './tokens'
+import { BTCB, BUSD, DAI, DEFIY, ETH, USDC, USDT, UST, WBNB, CAKE } from './tokens'
 
 // export const ROUTER_ADDRESS = '0x64D2D8720F5986fE1cc7A474aa38176A85314D0C' // MainNet
 
@@ -12,8 +12,8 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DEFIY[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH, USDC],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DEFIY[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT[ChainId.MAINNET], BTCB[ChainId.MAINNET], UST, ETH[ChainId.MAINNET], USDC],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET], USDT[ChainId.TESTNET]],
 }
 
 /**
@@ -35,21 +35,21 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], DEFIY[ChainId.MAINNET], BTCB],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], DEFIY[ChainId.MAINNET], BTCB[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET], USDT[ChainId.TESTNET], BTCB[ChainId.TESTNET], ETH[ChainId.TESTNET], CAKE[ChainId.TESTNET]], 
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DAI, BUSD[ChainId.MAINNET], USDT],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DAI, BUSD[ChainId.MAINNET], USDT[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], DEFIY[ChainId.TESTNET], BUSD[ChainId.TESTNET], USDT[ChainId.TESTNET], BTCB[ChainId.TESTNET], ETH[ChainId.TESTNET], CAKE[ChainId.TESTNET]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
     [DEFIY[ChainId.MAINNET], WBNB[ChainId.MAINNET]],
-    [BUSD[ChainId.MAINNET], USDT],
-    [DAI, USDT],
+    [BUSD[ChainId.MAINNET], USDT[ChainId.MAINNET]],
+    [DAI, USDT[ChainId.MAINNET]],
   ],
 }
 

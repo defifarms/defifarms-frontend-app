@@ -364,12 +364,12 @@ const UpcomingIdo: React.FC = () => {
           <RealTextWrapper>
             <RealLabel>DEFIY</RealLabel>
             <RealDesc>The 1st cross-chain liquidity DEX on Avalande</RealDesc>
-            <IconWrapper>
+            {/* <IconWrapper>
             
               <a target="_blank" rel="noreferrer" href="https://defifarmsnfts.medium.com/"><Icon bg="/images/home/medium.png" /></a>
               <a target="_blank" rel="noreferrer" href="https://t.me/DefifarmsNFT"><Icon bg="/images/home/telegram.png" /></a>
               <a target="_blank" rel="noreferrer" href="https://twitter.com/DeFiFarmsNFTs"><Icon bg="/images/home/twitter.png" /></a>
-            </IconWrapper>
+            </IconWrapper> */}
           </RealTextWrapper>
         </Grid>
         <PriceWrapper>
